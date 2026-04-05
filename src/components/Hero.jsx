@@ -31,15 +31,29 @@ const Hero = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="relative">
-                        <div className="aspect-square bg-surface-container-low dark:bg-stone-800 rounded-2xl overflow-hidden relative group">
-                            <img className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyWgf-lzGNhFfT7k3UTvYpkM9hrLedbTd6EzmwarVr51xkDFytvJkatG_f_J7VGlXO8b0zqDho6sfo0nlT7DVyW-T4TmFyp8iBy5EtxiBUXSOqwda0O_O7irk1294Lv7w5-0QIo06u9dvfKrH9lEXQIallsusjOv7XI_OtfZRbRHgZOTMMWdtAxpS1vupekdN3NuV1bkXfDv6SZGaDIvikokbF_NlibjKrzR85tEttXo6fJkm0VHFW0bZGyqIXctTBm-lFtlybQJnE" alt="Lloyd Rosales" />
-                            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+                    <div className="relative group">
+                        {/* Soft Background Circle */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-700"></div>
+
+                        {/* Profile Image Container */}
+                        <div className="relative z-10 aspect-[4/5] md:aspect-square flex items-end justify-center overflow-visible">
+                            <img
+                                className="w-full h-full object-contain drop-shadow-2xl transition-all duration-700 hover:scale-[1.03]"
+                                src="/lloyd-pic.png"
+                                alt="Lloyd Rosales"
+                            />
                         </div>
-                        <div className="absolute -bottom-6 -left-6 bg-surface-container-lowest dark:bg-stone-900 p-6 rounded-xl shadow-xl max-w-[240px]">
-                            <p className="text-xs font-bold uppercase text-primary tracking-widest mb-2">Philosophy</p>
-                            <p className="text-sm font-medium italic text-on-surface dark:text-stone-200 leading-snug">"Performance is the baseline. Soul is the differentiator."</p>
+
+                        {/* Philosophy Card */}
+                        <div className="absolute -bottom-6 -left-6 z-20 bg-surface-container-lowest dark:bg-stone-900 border border-surface-container-high dark:border-stone-800 p-6 rounded-xl shadow-2xl max-w-[240px] transform transition-transform group-hover:-translate-y-2">
+                            <p className="text-xs font-bold uppercase text-primary tracking-[0.2em] mb-2">Philosophy</p>
+                            <p className="text-sm font-medium italic text-on-surface dark:text-stone-200 leading-snug">
+                                "Performance is the baseline. Soul is the differentiator."
+                            </p>
                         </div>
+
+                        {/* Decorative elements */}
+                        <div className="absolute -top-10 -right-10 w-24 h-24 border-2 border-primary/20 rounded-full animate-pulse"></div>
                     </div>
                 </div>
             </header>

@@ -9,11 +9,11 @@ const Contact = () => {
                         <div className="space-y-4">
                             <div className="flex items-center gap-4">
                                 <span className="material-symbols-outlined text-primary">alternate_email</span>
-                                <span className="font-medium">hello@lloydrosales.dev</span>
+                                <span className="font-medium">code.with.lloyd@gmail.com</span>
                             </div>
                             <div className="flex items-center gap-4">
                                 <span className="material-symbols-outlined text-primary">location_on</span>
-                                <span className="font-medium">Seattle, WA / Remote</span>
+                                <span className="font-medium">Cebu City, Philippines</span>
                             </div>
                         </div>
                     </div>

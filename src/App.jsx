@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { DarkModeProvider } from './context/DarkModeContext';
-import TopNavBar from './components/TopNavBar';
+import SharedNav from './components/SharedNav';
 import Hero from './components/Hero';
 import TechnicalArsenal from './components/TechnicalArsenal';
 import Projects from './components/Projects';
@@ -16,7 +16,7 @@ import AchievementsPage from './pages/AchievementsPage';
 function HomePage() {
   return (
     <>
-      <TopNavBar />
+      <SharedNav />
       <Hero />
       <TechnicalArsenal />
       <Projects />

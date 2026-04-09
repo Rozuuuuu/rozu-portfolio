@@ -1,59 +1,138 @@
+import { useEffect, useRef, useState } from 'react';
 import PageTransition from '../components/PageTransition';
 import { useNavigate } from 'react-router-dom';
 
+const useConsoleText = (words) => {
+    const [displayText, setDisplayText] = useState('');
+    const [fullText, setFullText] = useState(words[0]);
+    const [cursorVisible, setCursorVisible] = useState(true);
+
+    const wordsRef = useRef([...words]);
+    const letterCount = useRef(1);
+    const x = useRef(1);
+    const waiting = useRef(false);
+
+    useEffect(() => {
+        const typingInterval = setInterval(() => {
+            if (letterCount.current === 0 && !waiting.current) {
+                waiting.current = true;
+                setDisplayText('');
+                setTimeout(() => {
+                    const usedWord = wordsRef.current.shift();
+                    wordsRef.current.push(usedWord);
+                    x.current = 1;
+                    setFullText(wordsRef.current[0]);
+                    letterCount.current += x.current;
+                    waiting.current = false;
+                }, 1000);
+            } else if (letterCount.current === wordsRef.current[0].length + 1 && !waiting.current) {
+                waiting.current = true;
+                setTimeout(() => {
+                    x.current = -1;
+                    letterCount.current += x.current;
+                    waiting.current = false;
+                }, 1000);
+            } else if (!waiting.current) {
+                setDisplayText(wordsRef.current[0].substring(0, letterCount.current));
+                letterCount.current += x.current;
+            }
+        }, 120);
+
+        const cursorInterval = setInterval(() => {
+            setCursorVisible(v => !v);
+        }, 400);
+
+        return () => {
+            clearInterval(typingInterval);
+            clearInterval(cursorInterval);
+        };
+    }, []);
+
+    return { displayText, fullText, cursorVisible };
+};
+
 const Hero = () => {
     const navigate = useNavigate();
+
+    const { displayText, fullText, cursorVisible } = useConsoleText([
+        "I'm Lloyd C. Rosales.",
+        'Software Developer',
+        'Computer Science Student',
+        'Full-Stack Developer',
+        'AI Engineer'
+    ]);
+
+    // Find the starting index for the red highlight (the word after the last space)
+    const lastSpaceIndex = fullText.lastIndexOf(' ');
+    const highlightIndex = lastSpaceIndex !== -1 ? lastSpaceIndex + 1 : fullText.length;
+
+    // Split the currently rendered text into base (white/black) and highlighted (red) sets
+    const baseText = displayText.substring(0, highlightIndex);
+    const highlightedText = displayText.substring(highlightIndex);
+
+    // If we've started typing the red text, the cursor should be red too.
+    const isTypingHighlight = displayText.length >= highlightIndex && highlightIndex !== fullText.length;
+
     return (
         <PageTransition>
-            <header className="pt-32 pb-20 px-6 md:px-8 max-w-7xl mx-auto" id="home">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-8">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label text-xs uppercase tracking-widest font-bold">
-                            Rozu's Portfolio
-                        </div>
-                        <h1 className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none text-on-surface dark:text-stone-100">
-                            Lloyd C. <br /> <span className="text-primary italic">Rosales</span>
+            <header
+                className="min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto"
+                id="home"
+            >
+                <div className="w-full flex flex-col items-center text-center space-y-6">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label text-xs uppercase tracking-widest font-bold">
+                        Rozu's Portfolio
+                    </div>
+
+                    <div className="flex flex-col items-center">
+                        {/* Static Hello */}
+                        <h2 className="font-['Epilogue'] text-3xl sm:text-4xl md:text-5xl italic font-semibold text-stone-900 dark:text-white mb-2 tracking-wider">
+                            HELLO<span className="text-primary dark:text-red-500">.</span>
+                        </h2>
+
+                        {/* Animated cycling text */}
+                        <h1 className="font-['Epilogue'] italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter flex items-center justify-center min-h-[2.5em] md:min-h-[1.5em] max-w-4xl mx-auto leading-tight">
+                            <span className="drop-shadow-sm whitespace-pre">
+                                <span className="text-stone-900 dark:text-white transition-colors duration-300">{baseText}</span>
+                                <span className="text-primary dark:text-red-500 transition-colors duration-300">{highlightedText}</span>
+                            </span>
+                            
+                            {/* Blinking cursor */}
+                            <span
+                                className={`inline-block w-[4px] rounded-sm ml-1 align-middle transition-colors duration-300 ${isTypingHighlight ? 'bg-primary dark:bg-red-500' : 'bg-stone-900 dark:bg-white'}`}
+                                style={{
+                                    height: '0.85em',
+                                    opacity: cursorVisible ? 1 : 0
+                                }}
+                            />
                         </h1>
-                        <p className="text-xl text-on-surface-variant dark:text-stone-400 max-w-lg leading-relaxed">
-                            Software Engineer & Systems Architect focusing on high-performance editorial digital experiences and kinetic interface design.
-                        </p>
-                        <div className="flex gap-4 flex-wrap">
-                            <button onClick={() => navigate('/projects')} className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
-                                Explore Projects
-                            </button>
-                            <button onClick={() => {
+                    </div>
+
+                    {/* Subtle subtitle */}
+                    <p className="text-sm text-on-surface-variant dark:text-stone-500 tracking-[0.25em] uppercase font-medium pt-2">
+                        Cebu City, Philippines &nbsp;·&nbsp; Open to Work
+                    </p>
+
+                    {/* CTA Buttons */}
+                    <div className="flex gap-4 flex-wrap justify-center pt-4">
+                        <button
+                            onClick={() => navigate('/projects')}
+                            className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
+                        >
+                            Explore Projects
+                        </button>
+                        <button
+                            onClick={() => {
                                 const link = document.createElement('a');
                                 link.href = '/Resume-LloydRosales.pdf';
                                 link.download = 'rosales_resume.pdf';
                                 link.click();
-                            }} className="bg-surface-container-high dark:bg-stone-800 text-primary dark:text-stone-200 px-8 py-4 rounded-lg font-bold hover:bg-surface-container-highest dark:hover:bg-stone-700 transition-colors">
-                                Download Resume
-                            </button>
-                        </div>
-                    </div>
-                    <div className="relative group">
-                        {/* Soft Background Circle */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-700"></div>
-
-                        {/* Profile Image Container */}
-                        <div className="relative z-10 aspect-[4/5] md:aspect-square flex items-end justify-center overflow-visible">
-                            <img
-                                className="w-full h-full object-contain drop-shadow-2xl transition-all duration-700 hover:scale-[1.03]"
-                                src="/lloyd-pic.png"
-                                alt="Lloyd Rosales"
-                            />
-                        </div>
-
-                        {/* Philosophy Card */}
-                        <div className="absolute -bottom-6 -left-6 z-20 bg-surface-container-lowest dark:bg-stone-900 border border-surface-container-high dark:border-stone-800 p-6 rounded-xl shadow-2xl max-w-[240px] transform transition-transform group-hover:-translate-y-2">
-                            <p className="text-xs font-bold uppercase text-primary tracking-[0.2em] mb-2">Philosophy</p>
-                            <p className="text-sm font-medium italic text-on-surface dark:text-stone-200 leading-snug">
-                                "Performance is the baseline. Soul is the differentiator."
-                            </p>
-                        </div>
-
-                        {/* Decorative elements */}
-                        <div className="absolute -top-10 -right-10 w-24 h-24 border-2 border-primary/20 rounded-full animate-pulse"></div>
+                            }}
+                            className="bg-surface-container-high dark:bg-stone-800 text-primary dark:text-stone-200 px-8 py-4 rounded-lg font-bold hover:bg-surface-container-highest dark:hover:bg-stone-700 transition-colors"
+                        >
+                            Download Resume
+                        </button>
                     </div>
                 </div>
             </header>

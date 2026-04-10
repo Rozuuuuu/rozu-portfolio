@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
+import SocialCards from './SocialCards';
 import { useNavigate } from 'react-router-dom';
 
 const useConsoleText = (words) => {
-    // ... exactly the same
     const [displayText, setDisplayText] = useState('');
     const [fullText, setFullText] = useState(words[0]);
     const [cursorVisible, setCursorVisible] = useState(true);
@@ -58,7 +58,7 @@ const Hero = () => {
 
     const { displayText, fullText, cursorVisible } = useConsoleText([
         'Software Developer',
-        'Computer Science Student',
+        'BS in Computer Science',
         'Full-Stack Developer',
         'AI Engineer'
     ]);
@@ -77,65 +77,71 @@ const Hero = () => {
     return (
         <PageTransition>
             <header
-                className="min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto"
+                className="min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto overflow-hidden"
                 id="home"
             >
-                <ScrollReveal className="w-full flex flex-col items-center text-center space-y-6">
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label text-xs uppercase tracking-widest font-bold">
-                        Rozu's Portfolio
-                    </div>
+                <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+                    <ScrollReveal className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+                        {/* Badge */}
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label text-xs uppercase tracking-widest font-bold">
+                            Rozu's Portfolio
+                        </div>
 
-                    <div className="flex flex-col items-center">
-                        {/* Static Greeting */}
-                        <h2 className="font-['Epilogue'] text-3xl sm:text-4xl md:text-5xl italic font-semibold text-stone-900 dark:text-white mb-2 tracking-wide">
-                            Hello I'm <span className="text-primary dark:text-red-500">Lloyd.</span>
-                        </h2>
+                        <div className="flex flex-col items-center lg:items-start">
+                            {/* Static Greeting */}
+                            <h2 className="font-['Epilogue'] text-3xl sm:text-4xl md:text-5xl italic font-semibold text-stone-900 dark:text-white mb-2 tracking-wide">
+                                Hello I'm <span className="text-primary dark:text-red-500">Lloyd.</span>
+                            </h2>
 
-                        {/* Animated cycling text */}
-                        <h1 className="font-['Epilogue'] italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter flex items-center justify-center min-h-[2.5em] md:min-h-[1.5em] max-w-4xl mx-auto leading-tight">
-                            <span className="drop-shadow-sm whitespace-pre">
-                                <span className="text-stone-900 dark:text-white transition-colors duration-300">{baseText}</span>
-                                <span className="text-primary dark:text-red-500 transition-colors duration-300">{highlightedText}</span>
-                            </span>
-                            
-                            {/* Blinking cursor */}
-                            <span
-                                className={`inline-block w-[4px] rounded-sm ml-1 align-middle transition-colors duration-300 ${isTypingHighlight ? 'bg-primary dark:bg-red-500' : 'bg-stone-900 dark:bg-white'}`}
-                                style={{
-                                    height: '0.85em',
-                                    opacity: cursorVisible ? 1 : 0
+                            {/* Animated cycling text */}
+                            <h1 className="font-['Epilogue'] italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter flex items-center justify-center lg:justify-start min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
+                                <span className="drop-shadow-sm whitespace-pre">
+                                    <span className="text-stone-900 dark:text-white transition-colors duration-300">{baseText}</span>
+                                    <span className="text-primary dark:text-red-500 transition-colors duration-300">{highlightedText}</span>
+                                </span>
+                                
+                                {/* Blinking cursor */}
+                                <span
+                                    className={`inline-block w-[4px] rounded-sm ml-1 align-middle transition-colors duration-300 ${isTypingHighlight ? 'bg-primary dark:bg-red-500' : 'bg-stone-900 dark:bg-white'}`}
+                                    style={{
+                                        height: '0.85em',
+                                        opacity: cursorVisible ? 1 : 0
+                                    }}
+                                />
+                            </h1>
+                        </div>
+
+                        {/* Subtle subtitle */}
+                        <p className="text-sm text-on-surface-variant dark:text-stone-500 tracking-[0.25em] uppercase font-medium pt-2">
+                            Cebu City, Philippines &nbsp;·&nbsp; Open to Work
+                        </p>
+
+                        {/* CTA Buttons */}
+                        <div className="flex gap-4 flex-wrap justify-center lg:justify-start pt-4">
+                            <button
+                                onClick={() => navigate('/projects')}
+                                className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
+                            >
+                                Explore Projects
+                            </button>
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement('a');
+                                    link.href = '/Resume-LloydRosales.pdf';
+                                    link.download = 'rosales_resume.pdf';
+                                    link.click();
                                 }}
-                            />
-                        </h1>
-                    </div>
+                                className="bg-surface-container-high dark:bg-stone-800 text-primary dark:text-stone-200 px-8 py-4 rounded-lg font-bold hover:bg-surface-container-highest dark:hover:bg-stone-700 transition-colors"
+                            >
+                                Download Resume
+                            </button>
+                        </div>
+                    </ScrollReveal>
 
-                    {/* Subtle subtitle */}
-                    <p className="text-sm text-on-surface-variant dark:text-stone-500 tracking-[0.25em] uppercase font-medium pt-2">
-                        Cebu City, Philippines &nbsp;·&nbsp; Open to Work
-                    </p>
-
-                    {/* CTA Buttons */}
-                    <div className="flex gap-4 flex-wrap justify-center pt-4">
-                        <button
-                            onClick={() => navigate('/projects')}
-                            className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
-                        >
-                            Explore Projects
-                        </button>
-                        <button
-                            onClick={() => {
-                                const link = document.createElement('a');
-                                link.href = '/Resume-LloydRosales.pdf';
-                                link.download = 'rosales_resume.pdf';
-                                link.click();
-                            }}
-                            className="bg-surface-container-high dark:bg-stone-800 text-primary dark:text-stone-200 px-8 py-4 rounded-lg font-bold hover:bg-surface-container-highest dark:hover:bg-stone-700 transition-colors"
-                        >
-                            Download Resume
-                        </button>
-                    </div>
-                </ScrollReveal>
+                    <ScrollReveal className="hidden md:flex justify-center flex-shrink-0 w-full lg:w-auto relative lg:mr-8 xl:mr-16">
+                        <SocialCards />
+                    </ScrollReveal>
+                </div>
             </header>
         </PageTransition>
     );

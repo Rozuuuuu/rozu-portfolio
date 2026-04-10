@@ -12,6 +12,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectsPage from './pages/ProjectsPage';
 import AchievementsPage from './pages/AchievementsPage';
+import SkillsPage from './pages/SkillsPage';
 
 function HomePage() {
   return (
@@ -37,6 +38,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/achievements" element={<AchievementsPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
       </Routes>
     </AnimatePresence>
   );

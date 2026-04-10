@@ -1,3 +1,5 @@
+import ScrollReveal from './ScrollReveal';
+
 const Projects = () => {
     const cards = [
         {
@@ -22,36 +24,38 @@ const Projects = () => {
 
     return (
         <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="projects">
-            <div className="mb-16">
-                <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">Recent Work</span>
-                <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Featured Projects</h2>
-            </div>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
-                {cards.map(({ tag, img, title, desc }) => (
-                    <div key={title} className="group bg-surface-container-lowest dark:bg-stone-800 rounded-lg overflow-hidden flex flex-col h-full hover:shadow-2xl transition-all duration-300">
-                        <div className="h-64 overflow-hidden relative">
-                            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={img} alt={title} />
-                            <div className="absolute top-4 left-4">
-                                <span className="bg-primary px-3 py-1 text-[10px] text-white font-bold uppercase tracking-tighter">{tag}</span>
+            <ScrollReveal>
+                <div className="mb-16">
+                    <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">Recent Work</span>
+                    <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Featured Projects</h2>
+                </div>
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
+                    {cards.map(({ tag, img, title, desc }) => (
+                        <div key={title} className="group bg-surface-container-lowest dark:bg-stone-800 rounded-lg overflow-hidden flex flex-col h-full hover:shadow-2xl transition-all duration-300">
+                            <div className="h-64 overflow-hidden relative">
+                                <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={img} alt={title} />
+                                <div className="absolute top-4 left-4">
+                                    <span className="bg-primary px-3 py-1 text-[10px] text-white font-bold uppercase tracking-tighter">{tag}</span>
+                                </div>
+                            </div>
+                            <div className="p-8 flex-grow flex flex-col">
+                                <h3 className="text-xl font-black mb-3 dark:text-stone-100">{title}</h3>
+                                <p className="text-on-surface-variant dark:text-stone-400 text-sm mb-6 flex-grow leading-relaxed">{desc}</p>
+                                <button className="w-full py-3 bg-surface-container-high dark:bg-stone-700 text-on-surface dark:text-stone-200 font-bold text-sm rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2">
+                                    View Details
+                                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                                </button>
                             </div>
                         </div>
-                        <div className="p-8 flex-grow flex flex-col">
-                            <h3 className="text-xl font-black mb-3 dark:text-stone-100">{title}</h3>
-                            <p className="text-on-surface-variant dark:text-stone-400 text-sm mb-6 flex-grow leading-relaxed">{desc}</p>
-                            <button className="w-full py-3 bg-surface-container-high dark:bg-stone-700 text-on-surface dark:text-stone-200 font-bold text-sm rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2">
-                                View Details
-                                <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <div className="flex justify-center">
-                <button className="px-8 py-4 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-3">
-                    View More Projects
-                    <span className="material-symbols-outlined">grid_view</span>
-                </button>
-            </div>
+                    ))}
+                </div>
+                <div className="flex justify-center">
+                    <button className="px-8 py-4 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-3">
+                        View More Projects
+                        <span className="material-symbols-outlined">grid_view</span>
+                    </button>
+                </div>
+            </ScrollReveal>
         </section>
     );
 };

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import PageTransition from '../components/PageTransition';
+import ScrollReveal from '../components/ScrollReveal';
 import { useNavigate } from 'react-router-dom';
 
 const useConsoleText = (words) => {
+    // ... exactly the same
     const [displayText, setDisplayText] = useState('');
     const [fullText, setFullText] = useState(words[0]);
     const [cursorVisible, setCursorVisible] = useState(true);
@@ -55,7 +57,6 @@ const Hero = () => {
     const navigate = useNavigate();
 
     const { displayText, fullText, cursorVisible } = useConsoleText([
-        "I'm Lloyd C. Rosales.",
         'Software Developer',
         'Computer Science Student',
         'Full-Stack Developer',
@@ -79,16 +80,16 @@ const Hero = () => {
                 className="min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto"
                 id="home"
             >
-                <div className="w-full flex flex-col items-center text-center space-y-6">
+                <ScrollReveal className="w-full flex flex-col items-center text-center space-y-6">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label text-xs uppercase tracking-widest font-bold">
                         Rozu's Portfolio
                     </div>
 
                     <div className="flex flex-col items-center">
-                        {/* Static Hello */}
-                        <h2 className="font-['Epilogue'] text-3xl sm:text-4xl md:text-5xl italic font-semibold text-stone-900 dark:text-white mb-2 tracking-wider">
-                            HELLO<span className="text-primary dark:text-red-500">.</span>
+                        {/* Static Greeting */}
+                        <h2 className="font-['Epilogue'] text-3xl sm:text-4xl md:text-5xl italic font-semibold text-stone-900 dark:text-white mb-2 tracking-wide">
+                            Hello I'm <span className="text-primary dark:text-red-500">Lloyd.</span>
                         </h2>
 
                         {/* Animated cycling text */}
@@ -134,7 +135,7 @@ const Hero = () => {
                             Download Resume
                         </button>
                     </div>
-                </div>
+                </ScrollReveal>
             </header>
         </PageTransition>
     );

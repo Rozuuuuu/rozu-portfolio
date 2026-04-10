@@ -1,7 +1,9 @@
+import ScrollReveal from './ScrollReveal';
+
 const Education = () => {
     return (
         <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="education">
-            <div className="grid md:grid-cols-2 gap-16">
+            <ScrollReveal className="grid md:grid-cols-2 gap-16">
                 {/* Academic Foundation */}
                 <div>
                     <div className="mb-12">
@@ -35,7 +37,7 @@ const Education = () => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </ScrollReveal>
         </section>
     );
 };

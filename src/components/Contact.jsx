@@ -1,7 +1,9 @@
+import ScrollReveal from './ScrollReveal';
+
 const Contact = () => {
     return (
         <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="contact">
-            <div className="bg-on-surface dark:bg-stone-900 text-surface dark:text-stone-100 rounded-2xl p-8 md:p-20 overflow-hidden relative border dark:border-stone-700">
+            <ScrollReveal className="bg-on-surface dark:bg-stone-900 text-surface dark:text-stone-100 rounded-2xl p-8 md:p-20 overflow-hidden relative border dark:border-stone-700">
                 <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-6 leading-none">Let's build the <br /> <span className="text-primary">Next Big Thing</span> together.</h2>
@@ -27,7 +29,7 @@ const Contact = () => {
                     </div>
                 </div>
                 <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-primary opacity-20 rounded-full blur-[100px]"></div>
-            </div>
+            </ScrollReveal>
         </section>
     );
 };

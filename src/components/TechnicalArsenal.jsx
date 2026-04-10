@@ -1,7 +1,9 @@
+import ScrollReveal from './ScrollReveal';
+
 const TechnicalArsenal = () => {
     return (
         <section className="bg-surface-container-low dark:bg-stone-900 py-24 transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-6 md:px-8">
+            <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
                 <div className="flex justify-between items-end mb-16">
                     <div>
                         <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">The Engine</span>
@@ -44,7 +46,7 @@ const TechnicalArsenal = () => {
                         <p className="text-xs text-on-surface-variant dark:text-stone-400 mt-2">PostgreSQL, Redis</p>
                     </div>
                 </div>
-            </div>
+            </ScrollReveal>
         </section>
     );
 };

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ScrollReveal from './ScrollReveal';
 
 const Achievements = () => {
     const items = [
@@ -24,7 +25,7 @@ const Achievements = () => {
 
     return (
         <section className="py-24 bg-[#fff0ee] dark:bg-stone-900 transition-colors duration-300" id="achievements">
-            <div className="max-w-7xl mx-auto px-6 md:px-8">
+            <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
                 {/* Header */}
                 <div className="flex justify-between items-end mb-16">
                     <div>
@@ -66,7 +67,7 @@ const Achievements = () => {
                         <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </Link>
                 </div>
-            </div>
+            </ScrollReveal>
         </section>
     );
 };

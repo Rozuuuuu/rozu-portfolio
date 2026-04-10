@@ -1,7 +1,9 @@
+import ScrollReveal from './ScrollReveal';
+
 const Experience = () => {
     return (
         <section className="bg-surface-container-low dark:bg-stone-900 py-24 transition-colors duration-300" id="experience">
-            <div className="max-w-7xl mx-auto px-6 md:px-8">
+            <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
                 <div className="grid lg:grid-cols-3 gap-12">
                     <div>
                         <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">The Path</span>
@@ -27,7 +29,7 @@ const Experience = () => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </ScrollReveal>
         </section>
     );
 };

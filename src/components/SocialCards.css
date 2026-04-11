@@ -255,11 +255,36 @@
 
 .text {
   position: absolute;
-  font-size: 0.7em;
+  font-size: 0.75em;
   transition: 0.4s ease-in-out;
   color: black;
   text-align: center;
-  font-weight: bold;
-  letter-spacing: 0.33em;
+  font-weight: 800;
+  letter-spacing: 0.25em;
   z-index: 3;
+  font-family: 'Epilogue', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Dark Mode Overrides */
+.dark .card_social {
+  background: #1a0e0c; /* Exact match with dark body background */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(255, 255, 255, 0.02); /* Very faintly blended grid lines */
+}
+
+/* Hide the rainbow gradient fully when resting in dark mode */
+.dark .main_socials:not(:hover) .main_back {
+  display: none;
+}
+
+.dark .text {
+  color: #f5e9e7; /* Exact match with dark text color */
+}
+
+/* Keep the cards deeply colored properly while splitting */
+.dark .main_socials:hover .card_social {
+  background: #1a0e0c;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Returns to normal glowing borders on hover */
 }

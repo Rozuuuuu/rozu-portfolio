@@ -138,7 +138,7 @@ const Hero = () => {
                         </div>
                     </ScrollReveal>
 
-                    <ScrollReveal className="hidden md:flex justify-center flex-shrink-0 w-full lg:w-auto relative lg:mr-8 xl:mr-16">
+                    <ScrollReveal className="flex justify-center flex-shrink-0 w-full lg:w-auto relative lg:mr-8 xl:mr-16 mt-12 lg:mt-0 pb-12 lg:pb-0 z-10">
                         <SocialCards />
                     </ScrollReveal>
                 </div>

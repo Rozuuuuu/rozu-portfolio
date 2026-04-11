@@ -226,7 +226,7 @@ const SocialCards = () => {
           </g>
         </svg>
       </div>
-      <p className="text">HOVER<br /><br />FOR<br /><br />SOCIAL</p>
+      <p className="text">Find<br /><br />Me<br /><br />Online</p>
       <div className="main_back"></div>
     </div>
   );

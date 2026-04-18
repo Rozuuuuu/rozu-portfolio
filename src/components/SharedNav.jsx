@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useDarkMode } from '../context/DarkModeContext';
+import { motion } from 'framer-motion';
 
 const SharedNav = () => {
     const location = useLocation();
@@ -69,13 +70,19 @@ const SharedNav = () => {
                                 }
                             `}
                         >
-                            {/* Slide Background */}
-                            <span className={`absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in
-                                ${active === to
-                                    ? 'translate-x-0 bg-[#bc000a]/10 dark:bg-stone-800'
-                                    : 'translate-x-full bg-surface-container dark:bg-stone-800 group-hover:translate-x-0'
-                                }
-                            `} />
+                            {/* Slide Background using Framer Motion LayoutId */}
+                            {active === to && (
+                                <motion.span 
+                                    layoutId="nav-pill"
+                                    className="absolute -z-10 rounded-lg w-full h-full top-0 bg-[#bc000a]/10 dark:bg-stone-800"
+                                    initial={false}
+                                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                />
+                            )}
+                            {/* Fallback hover background for non-active links */}
+                            {active !== to && (
+                                <span className="absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in translate-x-full bg-surface-container dark:bg-stone-800 group-hover:translate-x-0 group-focus:translate-x-0" />
+                            )}
 
                             {/* Icon */}
                             <span className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0 absolute left-[15.5px] sm:left-[21px] flex items-center justify-center">
@@ -94,14 +101,14 @@ const SharedNav = () => {
                         </Link>
                     ))}
 
-                    {/* Dark Mode Toggle Button built exactly like the links */}
+                    {/* Dark Mode Toggle Button */}
                     <button
                         onClick={toggle}
                         aria-label="Toggle dark mode"
                         className="group inline-flex justify-center items-center w-[55px] sm:w-[70px] h-[50px] rounded-lg relative z-10 overflow-hidden origin-left transition-all duration-200 ease-in text-stone-600 dark:text-stone-400 hover:text-[#bc000a] dark:hover:text-red-500 hover:w-[110px] sm:hover:w-[130px] focus:outline-none"
                     >
                         {/* Slide Background */}
-                        <span className="absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in translate-x-full bg-surface-container dark:bg-stone-800 group-hover:translate-x-0" />
+                        <span className="absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in translate-x-full bg-surface-container dark:bg-stone-800 group-hover:translate-x-0 group-focus:translate-x-0" />
 
                         {/* Icon */}
                         <span className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0 absolute left-[15.5px] sm:left-[21px] flex items-center justify-center">

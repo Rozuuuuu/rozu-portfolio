@@ -37,8 +37,9 @@ const SharedNav = () => {
             to: '/skills', label: 'Skills', icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" viewBox="0 0 256 256">
                     <rect width="256" height="256" fill="none"></rect>
-                    <circle cx="128" cy="96" r="64" fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="16"></circle>
-                    <path d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></path>
+                    <path d="M40,168V132a88,88,0,1,1,176,0c0,22.1-17.9,40-40,40H160a16,16,0,0,0-16,16v24a24,24,0,0,1-24,24H96a8,8,0,0,1-8-8V192H72A32,32,0,0,1,40,168Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></path>
+                    <circle cx="128" cy="120" r="32" fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="16"></circle>
+                    <path d="M128,80v8m0,64v8m34.6-56.6-6.9,4m-55.4,32L93.4,136m0-32,6.9,4m55.4,32,6.9,4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></path>
                 </svg>
             )
         },

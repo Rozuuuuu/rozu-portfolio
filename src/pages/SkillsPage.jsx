@@ -10,12 +10,6 @@ const SkillsPage = () => {
     }, []);
 
     const customStyles = `
-        .hex-grid {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.32v12.68l10.99 6.34L25 30V17.32l-11.01-6.34L3 17.32z' fill='%235E3F3C' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        .dark .hex-grid {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.32v12.68l10.99 6.34L25 30V17.32l-11.01-6.34L3 17.32z' fill='%23FFB4AB' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
         .terminal-cursor::after {
             content: '_';
             animation: blink 1s step-end infinite;
@@ -32,8 +26,9 @@ const SkillsPage = () => {
     return (
         <PageTransition>
             <style>{customStyles}</style>
-            <SharedNav />
-            <main className="relative min-h-screen hex-grid pt-32 pb-24 px-6 max-w-7xl mx-auto bg-surface dark:bg-stone-950 transition-colors duration-300">
+            <div className="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 min-h-screen transition-colors duration-300">
+                <SharedNav />
+                <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
                 {/* Header Section */}
                 <ScrollReveal className="mb-16">
                     <div className="flex items-end gap-4 mb-2">
@@ -322,6 +317,7 @@ const SkillsPage = () => {
                 </ScrollReveal>
             </main>
             <Footer />
+            </div>
         </PageTransition>
     );
 };

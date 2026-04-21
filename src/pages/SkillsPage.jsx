@@ -290,7 +290,7 @@ const SkillsPage = () => {
                                 <span className="text-stone-700 dark:text-stone-300 text-sm font-bold">Hardware & Software Diagnostics</span>
                             </div>
                             <div className="inline-block mt-4 px-4 py-1.5 bg-primary/10 dark:bg-[#ffb4ab]/10 border border-primary/20 dark:border-[#ffb4ab]/20 text-primary dark:text-[#ffb4ab] text-xs font-black tracking-widest uppercase rounded">
-                                NCII CERTIFIED ENGINEER
+                                NCII CERTIFIED COMPUTER SYSTEMS SERVICING
                             </div>
                         </div>
                     </ScrollReveal>

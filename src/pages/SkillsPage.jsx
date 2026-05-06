@@ -35,8 +35,9 @@ const SkillsPage = () => {
                         <span className="text-primary dark:text-[#ffb4ab] text-xs font-mono font-bold tracking-[0.3em]">SYSTEM_VERSION: 4.0.2</span>
                         <div className="h-[1px] flex-grow bg-primary/20 dark:bg-outline-variant/15 mb-1.5"></div>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-headline font-black tracking-tighter text-on-surface dark:text-stone-100 uppercase mb-4">
-                        Technical_<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container dark:to-[#ffb4ab]">Arsenal</span>
+                    <h1 className="text-3xl sm:text-5xl md:text-7xl font-headline font-black tracking-tighter text-on-surface dark:text-stone-100 uppercase mb-4 leading-[0.9] flex flex-col sm:block">
+                        <span>Technical_</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container dark:to-[#ffb4ab]">Arsenal</span>
                     </h1>
                     <p className="max-w-2xl text-on-surface-variant dark:text-stone-400 font-body leading-relaxed text-lg border-l-2 border-primary dark:border-[#ffb4ab] pl-6 py-2">
                         Unified deployment parameters and multi-stack architecture logic. Executing core proficiency modules for high-scale digital environments.

@@ -226,7 +226,11 @@ const SocialCards = () => {
           </g>
         </svg>
       </div>
-      <p className="text">Find<br /><br />Me<br /><br />Online</p>
+      <p className="text">
+        <span>Find</span>
+        <span>Me</span>
+        <span>Online</span>
+      </p>
       <div className="main_back"></div>
     </div>
   );

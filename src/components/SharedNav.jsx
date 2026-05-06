@@ -58,16 +58,16 @@ const SharedNav = () => {
     return (
         <>
             {/* Floating Expanding Navbar */}
-            <nav className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
-                <div className="flex justify-center p-2 bg-[#fff8f7]/95 dark:bg-stone-900/95 backdrop-blur-xl rounded-[1rem] shadow-[0_10px_25px_0_rgba(0,0,0,0.1)] dark:shadow-[0_10px_25px_0_rgba(0,0,0,0.5)] border border-stone-200/50 dark:border-white/5 gap-1">
+            <nav className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-auto w-[calc(100%-2rem)] sm:w-auto max-w-fit">
+                <div className="flex justify-center p-1.5 sm:p-2 bg-[#fff8f7]/95 dark:bg-stone-900/95 backdrop-blur-xl rounded-[1rem] shadow-[0_10px_25px_0_rgba(0,0,0,0.1)] dark:shadow-[0_10px_25px_0_rgba(0,0,0,0.5)] border border-stone-200/50 dark:border-white/5 gap-1">
                     {links.map(({ to, label, icon }) => (
                         <Link
                             key={to}
                             to={to}
-                            className={`group inline-flex justify-center items-center h-[50px] rounded-lg relative z-10 overflow-hidden origin-left transition-all duration-200 ease-in
+                            className={`group inline-flex justify-center items-center h-[45px] sm:h-[50px] rounded-lg relative z-10 overflow-hidden origin-left transition-all duration-200 ease-in
                             ${active === to
-                                    ? 'w-[110px] sm:w-[130px] text-[#bc000a] dark:text-red-500' /* Expanded active state */
-                                    : 'w-[55px] sm:w-[70px] text-stone-600 dark:text-stone-400 hover:text-[#bc000a] dark:hover:text-red-500 hover:w-[110px] sm:hover:w-[130px] focus:outline-none'
+                                    ? 'w-[90px] min-[400px]:w-[110px] sm:w-[130px] text-[#bc000a] dark:text-red-500' /* Expanded active state */
+                                    : 'w-[45px] min-[400px]:w-[55px] sm:w-[70px] text-stone-600 dark:text-stone-400 hover:text-[#bc000a] dark:hover:text-red-500 hover:w-[90px] min-[400px]:hover:w-[110px] sm:hover:w-[130px] focus:outline-none'
                                 }
                             `}
                         >

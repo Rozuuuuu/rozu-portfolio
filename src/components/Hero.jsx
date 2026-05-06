@@ -95,7 +95,7 @@ const Hero = () => {
 
                             {/* Animated cycling text */}
                             <h1 className="font-['Epilogue'] italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter flex items-center justify-center lg:justify-start min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
-                                <span className="drop-shadow-sm whitespace-pre">
+                                <span className="drop-shadow-sm whitespace-pre-wrap">
                                     <span className="text-stone-900 dark:text-white transition-colors duration-300">{baseText}</span>
                                     <span className="text-primary dark:text-red-500 transition-colors duration-300">{highlightedText}</span>
                                 </span>
@@ -138,7 +138,7 @@ const Hero = () => {
                         </div>
                     </ScrollReveal>
 
-                    <ScrollReveal className="flex justify-center flex-shrink-0 w-full lg:w-auto relative lg:mr-8 xl:mr-16 mt-12 lg:mt-0 pb-12 lg:pb-0 z-10">
+                    <ScrollReveal className="flex justify-center flex-shrink-0 w-full lg:w-auto relative lg:mr-8 xl:mr-16 mt-8 lg:mt-0 pb-24 lg:pb-0 z-10">
                         <SocialCards />
                     </ScrollReveal>
                 </div>

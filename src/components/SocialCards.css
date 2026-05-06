@@ -255,16 +255,28 @@
 
 .text {
   position: absolute;
-  font-size: 1.1em; /* Increased size significantly */
+  font-size: 1.1em;
   transition: 0.4s ease-in-out;
   color: black;
   text-align: center;
-  font-weight: 900; /* Bolder (black) like the cycling text */
-  font-style: italic; /* Made it italic like the cycling text */
-  letter-spacing: 0.15em; /* Tighter letter spacing to accommodate bigger text */
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.1em;
   z-index: 3;
-  font-family: 'Epilogue', sans-serif; /* Matches the cycling text */
+  font-family: 'Epilogue', sans-serif;
   text-transform: uppercase;
+  width: 100%;
+  padding: 0 1em;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text span {
+  display: block;
+  margin: 0.2em 0; /* Add some vertical space between words */
 }
 
 /* Dark Mode Overrides */
@@ -288,4 +300,37 @@
 .dark .main_socials:hover .card_social {
   background: #1a0e0c;
   border: 1px solid rgba(255, 255, 255, 0.15); /* Returns to normal glowing borders on hover */
+}
+
+/* Responsive Scaling */
+@media (max-width: 640px) {
+  .main_socials {
+    font-size: 0.85rem; /* Scales everything relative to em */
+  }
+  
+  .card_social {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .main_back {
+    width: 10em;
+    height: 10em;
+  }
+
+  .text {
+    font-size: 1em;
+    letter-spacing: 0.05em;
+  }
+}
+
+@media (max-width: 380px) {
+  .main_socials {
+    font-size: 0.75rem;
+  }
+  
+  .card_social {
+    width: 45px;
+    height: 45px;
+  }
 }

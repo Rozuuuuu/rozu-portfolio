@@ -13,6 +13,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import AchievementsPage from './pages/AchievementsPage';
 import SkillsPage from './pages/SkillsPage';
 import ContactPage from './pages/ContactPage';
+import TopNavBar from './components/TopNavBar';
 
 function HomePage() {
   return (

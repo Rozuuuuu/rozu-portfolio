@@ -118,12 +118,7 @@ const Hero = () => {
 
                         {/* CTA Buttons */}
                         <div className="flex gap-4 flex-wrap justify-center lg:justify-start pt-4">
-                            <button
-                                onClick={() => navigate('/projects')}
-                                className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
-                            >
-                                Explore Projects
-                            </button>
+                            
                             <button
                                 onClick={() => {
                                     const link = document.createElement('a');

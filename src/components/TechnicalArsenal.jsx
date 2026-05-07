@@ -1,49 +1,223 @@
 import ScrollReveal from './ScrollReveal';
 
+const frontendSkills = [
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", name: "HTML5" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", name: "CSS3" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", name: "JavaScript" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", name: "TypeScript" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", name: "React" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", name: "Vue.js" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg", name: "Angular" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg", name: "Svelte" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", name: "Next.js", invertInDark: true },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", name: "Tailwind CSS" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg", name: "Sass" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg", name: "Nuxt.js" },
+];
+
+const backendSkills = [
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", name: "Node.js" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", name: "Python" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg", name: "Django" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg", name: "Flask", invertInDark: true },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg", name: "FastAPI" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg", name: "Go" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg", name: "Rust", invertInDark: true },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", name: "Java" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg", name: "Spring" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg", name: "PHP" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg", name: "Laravel" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg", name: "Ruby on Rails" },
+];
+
+const databaseSkills = [
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", name: "PostgreSQL" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", name: "MySQL" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", name: "MongoDB" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", name: "Redis" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg", name: "SQLite" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg", name: "Elasticsearch" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cassandra/cassandra-original.svg", name: "Cassandra" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg", name: "Firebase" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg", name: "MariaDB" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neo4j/neo4j-original.svg", name: "Neo4j" },
+];
+
+const cloudSkills = [
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg", name: "AWS" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg", name: "Google Cloud" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", name: "Azure" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", name: "Docker" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg", name: "Kubernetes" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg", name: "Terraform" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", name: "GitHub Actions", invertInDark: true },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg", name: "GitLab CI" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg", name: "Nginx" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg", name: "Ansible" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg", name: "Linux" },
+];
+
+const SkillPill = ({ skill }) => (
+    <div className="logo-pill">
+        <img 
+            src={skill.icon} 
+            alt={skill.name} 
+            className={skill.invertInDark ? "dark:invert" : ""}
+        />
+        <span>{skill.name}</span>
+    </div>
+);
+
 const TechnicalArsenal = () => {
     return (
-        <section className="bg-surface-container-low dark:bg-stone-900 py-24 transition-colors duration-300">
+        <section className="bg-surface-container-low dark:bg-[#08080a] py-24 transition-colors duration-300 overflow-x-hidden">
+            <style>{`
+                .marquee-row {
+                    width: 100%;
+                    overflow: hidden;
+                    padding: 0.6rem 0;
+                    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                }
+                .marquee-track {
+                    display: flex;
+                    width: max-content;
+                    gap: 0;
+                }
+                .marquee-track.left  { animation: scroll-left  28s linear infinite; }
+                .marquee-track.right { animation: scroll-right 28s linear infinite; }
+                .marquee-row:hover .marquee-track { animation-play-state: paused; }
+                .marquee-group {
+                    display: flex;
+                    align-items: center;
+                    gap: 0;
+                }
+                .logo-pill {
+                    display: flex;
+                    align-items: center;
+                    gap: 9px;
+                    padding: 9px 20px;
+                    margin: 0 6px;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 100px;
+                    background: #f9fafb;
+                    white-space: nowrap;
+                    transition: border-color 0.25s, background 0.25s;
+                    cursor: default;
+                }
+                .dark .logo-pill {
+                    border: 1px solid #1c1c22;
+                    background: #0f0f13;
+                }
+                .logo-pill:hover {
+                    border-color: #d1d5db;
+                    background: #f3f4f6;
+                }
+                .dark .logo-pill:hover {
+                    border-color: #333;
+                    background: #161619;
+                }
+                .logo-pill img {
+                    width: 20px;
+                    height: 20px;
+                    object-fit: contain;
+                    flex-shrink: 0;
+                }
+                .logo-pill span {
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: #4b5563;
+                    letter-spacing: 0.01em;
+                }
+                .dark .logo-pill span {
+                    color: #888;
+                }
+                .logo-pill:hover span { 
+                    color: #111827; 
+                }
+                .dark .logo-pill:hover span { 
+                    color: #bbb; 
+                }
+                .marquee-divider {
+                    width: 100%;
+                    height: 1px;
+                    background: linear-gradient(to right, transparent, #e5e7eb 20%, #e5e7eb 80%, transparent);
+                    margin: 0.2rem 0;
+                }
+                .dark .marquee-divider {
+                    background: linear-gradient(to right, transparent, #1c1c22 20%, #1c1c22 80%, transparent);
+                }
+                @keyframes scroll-left {
+                    0%   { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                @keyframes scroll-right {
+                    0%   { transform: translateX(-50%); }
+                    100% { transform: translateX(0); }
+                }
+            `}</style>
+            
             <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
-                <div className="flex justify-between items-end mb-16">
+                <div className="flex justify-between items-end mb-12">
                     <div>
-                        <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">The Engine</span>
-                        <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Technical Arsenal</h2>
+                        <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">Tech Stack</span>
+                        <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Skills & Frameworks</h2>
                     </div>
                 </div>
-                <div className="grid md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
-                    <div className="md:col-span-2 md:row-span-2 bg-surface-container-lowest dark:bg-stone-800 p-8 rounded-lg border border-outline-variant/15 dark:border-stone-700 flex flex-col justify-between">
-                        <span className="material-symbols-outlined text-primary text-4xl">terminal</span>
-                        <div>
-                            <h3 className="text-2xl font-black mb-4 dark:text-stone-100">Core Architecture</h3>
-                            <p className="text-on-surface-variant dark:text-stone-400 mb-6">Expertise in building scalable microservices and resilient cloud infrastructure using modern paradigms.</p>
-                            <div className="flex flex-wrap gap-2">
-                                <span className="px-3 py-1 bg-surface-container dark:bg-stone-700 text-primary rounded-full text-xs font-bold">Node.js</span>
-                                <span className="px-3 py-1 bg-surface-container dark:bg-stone-700 text-primary rounded-full text-xs font-bold">TypeScript</span>
-                                <span className="px-3 py-1 bg-surface-container dark:bg-stone-700 text-primary rounded-full text-xs font-bold">GoLang</span>
-                                <span className="px-3 py-1 bg-surface-container dark:bg-stone-700 text-primary rounded-full text-xs font-bold">GraphQL</span>
+
+                <div className="w-full overflow-hidden flex flex-col gap-2 relative">
+                    {/* ROW 1: Frontend */}
+                    <div className="marquee-row">
+                        <div className="marquee-track left">
+                            <div className="marquee-group">
+                                {frontendSkills.map((skill, index) => <SkillPill key={`fe1-${index}`} skill={skill} />)}
+                            </div>
+                            <div className="marquee-group" aria-hidden="true">
+                                {frontendSkills.map((skill, index) => <SkillPill key={`fe2-${index}`} skill={skill} />)}
                             </div>
                         </div>
                     </div>
-                    <div className="md:col-span-2 bg-surface-container-highest dark:bg-stone-700 p-8 rounded-lg flex items-center justify-between">
-                        <div>
-                            <h3 className="text-xl font-black mb-2 dark:text-stone-100">Frontend Mastery</h3>
-                            <p className="text-sm text-on-surface-variant dark:text-stone-400">Kinetic interfaces & state management.</p>
-                        </div>
-                        <div className="flex -space-x-2">
-                            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs">React</div>
-                            <div className="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center text-white font-bold text-xs">Next</div>
-                            <div className="w-12 h-12 rounded-full bg-on-surface dark:bg-stone-600 flex items-center justify-center text-white font-bold text-xs">TW</div>
+
+                    <div className="marquee-divider"></div>
+
+                    {/* ROW 2: Backend */}
+                    <div className="marquee-row">
+                        <div className="marquee-track right">
+                            <div className="marquee-group">
+                                {backendSkills.map((skill, index) => <SkillPill key={`be1-${index}`} skill={skill} />)}
+                            </div>
+                            <div className="marquee-group" aria-hidden="true">
+                                {backendSkills.map((skill, index) => <SkillPill key={`be2-${index}`} skill={skill} />)}
+                            </div>
                         </div>
                     </div>
-                    <div className="bg-surface-container-lowest dark:bg-stone-800 p-8 rounded-lg border border-outline-variant/15 dark:border-stone-700 flex flex-col justify-center text-center">
-                        <span className="material-symbols-outlined text-primary text-3xl mb-3">cloud</span>
-                        <h3 className="font-bold text-sm uppercase tracking-widest dark:text-stone-200">Cloud Ops</h3>
-                        <p className="text-xs text-on-surface-variant dark:text-stone-400 mt-2">AWS, GCP, Docker</p>
+
+                    <div className="marquee-divider"></div>
+
+                    {/* ROW 3: Databases */}
+                    <div className="marquee-row">
+                        <div className="marquee-track left">
+                            <div className="marquee-group">
+                                {databaseSkills.map((skill, index) => <SkillPill key={`db1-${index}`} skill={skill} />)}
+                            </div>
+                            <div className="marquee-group" aria-hidden="true">
+                                {databaseSkills.map((skill, index) => <SkillPill key={`db2-${index}`} skill={skill} />)}
+                            </div>
+                        </div>
                     </div>
-                    <div className="bg-surface-container dark:bg-stone-700 p-8 rounded-lg flex flex-col justify-center text-center">
-                        <span className="material-symbols-outlined text-tertiary text-3xl mb-3">database</span>
-                        <h3 className="font-bold text-sm uppercase tracking-widest dark:text-stone-200">Storage</h3>
-                        <p className="text-xs text-on-surface-variant dark:text-stone-400 mt-2">PostgreSQL, Redis</p>
+
+                    <div className="marquee-divider"></div>
+
+                    {/* ROW 4: Cloud */}
+                    <div className="marquee-row">
+                        <div className="marquee-track right">
+                            <div className="marquee-group">
+                                {cloudSkills.map((skill, index) => <SkillPill key={`cl1-${index}`} skill={skill} />)}
+                            </div>
+                            <div className="marquee-group" aria-hidden="true">
+                                {cloudSkills.map((skill, index) => <SkillPill key={`cl2-${index}`} skill={skill} />)}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ScrollReveal>
@@ -52,3 +226,4 @@ const TechnicalArsenal = () => {
 };
 
 export default TechnicalArsenal;
+

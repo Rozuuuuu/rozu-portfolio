@@ -1,336 +1,118 @@
-.main_back {
-  position: absolute;
-  border-radius: 10px;
-  transform: rotate(90deg);
-  width: 11em;
-  height: 11em;
-  background: linear-gradient(270deg, #03a9f4, #cc39a4, #ffb5d2);
-  z-index: -2;
-  box-shadow: inset 0px 0px 180px 5px #ffffff;
-}
-
-.main_socials {
-  position: relative;
+/* From Uiverse.io by Praashoo7 */ 
+.main {
   display: flex;
-  flex-wrap: wrap;
-  width: 14em;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
-.card_social {
+.up {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-top-left-radius: 10px;
-  background: lightgrey;
-  transition: 0.4s ease-in-out, 0.2s background-color ease-in-out,
-    0.2s background-image ease-in-out;
-  background: rgba(255, 255, 255, 0.596);
-  backdrop-filter: blur(5px);
-  border: 1px solid transparent;
-  -webkit-backdrop-filter: blur(5px);
+  flex-direction: row;
+  gap: 0.5em;
 }
 
-.card_social .instagram {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
+.down {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.card1, .card2, .card3, .card4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.dark .card1, .dark .card2, .dark .card3, .dark .card4 {
+  background: #1c1c22;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 10px -1px;
+}
+
+.card1 {
+  border-radius: 90px 5px 5px 5px;
+}
+
+.card2 {
+  border-radius: 5px 90px 5px 5px;
+}
+
+.card3 {
+  border-radius: 5px 5px 5px 90px;
+}
+
+.card4 {
+  border-radius: 5px 5px 90px 5px;
+}
+
+.instagram {
   fill: #cc39a4;
 }
 
-.card_social:nth-child(2) {
-  border-radius: 0px;
+.twitter {
+  fill: #03A9F4;
 }
 
-.card_social:nth-child(2) .twitter {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
-  fill: #03a9f4;
+.github {
+  fill: #111;
 }
 
-.card_social:nth-child(3) {
-  border-top-right-radius: 10px;
-  border-top-left-radius: 0px;
+.dark .github {
+  fill: #e5e7eb;
 }
 
-.card_social:nth-child(3) .dribble {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
-  fill: #ffb5d2;
-}
-
-.card_social:nth-child(4) {
-  border-radius: 0px;
-}
-
-.card_social:nth-child(4) .codepen {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
-  fill: black;
-}
-
-.card_social:nth-child(5) {
-  border-radius: 0px;
-}
-
-.card_social:nth-child(5) .uiverse {
-  position: absolute;
-  margin-left: 0.2em;
-  margin-top: 0.2em;
-  opacity: 0;
-  transition: 0.2s ease-in-out;
-}
-
-.card_social:nth-child(6) {
-  border-radius: 0px;
-}
-
-.card_social:nth-child(6) .discord {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
+.discord {
   fill: #8c9eff;
 }
 
-.card_social:nth-child(7) {
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 0px;
-}
-
-.card_social:nth-child(7) .github {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
-  fill: black;
-}
-
-.card_social:nth-child(8) {
-  border-radius: 0px;
-}
-
-.card_social:nth-child(8) .telegram {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
-  fill: #29b6f6;
-}
-
-.card_social:nth-child(9) {
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 0px;
-}
-
-.card_social:nth-child(9) .reddit {
-  opacity: 0;
-  transition: 0.2s ease-in-out;
-}
-
-.main_socials:hover {
-  width: 14em;
+.card1:hover {
   cursor: pointer;
-}
-
-.main_socials:hover .main_back {
-  opacity: 0;
-}
-
-.main_socials:hover .card_social {
-  margin: 0.2em;
-  border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.main_socials:hover .card_social:nth-child(5) {
-  border: transparent;
-}
-
-.main_socials:hover .text {
-  opacity: 0;
-  z-index: -3;
-}
-
-.main_socials:hover .instagram,
-.main_socials:hover .twitter,
-.main_socials:hover .dribble,
-.main_socials:hover .codepen,
-.main_socials:hover .uiverse,
-.main_socials:hover .discord,
-.main_socials:hover .github,
-.main_socials:hover .telegram,
-.main_socials:hover .reddit {
-  opacity: 1;
-}
-
-.card_social:nth-child(1):hover {
+  scale: 1.1;
   background-color: #cc39a4;
 }
 
-.card_social:nth-child(1):hover .instagram {
+.card1:hover .instagram {
   fill: white;
 }
 
-.card_social:nth-child(2):hover {
-  background-color: #03a9f4;
+.card2:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #03A9F4;
 }
 
-.card_social:nth-child(2):hover .twitter {
+.card2:hover .twitter {
   fill: white;
 }
 
-.card_social:nth-child(3):hover {
-  background-color: #ffb5d2;
+.card3:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: black;
+}
+.dark .card3:hover {
+  background-color: #e5e7eb;
 }
 
-.card_social:nth-child(3):hover .dribble {
+.card3:hover .github {
   fill: white;
 }
-
-.card_social:nth-child(4):hover {
-  background-color: #1e1f26;
+.dark .card3:hover .github {
+  fill: #111;
 }
 
-.card_social:nth-child(4):hover .codepen {
-  fill: white;
-}
-
-.card_social:nth-child(5):hover {
-  animation: backgroundIMG 0.1s;
-  animation-fill-mode: forwards;
-}
-
-.card_social:nth-child(5):hover .uiverse #paint0_linear_501_142 stop,
-.card_social:nth-child(5):hover .uiverse #paint1_linear_501_142 stop,
-.card_social:nth-child(5):hover .uiverse #paint2_linear_501_142 stop {
-  stop-color: white;
-}
-
-@keyframes backgroundIMG {
-  100% {
-    background-image: linear-gradient(#bf66ff, #6248ff, #00ddeb);
-  }
-}
-
-.card_social:nth-child(6):hover {
+.card4:hover {
+  cursor: pointer;
+  scale: 1.1;
   background-color: #8c9eff;
 }
 
-.card_social:nth-child(6):hover .discord {
+.card4:hover .discord {
   fill: white;
-}
-
-.card_social:nth-child(7):hover {
-  background-color: black;
-}
-
-.card_social:nth-child(7):hover .github {
-  fill: white;
-}
-
-.card_social:nth-child(8):hover {
-  background-color: #29b6f6;
-}
-
-.card_social:nth-child(8):hover .telegram > path:nth-of-type(1) {
-  fill: white;
-}
-
-.card_social:nth-child(8):hover .telegram > path:nth-of-type(2),
-.card_social:nth-child(8):hover .telegram > path:nth-of-type(3) {
-  fill: #29b6f6;
-}
-
-.card_social:nth-child(9):hover {
-  background-color: rgb(255, 69, 0);
-}
-
-.card_social:nth-child(9) .reddit > g circle {
-  fill: rgb(255, 69, 0);
-}
-
-.card_social:nth-child(9) .reddit > g path {
-  fill: white;
-}
-
-.text {
-  position: absolute;
-  font-size: 1.1em;
-  transition: 0.4s ease-in-out;
-  color: black;
-  text-align: center;
-  font-weight: 900;
-  font-style: italic;
-  letter-spacing: 0.1em;
-  z-index: 3;
-  font-family: 'Epilogue', sans-serif;
-  text-transform: uppercase;
-  width: 100%;
-  padding: 0 1em;
-  line-height: 1.2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.text span {
-  display: block;
-  margin: 0.2em 0; /* Add some vertical space between words */
-}
-
-/* Dark Mode Overrides */
-.dark .card_social {
-  background: #1a0e0c; /* Exact match with dark body background */
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border: 1px solid rgba(255, 255, 255, 0.02); /* Very faintly blended grid lines */
-}
-
-/* Hide the rainbow gradient fully when resting in dark mode */
-.dark .main_socials:not(:hover) .main_back {
-  display: none;
-}
-
-.dark .text {
-  color: #f5e9e7; /* Exact match with dark text color */
-}
-
-/* Keep the cards deeply colored properly while splitting */
-.dark .main_socials:hover .card_social {
-  background: #1a0e0c;
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Returns to normal glowing borders on hover */
-}
-
-/* Responsive Scaling */
-@media (max-width: 640px) {
-  .main_socials {
-    font-size: 0.85rem; /* Scales everything relative to em */
-  }
-  
-  .card_social {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .main_back {
-    width: 10em;
-    height: 10em;
-  }
-
-  .text {
-    font-size: 1em;
-    letter-spacing: 0.05em;
-  }
-}
-
-@media (max-width: 380px) {
-  .main_socials {
-    font-size: 0.75rem;
-  }
-  
-  .card_social {
-    width: 45px;
-    height: 45px;
-  }
 }

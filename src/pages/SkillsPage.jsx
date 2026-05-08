@@ -26,7 +26,7 @@ const SkillsPage = () => {
     return (
         <PageTransition>
             <style>{customStyles}</style>
-            <div className="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 min-h-screen transition-colors duration-300">
+            <div className="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-300">
                 <SharedNav />
                 <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
                 {/* Header Section */}

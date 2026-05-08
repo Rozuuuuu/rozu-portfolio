@@ -12,6 +12,7 @@ const PageTransition = ({ children }) => (
         initial="initial"
         animate="animate"
         exit="exit"
+        style={{ overflow: 'clip' }}
     >
         {children}
     </motion.div>

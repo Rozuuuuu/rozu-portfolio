@@ -70,7 +70,7 @@ const SkillPill = ({ skill }) => (
 
 const TechnicalArsenal = () => {
     return (
-        <section className="bg-surface-container-low dark:bg-[#08080a] py-24 transition-colors duration-300 overflow-x-hidden">
+        <section className="bg-surface-container-low dark:bg-[#08080a] py-24 transition-colors duration-300">
             <style>{`
                 .marquee-row {
                     width: 100%;

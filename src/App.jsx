@@ -17,7 +17,7 @@ import TopNavBar from './components/TopNavBar';
 
 function HomePage() {
   return (
-    <>
+    <div style={{ overflow: 'clip' }}>
       <SharedNav />
       <Hero />
       <TechnicalArsenal />
@@ -26,7 +26,7 @@ function HomePage() {
       <Education />
       <Achievements />
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -77,7 +77,7 @@ const Hero = () => {
     return (
         <PageTransition>
             <header
-                className="min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto overflow-hidden"
+                className="min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto"
                 id="home"
             >
                 <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
@@ -118,17 +118,19 @@ const Hero = () => {
 
                         {/* CTA Buttons */}
                         <div className="flex gap-4 flex-wrap justify-center lg:justify-start pt-4">
-                            
                             <button
+                                className="dl-btn"
                                 onClick={() => {
                                     const link = document.createElement('a');
                                     link.href = '/Resume-LloydRosales.pdf';
                                     link.download = 'rosales_resume.pdf';
                                     link.click();
                                 }}
-                                className="bg-surface-container-high dark:bg-stone-800 text-primary dark:text-stone-200 px-8 py-4 rounded-lg font-bold hover:bg-surface-container-highest dark:hover:bg-stone-700 transition-colors"
                             >
-                                Download Resume
+                                <span className="dl-btn_lg">
+                                    <span className="dl-btn_sl" />
+                                    <span className="dl-btn_text">Download Resume</span>
+                                </span>
                             </button>
                         </div>
                     </ScrollReveal>

@@ -26,8 +26,8 @@ function HomePage() {
       <Projects />
       <Experience />
       <TechnicalImpact />
-      <ConnectWithMe />
       <Achievements />
+      <ConnectWithMe />
       <Footer />
     </div>
   );

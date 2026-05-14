@@ -12,9 +12,9 @@ const Experience = () => {
                     </div>
                     <div className="lg:col-span-2 space-y-4">
                         {[
-                            { role: 'Referral Freelancing - Full Stack JavaScript Developer', company: 'Tech Projects | Cebu City, Philippines', period: '2024 - 2025', desc: 'Led the migration of legacy monolithic systems to a distributed microservices architecture, improving system uptime by 40%.' },
+                            { role: 'Referral Freelancing - Full Stack JavaScript Developer', company: 'Cebu City, Philippines', period: '2024 - 2025', desc: 'Led the migration of legacy monolithic systems to a distributed microservices architecture, improving system uptime by 40%.' },
                             { role: 'Freelance Excel Data Entry', company: 'Cebu City, Philippines', period: '2025', desc: 'Directed a team of 12 developers in building highly interactive editorial platforms for Fortune 500 media companies.' },
-                            { role: 'Technical Manager', company: 'Buy@ndBuild', period: '2025-2026', desc: 'Developed core features for a real-time data visualization tool used by global logistics providers.' },
+                            { role: 'Technical Manager', company: 'Buy@ndBuild | Cebu City, Philippines', period: '2025-2026', desc: 'Developed core features for a real-time data visualization tool used by global logistics providers.' },
                         ].map(({ role, company, period, desc }) => (
                             <div key={role} className="bg-surface-container-lowest dark:bg-stone-800 p-8 rounded-lg transition-all hover:translate-x-2">
                                 <div className="flex flex-wrap justify-between items-start mb-4 gap-3">

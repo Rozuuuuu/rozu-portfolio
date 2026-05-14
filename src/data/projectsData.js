@@ -25,7 +25,7 @@ const projects = [
         slug: 'living-journal',
         tag: 'Frontend',
         tags: ['React', 'Vite', 'Task Management'],
-        img: null,
+        img: '/Projects/the-living-journal.webp',
         title: 'The Living Journal App',
         desc: 'Developed a modern, dynamic to‑do list application using React and Vite, achieving a streamlined user experience for daily task management.',
     },

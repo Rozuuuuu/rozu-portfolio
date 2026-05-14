@@ -81,11 +81,6 @@ const Hero = () => {
             >
                 <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
                     <ScrollReveal className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
-                        {/* Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label text-xs uppercase tracking-widest font-bold">
-                            Rozu's Portfolio
-                        </div>
-
                         <div className="flex flex-col items-center lg:items-start">
                             {/* Static Greeting */}
                             <h2 className="font-['Epilogue'] text-3xl sm:text-4xl md:text-5xl italic font-semibold text-stone-900 dark:text-white mb-2 tracking-wide">

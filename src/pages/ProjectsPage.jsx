@@ -141,7 +141,7 @@ const ProjectsPage = () => {
                                 <button
                                     key={filter}
                                     onClick={() => setActiveFilter(filter)}
-                                    className={`relative px-5 py-2.5 text-sm font-bold rounded-lg transition-colors z-10 ${
+                                    className={`relative px-5 py-2.5 min-h-[44px] min-w-[44px] text-sm font-bold rounded-lg transition-colors z-10 ${
                                         activeFilter === filter
                                             ? 'text-white dark:text-stone-900'
                                             : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
@@ -163,7 +163,7 @@ const ProjectsPage = () => {
 
                     {/* Grid */}
                     <section className="max-w-7xl mx-auto px-6 md:px-8">
-                        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                             <AnimatePresence mode="popLayout">
                                 {filtered.map((project, i) => (
                                     <ProjectCard key={project.slug} project={project} index={i} />

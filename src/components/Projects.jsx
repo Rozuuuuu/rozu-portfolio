@@ -9,10 +9,10 @@ const Projects = () => {
     
     const filters = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML'];
 
-    // Show first 6 projects on homepage
+    // Show first 3 projects on homepage
     const displayProjects = activeFilter === 'All' 
-        ? projects.slice(0, 6) 
-        : projects.filter(card => card.tag === activeFilter).slice(0, 6);
+        ? projects.slice(0, 3) 
+        : projects.filter(card => card.tag === activeFilter).slice(0, 3);
 
     return (
         <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="projects">
@@ -29,7 +29,7 @@ const Projects = () => {
                             <button
                                 key={filter}
                                 onClick={() => setActiveFilter(filter)}
-                                className={`relative px-4 py-2 text-sm font-bold rounded-lg transition-colors z-10 ${
+                                className={`relative px-4 py-2 min-h-[44px] text-sm font-bold rounded-lg transition-colors z-10 ${
                                     activeFilter === filter
                                         ? 'text-white dark:text-stone-900'
                                         : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
@@ -49,7 +49,7 @@ const Projects = () => {
                     </div>
                 </div>
 
-                <motion.div layout className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
+                <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <AnimatePresence mode="popLayout">
                         {displayProjects.map(({ slug, tag, img, media, title, desc }) => (
                             <motion.div 
@@ -100,7 +100,7 @@ const Projects = () => {
                 </motion.div>
                 
                 <div className="flex justify-center">
-                    <Link to="/projects" className="px-8 py-4 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-3">
+                    <Link to="/projects" className="px-8 py-4 min-h-[44px] border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-3">
                         View All Projects
                         <span className="material-symbols-outlined">grid_view</span>
                     </Link>

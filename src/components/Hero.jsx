@@ -76,7 +76,7 @@ const Hero = () => {
     return (
         <PageTransition>
             <header
-                className="min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto"
+                className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto pt-32 pb-16 lg:pt-0 lg:pb-0"
                 id="home"
             >
                 <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
@@ -88,7 +88,7 @@ const Hero = () => {
                             </h2>
 
                             {/* Animated cycling text */}
-                            <h1 className="font-['Epilogue'] italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter flex items-center justify-center lg:justify-start min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
+                            <h1 className="font-['Epilogue'] italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-center lg:text-left min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
                                 <span className="drop-shadow-sm whitespace-pre-wrap">
                                     <span className="text-stone-900 dark:text-white transition-colors duration-300">{baseText}</span>
                                     <span className="text-primary dark:text-red-500 transition-colors duration-300">{highlightedText}</span>

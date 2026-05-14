@@ -6,10 +6,12 @@ import Hero from './components/Hero';
 import TechnicalArsenal from './components/TechnicalArsenal';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
-import Education from './components/Education';
+import TechnicalImpact from './components/TechnicalImpact';
+import ConnectWithMe from './components/ConnectWithMe';
 import Achievements from './components/Achievements';
 import Footer from './components/Footer';
 import ProjectsPage from './pages/ProjectsPage';
+import ProjectDetail from './pages/ProjectDetail';
 import AchievementsPage from './pages/AchievementsPage';
 import SkillsPage from './pages/SkillsPage';
 import ContactPage from './pages/ContactPage';
@@ -23,7 +25,8 @@ function HomePage() {
       <TechnicalArsenal />
       <Projects />
       <Experience />
-      <Education />
+      <TechnicalImpact />
+      <ConnectWithMe />
       <Achievements />
       <Footer />
     </div>
@@ -37,6 +40,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
         <Route path="/achievements" element={<AchievementsPage />} />
         <Route path="/skills" element={<SkillsPage />} />
         <Route path="/contact" element={<ContactPage />} />

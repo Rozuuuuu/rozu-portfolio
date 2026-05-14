@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
+import ConnectWithMe from '../components/ConnectWithMe';
 
 /* ─── Tag Pill ─── */
 const Tag = ({ children }) => (
@@ -26,8 +28,8 @@ const ProjectCard1 = () => (
             A high-fidelity performance tracking system for extreme sports enthusiasts. Built with real-time WebGL visualizations and low-latency data streams.
         </p>
         <div className="flex gap-8 items-center">
-            <a className="text-primary dark:text-red-400 font-black text-xs uppercase tracking-widest border-b-2 border-primary dark:border-red-400 pb-1 group-hover:translate-x-2 transition-transform" href="#">Live Demo</a>
-            <a className="text-stone-500 dark:text-stone-400 font-black text-xs uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">GitHub Repository</a>
+            <Link className="text-primary dark:text-red-400 font-black text-xs uppercase tracking-widest border-b-2 border-primary dark:border-red-400 pb-1 group-hover:translate-x-2 transition-transform" to="/projects/velocity-dashboard">View Case Study</Link>
+             <a className="text-stone-500 dark:text-stone-400 font-black text-xs uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">GitHub Repository</a>
         </div>
     </div>
 );
@@ -50,8 +52,8 @@ const ProjectCard2 = () => (
             </p>
         </div>
         <div className="flex gap-6 items-center">
-            <a className="text-primary dark:text-red-400 font-black text-[10px] uppercase tracking-widest border-b-2 border-primary dark:border-red-400 pb-1" href="#">Documentation</a>
-            <a className="text-stone-500 dark:text-stone-400 font-black text-[10px] uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">GitHub</a>
+            <Link className="text-primary dark:text-red-400 font-black text-[10px] uppercase tracking-widest border-b-2 border-primary dark:border-red-400 pb-1" to="/projects/chronos-api">View Case Study</Link>
+             <a className="text-stone-500 dark:text-stone-400 font-black text-[10px] uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">GitHub</a>
         </div>
     </div>
 );
@@ -69,7 +71,7 @@ const ProjectCard3 = () => (
                     A zero-knowledge encrypted messaging platform built for secure communication. Featuring real-time status syncing and end-to-end media sharing protocols.
                 </p>
                 <div className="flex gap-8">
-                    <button className="bg-primary text-white px-8 py-3 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">View Project</button>
+                    <Link to="/projects/synapse-messenger" className="bg-primary text-white px-8 py-3 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">View Case Study</Link>
                     <a className="flex items-center gap-2 text-stone-700 dark:text-stone-300 font-bold text-xs uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">
                         <span className="material-symbols-outlined text-sm">code</span> Codebase
                     </a>
@@ -87,7 +89,7 @@ const ProjectCard3 = () => (
 );
 
 /* ─── Card 4 & 5 shared template ─── */
-const StandardCard = ({ img, alt, tags, title, desc, linkLabel }) => (
+const StandardCard = ({ img, alt, tags, title, desc, linkLabel, slug }) => (
     <div className="md:col-span-6 group">
         <div className="relative overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 aspect-video mb-6 shadow-md dark:shadow-black/40">
             <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={img} alt={alt} />
@@ -97,9 +99,9 @@ const StandardCard = ({ img, alt, tags, title, desc, linkLabel }) => (
         </div>
         <h3 className="text-2xl font-black tracking-tighter mb-4 text-stone-900 dark:text-stone-50 uppercase">{title}</h3>
         <p className="text-stone-600 dark:text-stone-300 mb-6 text-sm leading-relaxed">{desc}</p>
-        <a className="inline-flex items-center gap-2 text-primary dark:text-red-400 font-black text-xs uppercase tracking-widest hover:gap-4 transition-all" href="#">
-            {linkLabel} <span className="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
+        <Link className="inline-flex items-center gap-2 text-primary dark:text-red-400 font-black text-xs uppercase tracking-widest hover:gap-4 transition-all" to={`/projects/${slug}`}>
+             {linkLabel} <span className="material-symbols-outlined text-sm">arrow_forward</span>
+         </Link>
     </div>
 );
 
@@ -138,37 +140,26 @@ const ProjectsPage = () => (
                         <div className="hidden md:block md:col-span-2"></div>
                         <ProjectCard3 />
                         <StandardCard
-                            img="https://lh3.googleusercontent.com/aida-public/AB6AXuCHzm4o4YPI3--dRsEueHejaP5Qr5drtruCJbBP7_1ggS74nZZID1ATEUJdfMF1vkoyfPoDHRwjIXTwKUwcU0A9RWjEszZsjzDPB27yDtRrnJ831i_1vR4MfdHyRsnzYDmtsii7B6WPtL8nmCTSzU77nCc-Ezzn3i3UK7nIpVJQvgQ48sS3YlyeSoQMSuXIaOrLARqmg2ZfzbLJLTlsYf4JpO1oLxshOEdDocBZuKqgnKhgG1X9-AutO-IUc85ic1N50mznKt1asu38"
-                            alt="The Editorial Archive" tags={['Next.js', 'Contentful']}
-                            title="The Editorial Archive"
-                            desc="A headless CMS implementation for a global design magazine. Optimized for SEO and lightning-fast content delivery through Vercel Edge."
-                            linkLabel="Live Site"
-                        />
+                             img="https://lh3.googleusercontent.com/aida-public/AB6AXuCHzm4o4YPI3--dRsEueHejaP5Qr5drtruCJbBP7_1ggS74nZZID1ATEUJdfMF1vkoyfPoDHRwjIXTwKUwcU0A9RWjEszZsjzDPB27yDtRrnJ831i_1vR4MfdHyRsnzYDmtsii7B6WPtL8nmCTSzU77nCc-Ezzn3i3UK7nIpVJQvgQ48sS3YlyeSoQMSuXIaOrLARqmg2ZfzbLJLTlsYf4JpO1oLxshOEdDocBZuKqgnKhgG1X9-AutO-IUc85ic1N50mznKt1asu38"
+                             alt="The Editorial Archive" tags={['Next.js', 'Contentful']}
+                             title="The Editorial Archive"
+                             desc="A headless CMS implementation for a global design magazine. Optimized for SEO and lightning-fast content delivery through Vercel Edge."
+                             linkLabel="View Case Study"
+                             slug="editorial-archive"
+                         />
                         <StandardCard
-                            img="https://lh3.googleusercontent.com/aida-public/AB6AXuDe3LFpxPA3nSEyMw4b-wqbWJrzn2ShOmadPaAncPsWbKvUwxM9IGu955--2EGnzRjtASNQ6ZDHB3qw5FmUIWrrtnzT8-j5rnHG0ndfyYpgSrb6BkCy0ziy3zeEM1qtuft5hyLu8g8rACxAbchvjKVvy4_ypdb-z9USUmsAjlwNRCo4TofGKVz0HfNhYGOjrsjjh0Y8CRjHmJ1Gv-fy9zX1jMZGhEbmnXAFJKKfzlG8F8odukEiEeORhwJ2p8z7HDGz74Gf6Xk65FXM"
-                            alt="Aura Vision AI" tags={['Python', 'TensorFlow']}
-                            title="AURA VISION AI"
-                            desc="Computer vision model capable of real-time sentiment analysis and spatial awareness for retail environments."
-                            linkLabel="GitHub"
-                        />
+                             img="https://lh3.googleusercontent.com/aida-public/AB6AXuDe3LFpxPA3nSEyMw4b-wqbWJrzn2ShOmadPaAncPsWbKvUwxM9IGu955--2EGnzRjtASNQ6ZDHB3qw5FmUIWrrtnzT8-j5rnHG0ndfyYpgSrb6BkCy0ziy3zeEM1qtuft5hyLu8g8rACxAbchvjKVvy4_ypdb-z9USUmsAjlwNRCo4TofGKVz0HfNhYGOjrsjjh0Y8CRjHmJ1Gv-fy9zX1jMZGhEbmnXAFJKKfzlG8F8odukEiEeORhwJ2p8z7HDGz74Gf6Xk65FXM"
+                             alt="Aura Vision AI" tags={['Python', 'TensorFlow']}
+                             title="AURA VISION AI"
+                             desc="Computer vision model capable of real-time sentiment analysis and spatial awareness for retail environments."
+                             linkLabel="View Case Study"
+                             slug="aura-vision-ai"
+                         />
                     </div>
                 </section>
 
-                {/* CTA */}
-                <section className="max-w-7xl mx-auto px-6 md:px-8 mt-32">
-                    <div className="bg-primary p-12 md:p-24 rounded-xl text-center relative overflow-hidden shadow-2xl shadow-primary/30">
-                        <div className="absolute top-0 right-0 p-8 opacity-10">
-                            <span className="material-symbols-outlined text-[12rem] text-white">auto_awesome</span>
-                        </div>
-                        <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-8 relative z-10">HAVE A PROJECT <br /> IN MIND?</h2>
-                        <p className="text-white/80 text-lg max-w-xl mx-auto mb-12 relative z-10">
-                            I'm currently available for freelance projects and full-time collaborative roles in design-led engineering teams.
-                        </p>
-                        <button className="bg-white text-primary px-12 py-5 rounded-lg font-black uppercase tracking-widest text-sm hover:bg-stone-100 transition-colors relative z-10 shadow-2xl">
-                            Let's Connect
-                        </button>
-                    </div>
-                </section>
+                {/* Connect With Me CTA */}
+                <ConnectWithMe />
             </main>
 
             <SharedFooter />

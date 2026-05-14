@@ -59,8 +59,7 @@ const Hero = () => {
     const { displayText, fullText, cursorVisible } = useConsoleText([
         'Software Developer',
         'BS in Computer Science',
-        'Full-Stack Developer',
-        'AI Engineer'
+        'Full-Stack Developer'
     ]);
 
     // Find the starting index for the red highlight (the word after the last space)

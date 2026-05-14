@@ -1,27 +1,11 @@
 import { Link } from 'react-router-dom';
 import ScrollReveal from './ScrollReveal';
+import { featured } from '../data/achievementsData';
 
 const Achievements = () => {
-    const items = [
-        {
-            label: 'Hackathon',
-            title: '3rd Place in HackEstate',
-            overlay: 'bg-primary/10',
-            img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCXRCQzxJc4G-TZGBTUm05e7jPVafCkD7kCGx0pUiTyYOzG_FeM_7n-SSC_6sJ6GMZaH3W4O61hw-VrKnBDQ9caUtFAhOKCIylPIwGJiSeeDJaXdnMKP5HozT5PkvAcfroe-SZ8AGq6k1Ue6XQHmfbZOBgb5DuJVyxT1YkY_pihbXkaXxfU8AG8x1nr0jGl5LZdWb5aVLWQz8VP-qPgpRmv49xVENTBJguaRkklqiCfrb3dBOQwvCw8Ku53dKriznZOQNnNWVouVtFR',
-        },
-        {
-            label: 'USPF 2023',
-            title: '2nd Place in Hackathon Competition',
-            overlay: 'bg-tertiary/10',
-            img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMRr9iIkqVuE2Xc_9yqDPgTox3m6mxkvZINn3WJJ6r56sloYjPdW-bkfkMCgYKG2oRyQPgGV0_zQKObJysHl49U3Yts_GazmyOlSy0Slib8d3B51oUNE6nkoIRQARjdnGq3YhvFrv6IeYzXg6yFDbGgzGegayYNbM8Cc0p7ti93coR0O1WIgGUhnEIJjqM6mBQfk2P1WcwVdJMutcCn6-qj1Amry_vv9vaXsGyYlmmU9pqFFHsdPEURQDz_ZfpIyl0mVkWSpj47Qhw',
-        },
-        {
-            label: 'Innovation',
-            title: 'Best in Logo & Most Promising',
-            overlay: 'bg-primary-container/10',
-            img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA-MHtuKtY1qVIpWCjNZS8rvrF7SBxKb53kObNpzq7ydUBgumTFrsQiXJL4aTp8IvivsBRj0fgHzqO96iMABnzc5uxlSt2MiVXF40bg2t6hIpftlLRBYJWBqZhDLwo4GlBHErAEBE20Z8pMMOhwQEMn0ck7XfK_ZvMzzEQpXGyj_xfE_4UgyWslgBkSdSvc0J9hkZA_vOLh6Oka9GnYYs-3w2JV8jkGjE1NbekkeeEa0AfBElLeLewxViKpOmFGvNOtLLQ9s2keYcDT',
-        },
-    ];
+    // Take the top 3 featured achievements to display on the home page
+    const items = featured.slice(0, 3);
+    const overlays = ['bg-primary/10', 'bg-tertiary/10', 'bg-primary-container/10'];
 
     return (
         <section className="py-24 bg-[#fff0ee] dark:bg-stone-900 transition-colors duration-300" id="achievements">
@@ -37,8 +21,8 @@ const Achievements = () => {
 
                 {/* Cards */}
                 <div className="grid md:grid-cols-3 gap-8">
-                    {items.map(({ label, title, img, overlay }) => (
-                        <div key={title} className="bg-white dark:bg-stone-800 rounded-xl overflow-hidden group border border-[#fddbd6] dark:border-stone-700 hover:border-primary/40 dark:hover:border-primary/40 transition-colors duration-300 shadow-md dark:shadow-black/20">
+                    {items.map(({ id, subtitle, title, img }, index) => (
+                        <div key={id} className="bg-white dark:bg-stone-800 rounded-xl overflow-hidden group border border-[#fddbd6] dark:border-stone-700 hover:border-primary/40 dark:hover:border-primary/40 transition-colors duration-300 shadow-md dark:shadow-black/20">
                             {/* Image */}
                             <div className="h-48 bg-[#fddbd6] dark:bg-stone-700 relative overflow-hidden">
                                 <img
@@ -46,11 +30,11 @@ const Achievements = () => {
                                     src={img}
                                     alt={title}
                                 />
-                                <div className={`absolute inset-0 ${overlay} mix-blend-overlay`}></div>
+                                <div className={`absolute inset-0 ${overlays[index % overlays.length]} mix-blend-overlay`}></div>
                             </div>
                             {/* Content */}
                             <div className="p-8">
-                                <div className="text-primary text-xs uppercase tracking-widest font-bold mb-2">{label}</div>
+                                <div className="text-primary text-xs uppercase tracking-widest font-bold mb-2">{subtitle}</div>
                                 <h3 className="text-xl font-black text-stone-900 dark:text-white leading-snug">{title}</h3>
                             </div>
                         </div>

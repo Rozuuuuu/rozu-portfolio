@@ -2,6 +2,8 @@ import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
+import ConnectWithMe from '../components/ConnectWithMe';
+import { featured, spotlight, milestones } from '../data/achievementsData';
 
 /* ─── Reusable Image Placeholder ─── */
 const ImgPlaceholder = ({ alt }) => (
@@ -10,101 +12,6 @@ const ImgPlaceholder = ({ alt }) => (
         <span className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-500 text-center px-4">{alt}</span>
     </div>
 );
-
-/* ─── Achievement data ─── */
-const featured = [
-    {
-        id: 1,
-        place: '3rd Place',
-        placeColor: 'text-amber-600 dark:text-amber-400',
-        icon: 'emoji_events',
-        iconColor: 'text-amber-600 dark:text-amber-400',
-        title: 'HackEstate Hackathon Competition 2025',
-        subtitle: 'PropTech Filipino Homes',
-        desc: 'Competed in a PropTech-focused hackathon tackling real estate innovation in the Philippine market. Delivered a full-stack solution addressing affordable housing discovery through data and design.',
-        tags: ['PropTech', 'Hackathon'],
-        tagColor: 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800',
-        img: '/PropTech.jpg',
-        imgAlt: 'HackEstate PropTech Hackathon',
-        layout: 'left',
-    },
-    {
-        id: 2,
-        place: '2nd Place',
-        placeColor: 'text-stone-500 dark:text-stone-300',
-        icon: 'emoji_events',
-        iconColor: 'text-stone-500 dark:text-stone-300',
-        title: 'CCS Days Hackathon Competition 2023',
-        subtitle: 'USPF CCS Days',
-        desc: 'Placed 2nd in the College of Computer Studies Hackathon at the University of Southern Philippines Foundation, showcasing rapid prototyping and full-stack development under pressure.',
-        tags: ['CCS Days', 'USPF 2023'],
-        tagColor: 'bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 border-stone-300 dark:border-stone-600',
-        img: '/CCS hackathon.jfif',
-        imgAlt: 'CCS Days Hackathon USPF 2023',
-        layout: 'right',
-    },
-    {
-        id: 3,
-        place: '2nd Runner-Up',
-        placeColor: 'text-primary dark:text-red-400',
-        icon: 'workspace_premium',
-        iconColor: 'text-primary dark:text-red-400',
-        title: 'Philtech Innovathon 2026',
-        subtitle: 'PhilTech Innovathon Competition',
-        desc: 'Achieved 2nd Runner-Up overall and took the Best in Collaborative Catalysts special award in National Level Competition — recognizing outstanding teamwork, cross-disciplinary synergy, and innovation under the Philtech framework. Held in Bonifacio Global City (BGC) Taguig City, Metro Manila',
-        tags: ['Philtech', 'Innovathon 2026', 'Collaborative Catalysts'],
-        tagColor: 'bg-red-50 dark:bg-red-900/20 text-primary dark:text-red-400 border-red-200 dark:border-red-800',
-        img: '/Philtech.jpg',
-        imgAlt: 'Philtech Innovathon 2026',
-        layout: 'left',
-    },
-];
-
-const spotlight = [
-    {
-        id: 4,
-        icon: 'design_services',
-        iconColor: 'text-blue-600 dark:text-blue-400',
-        bgGradient: false,
-        title: 'Best in Logo & Most Promising',
-        subtitle: 'Hackathon Competition 2023',
-        desc: 'Dual recognition for outstanding visual identity design and future potential among all competing teams at the 2023 hackathon.',
-        img: '/Best in Logo.jfif',
-        imgAlt: 'Best in Logo & Most Promising award',
-    },
-    {
-        id: 5,
-        icon: 'brush',
-        iconColor: 'text-purple-600 dark:text-purple-400',
-        bgGradient: false,
-        title: 'Top UX Interface',
-        subtitle: 'PropTech SinulogFest Hackathon 2026',
-        desc: 'Awarded Top UX Interface for delivering the most intuitive and visually refined user experience among all participating teams at the SinulogFest PropTech Hackathon.',
-        img: '/SinulogFest.jpg',
-        imgAlt: 'PropTech SinulogFest Hackathon 2026',
-    },
-];
-
-const milestones = [
-    {
-        id: 6,
-        icon: 'military_tech',
-        title: 'CESAFI Computer Quiz Bowl',
-        subtitle: 'Representative – USPF 2025',
-        desc: 'Represented the University of Southern Philippines Foundation in the CESAFI Computer Quiz Bowl, competing against elite CS students across Cebu City institutions.',
-        img: '/Quizbowl.jfif',
-        imgAlt: 'CESAFI Quiz Bowl photo',
-    },
-    {
-        id: 7,
-        icon: 'verified',
-        title: 'TOPCIT Level 3 – Competent Achiever',
-        subtitle: 'Test of Practical Competency in IT',
-        desc: 'Attained Level 3 (Competent) in the TOPCIT Examination — a nationally standardized assessment of practical IT skills including software engineering, data structures, and problem solving.',
-        img: '/Topcit.jfif',
-        imgAlt: 'TOPCIT Level 3 Competent Achiever certificate',
-    },
-];
 
 const AchievementsPage = () => (
     <PageTransition>
@@ -231,28 +138,8 @@ const AchievementsPage = () => (
                     </div>
                 </section>
 
-                {/* ── CTA ── */}
-                <section className="max-w-7xl mx-auto px-6 md:px-8 mt-20 text-center">
-                    <ScrollReveal>
-                        <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl py-16 px-8 relative overflow-hidden border border-stone-700">
-                            <div className="relative z-10">
-                                <h2 className="font-headline text-4xl font-black mb-6 tracking-tight text-white">
-                                    Let's build the next <span className="text-red-400 italic">Win</span> together.
-                                </h2>
-                                <p className="text-stone-400 mb-10 max-w-xl mx-auto">
-                                    Open for high-impact collaborations, hackathon teams, and freelance partnerships.
-                                </p>
-                                <button
-                                    className="text-white font-bold px-10 py-4 rounded-lg tracking-tight hover:scale-105 transition-transform shadow-lg shadow-red-900/30"
-                                    style={{ background: 'linear-gradient(135deg, #bc000a 0%, #e61919 100%)' }}
-                                >
-                                    Let's Work Together
-                                </button>
-                            </div>
-                            <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#bc000a 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                        </div>
-                    </ScrollReveal>
-                </section>
+                {/* Connect With Me CTA */}
+                <ConnectWithMe />
 
             </main>
 

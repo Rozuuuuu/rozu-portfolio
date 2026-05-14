@@ -63,9 +63,11 @@ export default {
         "full": "9999px"
       },
       "fontFamily": {
-        "headline": ["Epilogue"],
-        "body": ["Public Sans"],
-        "label": ["Public Sans"]
+        "mono": ["'JetBrains Mono'", "monospace"],
+        "sans": ["'JetBrains Mono'", "'Public Sans'", "system-ui", "sans-serif"],
+        "headline": ["'JetBrains Mono'", "monospace"],
+        "body": ["'Public Sans'", "sans-serif"],
+        "label": ["'JetBrains Mono'", "monospace"]
       }
     },
   },

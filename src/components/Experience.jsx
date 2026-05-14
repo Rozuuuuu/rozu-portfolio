@@ -12,9 +12,9 @@ const Experience = () => {
                     </div>
                     <div className="lg:col-span-2 space-y-4">
                         {[
-                            { role: 'Referral Freelancing - Full Stack JavaScript Developer', company: 'Cebu City, Philippines', period: '2024 - 2025', desc: 'Led the migration of legacy monolithic systems to a distributed microservices architecture, improving system uptime by 40%.' },
-                            { role: 'Freelance Excel Data Entry', company: 'Cebu City, Philippines', period: '2025', desc: 'Directed a team of 12 developers in building highly interactive editorial platforms for Fortune 500 media companies.' },
-                            { role: 'Technical Manager', company: 'Buy@ndBuild | Cebu City, Philippines', period: '2025-2026', desc: 'Developed core features for a real-time data visualization tool used by global logistics providers.' },
+                            { role: 'Referral Freelancing - Full Stack JavaScript Developer', company: 'Cebu City, Philippines', period: '2024 - 2025', desc: 'Developed core user-facing features and administered full-stack system health for multiple client projects, ensuring 99.9% availability and seamless feature rollouts.' },
+                            { role: 'Freelance Excel Data Entry', company: 'Cebu City, Philippines', period: '2025', desc: 'Processed and maintained 50,000+ rows of operational data with 100% accuracy, creating dynamic templates that cut data turnaround time in half.' },
+                            { role: 'Technical Manager', company: 'Buy@ndBuild | Cebu City, Philippines', period: '2025-2026', desc: 'Architected and led the end‑to‑end implementation of a real‑time logistics dashboard, defining the system architecture, selecting the tech stack, and delivering a fully functional application adopted by internal operations teams.' },
                         ].map(({ role, company, period, desc }) => (
                             <div key={role} className="bg-surface-container-lowest dark:bg-stone-800 p-8 rounded-lg transition-all hover:translate-x-2">
                                 <div className="flex flex-wrap justify-between items-start mb-4 gap-3">

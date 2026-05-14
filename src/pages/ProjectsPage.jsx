@@ -1,170 +1,192 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ConnectWithMe from '../components/ConnectWithMe';
+import projects from '../data/projectsData';
 
 /* ─── Tag Pill ─── */
 const Tag = ({ children }) => (
-    <span className="px-4 py-1 bg-red-50 dark:bg-stone-700 border border-red-200 dark:border-stone-600 rounded-full text-[10px] font-bold text-primary dark:text-red-400 uppercase tracking-wider">
+    <span className="px-3 py-1 bg-red-50 dark:bg-stone-700 border border-red-200 dark:border-stone-600 rounded-full text-[10px] font-bold text-primary dark:text-red-400 uppercase tracking-wider">
         {children}
     </span>
 );
 
-/* ─── Card 1: Featured Wide ─── */
-const ProjectCard1 = () => (
-    <div className="md:col-span-8 group">
-        <div className="relative overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 aspect-[16/9] mb-6 shadow-md dark:shadow-black/40">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBidNJZdCrwyGclUfeA6Bf10YlCqXfYgCaR4mL6wH5BDtWxxluQv_Iw8K6xK02C_V9tw88fQDsNJNdTT-oKnV5rKR1DVgzK_UNHOBSplChIz0mPZd4bS4y6_5itXtUAY3CYs1ikkvfto46-QkptMjlIU21iwlEKupersLeyYRIFInS6WUlKgb4pifyy2nti8vUCYk8vTCKHaNk5Tk-5Y70CpDNMICS47ysvJzZ7PCj4GoX_jX0kDC65aCeGQOACdz9K3GoPrz0WfW6L"
-                alt="Velocity Dashboard" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        </div>
-        <div className="flex flex-wrap gap-2 mb-4">
-            <Tag>React</Tag><Tag>Three.js</Tag><Tag>Tailwind CSS</Tag>
-        </div>
-        <h3 className="text-4xl font-black tracking-tighter mb-4 text-stone-900 dark:text-stone-50">VELOCITY DASHBOARD</h3>
-        <p className="text-stone-600 dark:text-stone-300 max-w-xl mb-6 leading-relaxed">
-            A high-fidelity performance tracking system for extreme sports enthusiasts. Built with real-time WebGL visualizations and low-latency data streams.
-        </p>
-        <div className="flex gap-8 items-center">
-            <Link className="text-primary dark:text-red-400 font-black text-xs uppercase tracking-widest border-b-2 border-primary dark:border-red-400 pb-1 group-hover:translate-x-2 transition-transform" to="/projects/velocity-dashboard">View Case Study</Link>
-             <a className="text-stone-500 dark:text-stone-400 font-black text-xs uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">GitHub Repository</a>
-        </div>
+/* ─── Filter Tabs ─── */
+const FILTERS = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML'];
+
+/* ─── Placeholder for projects without images ─── */
+const PlaceholderThumb = ({ title }) => (
+    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-stone-200 via-stone-100 to-stone-300 dark:from-stone-800 dark:via-stone-750 dark:to-stone-900">
+        <span className="material-symbols-outlined text-5xl text-stone-400 dark:text-stone-600 mb-3">code</span>
+        <span className="text-xs font-bold text-stone-500 dark:text-stone-500 uppercase tracking-widest">{title}</span>
     </div>
 );
 
-/* ─── Card 2: Square ─── */
-const ProjectCard2 = () => (
-    <div className="md:col-span-4 flex flex-col justify-between group">
-        <div>
-            <div className="relative overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 aspect-square mb-6 shadow-md dark:shadow-black/40">
-                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA26ALWy-OSvX7rKhG1xKqdqW0wxPKPMRGY9GpR8h7IclqdJBRiDaHP7XdDtr-lctepcffj-1xdiCy9cFab5YNq7pO37ol9-NzxiGaUznanIad4X-jmhNFre5HsK9q19B1_IcN3wszTdqxMK3gRTa3HGmem9vk4Sd3EYNNqR-ub1Q-hVtOOhcKos_waeOWXqLgBzQC19WrHzPDTLl504XZv3DftlXF14AkQpIhyv7_tCX-GJPPr7cghMREvW5ViQvToSHkdkS6GFY4i"
-                    alt="Chronos API" />
-            </div>
-            <div className="flex flex-wrap gap-2 mb-4">
-                <Tag>Laravel</Tag><Tag>PostgreSQL</Tag>
-            </div>
-            <h3 className="text-3xl font-black tracking-tighter mb-4 text-stone-900 dark:text-stone-50">CHRONOS API</h3>
-            <p className="text-stone-600 dark:text-stone-300 mb-6 text-sm leading-relaxed">
-                Robust enterprise-level scheduling engine optimized for distributed systems. Handling 1M+ requests daily with 99.9% uptime.
-            </p>
-        </div>
-        <div className="flex gap-6 items-center">
-            <Link className="text-primary dark:text-red-400 font-black text-[10px] uppercase tracking-widest border-b-2 border-primary dark:border-red-400 pb-1" to="/projects/chronos-api">View Case Study</Link>
-             <a className="text-stone-500 dark:text-stone-400 font-black text-[10px] uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">GitHub</a>
-        </div>
-    </div>
-);
+/* ─── Project Card ─── */
+const ProjectCard = ({ project, index }) => {
+    const hasVideo = project.media?.type === 'video';
+    const hasImage = !!project.img;
 
-/* ─── Card 3: Wide horizontal ─── */
-const ProjectCard3 = () => (
-    <div className="md:col-span-10 group">
-        <div className="bg-stone-100 dark:bg-stone-800 p-8 rounded-xl shadow-md dark:shadow-black/40 flex flex-col lg:flex-row gap-12 items-center">
-            <div className="lg:w-1/2 order-2 lg:order-1">
-                <div className="flex flex-wrap gap-2 mb-6">
-                    <Tag>Node.js</Tag><Tag>Redis</Tag><Tag>WebSockets</Tag>
+    return (
+        <motion.div
+            layout
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.35, delay: index * 0.05 }}
+            className="group bg-white dark:bg-stone-800/60 rounded-2xl overflow-hidden border border-stone-200/80 dark:border-stone-700/50 hover:border-primary/30 dark:hover:border-red-400/30 shadow-sm hover:shadow-xl dark:shadow-black/20 dark:hover:shadow-black/40 transition-all duration-500 flex flex-col"
+        >
+            {/* Media */}
+            <div className="relative overflow-hidden aspect-video bg-stone-100 dark:bg-stone-800">
+                {hasVideo ? (
+                    <video
+                        className="w-full h-full object-cover"
+                        src={project.media.src}
+                        muted
+                        loop
+                        playsInline
+                        onMouseEnter={e => e.target.play()}
+                        onMouseLeave={e => { e.target.pause(); e.target.currentTime = 0; }}
+                        poster={project.img || undefined}
+                    />
+                ) : hasImage ? (
+                    <img
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src={project.img}
+                        alt={project.title}
+                        loading="lazy"
+                    />
+                ) : (
+                    <PlaceholderThumb title={project.title} />
+                )}
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Tag badge */}
+                <div className="absolute top-3 left-3">
+                    <span className="px-3 py-1 bg-primary/90 dark:bg-red-500/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full">
+                        {project.tag}
+                    </span>
                 </div>
-                <h3 className="text-4xl font-black tracking-tighter mb-6 text-stone-900 dark:text-stone-50">SYNAPSE MESSENGER</h3>
-                <p className="text-stone-600 dark:text-stone-300 mb-8 leading-relaxed">
-                    A zero-knowledge encrypted messaging platform built for secure communication. Featuring real-time status syncing and end-to-end media sharing protocols.
+
+                {/* Video indicator */}
+                {hasVideo && (
+                    <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full flex items-center gap-1">
+                        <span className="material-symbols-outlined text-white text-sm">play_arrow</span>
+                        <span className="text-white text-[10px] font-bold uppercase tracking-wide">Demo</span>
+                    </div>
+                )}
+            </div>
+
+            {/* Content */}
+            <div className="p-6 flex-1 flex flex-col">
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.tags.map(t => <Tag key={t}>{t}</Tag>)}
+                </div>
+
+                <h3 className="text-xl font-black tracking-tight mb-3 text-stone-900 dark:text-stone-50 uppercase leading-tight">
+                    {project.title}
+                </h3>
+
+                <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed flex-1">
+                    {project.desc}
                 </p>
-                <div className="flex gap-8">
-                    <Link to="/projects/synapse-messenger" className="bg-primary text-white px-8 py-3 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">View Case Study</Link>
-                    <a className="flex items-center gap-2 text-stone-700 dark:text-stone-300 font-bold text-xs uppercase tracking-widest hover:text-primary dark:hover:text-red-400 transition-colors" href="#">
-                        <span className="material-symbols-outlined text-sm">code</span> Codebase
-                    </a>
-                </div>
             </div>
-            <div className="lg:w-1/2 order-1 lg:order-2">
-                <div className="relative overflow-hidden rounded-xl aspect-video shadow-md dark:shadow-black/40">
-                    <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkHqrV81GxPifYlmTgj0BVGmGDSajPaOvtGKeiknBcqgVmRG_lFeP4DoGIakLnah_NAikHYCzJIOjOf2Kopr59L8nM7Jy3XOzZomv86kOeCHbNJm0xMgibKBaWU-J1OoMSAs_yOpQXerMPIYObaXoFz-uTh86pwW296Dp5lZSI8_NXnnFLr761yDo5md60V8fPg5AAZ8kb5ODm0NbfYnACNM3o8NtU8gpY_i2T_2ufMylQvBqlFJs2Ou_ZDYfxxtA9PG631kP-6zgo"
-                        alt="Synapse Messenger" />
-                </div>
-            </div>
-        </div>
-    </div>
-);
-
-/* ─── Card 4 & 5 shared template ─── */
-const StandardCard = ({ img, alt, tags, title, desc, linkLabel, slug }) => (
-    <div className="md:col-span-6 group">
-        <div className="relative overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 aspect-video mb-6 shadow-md dark:shadow-black/40">
-            <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={img} alt={alt} />
-        </div>
-        <div className="flex flex-wrap gap-2 mb-4">
-            {tags.map(t => <Tag key={t}>{t}</Tag>)}
-        </div>
-        <h3 className="text-2xl font-black tracking-tighter mb-4 text-stone-900 dark:text-stone-50 uppercase">{title}</h3>
-        <p className="text-stone-600 dark:text-stone-300 mb-6 text-sm leading-relaxed">{desc}</p>
-        <Link className="inline-flex items-center gap-2 text-primary dark:text-red-400 font-black text-xs uppercase tracking-widest hover:gap-4 transition-all" to={`/projects/${slug}`}>
-             {linkLabel} <span className="material-symbols-outlined text-sm">arrow_forward</span>
-         </Link>
-    </div>
-);
+        </motion.div>
+    );
+};
 
 /* ─── Projects Page ─── */
-const ProjectsPage = () => (
-    <PageTransition>
-        <div className="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 min-h-screen transition-colors duration-300">
-            <SharedNav />
+const ProjectsPage = () => {
+    const [activeFilter, setActiveFilter] = useState('All');
 
-            <main className="pt-32 pb-24">
-                {/* Hero */}
-                <header className="max-w-7xl mx-auto px-6 md:px-8 mb-20">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-                        <div className="max-w-2xl">
-                            <span className="inline-block py-1 px-3 mb-4 rounded-full bg-blue-900/80 text-blue-100 dark:bg-blue-800 dark:text-blue-100 text-xs font-bold uppercase tracking-widest">Selected Works</span>
-                            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-6">
-                                CREATIVE <br />
-                                <span className="text-primary dark:text-red-400 italic">SOLUTIONS.</span>
-                            </h1>
-                            <p className="text-lg text-stone-600 dark:text-stone-300 leading-relaxed font-medium">
-                                A curated collection of digital experiences focusing on interaction, high-performance architecture, and editorial-grade visual design.
-                            </p>
+    const filtered = activeFilter === 'All'
+        ? projects
+        : projects.filter(p => p.tag === activeFilter);
+
+    return (
+        <PageTransition>
+            <div className="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 min-h-screen transition-colors duration-300">
+                <SharedNav />
+
+                <main className="pt-32 pb-24">
+                    {/* Hero */}
+                    <header className="max-w-7xl mx-auto px-6 md:px-8 mb-16">
+                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                            <div className="max-w-2xl">
+                                <span className="inline-block py-1 px-3 mb-4 rounded-full bg-blue-900/80 text-blue-100 dark:bg-blue-800 dark:text-blue-100 text-xs font-bold uppercase tracking-widest">Selected Works</span>
+                                <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-6">
+                                    CREATIVE <br />
+                                    <span className="text-primary dark:text-red-400 italic">SOLUTIONS.</span>
+                                </h1>
+                                <p className="text-lg text-stone-600 dark:text-stone-300 leading-relaxed font-medium">
+                                    A curated collection of real-world projects — from e‑commerce platforms serving thousands of customers, to AI‑powered prototypes and full‑stack applications.
+                                </p>
+                            </div>
+                            <div className="hidden lg:flex gap-4 items-center text-primary dark:text-red-400 font-bold text-sm pb-4">
+                                <span className="material-symbols-outlined">expand_more</span>
+                                <span className="uppercase tracking-widest">Scroll to explore</span>
+                            </div>
                         </div>
-                        <div className="hidden lg:flex gap-4 items-center text-primary dark:text-red-400 font-bold text-sm pb-4">
-                            <span className="material-symbols-outlined">expand_more</span>
-                            <span className="uppercase tracking-widest">Scroll to explore</span>
+                    </header>
+
+                    {/* Filter bar */}
+                    <section className="max-w-7xl mx-auto px-6 md:px-8 mb-12">
+                        <div className="flex flex-wrap gap-2 p-1.5 bg-stone-100 dark:bg-stone-800/80 rounded-xl max-w-fit border border-stone-200 dark:border-white/5 shadow-sm">
+                            {FILTERS.map((filter) => (
+                                <button
+                                    key={filter}
+                                    onClick={() => setActiveFilter(filter)}
+                                    className={`relative px-5 py-2.5 text-sm font-bold rounded-lg transition-colors z-10 ${
+                                        activeFilter === filter
+                                            ? 'text-white dark:text-stone-900'
+                                            : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
+                                    }`}
+                                >
+                                    {activeFilter === filter && (
+                                        <motion.span
+                                            layoutId="projects-filter-pill"
+                                            className="absolute inset-0 bg-primary dark:bg-stone-200 rounded-lg -z-10"
+                                            initial={false}
+                                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                        />
+                                    )}
+                                    {filter}
+                                </button>
+                            ))}
                         </div>
-                    </div>
-                </header>
+                    </section>
 
-                {/* Grid */}
-                <section className="max-w-7xl mx-auto px-6 md:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                        <ProjectCard1 />
-                        <ProjectCard2 />
-                        <div className="hidden md:block md:col-span-2"></div>
-                        <ProjectCard3 />
-                        <StandardCard
-                             img="https://lh3.googleusercontent.com/aida-public/AB6AXuCHzm4o4YPI3--dRsEueHejaP5Qr5drtruCJbBP7_1ggS74nZZID1ATEUJdfMF1vkoyfPoDHRwjIXTwKUwcU0A9RWjEszZsjzDPB27yDtRrnJ831i_1vR4MfdHyRsnzYDmtsii7B6WPtL8nmCTSzU77nCc-Ezzn3i3UK7nIpVJQvgQ48sS3YlyeSoQMSuXIaOrLARqmg2ZfzbLJLTlsYf4JpO1oLxshOEdDocBZuKqgnKhgG1X9-AutO-IUc85ic1N50mznKt1asu38"
-                             alt="The Editorial Archive" tags={['Next.js', 'Contentful']}
-                             title="The Editorial Archive"
-                             desc="A headless CMS implementation for a global design magazine. Optimized for SEO and lightning-fast content delivery through Vercel Edge."
-                             linkLabel="View Case Study"
-                             slug="editorial-archive"
-                         />
-                        <StandardCard
-                             img="https://lh3.googleusercontent.com/aida-public/AB6AXuDe3LFpxPA3nSEyMw4b-wqbWJrzn2ShOmadPaAncPsWbKvUwxM9IGu955--2EGnzRjtASNQ6ZDHB3qw5FmUIWrrtnzT8-j5rnHG0ndfyYpgSrb6BkCy0ziy3zeEM1qtuft5hyLu8g8rACxAbchvjKVvy4_ypdb-z9USUmsAjlwNRCo4TofGKVz0HfNhYGOjrsjjh0Y8CRjHmJ1Gv-fy9zX1jMZGhEbmnXAFJKKfzlG8F8odukEiEeORhwJ2p8z7HDGz74Gf6Xk65FXM"
-                             alt="Aura Vision AI" tags={['Python', 'TensorFlow']}
-                             title="AURA VISION AI"
-                             desc="Computer vision model capable of real-time sentiment analysis and spatial awareness for retail environments."
-                             linkLabel="View Case Study"
-                             slug="aura-vision-ai"
-                         />
-                    </div>
-                </section>
+                    {/* Grid */}
+                    <section className="max-w-7xl mx-auto px-6 md:px-8">
+                        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <AnimatePresence mode="popLayout">
+                                {filtered.map((project, i) => (
+                                    <ProjectCard key={project.slug} project={project} index={i} />
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
 
-                {/* Connect With Me CTA */}
-                <ConnectWithMe />
-            </main>
+                        {filtered.length === 0 && (
+                            <div className="text-center py-20">
+                                <span className="material-symbols-outlined text-5xl text-stone-300 dark:text-stone-600 mb-4 block">search_off</span>
+                                <p className="text-stone-500 dark:text-stone-400 font-medium">No projects found for this category.</p>
+                            </div>
+                        )}
+                    </section>
 
-            <SharedFooter />
-        </div>
-    </PageTransition>
-);
+                    {/* Connect With Me CTA */}
+                    <ConnectWithMe />
+                </main>
+
+                <SharedFooter />
+            </div>
+        </PageTransition>
+    );
+};
 
 export default ProjectsPage;

@@ -70,7 +70,7 @@ const SkillPill = ({ skill }) => (
 
 const TechnicalArsenal = () => {
     return (
-        <section className="bg-surface-container-low dark:bg-[#08080a] py-24 transition-colors duration-300">
+        <section className="bg-neutral-50 dark:bg-black py-24 transition-colors duration-300">
             <style>{`
                 .marquee-row {
                     width: 100%;
@@ -98,24 +98,24 @@ const TechnicalArsenal = () => {
                     gap: 9px;
                     padding: 9px 20px;
                     margin: 0 6px;
-                    border: 1px solid #e5e7eb;
+                    border: 1px solid #e5e5e5;
                     border-radius: 100px;
-                    background: #f9fafb;
+                    background: #fafafa;
                     white-space: nowrap;
                     transition: border-color 0.25s, background 0.25s;
                     cursor: default;
                 }
                 .dark .logo-pill {
-                    border: 1px solid #1c1c22;
-                    background: #0f0f13;
+                    border: 1px solid #222222;
+                    background: #0a0a0a;
                 }
                 .logo-pill:hover {
-                    border-color: #d1d5db;
-                    background: #f3f4f6;
+                    border-color: #cccccc;
+                    background: #f5f5f5;
                 }
                 .dark .logo-pill:hover {
-                    border-color: #333;
-                    background: #161619;
+                    border-color: #444444;
+                    background: #111111;
                 }
                 .logo-pill img {
                     width: 20px;
@@ -126,26 +126,26 @@ const TechnicalArsenal = () => {
                 .logo-pill span {
                     font-size: 13px;
                     font-weight: 400;
-                    color: #4b5563;
+                    color: #555555;
                     letter-spacing: 0.01em;
                 }
                 .dark .logo-pill span {
-                    color: #888;
+                    color: #888888;
                 }
                 .logo-pill:hover span { 
-                    color: #111827; 
+                    color: #000000; 
                 }
                 .dark .logo-pill:hover span { 
-                    color: #bbb; 
+                    color: #cccccc; 
                 }
                 .marquee-divider {
                     width: 100%;
                     height: 1px;
-                    background: linear-gradient(to right, transparent, #e5e7eb 20%, #e5e7eb 80%, transparent);
+                    background: linear-gradient(to right, transparent, #e5e5e5 20%, #e5e5e5 80%, transparent);
                     margin: 0.2rem 0;
                 }
                 .dark .marquee-divider {
-                    background: linear-gradient(to right, transparent, #1c1c22 20%, #1c1c22 80%, transparent);
+                    background: linear-gradient(to right, transparent, #222222 20%, #222222 80%, transparent);
                 }
                 @keyframes scroll-left {
                     0%   { transform: translateX(0); }
@@ -160,8 +160,8 @@ const TechnicalArsenal = () => {
             <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
                 <div className="flex justify-between items-end mb-12">
                     <div>
-                        <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">Tech Stack</span>
-                        <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Skills & Frameworks</h2>
+                        <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Tech Stack</span>
+                        <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">Skills & Frameworks</h2>
                     </div>
                 </div>
 
@@ -226,4 +226,3 @@ const TechnicalArsenal = () => {
 };
 
 export default TechnicalArsenal;
-

@@ -1,4 +1,4 @@
-/* From Uiverse.io by Praashoo7 */
+/* Social Cards — Monochromatic B&W */
 .main {
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
 }
 
 .dark .card1, .dark .card2, .dark .card3, .dark .card4 {
-  background: #1c1c22;
+  background: #111111;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 10px -1px;
 }
 
@@ -85,7 +85,7 @@
   left: -16px;
 }
 
-/* Hover states */
+/* Hover states — Keep brand colors, they are identity-specific */
 .card1:hover { scale: 1.1; background-color: #cc39a4; }
 .card1:hover .instagram { fill: white; }
 
@@ -102,7 +102,7 @@
 .card4:hover { scale: 1.1; background-color: #0A66C2; } /* LinkedIn Blue */
 .card4:hover .linkedin { filter: brightness(0) invert(1); } /* White logo on hover */
 
-/* === Valorant-style Download Button === */
+/* === Monochromatic Download Button === */
 .dl-btn {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -117,12 +117,12 @@
   font-size: 14px;
   letter-spacing: 2px;
   transition: all .15s ease;
-  font-family: 'Epilogue', Arial, sans-serif;
+  font-family: 'JetBrains Mono', 'Epilogue', Arial, sans-serif;
 }
 
 /* Light mode text color */
-.dl-btn { color: #291714; }
-.dark .dl-btn { color: #f5e9e7; }
+.dl-btn { color: #000000; }
+.dark .dl-btn { color: #FFFFFF; }
 
 .dl-btn::before,
 .dl-btn::after {
@@ -165,13 +165,14 @@
   display: block;
   padding: 10px 24px;
   color: #fff;
-  background-color: #0f1923;
+  background-color: #000000;
   overflow: hidden;
   box-shadow: inset 0px 0px 0px 1px transparent;
 }
 
 .dark .dl-btn_lg {
-  background-color: #1c1c28;
+  background-color: #FFFFFF;
+  color: #000000;
 }
 
 .dl-btn_lg::before {
@@ -182,11 +183,11 @@
   left: 0;
   width: 2px;
   height: 2px;
-  background-color: #0f1923;
+  background-color: #000000;
 }
 
 .dark .dl-btn_lg::before {
-  background-color: #1c1c28;
+  background-color: #FFFFFF;
 }
 
 .dl-btn_lg::after {
@@ -197,12 +198,12 @@
   bottom: 0;
   width: 4px;
   height: 4px;
-  background-color: #0f1923;
+  background-color: #000000;
   transition: all .2s ease;
 }
 
 .dark .dl-btn_lg::after {
-  background-color: #1c1c28;
+  background-color: #FFFFFF;
 }
 
 .dl-btn_sl {
@@ -212,17 +213,21 @@
   bottom: -1px;
   left: -8px;
   width: 0;
-  background-color: #bc000a;
+  background-color: #FFFFFF;
   transform: skew(-15deg);
   transition: all .2s ease;
+}
+
+.dark .dl-btn_sl {
+  background-color: #000000;
 }
 
 .dl-btn_text {
   position: relative;
 }
 
-.dl-btn:hover { color: #0f1923; }
-.dark .dl-btn:hover { color: #fff; }
+.dl-btn:hover .dl-btn_text { color: #000000; }
+.dark .dl-btn:hover .dl-btn_text { color: #FFFFFF; }
 
 .dl-btn:hover .dl-btn_sl {
   width: calc(100% + 15px);
@@ -230,4 +235,8 @@
 
 .dl-btn:hover .dl-btn_lg::after {
   background-color: #fff;
+}
+
+.dark .dl-btn:hover .dl-btn_lg::after {
+  background-color: #000;
 }

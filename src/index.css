@@ -148,10 +148,10 @@ p {
     font-family: 'Public Sans', sans-serif;
 }
 
-/* Dark mode base overrides */
+/* Dark mode base overrides — Pure Black */
 .dark body {
-    background-color: #1a0e0c;
-    color: #f5e9e7;
+    background-color: #000000;
+    color: #FFFFFF;
 }
 
 /* Smooth scroll */
@@ -159,7 +159,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — Monochromatic */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -169,15 +169,19 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bc000a55;
+    background: #66666655;
     border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #bc000a;
+    background: #666666;
 }
 
 /* Dark mode scrollbar */
 .dark ::-webkit-scrollbar-thumb {
-    background: #bc000a88;
+    background: #88888888;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa;
 }

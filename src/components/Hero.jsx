@@ -1,9 +1,111 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
-import SocialCards from './SocialCards';
 import { useNavigate } from 'react-router-dom';
 
+/* ─── Kinetic Grid Background ─── */
+const KineticGrid = () => {
+    const canvasRef = useRef(null);
+    const mouseRef = useRef({ x: 0, y: 0 });
+    const animFrameRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        const resize = () => {
+            canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+            canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        };
+        resize();
+        window.addEventListener('resize', resize);
+
+        const cols = 20;
+        const rows = 14;
+
+        const draw = () => {
+            const w = canvas.offsetWidth;
+            const h = canvas.offsetHeight;
+            const cellW = w / cols;
+            const cellH = h / rows;
+
+            ctx.clearRect(0, 0, w, h);
+
+            const isDark = document.documentElement.classList.contains('dark');
+            const baseColor = isDark ? 'rgba(255,255,255,' : 'rgba(0,0,0,';
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const cx = c * cellW + cellW / 2;
+                    const cy = r * cellH + cellH / 2;
+
+                    const dx = mouseRef.current.x - cx;
+                    const dy = mouseRef.current.y - cy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    const maxDist = 250;
+                    const influence = Math.max(0, 1 - dist / maxDist);
+
+                    const baseOpacity = 0.04;
+                    const opacity = baseOpacity + influence * 0.12;
+
+                    ctx.strokeStyle = `${baseColor}${opacity})`;
+                    ctx.lineWidth = 0.5;
+
+                    const inset = 2 + influence * 4;
+                    ctx.strokeRect(
+                        c * cellW + inset,
+                        r * cellH + inset,
+                        cellW - inset * 2,
+                        cellH - inset * 2
+                    );
+
+                    if (influence > 0.3) {
+                        ctx.fillStyle = `${baseColor}${influence * 0.06})`;
+                        ctx.fillRect(
+                            c * cellW + inset,
+                            r * cellH + inset,
+                            cellW - inset * 2,
+                            cellH - inset * 2
+                        );
+                    }
+                }
+            }
+
+            animFrameRef.current = requestAnimationFrame(draw);
+        };
+
+        draw();
+
+        const handleMove = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseRef.current = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+            };
+        };
+
+        canvas.addEventListener('mousemove', handleMove);
+
+        return () => {
+            window.removeEventListener('resize', resize);
+            canvas.removeEventListener('mousemove', handleMove);
+            if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+        };
+    }, []);
+
+    return (
+        <canvas
+            ref={canvasRef}
+            className="absolute inset-0 w-full h-full pointer-events-auto"
+            style={{ opacity: 0.6 }}
+        />
+    );
+};
+
+/* ─── Console Typing Animation ─── */
 const useConsoleText = (words) => {
     const [displayText, setDisplayText] = useState('');
     const [fullText, setFullText] = useState(words[0]);
@@ -62,41 +164,44 @@ const Hero = () => {
         'Full-Stack Developer'
     ]);
 
-    // Find the starting index for the red highlight (the word after the last space)
+    // Split text for highlight effect (last word gets accent)
     const lastSpaceIndex = fullText.lastIndexOf(' ');
     const highlightIndex = lastSpaceIndex !== -1 ? lastSpaceIndex + 1 : fullText.length;
 
-    // Split the currently rendered text into base (white/black) and highlighted (red) sets
     const baseText = displayText.substring(0, highlightIndex);
     const highlightedText = displayText.substring(highlightIndex);
 
-    // If we've started typing the red text, the cursor should be red too.
     const isTypingHighlight = displayText.length >= highlightIndex && highlightIndex !== fullText.length;
 
     return (
         <PageTransition>
             <header
-                className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto pt-32 pb-16 lg:pt-0 lg:pb-0"
+                className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto pt-32 pb-16 lg:pt-0 lg:pb-0 relative"
                 id="home"
             >
-                <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+                {/* Kinetic Grid Background */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <KineticGrid />
+                </div>
+
+                <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 relative z-10">
                     <ScrollReveal className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
                         <div className="flex flex-col items-center lg:items-start">
                             {/* Static Greeting */}
-                            <h2 className="font-['Epilogue'] text-3xl sm:text-4xl md:text-5xl italic font-semibold text-stone-900 dark:text-white mb-2 tracking-wide">
-                                Hello I'm <span className="text-primary dark:text-red-500">Lloyd.</span>
+                            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl italic font-semibold text-black dark:text-white mb-2 tracking-wide">
+                                Hello I'm <span className="text-neutral-500 dark:text-neutral-400">Lloyd.</span>
                             </h2>
 
                             {/* Animated cycling text */}
-                            <h1 className="font-['Epilogue'] italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-center lg:text-left min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
+                            <h1 className="font-headline italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-center lg:text-left min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
                                 <span className="drop-shadow-sm whitespace-pre-wrap">
-                                    <span className="text-stone-900 dark:text-white transition-colors duration-300">{baseText}</span>
-                                    <span className="text-primary dark:text-red-500 transition-colors duration-300">{highlightedText}</span>
+                                    <span className="text-black dark:text-white transition-colors duration-300">{baseText}</span>
+                                    <span className="text-neutral-500 dark:text-neutral-400 transition-colors duration-300">{highlightedText}</span>
                                 </span>
                                 
                                 {/* Blinking cursor */}
                                 <span
-                                    className={`inline-block w-[4px] rounded-sm ml-1 align-middle transition-colors duration-300 ${isTypingHighlight ? 'bg-primary dark:bg-red-500' : 'bg-stone-900 dark:bg-white'}`}
+                                    className={`inline-block w-[4px] rounded-sm ml-1 align-middle transition-colors duration-300 ${isTypingHighlight ? 'bg-neutral-500 dark:bg-neutral-400' : 'bg-black dark:bg-white'}`}
                                     style={{
                                         height: '0.85em',
                                         opacity: cursorVisible ? 1 : 0
@@ -105,8 +210,25 @@ const Hero = () => {
                             </h1>
                         </div>
 
+                        {/* Mobile Photo Image (Visible only on mobile/tablet) */}
+                        <div className="lg:hidden w-full flex justify-center py-4 relative group">
+                            <div className="aspect-square w-64 md:w-80 rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50 transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:group-hover:shadow-[0_20px_60px_rgba(255,255,255,0.05)]">
+                                <img
+                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                                    src="/lloyd-pic.png"
+                                    alt="Lloyd Rosales"
+                                />
+                            </div>
+                            <div className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:left-4 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6 rounded-xl shadow-xl max-w-[200px] sm:max-w-[240px] z-10 text-left">
+                                <p className="font-label text-[10px] sm:text-xs font-bold uppercase text-black dark:text-white tracking-widest mb-2">Philosophy</p>
+                                <p className="font-body text-xs sm:text-sm font-medium italic text-neutral-600 dark:text-neutral-300 leading-snug">
+                                    "Performance is the baseline. Soul is the differentiator."
+                                </p>
+                            </div>
+                        </div>
+
                         {/* Subtle subtitle */}
-                        <p className="text-sm text-on-surface-variant dark:text-stone-500 tracking-[0.25em] uppercase font-medium pt-2">
+                        <p className="text-sm text-neutral-500 dark:text-neutral-500 tracking-[0.25em] uppercase font-medium pt-2">
                             Cebu City, Philippines &nbsp;·&nbsp; Open to Work
                         </p>
 
@@ -129,8 +251,24 @@ const Hero = () => {
                         </div>
                     </ScrollReveal>
 
-                    <ScrollReveal className="flex justify-center flex-shrink-0 w-full lg:w-auto relative lg:mr-8 xl:mr-16 mt-8 lg:mt-0 pb-24 lg:pb-0 z-10">
-                        <SocialCards />
+                    {/* Desktop Profile Photo (Hidden on mobile) */}
+                    <ScrollReveal className="hidden lg:flex justify-center flex-shrink-0 relative mr-8 xl:mr-16 z-10">
+                        <div className="relative group">
+                            <div className="aspect-square w-80 rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50 transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:group-hover:shadow-[0_20px_60px_rgba(255,255,255,0.05)]">
+                                <img
+                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                                    src="/lloyd-pic.png"
+                                    alt="Lloyd Rosales"
+                                />
+                            </div>
+                            {/* Philosophical Quote */}
+                            <div className="absolute -bottom-6 -left-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-6 rounded-xl shadow-xl max-w-[240px] z-10">
+                                <p className="font-label text-xs font-bold uppercase text-black dark:text-white tracking-widest mb-2">Philosophy</p>
+                                <p className="font-body text-sm font-medium italic text-neutral-600 dark:text-neutral-300 leading-snug">
+                                    "Performance is the baseline. Soul is the differentiator."
+                                </p>
+                            </div>
+                        </div>
                     </ScrollReveal>
                 </div>
             </header>

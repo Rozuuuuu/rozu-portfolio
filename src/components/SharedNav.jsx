@@ -59,15 +59,15 @@ const SharedNav = () => {
         <>
             {/* Floating Expanding Navbar */}
             <nav className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-auto w-[calc(100%-2rem)] sm:w-auto max-w-fit">
-                <div className="flex justify-center p-1.5 sm:p-2 bg-[#fff8f7]/95 dark:bg-stone-900/95 backdrop-blur-xl rounded-[1rem] shadow-[0_10px_25px_0_rgba(0,0,0,0.1)] dark:shadow-[0_10px_25px_0_rgba(0,0,0,0.5)] border border-stone-200/50 dark:border-white/5 gap-1">
+                <div className="flex justify-center p-1.5 sm:p-2 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-xl rounded-[1rem] shadow-[0_10px_25px_0_rgba(0,0,0,0.1)] dark:shadow-[0_10px_25px_0_rgba(0,0,0,0.5)] border border-neutral-200/50 dark:border-neutral-800 gap-1">
                     {links.map(({ to, label, icon }) => (
                         <Link
                             key={to}
                             to={to}
                             className={`group inline-flex justify-center items-center h-[45px] sm:h-[50px] rounded-lg relative z-10 overflow-hidden origin-left transition-all duration-200 ease-in
                             ${active === to
-                                    ? 'w-[90px] min-[400px]:w-[110px] sm:w-[130px] text-[#bc000a] dark:text-red-500' /* Expanded active state */
-                                    : 'w-[45px] min-[400px]:w-[55px] sm:w-[70px] text-stone-600 dark:text-stone-400 hover:text-[#bc000a] dark:hover:text-red-500 hover:w-[90px] min-[400px]:hover:w-[110px] sm:hover:w-[130px] focus:outline-none'
+                                    ? 'w-[90px] min-[400px]:w-[110px] sm:w-[130px] text-black dark:text-white'
+                                    : 'w-[45px] min-[400px]:w-[55px] sm:w-[70px] text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:w-[90px] min-[400px]:hover:w-[110px] sm:hover:w-[130px] focus:outline-none'
                                 }
                             `}
                         >
@@ -75,14 +75,14 @@ const SharedNav = () => {
                             {active === to && (
                                 <motion.span 
                                     layoutId="nav-pill"
-                                    className="absolute -z-10 rounded-lg w-full h-full top-0 bg-[#bc000a]/10 dark:bg-stone-800"
+                                    className="absolute -z-10 rounded-lg w-full h-full top-0 bg-black/10 dark:bg-white/10"
                                     initial={false}
                                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                                 />
                             )}
                             {/* Fallback hover background for non-active links */}
                             {active !== to && (
-                                <span className="absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in translate-x-full bg-surface-container dark:bg-stone-800 group-hover:translate-x-0 group-focus:translate-x-0" />
+                                <span className="absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in translate-x-full bg-neutral-100 dark:bg-neutral-800 group-hover:translate-x-0 group-focus:translate-x-0" />
                             )}
 
                             {/* Icon */}
@@ -106,10 +106,10 @@ const SharedNav = () => {
                     <button
                         onClick={toggle}
                         aria-label="Toggle dark mode"
-                        className="group inline-flex justify-center items-center w-[55px] sm:w-[70px] h-[50px] rounded-lg relative z-10 overflow-hidden origin-left transition-all duration-200 ease-in text-stone-600 dark:text-stone-400 hover:text-[#bc000a] dark:hover:text-red-500 hover:w-[110px] sm:hover:w-[130px] focus:outline-none"
+                        className="group inline-flex justify-center items-center w-[55px] sm:w-[70px] h-[50px] rounded-lg relative z-10 overflow-hidden origin-left transition-all duration-200 ease-in text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:w-[110px] sm:hover:w-[130px] focus:outline-none"
                     >
                         {/* Slide Background */}
-                        <span className="absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in translate-x-full bg-surface-container dark:bg-stone-800 group-hover:translate-x-0 group-focus:translate-x-0" />
+                        <span className="absolute -z-10 rounded-lg w-full h-full top-0 origin-right transition-transform duration-200 ease-in translate-x-full bg-neutral-100 dark:bg-neutral-800 group-hover:translate-x-0 group-focus:translate-x-0" />
 
                         {/* Icon */}
                         <span className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0 absolute left-[15.5px] sm:left-[21px] flex items-center justify-center">

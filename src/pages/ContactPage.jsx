@@ -1,77 +1,65 @@
 import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
+import SocialCards from '../components/SocialCards';
 
 const ContactPage = () => {
     return (
         <PageTransition>
-            <div className="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 min-h-screen transition-colors duration-300">
+            <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
                 <SharedNav />
 
                 <main className="pt-32 pb-24 max-w-7xl mx-auto px-6 md:px-8">
                     {/* Hero Section */}
                     <div className="mb-20 text-center max-w-3xl mx-auto">
-                        <span className="font-label text-primary dark:text-red-400 font-bold uppercase tracking-widest text-xs mb-4 block">Get In Touch</span>
-                        <h1 className="font-headline text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6 text-stone-900 dark:text-stone-50">
-                            Let's build the <span className="text-primary dark:text-red-400 italic">Next Big Thing</span> together.
+                        <span className="font-label text-black dark:text-white font-bold uppercase tracking-widest text-xs mb-4 block">Get In Touch</span>
+                        <h1 className="font-headline text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6 text-black dark:text-white">
+                            Let's build the <span className="text-neutral-400 dark:text-neutral-500 italic">Next Big Thing</span> together.
                         </h1>
-                        <p className="font-body text-lg text-stone-600 dark:text-stone-300 leading-relaxed">
+                        <p className="font-body text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
                             Currently available for select architectural consulting and high-impact partnerships.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-12 items-start mb-20 bg-stone-50 dark:bg-stone-900 p-8 md:p-12 rounded-3xl border border-stone-200 dark:border-stone-800 shadow-xl dark:shadow-black/20">
+                    <div className="grid md:grid-cols-2 gap-12 items-start mb-20 bg-neutral-50 dark:bg-neutral-950 p-8 md:p-12 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-xl dark:shadow-black/20">
                         {/* Philosophy & Picture */}
                         <div className="flex flex-col gap-16 md:pl-6 pt-6">
-                            <div className="relative max-w-fit mx-auto md:mx-0">
-                                <div className="aspect-square w-64 md:w-80 rounded-2xl overflow-hidden relative group">
-                                    <img 
-                                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700" 
-                                        src="/lloyd-pic.png" 
-                                        alt="Lloyd"
-                                    />
-                                    <div className="absolute inset-0 bg-[#bc000a]/5 dark:bg-red-500/5 mix-blend-multiply pointer-events-none"></div>
-                                </div>
-                                <div className="absolute -bottom-6 -left-6 bg-[#ffffff] dark:bg-stone-900 border border-stone-100 dark:border-stone-800 p-6 rounded-xl shadow-xl max-w-[240px] z-10">
-                                    <p className="font-label text-xs font-bold uppercase text-[#bc000a] dark:text-red-400 tracking-widest mb-2">Philosophy</p>
-                                    <p className="font-body text-sm font-medium italic text-[#291714] dark:text-stone-300 leading-snug">
-                                        "Performance is the baseline. Soul is the differentiator."
-                                    </p>
-                                </div>
+                            <div className="flex justify-center md:justify-start w-full mx-auto md:mx-0">
+                                <SocialCards />
                             </div>
                             
                             <div className="space-y-4 pt-4 px-4 md:px-0">
-                                <div className="flex items-center gap-4 text-stone-800 dark:text-stone-200">
-                                    <span className="material-symbols-outlined text-primary dark:text-red-400">alternate_email</span>
+                                <div className="flex items-center gap-4 text-black dark:text-white">
+                                    <span className="material-symbols-outlined text-black dark:text-white">alternate_email</span>
                                     <span className="font-medium">code.with.lloyd@gmail.com</span>
                                 </div>
-                                <div className="flex items-center gap-4 text-stone-800 dark:text-stone-200">
-                                    <span className="material-symbols-outlined text-primary dark:text-red-400">location_on</span>
+                                <div className="flex items-center gap-4 text-black dark:text-white">
+                                    <span className="material-symbols-outlined text-black dark:text-white">location_on</span>
                                     <span className="font-medium">Cebu City, Philippines</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Contact Form */}
-                        <div className="bg-white dark:bg-stone-800 p-8 rounded-2xl border border-stone-200 dark:border-stone-700 shadow-md">
-                            <h3 className="font-headline text-2xl font-bold tracking-tight mb-6 text-stone-900 dark:text-stone-50">Send an Inquiry</h3>
+                        <div className="bg-white dark:bg-neutral-900 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-md">
+                            <h3 className="font-headline text-2xl font-bold tracking-tight mb-6 text-black dark:text-white">Send an Inquiry</h3>
                             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                                 <input 
-                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 rounded-lg p-4 text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:ring-2 focus:ring-primary outline-none transition-all" 
+                                    className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-all" 
                                     placeholder="Your Name" 
                                     type="text" 
                                 />
                                 <input 
-                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 rounded-lg p-4 text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:ring-2 focus:ring-primary outline-none transition-all" 
+                                    className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-all" 
                                     placeholder="Your Email" 
                                     type="email" 
                                 />
                                 <textarea 
-                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 rounded-lg p-4 text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:ring-2 focus:ring-primary outline-none transition-all resize-none" 
+                                    className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-all resize-none" 
                                     placeholder="Tell me about your project..." 
                                     rows="5"
                                 ></textarea>
-                                <button className="w-full py-4 bg-primary text-white font-bold rounded-lg uppercase tracking-widest text-sm hover:scale-[1.02] shadow-lg shadow-red-900/20 active:scale-95 transition-all">
+                                <button className="w-full py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-lg uppercase tracking-widest text-sm hover:scale-[1.02] shadow-lg shadow-black/20 dark:shadow-white/10 active:scale-95 transition-all">
                                     Send Message
                                 </button>
                             </form>

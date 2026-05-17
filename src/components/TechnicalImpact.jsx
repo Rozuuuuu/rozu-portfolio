@@ -51,40 +51,40 @@ const MetricCard = ({ metric, index }) => {
             className="group relative"
         >
             {/* Card */}
-            <div className="relative overflow-hidden rounded-xl border border-stone-200 dark:border-stone-700/50 bg-white dark:bg-stone-900/80 p-8 h-full backdrop-blur-sm transition-all duration-300 hover:border-primary/40 dark:hover:border-red-500/30 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-red-500/5">
+            <div className="relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-8 h-full backdrop-blur-sm transition-all duration-300 hover:border-black dark:hover:border-white hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5">
 
                 {/* Accent glow on hover */}
-                <div className="absolute -top-12 -right-12 w-32 h-32 bg-primary/5 dark:bg-red-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -top-12 -right-12 w-32 h-32 bg-black/5 dark:bg-white/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Top row: icon + label */}
                 <div className="flex items-center gap-2 mb-6">
-                    <span className="material-symbols-outlined text-primary dark:text-red-400 text-lg">
+                    <span className="material-symbols-outlined text-black dark:text-white text-lg">
                         {metric.icon}
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500 font-mono">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
                         {metric.label}
                     </span>
                 </div>
 
                 {/* Big metric value */}
                 <div className="mb-4">
-                    <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-stone-900 dark:text-stone-50 font-mono leading-none">
+                    <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-black dark:text-white font-mono leading-none">
                         {metric.value}
                     </span>
                     {metric.suffix && (
-                        <span className="text-2xl font-bold text-stone-400 dark:text-stone-500 font-mono ml-0.5">
+                        <span className="text-2xl font-bold text-neutral-400 dark:text-neutral-500 font-mono ml-0.5">
                             {metric.suffix}
                         </span>
                     )}
                 </div>
 
                 {/* Supporting detail */}
-                <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
                     {metric.detail}
                 </p>
 
                 {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 dark:via-red-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent dark:via-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
         </motion.div>
     );
@@ -96,13 +96,13 @@ const TechnicalImpact = () => {
             <ScrollReveal>
                 {/* Section header */}
                 <div className="mb-16">
-                    <span className="text-primary dark:text-red-400 font-bold tracking-[0.3em] uppercase text-xs font-mono">
+                    <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs font-mono">
                         Proof of Work
                     </span>
-                    <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">
+                    <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">
                         Technical Impact
                     </h2>
-                    <p className="text-stone-500 dark:text-stone-400 mt-4 max-w-xl text-sm leading-relaxed">
+                    <p className="text-neutral-500 dark:text-neutral-400 mt-4 max-w-xl text-sm leading-relaxed">
                         Engineering metrics that speak louder than feature lists — optimized for performance, quality, and scale.
                     </p>
                 </div>

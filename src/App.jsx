@@ -1,9 +1,11 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { DarkModeProvider } from './context/DarkModeContext';
 import SharedNav from './components/SharedNav';
 import Footer from './components/Footer';
+import LogoPreloader from './components/LogoPreloader';
+import { HeroSkeleton, FeaturedProjectsSkeleton, TechnicalImpactSkeleton } from './components/Skeleton';
 
 // Eagerly loaded components for initial render (above-the-fold)
 import Hero from './components/Hero';
@@ -22,60 +24,76 @@ const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 const SkillsPage = lazy(() => import('./pages/SkillsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
-// A fallback UI for Suspense
+// Content-aware fallback for below-the-fold sections
+const BelowFoldSkeleton = () => (
+    <div className="bg-white dark:bg-black">
+        <FeaturedProjectsSkeleton />
+        <TechnicalImpactSkeleton />
+    </div>
+);
+
+// A fallback UI for Suspense on subpages
 const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[50vh]">
-    <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-  </div>
+    <div className="flex items-center justify-center min-h-[50vh] bg-white dark:bg-black">
+        <div className="flex flex-col items-center gap-4">
+            <div className="w-8 h-8 border-2 border-neutral-300 dark:border-neutral-700 border-t-black dark:border-t-white rounded-full animate-spin"></div>
+            <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">Loading</span>
+        </div>
+    </div>
 );
 
 function HomePage() {
-  return (
-    <div style={{ overflow: 'clip' }}>
-      <SharedNav />
-      {/* Hero and TechnicalArsenal are eagerly loaded for fast LCP */}
-      <Hero />
-      <TechnicalArsenal />
-      
-      {/* Below the fold content is lazy loaded */}
-      <Suspense fallback={<PageLoader />}>
-        <Projects />
-        <Experience />
-        <TechnicalImpact />
-        <Achievements />
-        <ConnectWithMe />
-      </Suspense>
-      <Footer />
-    </div>
-  );
+    return (
+        <div style={{ overflow: 'clip' }}>
+            <SharedNav />
+            {/* Hero and TechnicalArsenal are eagerly loaded for fast LCP */}
+            <Hero />
+            <TechnicalArsenal />
+            
+            {/* Below the fold content is lazy loaded with content-aware skeletons */}
+            <Suspense fallback={<BelowFoldSkeleton />}>
+                <Projects />
+                <Experience />
+                <TechnicalImpact />
+                <Achievements />
+                <ConnectWithMe />
+            </Suspense>
+            <Footer />
+        </div>
+    );
 }
 
 function AnimatedRoutes() {
-  const location = useLocation();
-  return (
-    <AnimatePresence mode="wait">
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white dark:bg-stone-950"><PageLoader /></div>}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/projects/:slug" element={<ProjectDetail />} />
-          <Route path="/achievements" element={<AchievementsPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-      </Suspense>
-    </AnimatePresence>
-  );
+    const location = useLocation();
+    return (
+        <AnimatePresence mode="wait">
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white dark:bg-black"><PageLoader /></div>}>
+                <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/projects" element={<ProjectsPage />} />
+                    <Route path="/projects/:slug" element={<ProjectDetail />} />
+                    <Route path="/achievements" element={<AchievementsPage />} />
+                    <Route path="/skills" element={<SkillsPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                </Routes>
+            </Suspense>
+        </AnimatePresence>
+    );
 }
 
 function App() {
-  return (
-    <DarkModeProvider>
-      <BrowserRouter>
-        <AnimatedRoutes />
-      </BrowserRouter>
-    </DarkModeProvider>
-  );
+    const [preloaderDone, setPreloaderDone] = useState(false);
+    const handlePreloaderComplete = useCallback(() => setPreloaderDone(true), []);
+
+    return (
+        <DarkModeProvider>
+            <BrowserRouter>
+                {/* Logo Preloader — only on initial mount */}
+                {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
+                <AnimatedRoutes />
+            </BrowserRouter>
+        </DarkModeProvider>
+    );
 }
 
 export default App;

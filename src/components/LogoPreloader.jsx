@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
@@ -10,6 +10,12 @@ import { motion, AnimatePresence } from 'framer-motion';
  */
 const LogoPreloader = ({ onComplete }) => {
     const [phase, setPhase] = useState('init');
+    const [isDark, setIsDark] = useState(true); // Default to dark, verify on mount
+
+    useLayoutEffect(() => {
+        // Detect theme immediately before paint
+        setIsDark(document.documentElement.classList.contains('dark'));
+    }, []);
 
     useEffect(() => {
         // Phase 1: Logo enters from below
@@ -48,8 +54,8 @@ const LogoPreloader = ({ onComplete }) => {
                         justifyContent: 'center',
                         pointerEvents: 'all',
                         overflow: 'hidden',
+                        backgroundColor: isDark ? '#000000' : '#FFFFFF',
                     }}
-                    className="bg-black"
                     aria-label="Loading"
                     role="status"
                 >
@@ -57,7 +63,9 @@ const LogoPreloader = ({ onComplete }) => {
                     <div
                         className="absolute inset-0 opacity-[0.03]"
                         style={{
-                            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                            backgroundImage: isDark 
+                                ? 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)'
+                                : 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)',
                             backgroundSize: '40px 40px',
                         }}
                     />
@@ -86,14 +94,18 @@ const LogoPreloader = ({ onComplete }) => {
                             willChange: 'transform, opacity',
                             userSelect: 'none',
                             zIndex: 1,
-                            filter: 'invert(1)', // Logo inverted to white on black bg
+                            filter: isDark ? 'invert(1)' : 'none', // White on black, Black on white
                         }}
                     />
 
                     {/* Loading bar */}
-                    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-white/10 overflow-hidden rounded-full">
+                    <div 
+                        className="absolute bottom-16 left-1/2 -translate-x-1/2 w-24 h-[2px] overflow-hidden rounded-full"
+                        style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+                    >
                         <motion.div
-                            className="h-full bg-white"
+                            className="h-full"
+                            style={{ backgroundColor: isDark ? '#FFFFFF' : '#000000' }}
                             initial={{ width: '0%' }}
                             animate={
                                 phase === 'loading' || phase === 'logoOut'

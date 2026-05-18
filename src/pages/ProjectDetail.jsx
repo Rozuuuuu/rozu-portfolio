@@ -1,5 +1,4 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
@@ -42,7 +41,6 @@ const ProjectDetail = () => {
         return (
             <PageTransition>
                 <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-                    <SharedNav />
                     <main className="pt-32 pb-24 max-w-7xl mx-auto px-6 md:px-8 text-center">
                         <span className="material-symbols-outlined text-7xl text-neutral-300 dark:text-neutral-600 mb-6 block">search_off</span>
                         <h1 className="text-4xl font-black tracking-tighter mb-4">Project Not Found</h1>
@@ -64,7 +62,6 @@ const ProjectDetail = () => {
     return (
         <PageTransition>
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-                <SharedNav />
                 <main className="pt-32 pb-24">
                     <div className="max-w-7xl mx-auto px-6 md:px-8 mb-8">
                         <button onClick={() => navigate('/projects')} className="inline-flex items-center gap-2 text-neutral-500 hover:text-black dark:hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">

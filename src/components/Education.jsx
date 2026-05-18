@@ -7,7 +7,7 @@ const Education = () => {
                 {/* Academic Foundation */}
                 <div>
                     <div className="mb-12">
-                        <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">Pedigree</span>
+                        <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Pedigree</span>
                         <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Academic Foundation</h2>
                     </div>
                     <div className="space-y-8">
@@ -25,13 +25,13 @@ const Education = () => {
                 {/* Certifications */}
                 <div>
                     <div className="mb-12">
-                        <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs">Credentials</span>
+                        <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Credentials</span>
                         <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Certifications</h2>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         {['AWS Solutions Architect', 'Google Cloud Professional', 'Meta Lead Engineer', 'Docker Certified Assoc.'].map((cert) => (
                             <div key={cert} className="bg-surface-container dark:bg-stone-800 p-6 rounded-lg text-center">
-                                <span className="material-symbols-outlined text-primary mb-2 block">verified</span>
+                                <span className="material-symbols-outlined text-black dark:text-white mb-2 block">verified</span>
                                 <h4 className="font-bold text-sm dark:text-stone-200">{cert}</h4>
                             </div>
                         ))}

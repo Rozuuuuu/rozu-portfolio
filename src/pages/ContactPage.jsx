@@ -1,4 +1,3 @@
-import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import SocialCards from '../components/SocialCards';
@@ -7,8 +6,6 @@ const ContactPage = () => {
     return (
         <PageTransition>
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
-                <SharedNav />
-
                 <main className="pt-32 pb-24 max-w-7xl mx-auto px-6 md:px-8">
                     {/* Hero Section */}
                     <div className="mb-20 text-center max-w-3xl mx-auto">

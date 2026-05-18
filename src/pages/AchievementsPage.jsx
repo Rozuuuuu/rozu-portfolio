@@ -1,4 +1,3 @@
-import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';

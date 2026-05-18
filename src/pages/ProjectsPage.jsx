@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import SharedNav from '../components/SharedNav';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ConnectWithMe from '../components/ConnectWithMe';
@@ -108,8 +107,6 @@ const ProjectsPage = () => {
     return (
         <PageTransition>
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
-                <SharedNav />
-
                 <main className="pt-32 pb-24">
                     {/* Hero */}
                     <header className="max-w-7xl mx-auto px-6 md:px-8 mb-16">

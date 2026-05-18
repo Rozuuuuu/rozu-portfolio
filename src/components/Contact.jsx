@@ -6,15 +6,15 @@ const Contact = () => {
             <ScrollReveal className="bg-on-surface dark:bg-stone-900 text-surface dark:text-stone-100 rounded-2xl p-8 md:p-20 overflow-hidden relative border dark:border-stone-700">
                 <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-6 leading-none">Let's build the <br /> <span className="text-primary">Next Big Thing</span> together.</h2>
+                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-6 leading-none">Let's build the <br /> <span className="text-black dark:text-white">Next Big Thing</span> together.</h2>
                         <p className="text-surface/70 dark:text-stone-400 text-lg mb-8">Currently available for select architectural consulting and high-impact partnerships.</p>
                         <div className="space-y-4">
                             <div className="flex items-center gap-4">
-                                <span className="material-symbols-outlined text-primary">alternate_email</span>
+                                <span className="material-symbols-outlined text-black dark:text-white">alternate_email</span>
                                 <span className="font-medium">code.with.lloyd@gmail.com</span>
                             </div>
                             <div className="flex items-center gap-4">
-                                <span className="material-symbols-outlined text-primary">location_on</span>
+                                <span className="material-symbols-outlined text-black dark:text-white">location_on</span>
                                 <span className="font-medium">Cebu City, Philippines</span>
                             </div>
                         </div>

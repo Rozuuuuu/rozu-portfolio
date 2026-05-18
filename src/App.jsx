@@ -2,7 +2,9 @@ import { Suspense, lazy, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { DarkModeProvider } from './context/DarkModeContext';
-import SharedNav from './components/SharedNav';
+import Navbar from './components/Navbar';
+import ChatSidebar from './components/ChatSidebar';
+import BurgerMenuOverlay from './components/BurgerMenuOverlay';
 import Footer from './components/Footer';
 import LogoPreloader from './components/LogoPreloader';
 import { HeroSkeleton, FeaturedProjectsSkeleton, TechnicalImpactSkeleton } from './components/Skeleton';
@@ -42,12 +44,11 @@ const PageLoader = () => (
     </div>
 );
 
-function HomePage() {
+function HomePage({ revealed }) {
     return (
         <div style={{ overflow: 'clip' }}>
-            <SharedNav />
             {/* Hero and TechnicalArsenal are eagerly loaded for fast LCP */}
-            <Hero />
+            <Hero revealed={revealed} />
             <TechnicalArsenal />
             
             {/* Below the fold content is lazy loaded with content-aware skeletons */}
@@ -63,13 +64,13 @@ function HomePage() {
     );
 }
 
-function AnimatedRoutes() {
+function AnimatedRoutes({ preloaderDone }) {
     const location = useLocation();
     return (
         <AnimatePresence mode="wait">
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white dark:bg-black"><PageLoader /></div>}>
                 <Routes location={location} key={location.pathname}>
-                    <Route path="/" element={<HomePage />} />
+                    <Route path="/" element={<HomePage revealed={preloaderDone} />} />
                     <Route path="/projects" element={<ProjectsPage />} />
                     <Route path="/projects/:slug" element={<ProjectDetail />} />
                     <Route path="/achievements" element={<AchievementsPage />} />
@@ -83,6 +84,8 @@ function AnimatedRoutes() {
 
 function App() {
     const [preloaderDone, setPreloaderDone] = useState(false);
+    const [chatOpen, setChatOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const handlePreloaderComplete = useCallback(() => setPreloaderDone(true), []);
 
     return (
@@ -90,7 +93,16 @@ function App() {
             <BrowserRouter>
                 {/* Logo Preloader — only on initial mount */}
                 {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
-                <AnimatedRoutes />
+                
+                <Navbar 
+                    revealed={preloaderDone} 
+                    onOpenMenu={() => setMenuOpen(true)}
+                    onOpenChat={() => setChatOpen(true)}
+                />
+                <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
+                <BurgerMenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+
+                <AnimatedRoutes preloaderDone={preloaderDone} />
             </BrowserRouter>
         </DarkModeProvider>
     );

@@ -1,5 +1,4 @@
 import PageTransition from '../components/PageTransition';
-import SharedNav from '../components/SharedNav';
 import Footer from '../components/Footer';
 import ScrollReveal from '../components/ScrollReveal';
 import { useEffect } from 'react';
@@ -18,7 +17,6 @@ const SkillsPage = () => {
         <PageTransition>
             <style>{customStyles}</style>
             <div className="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
-                <SharedNav />
                 <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
                 <ScrollReveal className="mb-16">
                     <div className="flex items-end gap-4 mb-2">

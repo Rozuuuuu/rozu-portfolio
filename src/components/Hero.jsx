@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
-import ScrollReveal from '../components/ScrollReveal';
 import { useNavigate } from 'react-router-dom';
 
 /* ─── Kinetic Grid Background ─── */
-const KineticGrid = () => {
+const KineticGrid = ({ revealed }) => {
     const canvasRef = useRef(null);
     const mouseRef = useRef({ x: 0, y: 0 });
     const animFrameRef = useRef(null);
@@ -97,10 +97,12 @@ const KineticGrid = () => {
     }, []);
 
     return (
-        <canvas
+        <motion.canvas
             ref={canvasRef}
+            initial={{ opacity: 0 }}
+            animate={revealed ? { opacity: 0.6 } : { opacity: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="absolute inset-0 w-full h-full pointer-events-auto"
-            style={{ opacity: 0.6 }}
         />
     );
 };
@@ -155,7 +157,27 @@ const useConsoleText = (words) => {
     return { displayText, fullText, cursorVisible };
 };
 
-const Hero = () => {
+/* ─── Reveal Variants ─── */
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.15,
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+        opacity: 1, 
+        scale: 1,
+        transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+    }
+};
+
+const Hero = ({ revealed }) => {
     const navigate = useNavigate();
 
     const { displayText, fullText, cursorVisible } = useConsoleText([
@@ -181,11 +203,16 @@ const Hero = () => {
             >
                 {/* Kinetic Grid Background */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <KineticGrid />
+                    <KineticGrid revealed={revealed} />
                 </div>
 
-                <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 relative z-10">
-                    <ScrollReveal className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+                <motion.div 
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={revealed ? "visible" : "hidden"}
+                    className="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 relative z-10"
+                >
+                    <motion.div variants={itemVariants} className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
                         <div className="flex flex-col items-center lg:items-start">
                             {/* Static Greeting */}
                             <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl italic font-semibold text-black dark:text-white mb-2 tracking-wide">
@@ -214,7 +241,7 @@ const Hero = () => {
                         <div className="lg:hidden w-full flex justify-center py-4 relative group">
                             <div className="aspect-square w-64 md:w-80 rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50 transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:group-hover:shadow-[0_20px_60px_rgba(255,255,255,0.05)]">
                                 <img
-                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                                    className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700"
                                     src="/lloyd-pic.png"
                                     alt="Lloyd Rosales"
                                 />
@@ -249,14 +276,14 @@ const Hero = () => {
                                 </span>
                             </button>
                         </div>
-                    </ScrollReveal>
+                    </motion.div>
 
                     {/* Desktop Profile Photo (Hidden on mobile) */}
-                    <ScrollReveal className="hidden lg:flex justify-center flex-shrink-0 relative mr-8 xl:mr-16 z-10">
+                    <motion.div variants={itemVariants} className="hidden lg:flex justify-center flex-shrink-0 relative mr-8 xl:mr-16 z-10">
                         <div className="relative group">
                             <div className="aspect-square w-80 rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50 transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:group-hover:shadow-[0_20px_60px_rgba(255,255,255,0.05)]">
                                 <img
-                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                                    className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700"
                                     src="/lloyd-pic.png"
                                     alt="Lloyd Rosales"
                                 />
@@ -269,8 +296,8 @@ const Hero = () => {
                                 </p>
                             </div>
                         </div>
-                    </ScrollReveal>
-                </div>
+                    </motion.div>
+                </motion.div>
             </header>
         </PageTransition>
     );

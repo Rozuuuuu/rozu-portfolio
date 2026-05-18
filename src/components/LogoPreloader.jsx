@@ -1,5 +1,6 @@
-import { useEffect, useState, useLayoutEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDarkMode } from '../context/DarkModeContext';
 
 /**
  * LogoPreloader
@@ -10,12 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  */
 const LogoPreloader = ({ onComplete }) => {
     const [phase, setPhase] = useState('init');
-    const [isDark, setIsDark] = useState(true); // Default to dark, verify on mount
-
-    useLayoutEffect(() => {
-        // Detect theme immediately before paint
-        setIsDark(document.documentElement.classList.contains('dark'));
-    }, []);
+    const { dark: isDark } = useDarkMode();
 
     useEffect(() => {
         // Phase 1: Logo enters from below

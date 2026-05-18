@@ -1,39 +1,16 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useChat } from '../hooks/useChat';
 
 const ChatSidebar = ({ isOpen, onClose }) => {
-    const [messages, setMessages] = useState([
-        { id: 1, text: "Hi there! I'm Lloyd's AI assistant. How can I help you today?", isBot: true },
-    ]);
+    const { messages, sendMessage, isLoading, messagesEndRef } = useChat();
     const [inputValue, setInputValue] = useState('');
-    const messagesEndRef = useRef(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-
-    useEffect(() => {
-        if (isOpen) {
-            scrollToBottom();
-        }
-    }, [messages, isOpen]);
-
-    const handleSend = (e) => {
+    const handleSend = async (e) => {
         e.preventDefault();
-        if (!inputValue.trim()) return;
-
-        const newMsg = { id: Date.now(), text: inputValue, isBot: false };
-        setMessages(prev => [...prev, newMsg]);
+        const text = inputValue;
         setInputValue('');
-
-        // Simulate bot response
-        setTimeout(() => {
-            setMessages(prev => [...prev, {
-                id: Date.now() + 1,
-                text: "Thanks for the message! I'm a demo chatbot right now, but I'll make sure Lloyd gets this.",
-                isBot: true
-            }]);
-        }, 1000);
+        await sendMessage(text);
     };
 
     return (
@@ -86,17 +63,41 @@ const ChatSidebar = ({ isOpen, onClose }) => {
                         </div>
 
                         {/* Messages Area */}
-                        <div className="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col gap-4">
-                            {messages.map(msg => (
-                                <div key={msg.id} className={`flex flex-col max-w-[85%] ${msg.isBot ? 'self-start' : 'self-end'}`}>
-                                    <div className={`p-3 rounded-2xl text-sm ${msg.isBot ? 'bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white rounded-tl-sm' : 'bg-black dark:bg-white text-white dark:text-black rounded-tr-sm'}`}>
-                                        {msg.text}
+                        <div className="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col gap-4 font-mono">
+                            {messages.map(msg => {
+                                const isBot = msg.role === 'model';
+                                return (
+                                    <div key={msg.id} className={`flex flex-col max-w-[85%] ${isBot ? 'self-start' : 'self-end'}`}>
+                                        <div 
+                                            className={`p-3 text-sm border ${
+                                                isBot 
+                                                ? 'bg-neutral-50 dark:bg-neutral-900 text-black dark:text-white border-neutral-200 dark:border-neutral-800 rounded-2xl rounded-tl-sm' 
+                                                : 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white rounded-2xl rounded-tr-sm'
+                                            }`}
+                                        >
+                                            {msg.text}
+                                        </div>
+                                        <span className={`text-[10px] text-neutral-400 mt-1 uppercase tracking-widest ${isBot ? 'text-left ml-1' : 'text-right mr-1'}`}>
+                                            {isBot ? 'Lloyd AI' : 'You'}
+                                        </span>
                                     </div>
-                                    <span className={`text-[10px] text-neutral-400 mt-1 ${msg.isBot ? 'text-left ml-1' : 'text-right mr-1'}`}>
-                                        {msg.isBot ? 'Lloyd AI' : 'You'}
+                                );
+                            })}
+                            
+                            {/* Loading Skeleton */}
+                            {isLoading && (
+                                <div className="flex flex-col max-w-[85%] self-start">
+                                    <div className="p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl rounded-tl-sm flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-neutral-400 animate-skeleton"></div>
+                                        <div className="w-2 h-2 rounded-full bg-neutral-400 animate-skeleton" style={{ animationDelay: '200ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-neutral-400 animate-skeleton" style={{ animationDelay: '400ms' }}></div>
+                                    </div>
+                                    <span className="text-[10px] text-neutral-400 mt-1 uppercase tracking-widest text-left ml-1">
+                                        Lloyd AI
                                     </span>
                                 </div>
-                            ))}
+                            )}
+                            
                             <div ref={messagesEndRef} />
                         </div>
 

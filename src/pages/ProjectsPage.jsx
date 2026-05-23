@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ConnectWithMe from '../components/ConnectWithMe';
 import HoverScrollImage from '../components/HoverScrollImage';
 import projects from '../data/projectsData';
+import SEO from '../components/SEO';
 
 /* ─── Tag Pill ─── */
 const Tag = ({ children }) => (
@@ -106,6 +107,11 @@ const ProjectsPage = () => {
 
     return (
         <PageTransition>
+            <SEO 
+                title="Projects - Lloyd C. Rosales" 
+                description="Explore my portfolio of modern web applications, full-stack systems, and cross-platform mobile apps." 
+                path="/projects" 
+            />
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
                 <main className="pt-32 pb-24">
                     {/* Hero */}

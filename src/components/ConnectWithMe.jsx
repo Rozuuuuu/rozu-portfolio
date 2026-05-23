@@ -41,12 +41,15 @@ const ConnectWithMe = () => {
                             </div>
 
                             {/* CTA Button */}
-                            <button
-                                onClick={() => navigate('/contact')}
-                                className="inline-flex items-center gap-3 px-10 py-4 rounded-lg font-bold uppercase tracking-widest text-sm bg-black text-white dark:bg-white dark:text-black shadow-lg shadow-black/30 dark:shadow-white/10 hover:scale-105 active:scale-95 transition-all"
-                            >
-                                Let's Work Together
-                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            <button className="animated-button" onClick={() => navigate('/contact')}>
+                                <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                </svg>
+                                <span className="text">Let's Work Together</span>
+                                <span className="circle"></span>
+                                <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                </svg>
                             </button>
                         </div>
 

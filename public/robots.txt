@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lloydrosales.com/sitemap.xml

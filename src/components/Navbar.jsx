@@ -1,9 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useDarkMode } from '../context/DarkModeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = ({ revealed, onOpenMenu, onOpenChat }) => {
-    const { dark, toggle } = useDarkMode();
     const location = useLocation();
     const active = location.pathname;
 
@@ -33,28 +31,17 @@ const Navbar = ({ revealed, onOpenMenu, onOpenChat }) => {
             )
         },
         {
-            type: 'button',
-            onClick: toggle,
-            label: 'Theme',
-            icon: dark ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" viewBox="0 0 256 256">
-                    <rect width="256" height="256" fill="none"></rect>
-                    <circle cx="128" cy="128" r="60" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></circle>
-                    <line x1="128" y1="36" x2="128" y2="16" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                    <line x1="128" y1="240" x2="128" y2="220" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                    <line x1="36" y1="128" x2="16" y2="128" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                    <line x1="240" y1="128" x2="220" y2="128" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                    <line x1="62.94132" y1="62.94132" x2="48.79898" y2="48.79898" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                    <line x1="207.20102" y1="207.20102" x2="193.05868" y2="193.05868" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                    <line x1="62.94132" y1="193.05868" x2="48.79898" y2="207.20102" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                    <line x1="207.20102" y1="48.79898" x2="193.05868" y2="62.94132" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></line>
-                </svg>
-            ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" viewBox="0 0 256 256">
-                    <rect width="256" height="256" fill="none"></rect>
-                    <path d="M216.71186,152.60741A92.01633,92.01633,0,1,1,103.39257,39.28812,92.00762,92.00762,0,0,0,216.71186,152.60741Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></path>
-                </svg>
-            )
+            type: 'link',
+            to: '/about',
+            label: 'About',
+            icon: (
+                <img
+                    src="/lloyd-pic.png"
+                    alt="About Me"
+                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover"
+                />
+            ),
+            isImageIcon: true
         },
         {
             type: 'button',
@@ -109,9 +96,15 @@ const Navbar = ({ revealed, onOpenMenu, onOpenChat }) => {
                                     )}
 
                                     {/* Icon */}
-                                    <span className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0 absolute left-[15.5px] sm:left-[21px] flex items-center justify-center">
-                                        {item.icon}
-                                    </span>
+                                    {item.isImageIcon ? (
+                                        <span className="flex-shrink-0 absolute left-[12px] sm:left-[14px] flex items-center justify-center">
+                                            {item.icon}
+                                        </span>
+                                    ) : (
+                                        <span className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0 absolute left-[15.5px] sm:left-[21px] flex items-center justify-center">
+                                            {item.icon}
+                                        </span>
+                                    )}
 
                                     {/* Text */}
                                     <span className={`block text-center w-full pl-6 sm:pl-7 origin-right font-['Public_Sans'] font-bold text-[11px] sm:text-sm tracking-wide transition-all duration-200 ease-in

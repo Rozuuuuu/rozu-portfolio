@@ -83,6 +83,124 @@
     font-display: swap;
 }
 
+/* ==========================================================================
+   Animated Button CTA
+   ========================================================================== */
+
+/* From Uiverse.io by gharsh11032000 */ 
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #000;
+  box-shadow: 0 0 0 2px #000;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dark .animated-button {
+  color: #fff;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: #000;
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dark .animated-button svg {
+  fill: #fff;
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dark .animated-button .circle {
+  background-color: #fff;
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.dark .animated-button:hover {
+  color: #000;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: #fff;
+}
+
+.dark .animated-button:hover svg {
+  fill: #000;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px #000;
+}
+
+.dark .animated-button:active {
+  box-shadow: 0 0 0 4px #fff;
+}
+
+.animated-button:hover .circle {
+  width: 400px;
+  height: 400px;
+  opacity: 1;
+}
+
 /* ═══════════════════════════════════════════════════════════
    Tailwind Directives
    ═══════════════════════════════════════════════════════════ */

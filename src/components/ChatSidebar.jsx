@@ -39,13 +39,15 @@ const ChatSidebar = ({ isOpen, onClose }) => {
                         {/* Header */}
                         <div className="flex items-center justify-between p-4 md:p-6 border-b border-neutral-200 dark:border-neutral-800">
                             <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-white dark:text-black text-sm">robot_2</span>
-                                </div>
+                                <img
+                                    src="/lloyd-pic.png"
+                                    alt="Lloyd"
+                                    className="w-8 h-8 rounded-full object-cover"
+                                />
                                 <div>
                                     <h2 className="font-headline text-lg font-black text-black dark:text-white tracking-tighter leading-none mb-1">ChatWithLloyd</h2>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                                        <div className="w-1.5 h-1.5 rounded-full bg-neutral-500 animate-pulse"></div>
                                         <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Online</span>
                                     </div>
                                 </div>

@@ -14,6 +14,11 @@ const ImgPlaceholder = ({ alt }) => (
 
 const AchievementsPage = () => (
     <PageTransition>
+        <SEO 
+            title="Achievements - Lloyd C. Rosales" 
+            description="A list of my technical awards, hackathon wins, and professional achievements." 
+            path="/achievements" 
+        />
         <div className="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
             <main className="pt-32 pb-24">
                 <section className="max-w-7xl mx-auto px-6 md:px-8 mb-20">

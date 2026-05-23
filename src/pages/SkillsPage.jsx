@@ -15,6 +15,11 @@ const SkillsPage = () => {
 
     return (
         <PageTransition>
+            <SEO 
+                title="Skills & Expertise - Lloyd C. Rosales" 
+                description="Technical arsenal spanning front-end, back-end, mobile development, and cloud architecture." 
+                path="/skills" 
+            />
             <style>{customStyles}</style>
             <div className="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
                 <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto">

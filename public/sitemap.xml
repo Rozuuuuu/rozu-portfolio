@@ -6,6 +6,12 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <!-- About Page -->
+  <url>
+    <loc>https://lloydrosales.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <!-- Projects Page -->
   <url>
     <loc>https://lloydrosales.com/projects</loc>

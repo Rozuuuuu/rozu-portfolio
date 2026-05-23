@@ -1,10 +1,16 @@
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import SocialCards from '../components/SocialCards';
+import SEO from '../components/SEO';
 
 const ContactPage = () => {
     return (
         <PageTransition>
+            <SEO 
+                title="Contact - Lloyd C. Rosales" 
+                description="Get in touch for freelance opportunities, full-time roles, or high-impact collaborations." 
+                path="/contact" 
+            />
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
                 <main className="pt-32 pb-24 max-w-7xl mx-auto px-6 md:px-8">
                     {/* Hero Section */}

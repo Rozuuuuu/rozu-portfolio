@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import { useNavigate } from 'react-router-dom';
+import './SocialCards.css';
 
 /* ─── Kinetic Grid Background ─── */
 const KineticGrid = ({ revealed }) => {
@@ -260,7 +261,7 @@ const Hero = ({ revealed }) => {
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex gap-4 flex-wrap justify-center lg:justify-start pt-4">
+                        <div className="flex flex-col gap-4 justify-center lg:justify-start pt-4 items-center lg:items-start">
                             <button
                                 className="dl-btn"
                                 onClick={() => {
@@ -274,6 +275,14 @@ const Hero = ({ revealed }) => {
                                     <span className="dl-btn_sl" />
                                     <span className="dl-btn_text">Download Resume</span>
                                 </span>
+                            </button>
+                            <button
+                                className="about-btn"
+                                data-text="About Me"
+                                onClick={() => navigate('/about')}
+                            >
+                                <span className="actual-text">&nbsp;About Me&nbsp;</span>
+                                <span aria-hidden="true" className="hover-text">&nbsp;About Me&nbsp;</span>
                             </button>
                         </div>
                     </motion.div>

@@ -240,3 +240,53 @@
 .dark .dl-btn:hover .dl-btn_lg::after {
   background-color: #000;
 }
+
+/* === About Me — Text Reveal Button === */
+.about-btn {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  --border-right: 6px;
+  --text-stroke-color: rgba(0, 0, 0, 0.6);
+  --animation-color: #000000;
+  --fs-size: 1.5em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+
+.dark .about-btn {
+  --text-stroke-color: rgba(255, 255, 255, 0.6);
+  --animation-color: #FFFFFF;
+}
+
+.about-btn .actual-text {
+  /* Using standard span for base text as per Uiverse */
+}
+
+.about-btn .hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+  white-space: nowrap;
+}
+
+.about-btn:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color));
+}

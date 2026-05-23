@@ -1,36 +1,41 @@
 import { Suspense, lazy, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
 import { DarkModeProvider } from './context/DarkModeContext';
 import Navbar from './components/Navbar';
+import TopBar from './components/TopBar';
 import ChatSidebar from './components/ChatSidebar';
 import BurgerMenuOverlay from './components/BurgerMenuOverlay';
 import Footer from './components/Footer';
 import LogoPreloader from './components/LogoPreloader';
 import { HeroSkeleton, FeaturedProjectsSkeleton, TechnicalImpactSkeleton } from './components/Skeleton';
+import SEO from './components/SEO';
 
 // Eagerly loaded components for initial render (above-the-fold)
 import Hero from './components/Hero';
-import TechnicalArsenal from './components/TechnicalArsenal';
+import Objectives from './components/Objectives';
 
 // Lazy loaded components for below-the-fold and subpages
-const Projects = lazy(() => import('./components/Projects'));
-const Experience = lazy(() => import('./components/Experience'));
 const TechnicalImpact = lazy(() => import('./components/TechnicalImpact'));
-const ConnectWithMe = lazy(() => import('./components/ConnectWithMe'));
+const Experience = lazy(() => import('./components/Experience'));
+const TechnicalArsenal = lazy(() => import('./components/TechnicalArsenal'));
+const Projects = lazy(() => import('./components/Projects'));
 const Achievements = lazy(() => import('./components/Achievements'));
+const ConnectWithMe = lazy(() => import('./components/ConnectWithMe'));
 
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 const SkillsPage = lazy(() => import('./pages/SkillsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
 
 // Content-aware fallback for below-the-fold sections
 const BelowFoldSkeleton = () => (
     <div className="bg-white dark:bg-black">
-        <FeaturedProjectsSkeleton />
         <TechnicalImpactSkeleton />
+        <FeaturedProjectsSkeleton />
     </div>
 );
 
@@ -47,15 +52,21 @@ const PageLoader = () => (
 function HomePage({ revealed }) {
     return (
         <div style={{ overflow: 'clip' }}>
-            {/* Hero and TechnicalArsenal are eagerly loaded for fast LCP */}
+            <SEO 
+                title="Lloyd C. Rosales | Software Engineer" 
+                description="Lloyd Rosales is a full-stack software engineer specializing in modern web applications, scalable systems, and cross-platform mobile apps." 
+                path="/" 
+            />
+            {/* Hero and Objectives are eagerly loaded for fast LCP */}
             <Hero revealed={revealed} />
-            <TechnicalArsenal />
+            <Objectives />
             
             {/* Below the fold content is lazy loaded with content-aware skeletons */}
             <Suspense fallback={<BelowFoldSkeleton />}>
-                <Projects />
-                <Experience />
                 <TechnicalImpact />
+                <TechnicalArsenal />
+                <Experience />
+                <Projects />
                 <Achievements />
                 <ConnectWithMe />
             </Suspense>
@@ -71,6 +82,7 @@ function AnimatedRoutes({ preloaderDone }) {
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white dark:bg-black"><PageLoader /></div>}>
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<HomePage revealed={preloaderDone} />} />
+                    <Route path="/about" element={<AboutPage />} />
                     <Route path="/projects" element={<ProjectsPage />} />
                     <Route path="/projects/:slug" element={<ProjectDetail />} />
                     <Route path="/achievements" element={<AchievementsPage />} />
@@ -89,22 +101,25 @@ function App() {
     const handlePreloaderComplete = useCallback(() => setPreloaderDone(true), []);
 
     return (
-        <DarkModeProvider>
-            <BrowserRouter>
-                {/* Logo Preloader — only on initial mount */}
-                {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
-                
-                <Navbar 
-                    revealed={preloaderDone} 
-                    onOpenMenu={() => setMenuOpen(true)}
-                    onOpenChat={() => setChatOpen(true)}
-                />
-                <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
-                <BurgerMenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+        <HelmetProvider>
+            <DarkModeProvider>
+                <BrowserRouter>
+                    {/* Logo Preloader — only on initial mount */}
+                    {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
+                    
+                    <TopBar revealed={preloaderDone} />
+                    <Navbar 
+                        revealed={preloaderDone} 
+                        onOpenMenu={() => setMenuOpen(true)}
+                        onOpenChat={() => setChatOpen(true)}
+                    />
+                    <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
+                    <BurgerMenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
-                <AnimatedRoutes preloaderDone={preloaderDone} />
-            </BrowserRouter>
-        </DarkModeProvider>
+                    <AnimatedRoutes preloaderDone={preloaderDone} />
+                </BrowserRouter>
+            </DarkModeProvider>
+        </HelmetProvider>
     );
 }
 

@@ -25,7 +25,8 @@ KNOWLEDGE BASE:
 BEHAVIORAL CONSTRAINTS:
 - If asked about topics outside Lloyd's professional scope (politics, medical advice, etc.), politely redirect: "That's outside my expertise — I'm best at discussing software engineering, design, and my project work. What would you like to know about those?"
 - Keep responses concise (2-4 sentences) unless the user asks for a detailed explanation.
-- Use markdown formatting sparingly for emphasis when helpful.`;
+- Use markdown formatting sparingly for emphasis when helpful.
+- For all queries regarding projects or experience, you MUST formulate your response using the STARR method (Situation, Task, Action, Result, Reflection).`;
 
 export default async function handler(req, res) {
     // CORS headers for Vercel deployments

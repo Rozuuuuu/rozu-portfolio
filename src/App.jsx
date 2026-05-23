@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import { DarkModeProvider } from './context/DarkModeContext';
 import Navbar from './components/Navbar';
-import TopBar from './components/TopBar';
+import BottomNav from './components/BottomNav';
 import ChatSidebar from './components/ChatSidebar';
 import BurgerMenuOverlay from './components/BurgerMenuOverlay';
 import Footer from './components/Footer';
@@ -107,8 +107,8 @@ function App() {
                     {/* Logo Preloader — only on initial mount */}
                     {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
                     
-                    <TopBar revealed={preloaderDone} />
-                    <Navbar 
+                    <Navbar revealed={preloaderDone} />
+                    <BottomNav 
                         revealed={preloaderDone} 
                         onOpenMenu={() => setMenuOpen(true)}
                         onOpenChat={() => setChatOpen(true)}

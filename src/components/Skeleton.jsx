@@ -103,4 +103,43 @@ export const PageSkeleton = () => (
     </div>
 );
 
+/* ─── Objectives Skeleton ─── */
+export const ObjectivesSkeleton = () => (
+    <section className="py-24 max-w-7xl mx-auto px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-900">
+        <div className="mb-16">
+            <SkeletonBlock className="h-4 w-32 mb-4" />
+            <SkeletonBlock className="h-10 w-64 max-w-full" />
+        </div>
+        <div className="space-y-6">
+            {[1, 2, 3].map(i => (
+                <div key={i} className="flex flex-col md:flex-row gap-6 p-8 bg-neutral-50 dark:bg-neutral-900 rounded-2xl border border-neutral-100 dark:border-neutral-800">
+                    <div className="md:w-1/3">
+                        <SkeletonBlock className="h-6 w-3/4 mb-3" />
+                        <SkeletonBlock className="h-4 w-full" />
+                    </div>
+                    <div className="md:w-2/3 space-y-3">
+                        <SkeletonBlock className="h-4 w-full" />
+                        <SkeletonBlock className="h-4 w-5/6" />
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+);
+
+/* ─── About Page Skeleton ─── */
+export const AboutSkeleton = () => (
+    <div className="pt-28 pb-20 px-6 md:px-8 max-w-4xl mx-auto min-h-screen">
+        <SkeletonBlock className="h-4 w-24 mb-6 mx-auto" />
+        <SkeletonBlock className="h-12 w-3/4 mb-10 mx-auto" />
+        <div className="aspect-[21/9] w-full rounded-3xl mb-16 bg-neutral-200 dark:bg-neutral-900 animate-skeleton" />
+        <div className="space-y-6">
+            <SkeletonBlock className="h-4 w-full" />
+            <SkeletonBlock className="h-4 w-11/12" />
+            <SkeletonBlock className="h-4 w-full" />
+            <SkeletonBlock className="h-4 w-5/6" />
+        </div>
+    </div>
+);
+
 export default SkeletonBlock;

@@ -101,9 +101,12 @@ const ProjectCard = ({ project, index }) => {
 const ProjectsPage = () => {
     const [activeFilter, setActiveFilter] = useState('All');
 
-    const filtered = activeFilter === 'All'
+    const cafeAiProject = projects.find(p => p.slug === 'cafe-ai');
+
+    const filtered = (activeFilter === 'All'
         ? projects
-        : projects.filter(p => p.tag === activeFilter);
+        : projects.filter(p => p.tag === activeFilter)
+    ).filter(p => p.slug !== 'cafe-ai');
 
     return (
         <PageTransition>
@@ -133,6 +136,73 @@ const ProjectsPage = () => {
                             </div>
                         </div>
                     </header>
+
+                    {/* Featured CS Thesis Section (Cafe AI) */}
+                    {cafeAiProject && (
+                        <section className="max-w-7xl mx-auto px-6 md:px-8 mb-24">
+                            <div className="relative bg-neutral-50 dark:bg-neutral-950 rounded-3xl p-6 md:p-8 lg:p-12 border border-neutral-200 dark:border-neutral-800 shadow-sm overflow-hidden group">
+                                <div className="absolute top-0 right-0 w-80 h-80 bg-neutral-200/20 dark:bg-neutral-800/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+                                <div className="absolute bottom-0 left-0 w-60 h-60 bg-neutral-200/10 dark:bg-neutral-800/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
+                                
+                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                                    {/* Left Column: Cafe AI Video */}
+                                    <div className="lg:col-span-7">
+                                        <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-neutral-200 dark:border-neutral-800 shadow-2xl">
+                                            <video
+                                                className="w-full h-full object-cover"
+                                                src={cafeAiProject.media.src}
+                                                controls
+                                                playsInline
+                                                autoPlay
+                                                muted
+                                                loop
+                                            />
+                                            <div className="absolute top-4 left-4 z-20">
+                                                <span className="px-3.5 py-1.5 bg-black/85 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest rounded-full border border-white/10 flex items-center gap-1.5">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                                    Featured Demo
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Right Column: Description */}
+                                    <div className="lg:col-span-5 flex flex-col justify-center">
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <span className="px-3 py-1 bg-black dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-wider rounded-full">
+                                                CS Thesis
+                                            </span>
+                                            <span className="px-3 py-1 bg-neutral-100 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 text-[10px] font-bold uppercase tracking-wider rounded-full border border-neutral-200 dark:border-neutral-800">
+                                                AI/ML
+                                            </span>
+                                        </div>
+
+                                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-black dark:text-white uppercase leading-none">
+                                            Café AI
+                                        </h2>
+
+                                        <p className="text-base text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed font-medium">
+                                            {cafeAiProject.desc}
+                                        </p>
+
+                                        {/* Tech tags */}
+                                        <div className="flex flex-wrap gap-1.5 mb-8">
+                                            {cafeAiProject.tags.map(t => (
+                                                <span key={t} className="px-3 py-1 bg-neutral-105 dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-750 rounded-full text-[10px] font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-black dark:text-white">
+                                            <span>First AI Project I've Made</span>
+                                            <span className="material-symbols-outlined text-base">smart_toy</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    )}
 
                     {/* Filter bar */}
                     <section className="max-w-7xl mx-auto px-6 md:px-8 mb-12">

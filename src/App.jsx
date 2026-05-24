@@ -12,6 +12,7 @@ import LogoPreloader from './components/LogoPreloader';
 import { HeroSkeleton, FeaturedProjectsSkeleton, TechnicalImpactSkeleton } from './components/Skeleton';
 import SEO from './components/SEO';
 import { Analytics } from "@vercel/analytics/react";
+import ScrollToTop from './components/ScrollToTop';
 
 // Eagerly loaded components for initial render (above-the-fold)
 import Hero from './components/Hero';
@@ -105,6 +106,7 @@ function App() {
         <HelmetProvider>
             <DarkModeProvider>
                 <BrowserRouter>
+                    <ScrollToTop />
                     {/* Logo Preloader — only on initial mount */}
                     {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
                     

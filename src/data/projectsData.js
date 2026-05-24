@@ -84,7 +84,7 @@ const projects = [
         media: { type: 'video', src: '/Projects/Cafe AI video demo.mp4' },
         img: null,
         title: 'Café AI',
-        desc: 'Conceptualized and prototyped an AI‑enabled café system for a thesis project, applying machine learning concepts to enhance the customer ordering experience.',
+        desc: "My Computer Science thesis and the first AI project I've ever made. Conceptualized and prototyped an AI‑enabled café system, applying machine learning concepts to enhance and streamline the customer ordering experience.",
     },
     {
         slug: 'photobooth',

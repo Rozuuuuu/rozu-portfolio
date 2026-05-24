@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import LogoPreloader from './components/LogoPreloader';
 import { HeroSkeleton, FeaturedProjectsSkeleton, TechnicalImpactSkeleton } from './components/Skeleton';
 import SEO from './components/SEO';
+import { Analytics } from "@vercel/analytics/next";
 
 // Eagerly loaded components for initial render (above-the-fold)
 import Hero from './components/Hero';

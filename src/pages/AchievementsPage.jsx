@@ -4,6 +4,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import ConnectWithMe from '../components/ConnectWithMe';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { featured, spotlight, milestones } from '../data/achievementsData';
+import SEO from '../components/SEO';
 
 const ImgPlaceholder = ({ alt }) => (
     <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-neutral-200 dark:bg-neutral-800 gap-3">

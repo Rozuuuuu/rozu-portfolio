@@ -2,6 +2,7 @@ import PageTransition from '../components/PageTransition';
 import Footer from '../components/Footer';
 import ScrollReveal from '../components/ScrollReveal';
 import { useEffect } from 'react';
+import SEO from '../components/SEO';
 
 const SkillsPage = () => {
     useEffect(() => { window.scrollTo(0, 0); }, []);

@@ -148,15 +148,25 @@ const ProjectsPage = () => {
                                     {/* Left Column: Cafe AI Video */}
                                     <div className="lg:col-span-7">
                                         <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-neutral-200 dark:border-neutral-800 shadow-2xl">
-                                            <video
-                                                className="w-full h-full object-cover"
-                                                src={cafeAiProject.media.src}
-                                                controls
-                                                playsInline
-                                                autoPlay
-                                                muted
-                                                loop
-                                            />
+                                            {cafeAiProject.media?.type === 'youtube' ? (
+                                                <iframe
+                                                    className="w-full h-full border-0"
+                                                    src={`https://www.youtube.com/embed/${cafeAiProject.media.src}?autoplay=1&mute=1&loop=1&playlist=${cafeAiProject.media.src}&controls=1&rel=0&modestbranding=1`}
+                                                    title="Café AI Demo"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                />
+                                            ) : (
+                                                <video
+                                                    className="w-full h-full object-cover"
+                                                    src={cafeAiProject.media?.src}
+                                                    controls
+                                                    playsInline
+                                                    autoPlay
+                                                    muted
+                                                    loop
+                                                />
+                                            )}
                                             <div className="absolute top-4 left-4 z-20">
                                                 <span className="px-3.5 py-1.5 bg-black/85 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest rounded-full border border-white/10 flex items-center gap-1.5">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>

@@ -81,7 +81,7 @@ const projects = [
         slug: 'cafe-ai',
         tag: 'AI/ML',
         tags: ['AI', 'Machine Learning', 'Thesis'],
-        media: { type: 'video', src: '/Projects/Cafe AI video demo.mp4' },
+        media: { type: 'youtube', src: 'qZikagLtCGU' },
         img: null,
         title: 'Café AI',
         desc: "My Computer Science thesis and the first AI project I've ever made. Conceptualized and prototyped an AI‑enabled café system, applying machine learning concepts to enhance and streamline the customer ordering experience.",

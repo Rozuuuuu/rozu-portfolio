@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import LogoPreloader from './components/LogoPreloader';
 import { HeroSkeleton, FeaturedProjectsSkeleton, TechnicalImpactSkeleton } from './components/Skeleton';
 import SEO from './components/SEO';
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 // Eagerly loaded components for initial render (above-the-fold)
 import Hero from './components/Hero';
@@ -118,6 +118,7 @@ function App() {
                     <BurgerMenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
                     <AnimatedRoutes preloaderDone={preloaderDone} />
+                    <Analytics />
                 </BrowserRouter>
             </DarkModeProvider>
         </HelmetProvider>

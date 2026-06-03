@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
 
 const ChatSidebar = ({ isOpen, onClose }) => {
@@ -11,6 +12,56 @@ const ChatSidebar = ({ isOpen, onClose }) => {
         const text = inputValue;
         setInputValue('');
         await sendMessage(text);
+    };
+
+    const renderMessageText = (text) => {
+        if (!text) return '';
+        const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        const parts = [];
+        let lastIndex = 0;
+        let match;
+
+        while ((match = regex.exec(text)) !== null) {
+            if (match.index > lastIndex) {
+                parts.push(text.substring(lastIndex, match.index));
+            }
+
+            const linkText = match[1];
+            const linkUrl = match[2];
+
+            if (linkUrl.startsWith('/') && !linkUrl.startsWith('//')) {
+                parts.push(
+                    <Link
+                        key={match.index}
+                        to={linkUrl}
+                        onClick={onClose}
+                        className="font-bold underline decoration-neutral-400 dark:decoration-neutral-600 hover:decoration-black dark:hover:decoration-white transition-all text-black dark:text-white"
+                    >
+                        {linkText}
+                    </Link>
+                );
+            } else {
+                parts.push(
+                    <a
+                        key={match.index}
+                        href={linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold underline decoration-neutral-400 dark:decoration-neutral-600 hover:decoration-black dark:hover:decoration-white transition-all text-black dark:text-white"
+                    >
+                        {linkText}
+                    </a>
+                );
+            }
+
+            lastIndex = regex.lastIndex;
+        }
+
+        if (lastIndex < text.length) {
+            parts.push(text.substring(lastIndex));
+        }
+
+        return parts.length > 0 ? parts : text;
     };
 
     return (
@@ -77,7 +128,7 @@ const ChatSidebar = ({ isOpen, onClose }) => {
                                                 : 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white rounded-2xl rounded-tr-sm'
                                             }`}
                                         >
-                                            {msg.text}
+                                            {renderMessageText(msg.text)}
                                         </div>
                                         <span className={`text-[10px] text-neutral-400 mt-1 uppercase tracking-widest ${isBot ? 'text-left ml-1' : 'text-right mr-1'}`}>
                                             {isBot ? 'Lloyd AI' : 'You'}

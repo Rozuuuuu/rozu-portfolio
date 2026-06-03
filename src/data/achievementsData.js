@@ -1,5 +1,20 @@
 export const featured = [
     {
+        id: 3,
+        place: '2nd Runner-Up',
+        placeColor: 'text-black dark:text-white',
+        icon: 'workspace_premium',
+        iconColor: 'text-black dark:text-white',
+        title: 'Philtech Innovathon 2026',
+        subtitle: 'PhilTech Innovathon Competition',
+        desc: 'Secured the prestigious 2nd Runner-Up position overall and honored with the Best in Collaborative Catalysts special award at the PhilTech Innovathon 2026, a premiere National Level Competition held in Bonifacio Global City (BGC), Taguig City, Metro Manila. Leading the team as the AI Engineer, I designed and integrated the core machine learning services, showcasing advanced system design and rapid innovation under the PhilTech framework. Our project stood out among top-tier engineering teams nationwide by delivering a highly scalable architecture, intuitive interface, and high-impact solution solving real-world challenges.',
+        tags: ['Philtech', 'Innovathon 2026', 'Collaborative Catalysts'],
+        tagColor: 'bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white border-neutral-300 dark:border-neutral-700',
+        img: '/Philtech.jpg',
+        imgAlt: 'Philtech Innovathon 2026',
+        layout: 'left',
+    },
+    {
         id: 1,
         place: '3rd Place',
         placeColor: 'text-neutral-600 dark:text-neutral-400',
@@ -28,21 +43,6 @@ export const featured = [
         img: '/CCS hackathon.jfif',
         imgAlt: 'CCS Days Hackathon USPF 2023',
         layout: 'right',
-    },
-    {
-        id: 3,
-        place: '2nd Runner-Up',
-        placeColor: 'text-black dark:text-white',
-        icon: 'workspace_premium',
-        iconColor: 'text-black dark:text-white',
-        title: 'Philtech Innovathon 2026',
-        subtitle: 'PhilTech Innovathon Competition',
-        desc: 'Achieved 2nd Runner-Up overall and took the Best in Collaborative Catalysts special award in National Level Competition — recognizing outstanding teamwork, cross-disciplinary synergy, and innovation under the Philtech framework. Held in Bonifacio Global City (BGC) Taguig City, Metro Manila',
-        tags: ['Philtech', 'Innovathon 2026', 'Collaborative Catalysts'],
-        tagColor: 'bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white border-neutral-300 dark:border-neutral-700',
-        img: '/Philtech.jpg',
-        imgAlt: 'Philtech Innovathon 2026',
-        layout: 'left',
     },
     {
         id: 8,
@@ -124,6 +124,15 @@ export const spotlight = [
 ];
 
 export const milestones = [
+    {
+        id: 13,
+        icon: 'flight_takeoff',
+        title: 'CEB-i Hacks 2025',
+        subtitle: 'Top 25 Finalist – Hanzilla and Friends',
+        desc: 'Led as the AI Engineer for team "Hanzilla and Friends" (representing USPF), securing a spot in the Top 25 Finalists out of dozens of entries across Cebu. The challenge, organized by Sandbox, Mactan-Cebu International Airport (MCIA), and Aboitiz InfraCapital, in partnership with Google Cloud and Globe Business, focuses on shaping the future of travel and tourism in Cebu.',
+        img: '/cebihacks_uspf.png',
+        imgAlt: 'CEB-i Hacks 2025 Finalists Hanzilla and Friends USPF',
+    },
     {
         id: 6,
         icon: 'military_tech',

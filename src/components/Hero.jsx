@@ -178,6 +178,16 @@ const itemVariants = {
     }
 };
 
+/**
+ * Hero section — lloydrosales.com
+ *
+ * Value proposition: replaces generic bio with a quantified
+ * impact statement drawn from the STARR performance doc.
+ *
+ * Metric cards: replaces tech-stack list with 4 outcome metrics
+ * (payload, TTI, Lighthouse, test coverage). Numbers come from
+ * documented STARR results — update them if new benchmarks are run.
+ */
 const Hero = ({ revealed }) => {
     const navigate = useNavigate();
 
@@ -195,6 +205,29 @@ const Hero = ({ revealed }) => {
     const highlightedText = displayText.substring(highlightIndex);
 
     const isTypingHighlight = displayText.length >= highlightIndex && highlightIndex !== fullText.length;
+
+    const metrics = [
+        {
+            label: "JS payload reduction",
+            value: "40%",
+            context: "via React.lazy + WebP conversion"
+        },
+        {
+            label: "TTI improvement",
+            value: "−1.2s",
+            context: "mobile Time to Interactive"
+        },
+        {
+            label: "Lighthouse score",
+            value: "98/100",
+            context: "sustained in prod via CI/CD"
+        },
+        {
+            label: "Test coverage",
+            value: "E2E + unit",
+            context: "Vitest + Playwright on every PR"
+        }
+    ];
 
     return (
         <PageTransition>
@@ -260,8 +293,53 @@ const Hero = ({ revealed }) => {
                             Cebu City, Philippines &nbsp;·&nbsp; Open to Work
                         </p>
 
+                        {/* Value Proposition */}
+                        <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 max-w-xl leading-relaxed font-body">
+                            I build performant cross-platform apps — cutting initial JS payload by 40% and shaving 1.2s off TTI through route-based code splitting and WebP asset optimization. Currently focused on AI-integrated mobile experiences.
+                        </p>
+
+                        {/* Metric Cards Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-xl">
+                            {metrics.map((metric, idx) => (
+                                <div 
+                                    key={idx} 
+                                    className="bg-neutral-100 dark:bg-neutral-800 rounded-xl p-4 text-left flex flex-col justify-between transition-colors duration-300"
+                                >
+                                    <span className="text-[13px] text-neutral-500 dark:text-neutral-400 font-medium">
+                                        {metric.label}
+                                    </span>
+                                    <span className="text-[24px] font-semibold text-black dark:text-white my-1">
+                                        {metric.value}
+                                    </span>
+                                    <span className="text-[12px] text-neutral-500 dark:text-neutral-400">
+                                        {metric.context}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Strategic Focus Tags */}
+                        <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                            {['React', 'AI', 'Cross-platform'].map((tag) => (
+                                <span 
+                                    key={tag} 
+                                    className="px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-xs font-medium rounded-full tracking-wide transition-colors duration-300"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+
                         {/* CTA Buttons */}
                         <div className="flex flex-col gap-4 justify-center lg:justify-start pt-4 items-center lg:items-start">
+                            <button
+                                className="about-btn"
+                                data-text="See my work"
+                                onClick={() => navigate('/projects')}
+                            >
+                                <span className="actual-text">&nbsp;See my work&nbsp;</span>
+                                <span aria-hidden="true" className="hover-text">&nbsp;See my work&nbsp;</span>
+                            </button>
                             <button
                                 className="dl-btn"
                                 onClick={() => {
@@ -273,16 +351,8 @@ const Hero = ({ revealed }) => {
                             >
                                 <span className="dl-btn_lg">
                                     <span className="dl-btn_sl" />
-                                    <span className="dl-btn_text">Download Resume</span>
+                                    <span className="dl-btn_text">Download CV</span>
                                 </span>
-                            </button>
-                            <button
-                                className="about-btn"
-                                data-text="About Me"
-                                onClick={() => navigate('/about')}
-                            >
-                                <span className="actual-text">&nbsp;About Me&nbsp;</span>
-                                <span aria-hidden="true" className="hover-text">&nbsp;About Me&nbsp;</span>
                             </button>
                         </div>
                     </motion.div>

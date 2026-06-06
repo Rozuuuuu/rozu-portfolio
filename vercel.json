@@ -1,5 +1,4 @@
 {
-  "//": "[PERF FIX 6] Vercel cache headers",
   "headers": [
     {
       "source": "/(.*\\.xml)",

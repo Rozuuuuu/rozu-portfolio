@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, useInView } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 
 const objectives = [
@@ -28,7 +29,7 @@ const ObjectiveCard = ({ objective, index }) => {
     const isInView = useInView(ref, { once: true, margin: '-60px' });
 
     return (
-        <motion.div
+        <m.div
             ref={ref}
             initial={{ opacity: 0, y: 32, scale: 0.95 }}
             animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
@@ -69,7 +70,7 @@ const ObjectiveCard = ({ objective, index }) => {
                 {/* Bottom accent line */}
                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent dark:via-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 

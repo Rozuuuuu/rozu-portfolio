@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m } from 'framer-motion';
 
 const ScrollReveal = ({ children, className = '', delay = 0 }) => {
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -14,7 +15,7 @@ const ScrollReveal = ({ children, className = '', delay = 0 }) => {
             className={className}
         >
             {children}
-        </motion.div>
+        </m.div>
     );
 };
 

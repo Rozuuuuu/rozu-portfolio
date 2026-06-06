@@ -60,10 +60,15 @@ const cloudSkills = [
 
 const SkillPill = ({ skill }) => (
     <div className="logo-pill">
+        {/* [PERF FIX 4] Image lazy loading and dimensions */}
         <img 
             src={skill.icon} 
             alt={skill.name} 
             className={skill.invertInDark ? "dark:invert" : ""}
+            width="48"
+            height="48"
+            decoding="async"
+            loading="lazy"
         />
         <span>{skill.name}</span>
     </div>

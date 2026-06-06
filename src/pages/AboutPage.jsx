@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m } from 'framer-motion';
 import SEO from '../components/SEO';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
@@ -70,41 +71,46 @@ const AboutPage = () => {
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
                 {/* ─── Page Hero ─── */}
                 <section className="pt-28 pb-20 px-6 md:px-8 max-w-4xl mx-auto">
-                    <motion.div
+                    <m.div
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
                         className="flex flex-col items-center text-center"
                     >
                         {/* Headshot */}
-                        <motion.div variants={itemVariants} className="mb-8">
+                        <m.div variants={itemVariants} className="mb-8">
                             <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50">
+                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
                                 <img
                                     src="/lloyd-pic.png"
                                     alt="Lloyd Rosales"
+                                    width="400"
+                                    height="400"
+                                    loading="lazy"
+                                    decoding="async"
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                        </motion.div>
+                        </m.div>
 
                         {/* Title */}
-                        <motion.div variants={itemVariants}>
+                        <m.div variants={itemVariants}>
                             <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs font-mono">
                                 The Person Behind the Code
                             </span>
                             <h1 className="text-5xl md:text-6xl font-black tracking-tighter mt-3 text-black dark:text-white font-headline">
                                 About Me
                             </h1>
-                        </motion.div>
+                        </m.div>
 
                         {/* Intro */}
-                        <motion.p 
+                        <m.p 
                             variants={itemVariants}
                             className="mt-6 text-neutral-500 dark:text-neutral-400 text-lg leading-relaxed max-w-2xl"
                         >
                             Not just a developer — an engineer who believes great software sits at the intersection of architectural rigor and human empathy.
-                        </motion.p>
-                    </motion.div>
+                        </m.p>
+                    </m.div>
                 </section>
 
                 {/* ─── Early Engineering ─── */}
@@ -178,7 +184,7 @@ const AboutPage = () => {
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {hobbies.map((hobby, index) => (
-                                    <motion.div
+                                    <m.div
                                         key={hobby.label}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
@@ -208,7 +214,7 @@ const AboutPage = () => {
                                                 {hobby.desc}
                                             </p>
                                         </div>
-                                    </motion.div>
+                                    </m.div>
                                 ))}
                             </div>
                         </div>

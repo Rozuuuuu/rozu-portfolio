@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 
 const menuLinks = [
     { to: '/projects', label: 'Projects', num: '01' },
@@ -61,7 +62,7 @@ const BurgerMenuOverlay = ({ isOpen, onClose }) => {
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
+                <m.div
                     key="burger-overlay"
                     variants={overlayVariants}
                     initial="hidden"
@@ -86,7 +87,7 @@ const BurgerMenuOverlay = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Navigation Links */}
-                    <motion.nav
+                    <m.nav
                         variants={navContainerVariants}
                         initial="hidden"
                         animate="visible"
@@ -94,7 +95,7 @@ const BurgerMenuOverlay = ({ isOpen, onClose }) => {
                         className="flex-1 flex flex-col justify-center px-10 md:px-20 lg:px-32"
                     >
                         {menuLinks.map(({ to, label, num }) => (
-                            <motion.div key={to} variants={navItemVariants}>
+                            <m.div key={to} variants={navItemVariants}>
                                 <Link
                                     to={to}
                                     onClick={onClose}
@@ -107,12 +108,12 @@ const BurgerMenuOverlay = ({ isOpen, onClose }) => {
                                         {label}
                                     </span>
                                 </Link>
-                            </motion.div>
+                            </m.div>
                         ))}
-                    </motion.nav>
+                    </m.nav>
 
                     {/* Footer info */}
-                    <motion.div
+                    <m.div
                         variants={footerVariants}
                         initial="hidden"
                         animate="visible"
@@ -125,8 +126,8 @@ const BurgerMenuOverlay = ({ isOpen, onClose }) => {
                         <span className="font-mono text-xs text-neutral-400 dark:text-neutral-600 tracking-widest uppercase">
                             Cebu City, Philippines
                         </span>
-                    </motion.div>
-                </motion.div>
+                    </m.div>
+                </m.div>
             )}
         </AnimatePresence>
     );

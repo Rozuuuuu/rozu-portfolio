@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import { useNavigate } from 'react-router-dom';
 import './SocialCards.css';
@@ -98,7 +99,7 @@ const KineticGrid = ({ revealed }) => {
     }, []);
 
     return (
-        <motion.canvas
+        <m.canvas
             ref={canvasRef}
             initial={{ opacity: 0 }}
             animate={revealed ? { opacity: 0.6 } : { opacity: 0 }}
@@ -200,20 +201,19 @@ const Hero = ({ revealed }) => {
         <PageTransition>
             <header
                 className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto pt-32 pb-16 lg:pt-0 lg:pb-0 relative"
-                id="home"
-            >
+                id="home">
                 {/* Kinetic Grid Background */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <KineticGrid revealed={revealed} />
                 </div>
 
-                <motion.div 
+                <m.div 
                     variants={containerVariants}
                     initial="hidden"
                     animate={revealed ? "visible" : "hidden"}
                     className="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 relative z-10"
                 >
-                    <motion.div variants={itemVariants} className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+                    <m.div variants={itemVariants} className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
                         <div className="flex flex-col items-center lg:items-start">
                             {/* Static Greeting */}
                             <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl italic font-semibold text-black dark:text-white mb-2 tracking-wide">
@@ -241,10 +241,15 @@ const Hero = ({ revealed }) => {
                         {/* Mobile Photo Image (Visible only on mobile/tablet) */}
                         <div className="lg:hidden w-full flex justify-center py-4 relative group">
                             <div className="aspect-square w-64 md:w-80 rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50 transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:group-hover:shadow-[0_20px_60px_rgba(255,255,255,0.05)]">
+                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
                                 <img
                                     className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700"
                                     src="/lloyd-pic.png"
                                     alt="Lloyd Rosales"
+                                    width="400"
+                                    height="400"
+                                    fetchpriority="high"
+                                    decoding="async"
                                 />
                             </div>
                             <div className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:left-4 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6 rounded-xl shadow-xl max-w-[200px] sm:max-w-[240px] z-10 text-left">
@@ -285,16 +290,21 @@ const Hero = ({ revealed }) => {
                                 <span aria-hidden="true" className="hover-text">&nbsp;About Me&nbsp;</span>
                             </button>
                         </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Desktop Profile Photo (Hidden on mobile) */}
-                    <motion.div variants={itemVariants} className="hidden lg:flex justify-center flex-shrink-0 relative mr-8 xl:mr-16 z-10">
+                    <m.div variants={itemVariants} className="hidden lg:flex justify-center flex-shrink-0 relative mr-8 xl:mr-16 z-10">
                         <div className="relative group">
                             <div className="aspect-square w-80 rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50 transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:group-hover:shadow-[0_20px_60px_rgba(255,255,255,0.05)]">
+                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
                                 <img
                                     className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700"
                                     src="/lloyd-pic.png"
                                     alt="Lloyd Rosales"
+                                    width="400"
+                                    height="400"
+                                    fetchpriority="high"
+                                    decoding="async"
                                 />
                             </div>
                             {/* Philosophical Quote */}
@@ -305,8 +315,8 @@ const Hero = ({ revealed }) => {
                                 </p>
                             </div>
                         </div>
-                    </motion.div>
-                </motion.div>
+                    </m.div>
+                </m.div>
             </header>
         </PageTransition>
     );

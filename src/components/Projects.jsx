@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import HoverScrollImage from './HoverScrollImage';
 import projects from '../data/projectsData';
@@ -39,7 +40,7 @@ const Projects = () => {
                                 }`}
                             >
                                 {activeFilter === filter && (
-                                    <motion.span
+                                    <m.span
                                         layoutId="filter-pill"
                                         className="absolute inset-0 bg-black dark:bg-white rounded-lg -z-10"
                                         initial={false}
@@ -52,10 +53,10 @@ const Projects = () => {
                     </div>
                 </div>
 
-                <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <m.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <AnimatePresence mode="popLayout">
                         {displayProjects.map(({ slug, tag, img, media, title, desc }) => (
-                            <motion.div 
+                            <m.div 
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -99,10 +100,10 @@ const Projects = () => {
                                     <h3 className="text-xl font-black mb-3 text-black dark:text-white">{title}</h3>
                                     <p className="text-neutral-500 dark:text-neutral-400 text-sm mb-6 flex-grow leading-relaxed">{desc}</p>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         ))}
                     </AnimatePresence>
-                </motion.div>
+                </m.div>
                 
                 <div className="flex justify-center">
                     <Link to="/projects" className="px-8 py-4 min-h-[44px] border-2 border-black dark:border-white text-black dark:text-white font-bold rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all flex items-center gap-3">

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDarkMode } from '../context/DarkModeContext';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const Navbar = ({ revealed }) => {
@@ -18,7 +19,7 @@ const Navbar = ({ revealed }) => {
     return (
         <AnimatePresence>
             {revealed && (
-                <motion.header
+                <m.header
                     initial={{ y: -60, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -60, opacity: 0 }}
@@ -36,10 +37,15 @@ const Navbar = ({ revealed }) => {
                             className="flex items-center gap-2 group"
                             aria-label="Go to homepage"
                         >
+                            {/* [PERF FIX 4] Image lazy loading and dimensions */}
                             <img
                                 src="/logo.png"
                                 alt="Lloyd Rosales"
                                 className="h-7 w-auto dark:invert transition-all duration-300 group-hover:scale-105"
+                                width="48"
+                                height="48"
+                                decoding="async"
+                                loading="lazy"
                             />
                         </Link>
 
@@ -49,7 +55,7 @@ const Navbar = ({ revealed }) => {
                             aria-label="Toggle dark mode"
                             className="relative w-10 h-10 flex items-center justify-center rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-200"
                         >
-                            <motion.span
+                            <m.span
                                 key={dark ? 'sun' : 'moon'}
                                 initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
                                 animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -76,10 +82,10 @@ const Navbar = ({ revealed }) => {
                                         <path d="M216.71186,152.60741A92.01633,92.01633,0,1,1,103.39257,39.28812,92.00762,92.00762,0,0,0,216.71186,152.60741Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"></path>
                                     </svg>
                                 )}
-                            </motion.span>
+                            </m.span>
                         </button>
                     </div>
-                </motion.header>
+                </m.header>
             )}
         </AnimatePresence>
     );

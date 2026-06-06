@@ -1,6 +1,6 @@
 import { Suspense, lazy, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import { DarkModeProvider } from './context/DarkModeContext';
 import Navbar from './components/Navbar';
@@ -81,7 +81,17 @@ function AnimatedRoutes({ preloaderDone }) {
     const location = useLocation();
     return (
         <AnimatePresence mode="wait">
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white dark:bg-black"><PageLoader /></div>}>
+            {/* [PERF FIX 1] Route-based code splitting */}
+            <Suspense fallback={
+              <div style={{
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                Loading...
+              </div>
+            }>
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<HomePage revealed={preloaderDone} />} />
                     <Route path="/about" element={<AboutPage />} />
@@ -102,28 +112,31 @@ function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     const handlePreloaderComplete = useCallback(() => setPreloaderDone(true), []);
 
+    // [PERF FIX 5] Framer Motion LazyMotion optimization
     return (
-        <HelmetProvider>
-            <DarkModeProvider>
-                <BrowserRouter>
-                    <ScrollToTop />
-                    {/* Logo Preloader — only on initial mount */}
-                    {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
-                    
-                    <Navbar revealed={preloaderDone} />
-                    <BottomNav 
-                        revealed={preloaderDone} 
-                        onOpenMenu={() => setMenuOpen(true)}
-                        onOpenChat={() => setChatOpen(true)}
-                    />
-                    <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
-                    <BurgerMenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+        <LazyMotion features={domAnimation} strict>
+            <HelmetProvider>
+                <DarkModeProvider>
+                    <BrowserRouter>
+                        <ScrollToTop />
+                        {/* Logo Preloader — only on initial mount */}
+                        {!preloaderDone && <LogoPreloader onComplete={handlePreloaderComplete} />}
+                        
+                        <Navbar revealed={preloaderDone} />
+                        <BottomNav 
+                            revealed={preloaderDone} 
+                            onOpenMenu={() => setMenuOpen(true)}
+                            onOpenChat={() => setChatOpen(true)}
+                        />
+                        <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
+                        <BurgerMenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
-                    <AnimatedRoutes preloaderDone={preloaderDone} />
-                    <Analytics />
-                </BrowserRouter>
-            </DarkModeProvider>
-        </HelmetProvider>
+                        <AnimatedRoutes preloaderDone={preloaderDone} />
+                        <Analytics />
+                    </BrowserRouter>
+                </DarkModeProvider>
+            </HelmetProvider>
+        </LazyMotion>
     );
 }
 

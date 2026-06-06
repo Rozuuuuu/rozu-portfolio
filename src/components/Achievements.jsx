@@ -24,10 +24,15 @@ const Achievements = () => {
                         <div key={id} className="bg-white dark:bg-neutral-900 rounded-xl overflow-hidden group border border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white transition-colors duration-300 shadow-md dark:shadow-black/20">
                             {/* Image */}
                             <div className="h-48 bg-neutral-200 dark:bg-neutral-800 relative overflow-hidden">
+                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
                                 <img
                                     className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
                                     src={img}
                                     alt={title}
+                                    width="800"
+                                    height="450"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <div className="absolute inset-0 bg-black/5 dark:bg-white/5 mix-blend-overlay"></div>
                             </div>

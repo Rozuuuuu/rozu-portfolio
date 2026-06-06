@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
 
@@ -69,7 +70,7 @@ const ChatSidebar = ({ isOpen, onClose }) => {
             {isOpen && (
                 <>
                     {/* Backdrop */}
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -80,7 +81,7 @@ const ChatSidebar = ({ isOpen, onClose }) => {
                     />
 
                     {/* Sidebar */}
-                    <motion.div
+                    <m.div
                         initial={{ x: "100%" }}
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
@@ -90,10 +91,15 @@ const ChatSidebar = ({ isOpen, onClose }) => {
                         {/* Header */}
                         <div className="flex items-center justify-between p-4 md:p-6 border-b border-neutral-200 dark:border-neutral-800">
                             <div className="flex items-center gap-3">
+                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
                                 <img
                                     src="/lloyd-pic.png"
                                     alt="Lloyd"
                                     className="w-8 h-8 rounded-full object-cover"
+                                    width="48"
+                                    height="48"
+                                    decoding="async"
+                                    loading="lazy"
                                 />
                                 <div>
                                     <h2 className="font-headline text-lg font-black text-black dark:text-white tracking-tighter leading-none mb-1">ChatWithLloyd</h2>
@@ -176,7 +182,7 @@ const ChatSidebar = ({ isOpen, onClose }) => {
                                 <span className="text-[9px] font-mono text-neutral-400 uppercase tracking-widest">Powered by Lloyd AI</span>
                             </div>
                         </div>
-                    </motion.div>
+                    </m.div>
                 </>
             )}
         </AnimatePresence>

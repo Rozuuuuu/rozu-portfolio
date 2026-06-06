@@ -75,7 +75,8 @@ const ProjectDetail = () => {
                                 {hasVideo ? (
                                     <video className="w-full h-full object-cover" src={project.media.src} controls playsInline poster={project.img || undefined} />
                                 ) : hasImage ? (
-                                    <img className="w-full h-full object-cover" src={project.img} alt={project.title} />
+                                    /* [PERF FIX 4] Image lazy loading and dimensions */
+                                    <img className="w-full h-full object-cover" src={project.img} alt={project.title} width="800" height="450" loading="lazy" decoding="async" />
                                 ) : (
                                     <div className="w-full h-full flex flex-col items-center justify-center bg-neutral-200 dark:bg-neutral-800">
                                         <span className="material-symbols-outlined text-7xl text-neutral-400 mb-4">code</span>
@@ -111,7 +112,7 @@ const ProjectDetail = () => {
                                 </aside>
                                 <div className="flex-1 space-y-16">
                                     <StarrSection icon="explore" label="Situation" title="Context & Problem" index={0}>{project.situation}</StarrSection>
-                                    <StarrSection icon="assignment" label="Task" title="Engineering Objectives" index={1}>{project.task}</StarrSection>
+                                    <StarrSection icon="assignment" label="Task" title="Engineering Objectives" index={1}>{project.situation}</StarrSection>
                                     <StarrSection icon="build" label="Action" title="Technical Approach" index={2}>{project.action}</StarrSection>
                                     <StarrSection icon="insights" label="Result" title="Quantified Outcomes" index={3}>{project.result}</StarrSection>
                                     <StarrSection icon="psychology" label="Reflection" title="Lessons & Growth" index={4}>{project.reflection}</StarrSection>

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 
 const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
     const location = useLocation();
@@ -35,10 +36,15 @@ const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
             to: '/about',
             label: 'About',
             icon: (
+                /* [PERF FIX 4] Image lazy loading and dimensions */
                 <img
                     src="/lloyd-pic.png"
                     alt="About Me"
                     className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover"
+                    width="48"
+                    height="48"
+                    decoding="async"
+                    loading="lazy"
                 />
             ),
             isImageIcon: true
@@ -61,7 +67,7 @@ const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
     return (
         <AnimatePresence>
             {revealed && (
-                <motion.nav
+                <m.nav
                     initial={{ y: 100, opacity: 0, x: "-50%" }}
                     animate={{ y: 0, opacity: 1, x: "-50%" }}
                     exit={{ y: 100, opacity: 0, x: "-50%" }}
@@ -75,16 +81,16 @@ const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
                             
                             const className = `group inline-flex justify-center items-center h-[45px] sm:h-[50px] rounded-lg relative z-10 overflow-hidden origin-left transition-all duration-200 ease-in
                             ${isActive
-                                    ? 'w-[90px] min-[400px]:w-[110px] sm:w-[130px] text-black dark:text-white'
-                                    : 'w-[45px] min-[400px]:w-[55px] sm:w-[70px] text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:w-[90px] min-[400px]:hover:w-[110px] sm:hover:w-[130px] focus:outline-none'
-                                }
+                                     ? 'w-[90px] min-[400px]:w-[110px] sm:w-[130px] text-black dark:text-white'
+                                     : 'w-[45px] min-[400px]:w-[55px] sm:w-[70px] text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:w-[90px] min-[400px]:hover:w-[110px] sm:hover:w-[130px] focus:outline-none'
+                                 }
                             `;
 
                             const content = (
                                 <>
                                     {/* Slide Background using Framer Motion LayoutId for active link */}
                                     {isActive && (
-                                        <motion.span 
+                                        <m.span 
                                             layoutId="nav-pill"
                                             className="absolute -z-10 rounded-lg w-full h-full top-0 bg-black/10 dark:bg-white/10"
                                             initial={false}
@@ -110,10 +116,10 @@ const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
                                     {/* Text */}
                                     <span className={`block text-center w-full pl-6 sm:pl-7 origin-right font-['Public_Sans'] font-bold text-[11px] sm:text-sm tracking-wide transition-all duration-200 ease-in
                                         ${isActive
-                                            ? 'translate-x-0 opacity-100'
-                                            : 'translate-x-[100%] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100'
-                                        }
-                                    `}>
+                                             ? 'translate-x-0 opacity-100'
+                                             : 'translate-x-[100%] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100'
+                                         }
+                                     `}>
                                         {item.label}
                                     </span>
                                 </>
@@ -130,7 +136,7 @@ const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
                             );
                         })}
                     </div>
-                </motion.nav>
+                </m.nav>
             )}
         </AnimatePresence>
     );

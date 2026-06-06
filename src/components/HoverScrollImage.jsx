@@ -70,12 +70,16 @@ const HoverScrollImage = ({ src, alt, className = '' }) => {
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
         >
+            {/* [PERF FIX 4] Image lazy loading and dimensions */}
             <img
                 ref={imgRef}
                 className="w-full h-auto object-cover object-top"
                 src={src}
                 alt={alt}
+                width="800"
+                height="450"
                 loading="lazy"
+                decoding="async"
                 style={{
                     transform: `translateY(-${scrollY}px)`,
                     transition: isHovering ? 'none' : 'transform 0.3s ease-out',

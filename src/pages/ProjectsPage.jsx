@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ConnectWithMe from '../components/ConnectWithMe';
@@ -32,7 +33,7 @@ const ProjectCard = ({ project, index }) => {
     const hasImage = !!project.img;
 
     return (
-        <motion.div
+        <m.div
             layout
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -93,7 +94,7 @@ const ProjectCard = ({ project, index }) => {
                     {project.desc}
                 </p>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 
@@ -228,7 +229,7 @@ const ProjectsPage = () => {
                                     }`}
                                 >
                                     {activeFilter === filter && (
-                                        <motion.span
+                                        <m.span
                                             layoutId="projects-filter-pill"
                                             className="absolute inset-0 bg-black dark:bg-white rounded-lg -z-10"
                                             initial={false}
@@ -243,13 +244,13 @@ const ProjectsPage = () => {
 
                     {/* Grid */}
                     <section className="max-w-7xl mx-auto px-6 md:px-8">
-                        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <m.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                             <AnimatePresence mode="popLayout">
                                 {filtered.map((project, i) => (
                                     <ProjectCard key={project.slug} project={project} index={i} />
                                 ))}
                             </AnimatePresence>
-                        </motion.div>
+                        </m.div>
 
                         {filtered.length === 0 && (
                             <div className="text-center py-20">

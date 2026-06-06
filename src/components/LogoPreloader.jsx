@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 import { useDarkMode } from '../context/DarkModeContext';
 
 /**
@@ -36,7 +37,7 @@ const LogoPreloader = ({ onComplete }) => {
     return (
         <AnimatePresence>
             {phase !== 'done' && (
-                <motion.div
+                <m.div
                     key="preloader"
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -67,7 +68,8 @@ const LogoPreloader = ({ onComplete }) => {
                     />
 
                     {/* Logo */}
-                    <motion.img
+                    {/* [PERF FIX 4] Image lazy loading and dimensions */}
+                    <m.img
                         src="/logo.png"
                         alt="Rozu Logo"
                         draggable={false}
@@ -83,6 +85,9 @@ const LogoPreloader = ({ onComplete }) => {
                             duration: 0.7,
                             ease: [0.7, 0.2, 0.2, 1],
                         }}
+                        width="80"
+                        height="80"
+                        decoding="async"
                         style={{
                             width: 80,
                             height: 80,
@@ -99,19 +104,24 @@ const LogoPreloader = ({ onComplete }) => {
                         className="absolute bottom-16 left-1/2 -translate-x-1/2 w-24 h-[2px] overflow-hidden rounded-full"
                         style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
                     >
-                        <motion.div
+                        {/* [PERF FIX 5] Non-composited animation fix (width -> scaleX) */}
+                        <m.div
                             className="h-full"
-                            style={{ backgroundColor: isDark ? '#FFFFFF' : '#000000' }}
-                            initial={{ width: '0%' }}
+                            style={{ 
+                                backgroundColor: isDark ? '#FFFFFF' : '#000000',
+                                width: '100%',
+                                transformOrigin: 'left'
+                            }}
+                            initial={{ scaleX: 0 }}
                             animate={
                                 phase === 'loading' || phase === 'logoOut'
-                                    ? { width: '100%' }
-                                    : { width: '0%' }
+                                    ? { scaleX: 1 }
+                                    : { scaleX: 0 }
                             }
                             transition={{ duration: 1.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                         />
                     </div>
-                </motion.div>
+                </m.div>
             )}
         </AnimatePresence>
     );

@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m } from 'framer-motion';
 
 const pageVariants = {
     initial: { opacity: 0, y: 16 },
@@ -7,7 +8,7 @@ const pageVariants = {
 };
 
 const PageTransition = ({ children }) => (
-    <motion.div
+    <m.div
         variants={pageVariants}
         initial="initial"
         animate="animate"
@@ -15,7 +16,7 @@ const PageTransition = ({ children }) => (
         style={{ overflow: 'clip' }}
     >
         {children}
-    </motion.div>
+    </m.div>
 );
 
 export default PageTransition;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// [PERF FIX 5] Framer Motion LazyMotion optimization
+import { m, AnimatePresence } from 'framer-motion';
 import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
@@ -65,10 +66,15 @@ const AchievementsPage = () => {
                                     <div className="flex flex-col lg:flex-row gap-10 items-center relative z-10">
                                         {/* Image Section */}
                                         <div className="w-full lg:w-1/2 relative min-h-[300px] md:min-h-[380px] rounded-xl overflow-hidden shadow-lg border border-neutral-200 dark:border-neutral-800 flex-shrink-0">
+                                            {/* [PERF FIX 4] Image lazy loading and dimensions */}
                                             <img 
                                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" 
                                                 src={philtechAchievement.img} 
                                                 alt={philtechAchievement.imgAlt} 
+                                                width="800"
+                                                height="450"
+                                                loading="lazy"
+                                                decoding="async"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
                                             {/* Floating Double-Award Badge */}
@@ -149,7 +155,7 @@ const AchievementsPage = () => {
                                                 <span className="material-symbols-outlined text-base">{tab.icon}</span>
                                                 {tab.label}
                                                 {isActive && (
-                                                    <motion.div
+                                                    <m.div
                                                         layoutId="activeTabIndicator"
                                                         className="absolute inset-0 bg-black dark:bg-white rounded-full -z-10 shadow-md"
                                                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
@@ -167,7 +173,7 @@ const AchievementsPage = () => {
                     <section className="max-w-7xl mx-auto px-6 md:px-8 mb-24 min-h-[400px]">
                         <ErrorBoundary>
                             <AnimatePresence mode="wait">
-                                <motion.div
+                                <m.div
                                     key={activeTab}
                                     initial={{ opacity: 0, y: 15 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -181,7 +187,8 @@ const AchievementsPage = () => {
                                                     <ScrollReveal key={id}>
                                                         <div className={`bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden flex flex-col ${layout === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'} shadow-md dark:shadow-black/40 group`}>
                                                             <div className="md:w-2/5 relative min-h-[260px] overflow-hidden flex-shrink-0">
-                                                                {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} /> : <ImgPlaceholder alt={imgAlt} />}
+                                                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
+                                                                {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} width="800" height="450" loading="lazy" decoding="async" /> : <ImgPlaceholder alt={imgAlt} />}
                                                             </div>
                                                             <div className="md:w-3/5 p-8 md:p-10 flex flex-col justify-center">
                                                                 <div className={`flex items-center gap-2 mb-4 ${placeColor}`}>
@@ -211,7 +218,8 @@ const AchievementsPage = () => {
                                                     <ScrollReveal key={id}>
                                                         <div className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-md dark:shadow-black/40 group h-full flex flex-col hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors">
                                                             <div className="relative h-52 overflow-hidden flex-shrink-0">
-                                                                {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} /> : <ImgPlaceholder alt={imgAlt} />}
+                                                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
+                                                                {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} width="800" height="450" loading="lazy" decoding="async" /> : <ImgPlaceholder alt={imgAlt} />}
                                                             </div>
                                                             <div className="p-8 flex flex-col flex-grow">
                                                                 <div className={`flex items-center gap-2 mb-3 ${iconColor}`}>
@@ -237,7 +245,8 @@ const AchievementsPage = () => {
                                                     <ScrollReveal key={id}>
                                                         <div className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-md dark:shadow-black/40 group flex flex-col h-full hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors">
                                                             <div className="relative h-52 overflow-hidden flex-shrink-0">
-                                                                {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} /> : <ImgPlaceholder alt={imgAlt} />}
+                                                                {/* [PERF FIX 4] Image lazy loading and dimensions */}
+                                                                {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} width="800" height="450" loading="lazy" decoding="async" /> : <ImgPlaceholder alt={imgAlt} />}
                                                             </div>
                                                             <div className="p-6 flex flex-col justify-center flex-grow">
                                                                 <span className="material-symbols-outlined text-black dark:text-white text-3xl mb-3 block">{icon}</span>
@@ -253,7 +262,7 @@ const AchievementsPage = () => {
                                             <p className="text-sm text-neutral-500 italic font-mono">No representations or certifications found.</p>
                                         )
                                     )}
-                                </motion.div>
+                                </m.div>
                             </AnimatePresence>
                         </ErrorBoundary>
                     </section>

@@ -1,96 +1,50 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
 import ScrollReveal from './ScrollReveal';
 
-const metrics = [
-    {
-        id: 'projects',
-        value: '5+',
-        label: 'Star Projects',
-        detail: 'Tier 3 advanced full-stack applications',
-        icon: 'rocket_launch',
-    },
-    {
-        id: 'lighthouse',
-        value: '98',
-        suffix: '/100',
-        label: 'Avg. Lighthouse Score',
-        detail: 'Core Web Vitals & performance proficiency',
-        icon: 'speed',
-    },
-    {
-        id: 'coverage',
-        value: '90%+',
-        label: 'Test Coverage',
-        detail: 'Vitest & Playwright operational excellence',
-        icon: 'verified',
-    },
-    {
-        id: 'optimization',
-        value: '40%',
-        label: 'Bundle Size Reduction',
-        detail: 'Optimized for high-scale delivery',
-        icon: 'trending_down',
-    },
-];
-
-const MetricCard = ({ metric, index }) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '-60px' });
-
-    return (
-        <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 32, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{
-                duration: 0.5,
-                delay: index * 0.12,
-                ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            className="group relative"
-        >
-            {/* Card */}
-            <div className="relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-8 h-full backdrop-blur-sm transition-all duration-300 hover:border-black dark:hover:border-white hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5">
-
-                {/* Accent glow on hover */}
-                <div className="absolute -top-12 -right-12 w-32 h-32 bg-black/5 dark:bg-white/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                {/* Top row: icon + label */}
-                <div className="flex items-center gap-2 mb-6">
-                    <span className="material-symbols-outlined text-black dark:text-white text-lg">
-                        {metric.icon}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                        {metric.label}
-                    </span>
-                </div>
-
-                {/* Big metric value */}
-                <div className="mb-4">
-                    <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-black dark:text-white font-mono leading-none">
-                        {metric.value}
-                    </span>
-                    {metric.suffix && (
-                        <span className="text-2xl font-bold text-neutral-400 dark:text-neutral-500 font-mono ml-0.5">
-                            {metric.suffix}
-                        </span>
-                    )}
-                </div>
-
-                {/* Supporting detail */}
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                    {metric.detail}
-                </p>
-
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent dark:via-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-        </motion.div>
-    );
-};
+// [EDIT] Technical Impact — real metric cards + count-up
+function useCountUp(target, duration, shouldStart) {
+  const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+    if (!shouldStart) return;
+    let raf;
+    const startTime = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setCount(eased * target);
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [shouldStart, target, duration]);
+  return count;
+}
 
 const TechnicalImpact = () => {
+    const gridRef = React.useRef(null);
+    const [started, setStarted] = React.useState(false);
+
+    React.useEffect(() => {
+        const reduced =
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) { setStarted(true); return; }
+        const obs = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setStarted(true);
+                    obs.disconnect();
+                }
+            },
+            { threshold: 0.3 }
+        );
+        if (gridRef.current) obs.observe(gridRef.current);
+        return () => obs.disconnect();
+    }, []);
+
+    const projectsVal    = useCountUp(15, 1800, started);
+    const aiVal          = useCountUp(8,  1600, started);
+    const deploymentsVal = useCountUp(4,  1400, started);
+
     return (
         <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="impact">
             <ScrollReveal>
@@ -107,11 +61,59 @@ const TechnicalImpact = () => {
                     </p>
                 </div>
 
-                {/* Metrics grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {metrics.map((metric, index) => (
-                        <MetricCard key={metric.id} metric={metric} index={index} />
-                    ))}
+                {/* [EDIT] Technical Impact — real metric cards + count-up */}
+                <div ref={gridRef} className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    {/* Card 1 */}
+                    <div className="bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-5">
+                        <div className="text-xs uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400">
+                            Projects shipped
+                        </div>
+                        <div className="text-4xl font-semibold tabular-nums text-neutral-900 dark:text-white">
+                            {Math.round(projectsVal)}<span>+</span>
+                        </div>
+                        <div className="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
+                            web, mobile, .NET & automation
+                        </div>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div className="bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-5">
+                        <div className="text-xs uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400">
+                            AI / ML integrations
+                        </div>
+                        <div className="text-4xl font-semibold tabular-nums text-neutral-900 dark:text-white">
+                            {Math.round(aiVal)}<span>+</span>
+                        </div>
+                        <div className="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
+                            OpenAI, Gemini, LangChain, Ollama & more
+                        </div>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div className="bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-5">
+                        <div className="text-xs uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400">
+                            Live deployments
+                        </div>
+                        <div className="text-4xl font-semibold tabular-nums text-neutral-900 dark:text-white">
+                            {Math.round(deploymentsVal)}<span> platforms</span>
+                        </div>
+                        <div className="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
+                            Vercel, OnRender, GoDaddy, Hostinger
+                        </div>
+                    </div>
+
+                    {/* Card 4 */}
+                    <div className="bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-5">
+                        <div className="text-xs uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400">
+                            Responsive builds
+                        </div>
+                        <div className="text-4xl font-semibold tabular-nums text-neutral-900 dark:text-white">
+                            Mobile + tablet
+                        </div>
+                        <div className="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
+                            tested across all screen sizes
+                        </div>
+                    </div>
                 </div>
             </ScrollReveal>
         </section>

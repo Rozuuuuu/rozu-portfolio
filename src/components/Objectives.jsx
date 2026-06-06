@@ -85,8 +85,9 @@ const Objectives = () => {
                     <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">
                         Engineering Objectives
                     </h2>
+                    {/* [EDIT] Objective — real value proposition copy */}
                     <p className="text-neutral-500 dark:text-neutral-400 mt-4 max-w-xl text-sm leading-relaxed">
-                        The north-star principles that drive every architectural decision and line of code I ship.
+                        I design and ship full-stack applications across web, mobile, and automation — integrating AI and ML features using OpenAI, Gemini, LangChain, Ollama, and n8n. 15+ projects live in production, ranging from intelligent chatbots to automated workflows, .NET systems, and mobile apps.
                     </p>
                 </div>
 

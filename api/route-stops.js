@@ -1,9 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import fs from 'fs'
-import path from 'path'
-
-const stopsMap = {
+/**
+ * Vercel Serverless Function: /api/route-stops
+ * Returns the ordered list of stops for a given route_id.
+ */
+const routeStopsData = {
   route_01b: [
     { stop_id: "01b_s1", stop_name: "Sambag 1", lat: 10.3065, lng: 123.8900, stop_sequence: 1 },
     { stop_id: "01b_s2", stop_name: "USC South Campus", lat: 10.3027, lng: 123.8906, stop_sequence: 2 },
@@ -66,93 +65,33 @@ const stopsMap = {
     { stop_id: "13c_s15", stop_name: "University of the Visayas", lat: 10.2965, lng: 123.9030, stop_sequence: 15 },
     { stop_id: "13c_s16", stop_name: "Colonnade Supermarket", lat: 10.2952, lng: 123.9022, stop_sequence: 16 }
   ]
-}
+};
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    react(),
-    {
-      name: 'api-mock-plugin',
-      configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          const url = new URL(req.url, 'http://localhost');
-          
-          if (url.pathname === '/api/route-shape') {
-            const route_id = url.searchParams.get('route_id');
-            if (!route_id) {
-              res.statusCode = 400;
-              res.setHeader('Content-Type', 'application/json');
-              return res.end(JSON.stringify({ error: "Missing route_id parameter" }));
-            }
-            const sanitizedRouteId = route_id.replace(/[^a-zA-Z0-9_]/g, "");
-            const filePath = path.join(process.cwd(), 'public', 'sugboway', 'shapes', `${sanitizedRouteId}.geojson`);
-            if (!fs.existsSync(filePath)) {
-              res.statusCode = 404;
-              res.setHeader('Content-Type', 'application/json');
-              return res.end(JSON.stringify({ error: "Shape not found" }));
-            }
-            const data = fs.readFileSync(filePath, 'utf8');
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            return res.end(data);
-          }
+export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-          if (url.pathname === '/api/route-stops') {
-            const route_id = url.searchParams.get('route_id');
-            if (!route_id) {
-              res.statusCode = 400;
-              res.setHeader('Content-Type', 'application/json');
-              return res.end(JSON.stringify({ error: "Missing route_id parameter" }));
-            }
-            const stops = stopsMap[route_id];
-            if (!stops) {
-              res.statusCode = 404;
-              res.setHeader('Content-Type', 'application/json');
-              return res.end(JSON.stringify({ error: "Stops not found" }));
-            }
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            return res.end(JSON.stringify(stops));
-          }
-
-          next();
-        });
-      }
-    }
-  ],
-  server: {
-    // Force filesystem polling instead of native watchers.
-    // Necessary on OneDrive / cloud-synced directories where
-    // native fs events are unreliable on Windows.
-    watch: {
-      usePolling: true,
-      interval: 500,
-    },
-    // Ensure HMR WebSocket stays connected
-    hmr: {
-      overlay: true,
-    },
-  },
-  // [PERF FIX 2] Vite build improvements
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            if (id.includes('react-router-dom')) {
-              return 'router-vendor';
-            }
-            if (id.includes('react-dom') || id.includes('react/')) {
-              return 'react-vendor';
-            }
-            if (id.includes('framer-motion')) {
-              return 'motion-vendor';
-            }
-          }
-        }
-      }
-    },
-    chunkSizeWarningLimit: 600,
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
   }
-})
+
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Method not allowed. Use GET." });
+  }
+
+  const { route_id } = req.query;
+  if (!route_id) {
+    return res.status(400).json({ error: "Missing route_id parameter" });
+  }
+
+  const stops = routeStopsData[route_id];
+  if (!stops) {
+    return res.status(404).json({ error: "Stops not found for this route" });
+  }
+
+  // Sort by stop_sequence ascending to prevent spiderweb rendering
+  const sortedStops = [...stops].sort((a, b) => a.stop_sequence - b.stop_sequence);
+
+  return res.status(200).json(sortedStops);
+}

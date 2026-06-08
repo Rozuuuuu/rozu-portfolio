@@ -32,6 +32,7 @@ const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 const SkillsPage = lazy(() => import('./pages/SkillsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const SugboWayPage = lazy(() => import('./pages/SugboWayPage'));
 
 // Content-aware fallback for below-the-fold sections
 const BelowFoldSkeleton = () => (
@@ -100,6 +101,7 @@ function AnimatedRoutes({ preloaderDone }) {
                     <Route path="/achievements" element={<AchievementsPage />} />
                     <Route path="/skills" element={<SkillsPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/sugboway" element={<SugboWayPage />} />
                 </Routes>
             </Suspense>
         </AnimatePresence>

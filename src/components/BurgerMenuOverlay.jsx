@@ -6,8 +6,7 @@ const menuLinks = [
     { to: '/projects', label: 'Projects', num: '01' },
     { to: '/achievements', label: 'Achievements', num: '02' },
     { to: '/skills', label: 'Skills', num: '03' },
-    { to: '/sugboway', label: 'SugboWay', num: '04' },
-    { to: '/contact', label: 'Contact', num: '05' },
+    { to: '/contact', label: 'Contact', num: '04' },
 ];
 
 /* ─── Animation Variants ─── */

@@ -283,11 +283,11 @@ const Hero = ({ revealed }) => {
                             </button>
                             <button
                                 className="about-btn"
-                                data-text="About Me"
-                                onClick={() => navigate('/about')}
+                                data-text="Contact Me Now"
+                                onClick={() => navigate('/contact')}
                             >
-                                <span className="actual-text">&nbsp;About Me&nbsp;</span>
-                                <span aria-hidden="true" className="hover-text">&nbsp;About Me&nbsp;</span>
+                                <span className="actual-text">&nbsp;Contact Me Now&nbsp;</span>
+                                <span aria-hidden="true" className="hover-text">&nbsp;Contact Me Now&nbsp;</span>
                             </button>
                         </div>
                     </m.div>

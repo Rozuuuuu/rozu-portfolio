@@ -57,6 +57,7 @@ const ProjectDetail = () => {
 
     const hasStarr = project.situation && project.task && project.action && project.result && project.reflection;
     const hasVideo = project.media?.type === 'video';
+    const hasYouTube = project.media?.type === 'youtube';
     const hasImage = !!project.img;
 
     return (
@@ -71,9 +72,18 @@ const ProjectDetail = () => {
 
                     <header className="max-w-7xl mx-auto px-6 md:px-8 mb-16">
                         <ScrollReveal>
-                            <div className="relative overflow-hidden rounded-xl aspect-[21/9] mb-10 shadow-xl dark:shadow-black/40">
+                            <div className="relative overflow-hidden rounded-xl aspect-[21/9] mb-10 shadow-xl dark:shadow-black/40 bg-neutral-200 dark:bg-neutral-800">
                                 {hasVideo ? (
                                     <video className="w-full h-full object-cover" src={project.media.src} controls playsInline poster={project.img || undefined} />
+                                ) : hasYouTube ? (
+                                    <iframe
+                                        className="w-full h-full"
+                                        src={`https://www.youtube-nocookie.com/embed/${project.media.src}`}
+                                        title={`${project.title} video`}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                        loading="lazy"
+                                    />
                                 ) : hasImage ? (
                                     /* [PERF FIX 4] Image lazy loading and dimensions */
                                     <img className="w-full h-full object-cover" src={project.img} alt={project.title} width="800" height="450" loading="lazy" decoding="async" />
@@ -112,7 +122,7 @@ const ProjectDetail = () => {
                                 </aside>
                                 <div className="flex-1 space-y-16">
                                     <StarrSection icon="explore" label="Situation" title="Context & Problem" index={0}>{project.situation}</StarrSection>
-                                    <StarrSection icon="assignment" label="Task" title="Engineering Objectives" index={1}>{project.situation}</StarrSection>
+                                    <StarrSection icon="assignment" label="Task" title="Engineering Objectives" index={1}>{project.task}</StarrSection>
                                     <StarrSection icon="build" label="Action" title="Technical Approach" index={2}>{project.action}</StarrSection>
                                     <StarrSection icon="insights" label="Result" title="Quantified Outcomes" index={3}>{project.result}</StarrSection>
                                     <StarrSection icon="psychology" label="Reflection" title="Lessons & Growth" index={4}>{project.reflection}</StarrSection>

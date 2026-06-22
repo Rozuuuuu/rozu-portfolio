@@ -11,21 +11,22 @@ This application serves as a production-ready technical validation engine design
 ## 🛠 Specialized Tech Taxonomy
 | Category | Stack | Strategic Impact |
 | :--- | :--- | :--- |
-| **Frontend** | React 18, Vite, Tailwind CSS | High-speed HMR and utility-first responsive design. |
-| **DevOps** | GitHub Actions, Vercel | Automated CI/CD pipelines for immutable deployments. |
-| **Testing** | Vitest, Playwright | E2E and unit testing covering critical user paths. |
-| **Observability** | OpenTelemetry, Lighthouse | Real-time monitoring of RUM and performance benchmarks. |
+| **Frontend** | React 19, Vite, Tailwind CSS | High-speed HMR and utility-first responsive design. |
+| **Routing & Motion** | React Router, Framer Motion | Route-level navigation with smooth transitions and lazy-loaded sections. |
+| **AI Assistant** | Vercel Serverless Function, Google Gemini API | Server-side API proxy keeps secrets out of the client bundle. |
+| **Deployment** | Vercel | Static frontend delivery with serverless API support and cache headers. |
+| **Analytics** | Vercel Analytics | Lightweight production traffic insights. |
 
 ## 🏗 System Architecture
 The following diagram illustrates the deployment flow and frontend state management strategy.
 
 ```mermaid
 graph TD
-    A[User Browser] -->|HTTPS/Vercel Edge| B(React 18 + Vite)
+    A[User Browser] -->|HTTPS/Vercel Edge| B(React 19 + Vite)
     B --> C{State Management}
     C -->|Local/Context| D[UI Components]
     B --> E[Tailwind CSS JIT]
-    B --> F[Testing Suite: Vitest/Playwright]
+    B --> F[/api/chat Serverless Gemini Proxy]
 ```
 
 ## 🧠 Engineering Challenges & Decisions (STARR)

@@ -11,12 +11,6 @@ async function generateFavicons() {
   try {
     console.log('Generating Google-compliant favicons...');
     
-    // First, let's get the metadata to see current size
-    const metadata = await sharp(inputPath).metadata();
-    
-    // Determine the longest side to make it perfectly square
-    const longestSide = Math.max(metadata.width, metadata.height);
-    
     // 1. Google Search requirement: multiple of 48px (we'll use 192x192)
     await sharp(inputPath)
       .resize({

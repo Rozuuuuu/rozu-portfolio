@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // [PERF FIX 5] Framer Motion LazyMotion optimization
 import { m, AnimatePresence } from 'framer-motion';
-import { useDarkMode } from '../context/DarkModeContext';
+import { useDarkMode } from '../context/useDarkMode';
 
 /**
  * LogoPreloader

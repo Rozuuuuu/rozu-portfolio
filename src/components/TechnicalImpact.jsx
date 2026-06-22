@@ -22,12 +22,12 @@ function useCountUp(target, duration, shouldStart) {
 
 const TechnicalImpact = () => {
     const gridRef = React.useRef(null);
-    const [started, setStarted] = React.useState(false);
+    const [started, setStarted] = React.useState(() =>
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
 
     React.useEffect(() => {
-        const reduced =
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduced) { setStarted(true); return; }
+        if (started) return;
         const obs = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -39,7 +39,7 @@ const TechnicalImpact = () => {
         );
         if (gridRef.current) obs.observe(gridRef.current);
         return () => obs.disconnect();
-    }, []);
+    }, [started]);
 
     const projectsVal    = useCountUp(15, 1800, started);
     const aiVal          = useCountUp(8,  1600, started);

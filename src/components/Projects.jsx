@@ -1,12 +1,10 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // [PERF FIX 5] Framer Motion LazyMotion optimization
 import { m, AnimatePresence } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import HoverScrollImage from './HoverScrollImage';
 import projects from '../data/projectsData';
-
-
 
 const Projects = () => {
     const [activeFilter, setActiveFilter] = useState('All');

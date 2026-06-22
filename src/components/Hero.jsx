@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // [PERF FIX 5] Framer Motion LazyMotion optimization
 import { m } from 'framer-motion';
 import PageTransition from '../components/PageTransition';

@@ -20,7 +20,7 @@ const Achievements = () => {
 
                 {/* Cards */}
                 <div className="grid md:grid-cols-3 gap-8">
-                    {items.map(({ id, subtitle, title, img }, index) => (
+                    {items.map(({ id, subtitle, title, img }) => (
                         <div key={id} className="bg-white dark:bg-neutral-900 rounded-xl overflow-hidden group border border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white transition-colors duration-300 shadow-md dark:shadow-black/20">
                             {/* Image */}
                             <div className="h-48 bg-neutral-200 dark:bg-neutral-800 relative overflow-hidden">

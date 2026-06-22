@@ -129,9 +129,26 @@ CONVERSATION STARTERS (use when idle or greeting)
 - "Welcome to my digital space. Curious about something I've built? Or want to talk AI and engineering?"
 - "I'm Lloyd's digital twin. Think of me as the version of him that's always online and never needs coffee... well, almost."`;
 
+const MAX_MESSAGE_LENGTH = 1000;
+const MAX_HISTORY_ITEMS = 12;
+
+const getAllowedOrigin = (origin) => {
+    const allowedOrigins = [
+        "https://lloydrosales.com",
+        "https://www.lloydrosales.com",
+        process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
+    ].filter(Boolean);
+
+    if (!origin) return allowedOrigins[0];
+    return allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+};
+
 export default async function handler(req, res) {
+    const allowedOrigin = getAllowedOrigin(req.headers.origin);
+
     // CORS headers for Vercel deployments
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+    res.setHeader("Vary", "Origin");
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
@@ -143,7 +160,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: "Method not allowed. Use POST." });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
         console.error("GEMINI_API_KEY is not configured in environment variables.");
         return res.status(500).json({ error: "Server configuration error." });
@@ -156,6 +173,9 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: "Message is required." });
         }
 
+        const cleanMessage = message.trim().slice(0, MAX_MESSAGE_LENGTH);
+        const safeHistory = Array.isArray(history) ? history.slice(-MAX_HISTORY_ITEMS) : [];
+
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({
             model: "gemini-2.5-flash",
@@ -163,11 +183,11 @@ export default async function handler(req, res) {
         });
 
         // Format history into Gemini's expected structure
-        let formattedHistory = history
-            .filter((msg) => msg.role && msg.text)
+        let formattedHistory = safeHistory
+            .filter((msg) => typeof msg?.role === "string" && typeof msg?.text === "string")
             .map((msg) => ({
                 role: msg.role === "user" ? "user" : "model",
-                parts: [{ text: msg.text }],
+                parts: [{ text: msg.text.slice(0, MAX_MESSAGE_LENGTH) }],
             }));
 
         // Gemini strict requirement: History MUST start with a 'user' role
@@ -177,7 +197,7 @@ export default async function handler(req, res) {
         }
 
         const chat = model.startChat({ history: formattedHistory });
-        const result = await chat.sendMessage(message.trim());
+        const result = await chat.sendMessage(cleanMessage);
         const responseText = result.response.text();
 
         return res.status(200).json({ reply: responseText });

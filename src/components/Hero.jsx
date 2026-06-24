@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import SocialCards from './SocialCards';
-import { useNavigate } from 'react-router-dom';
 
 const useConsoleText = (words) => {
     const [displayText, setDisplayText] = useState('');
@@ -54,8 +53,6 @@ const useConsoleText = (words) => {
 };
 
 const Hero = () => {
-    const navigate = useNavigate();
-
     const { displayText, fullText, cursorVisible } = useConsoleText([
         'Software Developer',
         'BS in Computer Science',

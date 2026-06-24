@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useDarkMode } from '../context/DarkModeContext';
+import { useDarkMode } from '../context/useDarkMode';
 import { motion } from 'framer-motion';
 
 const SharedNav = () => {

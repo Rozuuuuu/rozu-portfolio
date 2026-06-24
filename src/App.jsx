@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { DarkModeProvider } from './context/DarkModeContext';
+import { DarkModeProvider } from './context/DarkModeProvider';
 import SharedNav from './components/SharedNav';
 import Hero from './components/Hero';
 import TechnicalArsenal from './components/TechnicalArsenal';
@@ -13,7 +13,6 @@ import ProjectsPage from './pages/ProjectsPage';
 import AchievementsPage from './pages/AchievementsPage';
 import SkillsPage from './pages/SkillsPage';
 import ContactPage from './pages/ContactPage';
-import TopNavBar from './components/TopNavBar';
 
 function HomePage() {
   return (

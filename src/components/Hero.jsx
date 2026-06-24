@@ -15,17 +15,16 @@ const KineticGrid = ({ revealed }) => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const cols = 20;
+        const rows = 14;
 
         const resize = () => {
             canvas.width = canvas.offsetWidth * window.devicePixelRatio;
             canvas.height = canvas.offsetHeight * window.devicePixelRatio;
             ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
         };
-        resize();
-        window.addEventListener('resize', resize);
-
-        const cols = 20;
-        const rows = 14;
 
         const draw = () => {
             const w = canvas.offsetWidth;
@@ -48,7 +47,8 @@ const KineticGrid = ({ revealed }) => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     const maxDist = 250;
-                    const influence = Math.max(0, 1 - dist / maxDist);
+                    // Static, uniform grid when the user prefers reduced motion.
+                    const influence = prefersReduced ? 0 : Math.max(0, 1 - dist / maxDist);
 
                     const baseOpacity = 0.04;
                     const opacity = baseOpacity + influence * 0.12;
@@ -76,10 +76,20 @@ const KineticGrid = ({ revealed }) => {
                 }
             }
 
-            animFrameRef.current = requestAnimationFrame(draw);
+            // Only animate continuously when motion is allowed.
+            if (!prefersReduced) {
+                animFrameRef.current = requestAnimationFrame(draw);
+            }
         };
 
+        resize();
         draw();
+
+        const handleResize = () => {
+            resize();
+            if (prefersReduced) draw();
+        };
+        window.addEventListener('resize', handleResize);
 
         const handleMove = (e) => {
             const rect = canvas.getBoundingClientRect();
@@ -89,10 +99,12 @@ const KineticGrid = ({ revealed }) => {
             };
         };
 
-        canvas.addEventListener('mousemove', handleMove);
+        if (!prefersReduced) {
+            canvas.addEventListener('mousemove', handleMove);
+        }
 
         return () => {
-            window.removeEventListener('resize', resize);
+            window.removeEventListener('resize', handleResize);
             canvas.removeEventListener('mousemove', handleMove);
             if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
         };

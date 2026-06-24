@@ -25,7 +25,7 @@ const ConnectWithMe = () => {
                                 <span className="text-neutral-500 dark:text-neutral-400 italic">in mind?</span>
                             </h2>
                             <p className="text-neutral-600 dark:text-neutral-400 text-lg mb-8 max-w-lg mx-auto lg:mx-0 font-body">
-                                Open for high-impact collaborations, freelance partnerships, and full-time roles in design-led engineering teams.
+                                Open to full-time software roles, internships, and freelance projects — especially on teams that care about design and craft.
                             </p>
 
                             {/* Contact info */}

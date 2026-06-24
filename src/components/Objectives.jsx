@@ -7,20 +7,20 @@ const objectives = [
     {
         id: 'scalability',
         icon: 'cloud',
-        title: 'System Scalability',
-        description: 'Architecting resilient cloud infrastructures that maintain 99.9% availability under high-throughput conditions.',
+        title: 'Full-Stack Delivery',
+        description: 'Building applications end to end — from database schema and API design to responsive, accessible front-ends — with clean, modular structure so features grow without rewrites.',
     },
     {
         id: 'performance',
         icon: 'speed',
-        title: 'Performance Engineering',
-        description: 'Optimizing the Critical Rendering Path to achieve sub-2.0s Time to Interactive (TTI) and perfect Core Web Vitals.',
+        title: 'Performance-Minded',
+        description: 'Treating load time as a feature: lazy-loaded routes, optimized images, and code-splitting are defaults in how I build, not afterthoughts.',
     },
     {
         id: 'excellence',
         icon: 'verified_user',
-        title: 'Operational Excellence',
-        description: 'Driving maturity through 90%+ test coverage and automated CI/CD pipelines.',
+        title: 'Ship With Discipline',
+        description: 'Working in version control with CI lint/build checks and automated deploys, so every change is traceable, reviewable, and reversible.',
     },
 ];
 

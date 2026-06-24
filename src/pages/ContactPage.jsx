@@ -69,7 +69,7 @@ const ContactPage = () => {
                             Let's build the <span className="text-neutral-400 dark:text-neutral-500 italic">Next Big Thing</span> together.
                         </h1>
                         <p className="font-body text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                            Currently available for select architectural consulting and high-impact partnerships.
+                            Open to full-time software roles, internships, and freelance projects. Have an idea or a role in mind? I'd love to hear about it.
                         </p>
                     </div>
 

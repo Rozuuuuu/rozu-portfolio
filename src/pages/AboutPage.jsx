@@ -108,7 +108,7 @@ const AboutPage = () => {
                             variants={itemVariants}
                             className="mt-6 text-neutral-500 dark:text-neutral-400 text-lg leading-relaxed max-w-2xl"
                         >
-                            Not just a developer — an engineer who believes great software sits at the intersection of architectural rigor and human empathy.
+                            A developer who cares as much about how software feels to use as how it's built — clean under the hood, intuitive on the surface.
                         </m.p>
                     </m.div>
                 </section>

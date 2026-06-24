@@ -26,7 +26,7 @@ const SkillsPage = () => {
                 <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
                 <ScrollReveal className="mb-16">
                     <div className="flex items-end gap-4 mb-2">
-                        <span className="text-black dark:text-white text-xs font-mono font-bold tracking-[0.3em]">SYSTEM_VERSION: 4.0.2</span>
+                        <span className="text-black dark:text-white text-xs font-mono font-bold tracking-[0.3em]">// CORE_COMPETENCIES</span>
                         <div className="h-[1px] flex-grow bg-neutral-300 dark:bg-neutral-700 mb-1.5"></div>
                     </div>
                     <h1 className="text-3xl sm:text-5xl md:text-7xl font-headline font-black tracking-tighter text-black dark:text-white uppercase mb-4 leading-[0.9] flex flex-col sm:block">
@@ -34,7 +34,7 @@ const SkillsPage = () => {
                         <span className="text-neutral-400 dark:text-neutral-500">Arsenal</span>
                     </h1>
                     <p className="max-w-2xl text-neutral-500 dark:text-neutral-400 font-body leading-relaxed text-lg border-l-2 border-black dark:border-white pl-6 py-2">
-                        Unified deployment parameters and multi-stack architecture logic. Executing core proficiency modules for high-scale digital environments.
+                        The tools I build with day to day — across full-stack web, mobile, AI/ML integration, and cloud deployment. Grouped by where I've actually shipped with them.
                     </p>
                 </ScrollReveal>
 
@@ -88,9 +88,9 @@ const SkillsPage = () => {
                             ))}
                         </ul>
                         <div className="mt-8 p-4 bg-white dark:bg-black/40 border border-neutral-200 dark:border-neutral-800 rounded font-mono text-[10px] text-neutral-500 dark:text-neutral-400">
-                            <p className="mb-1 text-black dark:text-white terminal-cursor">{'> INIT PRODUCTION_SYNC'}</p>
-                            <p>{'> STATUS: OPERATIONAL'}</p>
-                            <p>{'> LATENCY: 24ms'}</p>
+                            <p className="mb-1 text-black dark:text-white terminal-cursor">{'> git push origin main'}</p>
+                            <p>{'> CI: lint + build'}</p>
+                            <p>{'> deploy: Vercel / Render'}</p>
                         </div>
                     </ScrollReveal>
 
@@ -101,8 +101,8 @@ const SkillsPage = () => {
                                 AI_Engineer_Module
                             </h3>
                             <div className="flex gap-2">
-                                <span className="px-3 py-1 bg-white dark:bg-neutral-900 text-[10px] font-bold text-black dark:text-white tracking-widest uppercase rounded">Neural_Processing</span>
-                                <span className="px-3 py-1 bg-white dark:bg-neutral-900 text-[10px] font-bold text-neutral-500 tracking-widest uppercase rounded">Active_Link</span>
+                                <span className="px-3 py-1 bg-white dark:bg-neutral-900 text-[10px] font-bold text-black dark:text-white tracking-widest uppercase rounded">Machine_Learning</span>
+                                <span className="px-3 py-1 bg-white dark:bg-neutral-900 text-[10px] font-bold text-neutral-500 tracking-widest uppercase rounded">LLM_Integration</span>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
@@ -195,19 +195,6 @@ const SkillsPage = () => {
                     </ScrollReveal>
                 </div>
 
-                <ScrollReveal className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 dark:opacity-20">
-                    {[
-                        { label: 'Sys_Core_Load', w: 'w-2/3' },
-                        { label: 'Neural_Stability', w: 'w-4/5' },
-                        { label: 'Data_Throughput', w: 'w-1/2' },
-                        { label: 'Deploy_Ready', w: 'w-full' },
-                    ].map(b => (
-                        <div key={b.label} className="flex flex-col gap-2">
-                            <span className="text-[10px] font-mono tracking-widest text-neutral-600 dark:text-neutral-300 uppercase">{b.label}</span>
-                            <div className="h-1 bg-neutral-200 dark:bg-neutral-800 w-full"><div className={`h-full bg-black dark:bg-white ${b.w}`}></div></div>
-                        </div>
-                    ))}
-                </ScrollReveal>
             </main>
             <Footer />
             </div>

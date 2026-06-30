@@ -10,6 +10,16 @@
 
 const projects = [
     {
+        slug: 'sugboway',
+        tag: 'Full-Stack',
+        tags: ['Full-Stack', 'Go', 'Gemini AI', 'PostGIS'],
+        img: '/Projects/Sugboway.png',
+        title: 'SugboWay',
+        desc: "A public-transport navigator for Metro Cebu — answering \"where do I ride, how much, and how long?\" Built as a three-service monorepo: a Go + PostGIS engine for multi-leg Dijkstra routing, LTFRB fares, and live congestion modeling; a Python/LangChain/Gemini AI transit guide grounded by a Cebu contextual fence; and a Next.js + MapLibre web app with offline PMTiles maps and proximity-based \"Lugar lang\" etiquette cues.",
+        live: 'https://sugboway-web.onrender.com',
+        repo: 'https://github.com/Rozuuuuu/SugboWay',
+    },
+    {
         slug: 'gazbeat',
         tag: 'E-Commerce',
         tags: ['Full-Stack', 'E-Commerce', 'Deployment'],

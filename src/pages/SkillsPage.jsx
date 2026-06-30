@@ -49,12 +49,12 @@ const SkillsPage = () => {
                         </h3>
                         <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
                             {[
-                                { icon: 'fa-brands fa-react', name: 'React', label: 'Framework_Active' },
-                                { icon: null, letter: 'N', name: 'Next.js', label: 'SSR_Operational' },
-                                { icon: 'fa-brands fa-node-js', name: 'Node.js', label: 'Runtime_Link' },
-                                { icon: null, letter: 'EX', name: 'Express.js', label: 'Server_Logic' },
-                                { icon: 'fa-brands fa-laravel', name: 'Laravel', label: 'Backend_Core' },
-                                { icon: null, letter: '.NET', name: '.NET Framework', label: 'Enterprise_Sync' },
+                                { icon: 'fa-brands fa-react', name: 'React', label: 'Daily driver' },
+                                { icon: null, letter: 'N', name: 'Next.js', label: 'Working knowledge' },
+                                { icon: 'fa-brands fa-node-js', name: 'Node.js', label: 'Production' },
+                                { icon: null, letter: 'EX', name: 'Express.js', label: 'Production' },
+                                { icon: 'fa-brands fa-laravel', name: 'Laravel', label: 'Production' },
+                                { icon: null, letter: '.NET', name: '.NET Framework', label: 'Working knowledge' },
                             ].map(s => (
                                 <div key={s.name} className="flex items-center gap-4">
                                     <div className="w-12 h-12 flex items-center justify-center bg-white dark:bg-neutral-900 rounded border border-neutral-200 dark:border-neutral-700 logo-glow">
@@ -107,12 +107,12 @@ const SkillsPage = () => {
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
                             {[
-                                { icon: 'fa-solid fa-brain', cat: 'Library', name: 'Scikit-learn' },
-                                { icon: 'fa-brands fa-python', cat: 'Math', name: 'Numpy/Pandas' },
-                                { icon: 'fa-solid fa-filter', cat: 'Logic', name: 'Preprocessing' },
-                                { icon: 'fa-solid fa-microchip', cat: 'Core', name: 'Model Training' },
-                                { icon: 'fa-solid fa-database', cat: 'Data', name: 'Feature Engineering' },
-                                { icon: 'fa-solid fa-chart-line', cat: 'Process', name: 'Optimization' },
+                                { icon: 'fa-solid fa-robot', cat: 'LLM APIs', name: 'OpenAI / Gemini' },
+                                { icon: 'fa-solid fa-link', cat: 'Framework', name: 'LangChain' },
+                                { icon: 'fa-solid fa-server', cat: 'Local LLM', name: 'Ollama' },
+                                { icon: 'fa-solid fa-diagram-project', cat: 'Automation', name: 'n8n Workflows' },
+                                { icon: 'fa-solid fa-brain', cat: 'ML Foundation', name: 'Scikit-learn' },
+                                { icon: 'fa-brands fa-python', cat: 'Data', name: 'NumPy / Pandas' },
                             ].map(a => (
                                 <div key={a.name} className="px-4 lg:px-6 py-4 bg-white dark:bg-neutral-900 rounded-sm flex flex-col gap-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-default border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700">
                                     <div className="flex items-center gap-2">

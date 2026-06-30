@@ -4,6 +4,20 @@ import { m, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
 
+/**
+ * Convert markdown emphasis to plain text with quotes, so the chat never
+ * shows stray asterisks. **bold** / *italic* / __bold__ become "quoted",
+ * leading "* " list markers become a clean bullet, and any leftover
+ * asterisks are stripped. Link markdown [text](url) is left untouched.
+ */
+const formatEmphasis = (text) =>
+    text
+        .replace(/\*\*([^*\n]+)\*\*/g, '"$1"')   // **bold**  -> "bold"
+        .replace(/__([^_\n]+)__/g, '"$1"')       // __bold__  -> "bold"
+        .replace(/^[ \t]*\*[ \t]+/gm, '• ')      // "* item"  -> "• item"
+        .replace(/\*([^*\n]+)\*/g, '"$1"')       // *italic*  -> "italic"
+        .replace(/\*/g, '');                      // strip any leftover asterisks
+
 const ChatSidebar = ({ isOpen, onClose }) => {
     const { messages, sendMessage, isLoading, messagesEndRef } = useChat();
     const [inputValue, setInputValue] = useState('');
@@ -15,8 +29,9 @@ const ChatSidebar = ({ isOpen, onClose }) => {
         await sendMessage(text);
     };
 
-    const renderMessageText = (text) => {
-        if (!text) return '';
+    const renderMessageText = (rawText) => {
+        if (!rawText) return '';
+        const text = formatEmphasis(rawText);
         const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
         const parts = [];
         let lastIndex = 0;

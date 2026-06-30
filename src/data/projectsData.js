@@ -36,7 +36,7 @@ const projects = [
         img: '/Projects/the-living-journal.webp',
         title: 'The Living Journal App',
         desc: 'Developed a modern, dynamic to‑do list application using React and Vite, achieving a streamlined user experience for daily task management.',
-        live: '',
+        live: 'https://the-living-journal-app.vercel.app',
         repo: '',
     },
     {
@@ -56,7 +56,7 @@ const projects = [
         img: '/Projects/yeai.webp',
         title: 'Ye-Ai',
         desc: 'Integrated advanced AI capabilities into a functional application, exploring the potential of generative models for creative and practical use cases.',
-        live: '',
+        live: 'https://yeai.vercel.app',
         repo: '',
     },
     {
@@ -96,7 +96,7 @@ const projects = [
         img: '/Projects/buy@ndBuild.webp',
         title: 'Buy @nd Build',
         desc: 'Architected and coded core modules for an e‑commerce platform focused on construction and materials, handling backend logic and user interface components.',
-        live: '',
+        live: 'https://buy-nd-build.com',
         repo: '',
     },
     {

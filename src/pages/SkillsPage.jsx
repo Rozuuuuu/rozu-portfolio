@@ -131,8 +131,8 @@ const SkillsPage = () => {
                         </h3>
                         <div className="space-y-6">
                             {[
-                                { icon: 'fa-brands fa-aws', name: 'AWS / Azure', desc: 'EC2, S3, App Service, Functions, Storage.' },
-                                { icon: 'fa-solid fa-fire', name: 'Firebase / Supabase', desc: 'Auth, Storage, Edge Functions, Real-time syncing.' },
+                                { icon: 'fa-brands fa-aws', name: 'AWS / Azure', desc: 'Working knowledge of core services — compute, storage, and serverless functions.' },
+                                { icon: 'fa-solid fa-fire', name: 'Firebase / Supabase', desc: 'Auth, storage, edge functions, and real-time sync in shipped projects.' },
                             ].map(c => (
                                 <div key={c.name} className="flex items-start gap-4">
                                     <div className="p-2 bg-white dark:bg-neutral-900 text-black dark:text-white rounded border border-neutral-200 dark:border-neutral-700 logo-glow flex items-center justify-center w-12 h-12">

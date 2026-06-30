@@ -2,6 +2,10 @@
  * Centralized project data.
  * Each project entry contains details for the Projects page and detail view.
  * Images/videos are sourced from /Projects/ in the public folder.
+ *
+ * LINKS: fill in `live` (deployed URL) and `repo` (GitHub URL) per project.
+ * Leave a field as an empty string ('') and its button simply won't render —
+ * so there are never any dead links.
  */
 
 const projects = [
@@ -12,6 +16,8 @@ const projects = [
         img: '/Projects/Gazbeat.webp',
         title: 'GazBeat & Co.',
         desc: 'Built and deployed a multi‑service e‑commerce platform for an authorized LPG gas distributor, integrating ukay‑ukay and mini‑mart operations to serve over 5,000 customers with a 98% satisfaction rate.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'habicheck',
@@ -20,6 +26,8 @@ const projects = [
         img: '/Projects/HabiCheck.webp',
         title: 'HabiCheck',
         desc: 'Engineered a full‑stack habit‑tracking application that empowers users to design custom, scored daily questions for personalized accountability and progress monitoring.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'living-journal',
@@ -28,6 +36,8 @@ const projects = [
         img: '/Projects/the-living-journal.webp',
         title: 'The Living Journal App',
         desc: 'Developed a modern, dynamic to‑do list application using React and Vite, achieving a streamlined user experience for daily task management.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'reel-flow',
@@ -36,6 +46,8 @@ const projects = [
         img: '/Projects/Reel flow.webp',
         title: 'Reel-Flow',
         desc: 'Architected a TypeScript‑based full‑stack application on Supabase, implementing robust backend health checks and retry mechanisms for system reliability.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'ye-ai',
@@ -44,6 +56,8 @@ const projects = [
         img: '/Projects/yeai.webp',
         title: 'Ye-Ai',
         desc: 'Integrated advanced AI capabilities into a functional application, exploring the potential of generative models for creative and practical use cases.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'real-estate',
@@ -52,6 +66,8 @@ const projects = [
         img: '/Projects/Realestate.webp',
         title: 'Real Estate',
         desc: 'Refactored a property listings platform with page routing, smooth animations, and dark mode support using Vite and React.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'tpc-library-system',
@@ -60,6 +76,8 @@ const projects = [
         img: null,
         title: 'TPC Library System',
         desc: 'Constructed a comprehensive library management system utilizing the Laravel framework (PHP) and Livewire for a seamless, database‑driven user experience.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'livora',
@@ -68,6 +86,8 @@ const projects = [
         img: '/Projects/livora.webp',
         title: 'Livora',
         desc: 'Designed and implemented key application features and maintained system integrity for a client project, ensuring high availability and reliable performance.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'buy-and-build',
@@ -76,6 +96,8 @@ const projects = [
         img: '/Projects/buy@ndBuild.webp',
         title: 'Buy @nd Build',
         desc: 'Architected and coded core modules for an e‑commerce platform focused on construction and materials, handling backend logic and user interface components.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'cafe-ai',
@@ -85,6 +107,8 @@ const projects = [
         img: null,
         title: 'Café AI',
         desc: "My Computer Science thesis and the first AI project I've ever made. Conceptualized and prototyped an AI‑enabled café system, applying machine learning concepts to enhance and streamline the customer ordering experience.",
+        live: '',
+        repo: '',
     },
     {
         slug: 'photobooth',
@@ -93,6 +117,8 @@ const projects = [
         img: '/Projects/photobooth.webp',
         title: 'Photobooth Website',
         desc: 'Engineered the frontend interface for an event photo booth application, ensuring a responsive and intuitive user flow for photo capture and sharing.',
+        live: '',
+        repo: '',
     },
     {
         slug: 'career-journey-tracker',
@@ -101,6 +127,8 @@ const projects = [
         img: null,
         title: 'Career Journey Tracker',
         desc: 'Designed a dedicated tool for students and professionals to strategically plan and visualize their career pathways, tracking milestones and skill development.',
+        live: '',
+        repo: '',
     },
 ];
 

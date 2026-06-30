@@ -3,6 +3,7 @@ import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import ConnectWithMe from '../components/ConnectWithMe';
+import ProjectLinks from '../components/ProjectLinks';
 import projects from '../data/projectsData';
 
 const Tag = ({ children }) => (
@@ -102,6 +103,7 @@ const ProjectDetail = () => {
                         </ScrollReveal>
                         <ScrollReveal delay={0.1}>
                             <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-3xl">{project.desc}</p>
+                            <ProjectLinks live={project.live} repo={project.repo} className="mt-6" />
                         </ScrollReveal>
                     </header>
 

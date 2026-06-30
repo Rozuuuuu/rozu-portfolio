@@ -53,17 +53,16 @@
   left: 16px;
 }
 
-.x-logo {
-  width: 32px;
-  height: 32px;
+.email-icon {
+  font-size: 34px;
+  color: #000; /* Black icon in light mode */
   position: relative;
   top: 16px;
   left: -16px;
-  filter: brightness(0); /* Black logo in light mode */
 }
 
-.dark .x-logo {
-  filter: brightness(0) invert(1); /* White logo in dark mode */
+.dark .email-icon {
+  color: #fff; /* White icon in dark mode */
 }
 
 .github {
@@ -91,8 +90,8 @@
 
 .card2:hover { scale: 1.1; background-color: black; }
 .dark .card2:hover { background-color: white; }
-.card2:hover .x-logo { filter: brightness(0) invert(1); }
-.dark .card2:hover .x-logo { filter: brightness(0); }
+.card2:hover .email-icon { color: #fff; }
+.dark .card2:hover .email-icon { color: #000; }
 
 .card3:hover { scale: 1.1; background-color: black; }
 .dark .card3:hover { background-color: #e5e7eb; }

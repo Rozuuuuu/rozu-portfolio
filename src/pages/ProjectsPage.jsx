@@ -5,6 +5,7 @@ import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import ConnectWithMe from '../components/ConnectWithMe';
 import HoverScrollImage from '../components/HoverScrollImage';
+import ProjectLinks from '../components/ProjectLinks';
 import projects from '../data/projectsData';
 import SEO from '../components/SEO';
 
@@ -93,6 +94,8 @@ const ProjectCard = ({ project, index }) => {
                 <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed flex-1">
                     {project.desc}
                 </p>
+
+                <ProjectLinks live={project.live} repo={project.repo} className="mt-5" />
             </div>
         </m.div>
     );
@@ -209,6 +212,8 @@ const ProjectsPage = () => {
                                             <span>First AI Project I've Made</span>
                                             <span className="material-symbols-outlined text-base">smart_toy</span>
                                         </div>
+
+                                        <ProjectLinks live={cafeAiProject.live} repo={cafeAiProject.repo} className="mt-6" />
                                     </div>
                                 </div>
                             </div>

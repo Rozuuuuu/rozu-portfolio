@@ -17,7 +17,7 @@ const projects = [
         title: 'SugboWay',
         desc: "A public-transport navigator for Metro Cebu — answering \"where do I ride, how much, and how long?\" Built as a three-service monorepo: a Go + PostGIS engine for multi-leg Dijkstra routing, LTFRB fares, and live congestion modeling; a Python/LangChain/Gemini AI transit guide grounded by a Cebu contextual fence; and a Next.js + MapLibre web app with offline PMTiles maps and proximity-based \"Lugar lang\" etiquette cues.",
         live: 'https://sugboway-web.onrender.com',
-        repo: 'https://github.com/Rozuuuuu/SugboWay',
+        repo: '',
     },
     {
         slug: 'gazbeat',
@@ -26,7 +26,7 @@ const projects = [
         img: '/Projects/Gazbeat.webp',
         title: 'GazBeat & Co.',
         desc: 'Built and deployed a multi‑service e‑commerce platform for an authorized LPG gas distributor, integrating ukay‑ukay and mini‑mart operations to serve over 5,000 customers with a 98% satisfaction rate.',
-        live: '',
+        live: 'https://gazbeat.com',
         repo: '',
     },
     {
@@ -36,7 +36,7 @@ const projects = [
         img: '/Projects/HabiCheck.webp',
         title: 'HabiCheck',
         desc: 'Engineered a full‑stack habit‑tracking application that empowers users to design custom, scored daily questions for personalized accountability and progress monitoring.',
-        live: '',
+        live: 'https://cloned-example.lovable.app',
         repo: '',
     },
     {
@@ -56,7 +56,7 @@ const projects = [
         img: '/Projects/Reel flow.webp',
         title: 'Reel-Flow',
         desc: 'Architected a TypeScript‑based full‑stack application on Supabase, implementing robust backend health checks and retry mechanisms for system reliability.',
-        live: '',
+        live: 'https://bright-reels.lovable.app',
         repo: '',
     },
     {

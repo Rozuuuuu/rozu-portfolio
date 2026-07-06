@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import { SharedFooter } from '../components/SharedFooter';
+import Icon from '../components/Icon';
 
 /* ─── Animation Variants ─── */
 const containerVariants = {
@@ -199,9 +200,7 @@ const AboutPage = () => {
                                         <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6 h-full transition-all duration-300 hover:border-black dark:hover:border-white hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5">
                                             {/* Icon */}
                                             <div className="w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center mb-4 group-hover:bg-black group-hover:dark:bg-white transition-colors duration-300">
-                                                <span className="material-symbols-outlined text-black dark:text-white text-base group-hover:text-white group-hover:dark:text-black transition-colors duration-300">
-                                                    {hobby.icon}
-                                                </span>
+                                                <Icon name={hobby.icon} className="text-black dark:text-white text-base group-hover:text-white group-hover:dark:text-black transition-colors duration-300" />
                                             </div>
 
                                             {/* Label */}
@@ -237,7 +236,7 @@ const AboutPage = () => {
                                     className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-lg font-mono text-sm font-bold tracking-wide hover:opacity-90 active:scale-95 transition-all duration-200"
                                 >
                                     View Projects
-                                    <span className="material-symbols-outlined text-base">arrow_forward</span>
+                                    <Icon name="arrow_forward" className="text-base" />
                                 </Link>
                                 <Link
                                     to="/contact"

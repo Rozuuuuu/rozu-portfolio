@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import ScrollReveal from './ScrollReveal';
 import { featured } from '../data/achievementsData';
+import Icon from './Icon';
 
 const Achievements = () => {
     // Take the top 3 featured achievements to display on the home page
@@ -52,7 +53,7 @@ const Achievements = () => {
                         className="inline-flex items-center gap-3 px-8 py-4 border-2 border-neutral-300 dark:border-neutral-700 hover:border-black dark:hover:border-white bg-white dark:bg-neutral-900 text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black font-bold text-sm uppercase tracking-widest rounded-lg transition-all duration-300 group"
                     >
                         View All Achievements
-                        <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        <Icon name="arrow_forward" className="text-base group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
             </ScrollReveal>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
+import Icon from './Icon';
 
 const Contact = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,11 +60,11 @@ const Contact = () => {
                         <p className="text-surface/70 dark:text-stone-400 text-lg mb-8">Currently available for select architectural consulting and high-impact partnerships.</p>
                         <div className="space-y-4">
                             <div className="flex items-center gap-4">
-                                <span className="material-symbols-outlined text-black dark:text-white">alternate_email</span>
+                                <Icon name="alternate_email" className="text-black dark:text-white" />
                                 <span className="font-medium">code.with.lloyd@gmail.com</span>
                             </div>
                             <div className="flex items-center gap-4">
-                                <span className="material-symbols-outlined text-black dark:text-white">location_on</span>
+                                <Icon name="location_on" className="text-black dark:text-white" />
                                 <span className="font-medium">Cebu City, Philippines</span>
                             </div>
                         </div>
@@ -101,14 +102,14 @@ const Contact = () => {
 
                             {submitStatus === 'success' && (
                                 <div className="p-4 bg-stone-800/80 border border-emerald-500/30 rounded-lg flex items-center gap-3 text-xs text-stone-200 font-mono animate-pulse mt-4">
-                                    <span className="material-symbols-outlined text-emerald-400">check_circle</span>
+                                    <Icon name="check_circle" className="text-emerald-400" />
                                     <span>Inquiry sent! Thank you.</span>
                                 </div>
                             )}
 
                             {submitStatus === 'error' && (
                                 <div className="p-4 bg-stone-850/80 border border-red-500/30 rounded-lg flex items-center gap-3 text-xs text-red-300 font-mono mt-4">
-                                    <span className="material-symbols-outlined text-red-400">error</span>
+                                    <Icon name="error" className="text-red-400" />
                                     <span>{errorMessage}</span>
                                 </div>
                             )}

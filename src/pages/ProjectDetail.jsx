@@ -5,6 +5,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import ConnectWithMe from '../components/ConnectWithMe';
 import ProjectLinks from '../components/ProjectLinks';
 import projects from '../data/projectsData';
+import Icon from '../components/Icon';
 
 const Tag = ({ children }) => (
     <span className="px-4 py-1 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full text-[10px] font-bold text-black dark:text-white uppercase tracking-wider">
@@ -16,7 +17,7 @@ const StarrSection = ({ icon, label, title, children, index }) => (
     <ScrollReveal delay={index * 0.05}>
         <div id={label.toLowerCase()} className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
-                <span className="material-symbols-outlined text-black dark:text-white text-xl">{icon}</span>
+                <Icon name={icon} className="text-black dark:text-white text-xl" />
                 <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-black dark:text-white font-mono">{label}</span>
             </div>
             <h3 className="text-2xl font-extrabold tracking-tight mb-4 text-black dark:text-white">{title}</h3>
@@ -43,11 +44,11 @@ const ProjectDetail = () => {
             <PageTransition>
                 <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
                     <main className="pt-32 pb-24 max-w-7xl mx-auto px-6 md:px-8 text-center">
-                        <span className="material-symbols-outlined text-7xl text-neutral-300 dark:text-neutral-600 mb-6 block">search_off</span>
+                        <Icon name="search_off" className="text-7xl text-neutral-300 dark:text-neutral-600 mb-6 block" />
                         <h1 className="text-4xl font-black tracking-tighter mb-4">Project Not Found</h1>
                         <p className="text-neutral-500 mb-8">The project doesn't exist or has been moved.</p>
                         <Link to="/projects" className="inline-flex items-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-lg uppercase tracking-widest text-sm">
-                            <span className="material-symbols-outlined text-sm">arrow_back</span>Back to Projects
+                            <Icon name="arrow_back" className="text-sm" />Back to Projects
                         </Link>
                     </main>
                     <SharedFooter />
@@ -67,7 +68,7 @@ const ProjectDetail = () => {
                 <main className="pt-32 pb-24">
                     <div className="max-w-7xl mx-auto px-6 md:px-8 mb-8">
                         <button onClick={() => navigate('/projects')} className="inline-flex items-center gap-2 text-neutral-500 hover:text-black dark:hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
-                            <span className="material-symbols-outlined text-sm">arrow_back</span>All Projects
+                            <Icon name="arrow_back" className="text-sm" />All Projects
                         </button>
                     </div>
 
@@ -90,7 +91,7 @@ const ProjectDetail = () => {
                                     <img className="w-full h-full object-cover" src={project.img} alt={project.title} width="800" height="450" loading="lazy" decoding="async" />
                                 ) : (
                                     <div className="w-full h-full flex flex-col items-center justify-center bg-neutral-200 dark:bg-neutral-800">
-                                        <span className="material-symbols-outlined text-7xl text-neutral-400 mb-4">code</span>
+                                        <Icon name="code" className="text-7xl text-neutral-400 mb-4" />
                                         <span className="text-sm font-bold text-neutral-500 uppercase tracking-widest">{project.title}</span>
                                     </div>
                                 )}
@@ -116,7 +117,7 @@ const ProjectDetail = () => {
                                         <nav className="space-y-1">
                                             {starrNav.map(({ id, icon, label }) => (
                                                 <a key={id} href={`#${id}`} className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-neutral-500 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors">
-                                                    <span className="material-symbols-outlined text-base">{icon}</span>{label}
+                                                    <Icon name={icon} className="text-base" />{label}
                                                 </a>
                                             ))}
                                         </nav>
@@ -134,7 +135,7 @@ const ProjectDetail = () => {
                             <ScrollReveal>
                                 <div className="max-w-3xl">
                                     <div className="flex items-center gap-3 mb-6 p-4 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800">
-                                        <span className="material-symbols-outlined text-black dark:text-white">info</span>
+                                        <Icon name="info" className="text-black dark:text-white" />
                                         <span className="text-sm text-neutral-600 dark:text-neutral-400">Detailed case study coming soon.</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2 mb-8">{project.tags.map(t => <Tag key={t}>{t}</Tag>)}</div>

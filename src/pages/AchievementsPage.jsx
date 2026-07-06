@@ -8,10 +8,11 @@ import ConnectWithMe from '../components/ConnectWithMe';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { featured, spotlight, milestones } from '../data/achievementsData';
 import SEO from '../components/SEO';
+import Icon from '../components/Icon';
 
 const ImgPlaceholder = ({ alt }) => (
     <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-neutral-200 dark:bg-neutral-800 gap-3">
-        <span className="material-symbols-outlined text-5xl text-neutral-400 dark:text-neutral-500">add_photo_alternate</span>
+        <Icon name="add_photo_alternate" className="text-5xl text-neutral-400 dark:text-neutral-500" />
         <span className="text-xs font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 text-center px-4">{alt}</span>
     </div>
 );
@@ -79,12 +80,12 @@ const AchievementsPage = () => {
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
                                             {/* Floating Double-Award Badge */}
                                             <div className="absolute top-4 left-4 bg-black text-white dark:bg-white dark:text-black font-mono text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 border border-neutral-800 dark:border-neutral-200">
-                                                <span className="material-symbols-outlined text-xs">workspace_premium</span>
+                                                <Icon name="workspace_premium" className="text-xs" />
                                                 Best Collaborative Catalysts
                                             </div>
                                             {/* Floating Role Badge */}
                                             <div className="absolute top-4 right-4 bg-white/95 text-black dark:bg-black/95 dark:text-white font-mono text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 border border-neutral-200 dark:border-neutral-800 backdrop-blur-sm">
-                                                <span className="material-symbols-outlined text-xs">engineering</span>
+                                                <Icon name="engineering" className="text-xs" />
                                                 Role: AI Engineer
                                             </div>
                                         </div>
@@ -92,7 +93,7 @@ const AchievementsPage = () => {
                                         {/* Content Section */}
                                         <div className="w-full lg:w-1/2 flex flex-col">
                                             <div className="flex items-center gap-2 mb-4 text-black dark:text-white">
-                                                <span className="material-symbols-outlined text-2xl">emoji_events</span>
+                                                <Icon name="emoji_events" className="text-2xl" />
                                                 <span className="font-bold text-[10px] uppercase tracking-[0.25em] font-mono">Featured Achievement</span>
                                             </div>
                                             
@@ -106,7 +107,7 @@ const AchievementsPage = () => {
 
                                             {/* Highlight Role Block */}
                                             <div className="flex items-center gap-2 mb-6 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg px-4 py-2 w-fit">
-                                                <span className="material-symbols-outlined text-sm text-neutral-800 dark:text-neutral-200">engineering</span>
+                                                <Icon name="engineering" className="text-sm text-neutral-800 dark:text-neutral-200" />
                                                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                                                     Core Role: <span className="text-black dark:text-white font-black">AI Engineer</span>
                                                 </span>
@@ -152,7 +153,7 @@ const AchievementsPage = () => {
                                                     : 'text-neutral-500 hover:text-black dark:hover:text-white'
                                                 }`}
                                             >
-                                                <span className="material-symbols-outlined text-base">{tab.icon}</span>
+                                                <Icon name={tab.icon} className="text-base" />
                                                 {tab.label}
                                                 {isActive && (
                                                     <m.div
@@ -192,7 +193,7 @@ const AchievementsPage = () => {
                                                             </div>
                                                             <div className="md:w-3/5 p-8 md:p-10 flex flex-col justify-center">
                                                                 <div className={`flex items-center gap-2 mb-4 ${placeColor}`}>
-                                                                    <span className={`material-symbols-outlined text-xl ${iconColor}`}>{icon}</span>
+                                                                    <Icon name={icon} className={`text-xl ${iconColor}`} />
                                                                     <span className="font-bold text-xs uppercase tracking-widest">{place}</span>
                                                                 </div>
                                                                 <h2 className="font-headline text-2xl md:text-3xl font-extrabold tracking-tight mb-1 text-black dark:text-white">{title}</h2>
@@ -223,7 +224,7 @@ const AchievementsPage = () => {
                                                             </div>
                                                             <div className="p-8 flex flex-col flex-grow">
                                                                 <div className={`flex items-center gap-2 mb-3 ${iconColor}`}>
-                                                                    <span className={`material-symbols-outlined text-xl ${iconColor}`}>{icon}</span>
+                                                                    <Icon name={icon} className={`text-xl ${iconColor}`} />
                                                                     <span className="font-bold text-xs uppercase tracking-widest">{subtitle}</span>
                                                                 </div>
                                                                 <h3 className="font-headline text-xl font-extrabold tracking-tight mb-3 text-black dark:text-white">{title}</h3>
@@ -249,7 +250,7 @@ const AchievementsPage = () => {
                                                                 {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} width="800" height="450" loading="lazy" decoding="async" /> : <ImgPlaceholder alt={imgAlt} />}
                                                             </div>
                                                             <div className="p-6 flex flex-col justify-center flex-grow">
-                                                                <span className="material-symbols-outlined text-black dark:text-white text-3xl mb-3 block">{icon}</span>
+                                                                <Icon name={icon} className="text-black dark:text-white text-3xl mb-3 block" />
                                                                 <h3 className="font-headline text-lg font-extrabold tracking-tight mb-1 text-black dark:text-white">{title}</h3>
                                                                 <p className="text-neutral-500 dark:text-neutral-400 font-bold text-xs mb-3">{subtitle}</p>
                                                                 <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">{desc}</p>

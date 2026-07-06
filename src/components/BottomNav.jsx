@@ -114,7 +114,7 @@ const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
                                     )}
 
                                     {/* Text */}
-                                    <span className={`block text-center w-full pl-6 sm:pl-7 origin-right font-['Public_Sans'] font-bold text-[11px] sm:text-sm tracking-wide transition-all duration-200 ease-in
+                                    <span className={`block text-center w-full pl-6 sm:pl-7 origin-right font-body font-bold text-[11px] sm:text-sm tracking-wide transition-all duration-200 ease-in
                                         ${isActive
                                              ? 'translate-x-0 opacity-100'
                                              : 'translate-x-[100%] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100'

@@ -1,5 +1,6 @@
 import ScrollReveal from './ScrollReveal';
 import { Link } from 'react-router-dom';
+import Icon from './Icon';
 
 const frontendSkills = [
   { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", name: "HTML5" },
@@ -170,14 +171,14 @@ const TechnicalArsenal = () => {
                         <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">Skills & Frameworks</h2>
                     </div>
                     <Link to="/skills" className="hidden sm:flex text-sm font-bold text-neutral-500 hover:text-black dark:hover:text-white uppercase tracking-widest transition-colors items-center gap-1 pb-1 border-b border-transparent hover:border-black dark:hover:border-white">
-                        See More <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        See More <Icon name="arrow_forward" className="text-[14px]" />
                     </Link>
                 </div>
                 
                 {/* Mobile 'See More' */}
                 <div className="sm:hidden mb-12">
                     <Link to="/skills" className="inline-flex text-sm font-bold text-neutral-500 hover:text-black dark:hover:text-white uppercase tracking-widest transition-colors items-center gap-1 pb-1 border-b border-transparent hover:border-black dark:hover:border-white">
-                        See More <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        See More <Icon name="arrow_forward" className="text-[14px]" />
                     </Link>
                 </div>
 

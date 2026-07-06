@@ -2,6 +2,7 @@ import { useRef } from 'react';
 // [PERF FIX 5] Framer Motion LazyMotion optimization
 import { m, useInView } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
+import Icon from './Icon';
 
 const objectives = [
     {
@@ -52,9 +53,7 @@ const ObjectiveCard = ({ objective, index }) => {
 
                 {/* Icon */}
                 <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center mb-6 group-hover:bg-black group-hover:dark:bg-white transition-colors duration-300">
-                    <span className="material-symbols-outlined text-black dark:text-white text-lg group-hover:text-white group-hover:dark:text-black transition-colors duration-300">
-                        {objective.icon}
-                    </span>
+                    <Icon name={objective.icon} className="text-black dark:text-white text-lg group-hover:text-white group-hover:dark:text-black transition-colors duration-300" />
                 </div>
 
                 {/* Title */}

@@ -3,6 +3,7 @@ import { SharedFooter } from '../components/SharedFooter';
 import PageTransition from '../components/PageTransition';
 import SocialCards from '../components/SocialCards';
 import SEO from '../components/SEO';
+import Icon from '../components/Icon';
 
 const ContactPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,11 +83,11 @@ const ContactPage = () => {
                             
                             <div className="space-y-4 pt-4 px-4 md:px-0">
                                 <div className="flex items-center gap-4 text-black dark:text-white">
-                                    <span className="material-symbols-outlined text-black dark:text-white">alternate_email</span>
+                                    <Icon name="alternate_email" className="text-black dark:text-white" />
                                     <span className="font-medium">code.with.lloyd@gmail.com</span>
                                 </div>
                                 <div className="flex items-center gap-4 text-black dark:text-white">
-                                    <span className="material-symbols-outlined text-black dark:text-white">location_on</span>
+                                    <Icon name="location_on" className="text-black dark:text-white" />
                                     <span className="font-medium">Cebu City, Philippines</span>
                                 </div>
                             </div>
@@ -127,14 +128,14 @@ const ContactPage = () => {
                                 
                                 {submitStatus === 'success' && (
                                     <div className="p-4 bg-neutral-100 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-lg flex items-center gap-3 text-xs text-neutral-800 dark:text-neutral-200 font-mono animate-pulse mt-4">
-                                        <span className="material-symbols-outlined text-green-500">check_circle</span>
+                                        <Icon name="check_circle" className="text-green-500" />
                                         <span>Message sent! Thank you for getting in touch.</span>
                                     </div>
                                 )}
                                 
                                 {submitStatus === 'error' && (
                                     <div className="p-4 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/40 rounded-lg flex items-center gap-3 text-xs text-red-700 dark:text-red-400 font-mono mt-4">
-                                        <span className="material-symbols-outlined text-red-500">error</span>
+                                        <Icon name="error" className="text-red-500" />
                                         <span>{errorMessage}</span>
                                     </div>
                                 )}

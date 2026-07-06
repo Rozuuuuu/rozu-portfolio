@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import ScrollReveal from '../components/ScrollReveal';
 import { useEffect } from 'react';
 import SEO from '../components/SEO';
+import Icon from '../components/Icon';
 
 const SkillsPage = () => {
     useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -41,7 +42,7 @@ const SkillsPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <ScrollReveal className="md:col-span-8 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-8 rounded-lg relative overflow-hidden group">
                         <div className="absolute top-0 right-0 p-4 opacity-5 dark:opacity-10 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity">
-                            <span className="material-symbols-outlined text-8xl text-black dark:text-white">deployed_code</span>
+                            <Icon name="deployed_code" className="text-8xl text-black dark:text-white" />
                         </div>
                         <h3 className="font-headline text-2xl font-bold tracking-tight text-black dark:text-white mb-8 flex items-center gap-3">
                             <span className="w-2 h-2 bg-black dark:bg-white animate-pulse"></span>
@@ -49,16 +50,16 @@ const SkillsPage = () => {
                         </h3>
                         <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
                             {[
-                                { icon: 'fa-brands fa-react', name: 'React', label: 'Daily driver' },
-                                { icon: null, letter: 'N', name: 'Next.js', label: 'Working knowledge' },
-                                { icon: 'fa-brands fa-node-js', name: 'Node.js', label: 'Production' },
-                                { icon: null, letter: 'EX', name: 'Express.js', label: 'Production' },
-                                { icon: 'fa-brands fa-laravel', name: 'Laravel', label: 'Production' },
-                                { icon: null, letter: '.NET', name: '.NET Framework', label: 'Working knowledge' },
+                                { img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', name: 'React', label: 'Daily driver' },
+                                { letter: 'N', name: 'Next.js', label: 'Working knowledge' },
+                                { img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', name: 'Node.js', label: 'Production' },
+                                { letter: 'EX', name: 'Express.js', label: 'Production' },
+                                { img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg', name: 'Laravel', label: 'Production' },
+                                { letter: '.NET', name: '.NET Framework', label: 'Working knowledge' },
                             ].map(s => (
                                 <div key={s.name} className="flex items-center gap-4">
                                     <div className="w-12 h-12 flex items-center justify-center bg-white dark:bg-neutral-900 rounded border border-neutral-200 dark:border-neutral-700 logo-glow">
-                                        {s.icon ? <i className={`${s.icon} text-2xl text-black dark:text-white`}></i> : <div className="text-xl font-black text-black dark:text-white">{s.letter}</div>}
+                                        {s.img ? <img src={s.img} alt={`${s.name} logo`} className="w-7 h-7" width="28" height="28" loading="lazy" decoding="async" /> : <div className="text-xl font-black text-black dark:text-white">{s.letter}</div>}
                                     </div>
                                     <div className="space-y-1">
                                         <span className="font-headline font-bold text-black dark:text-white block">{s.name}</span>
@@ -71,19 +72,19 @@ const SkillsPage = () => {
 
                     <ScrollReveal className="md:col-span-4 bg-neutral-100 dark:bg-neutral-900 p-8 rounded-lg border-l-4 border-black dark:border-white border-t border-t-neutral-200 dark:border-t-neutral-800 border-r border-r-neutral-200 dark:border-r-neutral-800 border-b border-b-neutral-200 dark:border-b-neutral-800">
                         <h3 className="font-headline text-xl font-bold tracking-tight text-black dark:text-white mb-6 uppercase flex items-center gap-2">
-                            <span className="material-symbols-outlined text-black dark:text-white">terminal</span>
+                            <Icon name="terminal" className="text-black dark:text-white" />
                             Deployment_Ops
                         </h3>
                         <ul className="space-y-4">
                             {[
-                                { icon: 'fa-solid fa-caret-up', name: 'Vercel' },
-                                { icon: 'fa-solid fa-infinity', name: 'CI/CD Pipelines' },
-                                { icon: 'fa-brands fa-git-alt', name: 'Git Control' },
+                                { icon: 'vercel', name: 'Vercel' },
+                                { icon: 'infinity', name: 'CI/CD Pipelines' },
+                                { icon: 'git', name: 'Git Control' },
                             ].map(d => (
                                 <li key={d.name} className="flex items-center gap-3 p-3 bg-white dark:bg-black rounded-sm group hover:bg-neutral-50 dark:hover:bg-neutral-950 transition-colors">
-                                    <div className="w-6 h-6 flex items-center justify-center logo-glow"><i className={`${d.icon} text-black dark:text-white text-sm`}></i></div>
+                                    <div className="w-6 h-6 flex items-center justify-center logo-glow"><Icon name={d.icon} className="text-black dark:text-white text-sm" /></div>
                                     <span className="font-headline font-medium text-black dark:text-white">{d.name}</span>
-                                    <span className="ml-auto material-symbols-outlined text-[10px] text-black dark:text-white animate-pulse" style={{fontVariationSettings: "'FILL' 1"}}>circle</span>
+                                    <Icon name="circle" className="ml-auto text-[10px] text-black dark:text-white animate-pulse" />
                                 </li>
                             ))}
                         </ul>
@@ -97,7 +98,7 @@ const SkillsPage = () => {
                     <ScrollReveal className="md:col-span-12 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-8 rounded-lg border-b-4 border-b-black/30 dark:border-b-white/20">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                             <h3 className="font-headline text-2xl md:text-3xl font-black tracking-tighter text-black dark:text-white uppercase flex items-center gap-4">
-                                <span className="material-symbols-outlined text-black dark:text-white text-4xl">psychology</span>
+                                <Icon name="psychology" className="text-black dark:text-white text-4xl" />
                                 AI_Engineer_Module
                             </h3>
                             <div className="flex gap-2">
@@ -107,16 +108,16 @@ const SkillsPage = () => {
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
                             {[
-                                { icon: 'fa-solid fa-robot', cat: 'LLM APIs', name: 'OpenAI / Gemini' },
-                                { icon: 'fa-solid fa-link', cat: 'Framework', name: 'LangChain' },
-                                { icon: 'fa-solid fa-server', cat: 'Local LLM', name: 'Ollama' },
-                                { icon: 'fa-solid fa-diagram-project', cat: 'Automation', name: 'n8n Workflows' },
-                                { icon: 'fa-solid fa-brain', cat: 'ML Foundation', name: 'Scikit-learn' },
-                                { icon: 'fa-brands fa-python', cat: 'Data', name: 'NumPy / Pandas' },
+                                { icon: 'robot', cat: 'LLM APIs', name: 'OpenAI / Gemini' },
+                                { icon: 'link', cat: 'Framework', name: 'LangChain' },
+                                { icon: 'server', cat: 'Local LLM', name: 'Ollama' },
+                                { icon: 'workflow', cat: 'Automation', name: 'n8n Workflows' },
+                                { icon: 'psychology', cat: 'ML Foundation', name: 'Scikit-learn' },
+                                { icon: 'dataset', cat: 'Data', name: 'NumPy / Pandas' },
                             ].map(a => (
                                 <div key={a.name} className="px-4 lg:px-6 py-4 bg-white dark:bg-neutral-900 rounded-sm flex flex-col gap-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-default border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700">
                                     <div className="flex items-center gap-2">
-                                        <i className={`${a.icon} text-black dark:text-white text-sm logo-glow`}></i>
+                                        <Icon name={a.icon} className="text-black dark:text-white text-sm logo-glow" />
                                         <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono uppercase">{a.cat}</span>
                                     </div>
                                     <span className="font-headline font-bold text-sm lg:text-base text-black dark:text-white">{a.name}</span>
@@ -127,16 +128,16 @@ const SkillsPage = () => {
 
                     <ScrollReveal className="md:col-span-6 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-8 rounded-lg group">
                         <h3 className="font-headline text-xl flex items-center gap-2 font-bold tracking-tight text-black dark:text-white mb-8 uppercase">
-                            <span className="material-symbols-outlined text-black dark:text-white">cloud</span> Cloud_Nexus
+                            <Icon name="cloud" className="text-black dark:text-white" /> Cloud_Nexus
                         </h3>
                         <div className="space-y-6">
                             {[
-                                { icon: 'fa-brands fa-aws', name: 'AWS / Azure', desc: 'Working knowledge of core services — compute, storage, and serverless functions.' },
-                                { icon: 'fa-solid fa-fire', name: 'Firebase / Supabase', desc: 'Auth, storage, edge functions, and real-time sync in shipped projects.' },
+                                { icon: 'cloud', name: 'AWS / Azure', desc: 'Working knowledge of core services — compute, storage, and serverless functions.' },
+                                { icon: 'fire', name: 'Firebase / Supabase', desc: 'Auth, storage, edge functions, and real-time sync in shipped projects.' },
                             ].map(c => (
                                 <div key={c.name} className="flex items-start gap-4">
                                     <div className="p-2 bg-white dark:bg-neutral-900 text-black dark:text-white rounded border border-neutral-200 dark:border-neutral-700 logo-glow flex items-center justify-center w-12 h-12">
-                                        <i className={`${c.icon} text-2xl`}></i>
+                                        <Icon name={c.icon} className="text-2xl" />
                                     </div>
                                     <div>
                                         <h4 className="font-headline font-bold text-black dark:text-white mb-1">{c.name}</h4>
@@ -149,13 +150,13 @@ const SkillsPage = () => {
 
                     <ScrollReveal className="md:col-span-6 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-8 rounded-lg">
                         <h3 className="font-headline text-xl font-bold tracking-tight text-black dark:text-white mb-8 uppercase flex items-center gap-2">
-                             <span className="material-symbols-outlined text-black dark:text-white">dataset</span> Data_Infrastructure
+                             <Icon name="dataset" className="text-black dark:text-white" /> Data_Infrastructure
                         </h3>
                         <div className="grid grid-cols-2 gap-4">
                             {[{ label: 'Relational', name: 'MySQL' }, { label: 'Structured', name: 'PostgreSQL' }].map(db => (
                                 <div key={db.name} className="aspect-square bg-white dark:bg-neutral-900 flex flex-col items-center justify-center p-4 rounded-sm border border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white transition-all cursor-crosshair group/db">
                                     <div className="w-12 h-12 mb-3 bg-neutral-50 dark:bg-black flex items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-700 logo-glow group-hover/db:border-black dark:group-hover/db:border-white transition-colors">
-                                        <i className="fa-solid fa-database text-2xl text-black dark:text-white"></i>
+                                        <Icon name="dataset" className="text-2xl text-black dark:text-white" />
                                     </div>
                                     <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono mb-2 uppercase tracking-widest">{db.label}</span>
                                     <span className="font-headline font-black text-xl lg:text-2xl uppercase text-black dark:text-white">{db.name}</span>
@@ -178,13 +179,13 @@ const SkillsPage = () => {
 
                     <ScrollReveal className="md:col-span-5 bg-neutral-50 dark:bg-neutral-950 p-8 rounded-lg relative overflow-hidden border border-neutral-200 dark:border-neutral-800">
                         <div className="absolute -bottom-4 -right-4 opacity-5 dark:opacity-10">
-                            <span className="material-symbols-outlined text-[120px] text-black dark:text-white">settings_suggest</span>
+                            <Icon name="settings_suggest" className="text-[120px] text-black dark:text-white" />
                         </div>
                         <h3 className="font-headline text-xl font-bold tracking-tight text-black dark:text-white mb-6 uppercase z-10 relative">Other_Technical</h3>
                         <div className="space-y-4 z-10 relative">
                             {['Excel Data Management','Hardware & Software Diagnostics'].map(t => (
                                 <div key={t} className="flex items-center gap-3">
-                                    <span className="material-symbols-outlined text-black dark:text-white">check_circle</span>
+                                    <Icon name="check_circle" className="text-black dark:text-white" />
                                     <span className="text-neutral-700 dark:text-neutral-300 text-sm font-bold">{t}</span>
                                 </div>
                             ))}

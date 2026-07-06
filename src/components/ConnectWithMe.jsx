@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import ScrollReveal from './ScrollReveal';
 import SocialCards from './SocialCards';
+import Icon from './Icon';
 
 const ConnectWithMe = () => {
     const navigate = useNavigate();
@@ -31,11 +32,11 @@ const ConnectWithMe = () => {
                             {/* Contact info */}
                             <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-8 justify-center lg:justify-start">
                                 <div className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300">
-                                    <span className="material-symbols-outlined text-black dark:text-white text-lg">alternate_email</span>
+                                    <Icon name="alternate_email" className="text-black dark:text-white text-lg" />
                                     <span className="text-sm font-medium">code.with.lloyd@gmail.com</span>
                                 </div>
                                 <div className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300">
-                                    <span className="material-symbols-outlined text-black dark:text-white text-lg">location_on</span>
+                                    <Icon name="location_on" className="text-black dark:text-white text-lg" />
                                     <span className="text-sm font-medium">Cebu City, Philippines</span>
                                 </div>
                             </div>

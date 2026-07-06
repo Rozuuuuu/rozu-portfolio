@@ -74,11 +74,12 @@ export default {
         "full": "9999px"
       },
       "fontFamily": {
-        "mono": ["'JetBrains Mono'", "monospace"],
-        "sans": ["'JetBrains Mono'", "'Public Sans'", "system-ui", "sans-serif"],
-        "headline": ["'JetBrains Mono'", "monospace"],
-        "body": ["'Public Sans'", "sans-serif"],
-        "label": ["'JetBrains Mono'", "monospace"]
+        "mono": ["'Geist Mono'", "ui-monospace", "monospace"],
+        "sans": ["'Geist Mono'", "'Geist'", "system-ui", "sans-serif"],
+        "headline": ["'Geist Mono'", "ui-monospace", "monospace"],
+        "body": ["'Geist'", "system-ui", "sans-serif"],
+        "label": ["'Geist Mono'", "ui-monospace", "monospace"],
+        "serif": ["'Source Serif 4'", "Georgia", "serif"]
       },
       "animation": {
         "skeleton": "skeleton-pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite",

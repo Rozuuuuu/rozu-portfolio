@@ -116,7 +116,7 @@
   font-size: 14px;
   letter-spacing: 2px;
   transition: all .15s ease;
-  font-family: 'JetBrains Mono', 'Epilogue', Arial, sans-serif;
+  font-family: 'Geist Mono', ui-monospace, monospace;
 }
 
 /* Light mode text color */

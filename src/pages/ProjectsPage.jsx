@@ -8,6 +8,7 @@ import HoverScrollImage from '../components/HoverScrollImage';
 import ProjectLinks from '../components/ProjectLinks';
 import projects from '../data/projectsData';
 import SEO from '../components/SEO';
+import Icon from '../components/Icon';
 
 /* ─── Tag Pill ─── */
 const Tag = ({ children }) => (
@@ -22,7 +23,7 @@ const FILTERS = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML'];
 /* ─── Placeholder for projects without images ─── */
 const PlaceholderThumb = ({ title }) => (
     <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-300 dark:from-neutral-800 dark:via-neutral-850 dark:to-neutral-900">
-        <span className="material-symbols-outlined text-5xl text-neutral-400 dark:text-neutral-600 mb-3">code</span>
+        <Icon name="code" className="text-5xl text-neutral-400 dark:text-neutral-600 mb-3" />
         <span className="text-xs font-bold text-neutral-500 dark:text-neutral-500 uppercase tracking-widest">{title}</span>
     </div>
 );
@@ -74,7 +75,7 @@ const ProjectCard = ({ project, index }) => {
                 {/* Video indicator */}
                 {hasVideo && (
                     <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full flex items-center gap-1">
-                        <span className="material-symbols-outlined text-white text-sm">play_arrow</span>
+                        <Icon name="play_arrow" className="text-white text-sm" />
                         <span className="text-white text-[10px] font-bold uppercase tracking-wide">Demo</span>
                     </div>
                 )}
@@ -135,7 +136,7 @@ const ProjectsPage = () => {
                                 </p>
                             </div>
                             <div className="hidden lg:flex gap-4 items-center text-black dark:text-white font-bold text-sm pb-4">
-                                <span className="material-symbols-outlined">expand_more</span>
+                                <Icon name="expand_more" />
                                 <span className="uppercase tracking-widest">Scroll to explore</span>
                             </div>
                         </div>
@@ -210,7 +211,7 @@ const ProjectsPage = () => {
 
                                         <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-black dark:text-white">
                                             <span>First AI Project I've Made</span>
-                                            <span className="material-symbols-outlined text-base">smart_toy</span>
+                                            <Icon name="smart_toy" className="text-base" />
                                         </div>
 
                                         <ProjectLinks live={cafeAiProject.live} repo={cafeAiProject.repo} className="mt-6" />
@@ -259,7 +260,7 @@ const ProjectsPage = () => {
 
                         {filtered.length === 0 && (
                             <div className="text-center py-20">
-                                <span className="material-symbols-outlined text-5xl text-neutral-300 dark:text-neutral-600 mb-4 block">search_off</span>
+                                <Icon name="search_off" className="text-5xl text-neutral-300 dark:text-neutral-600 mb-4 block" />
                                 <p className="text-neutral-500 dark:text-neutral-400 font-medium">No projects found for this category.</p>
                             </div>
                         )}

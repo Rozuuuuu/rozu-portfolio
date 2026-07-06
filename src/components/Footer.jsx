@@ -1,3 +1,5 @@
+import Icon from './Icon';
+
 const socials = [
     { label: 'GitHub', href: 'https://github.com/Rozuuuuu' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/lloyd-rosales-a72b9730b/' },
@@ -34,12 +36,12 @@ const Footer = () => {
                                     href="mailto:code.with.lloyd@gmail.com"
                                     className="inline-flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
                                 >
-                                    <span className="material-symbols-outlined text-black dark:text-white text-lg">alternate_email</span>
+                                    <Icon name="alternate_email" className="text-black dark:text-white text-lg" />
                                     code.with.lloyd@gmail.com
                                 </a>
                             </li>
                             <li className="inline-flex items-center gap-3 text-neutral-700 dark:text-neutral-300">
-                                <span className="material-symbols-outlined text-black dark:text-white text-lg">location_on</span>
+                                <Icon name="location_on" className="text-black dark:text-white text-lg" />
                                 Cebu City, Philippines
                             </li>
                         </ul>
@@ -60,7 +62,7 @@ const Footer = () => {
                                         className="inline-flex items-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
                                     >
                                         {label}
-                                        <span className="material-symbols-outlined text-sm">arrow_outward</span>
+                                        <Icon name="arrow_outward" className="text-sm" />
                                     </a>
                                 </li>
                             ))}
@@ -70,10 +72,10 @@ const Footer = () => {
 
                 {/* Bottom bar */}
                 <div className="mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row justify-between items-center gap-3">
-                    <p className="font-['Public_Sans'] text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500">
+                    <p className="font-body text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500">
                         © 2026 Lloyd C. Rosales. All rights reserved.
                     </p>
-                    <p className="font-['Public_Sans'] text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-600">
+                    <p className="font-body text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-600">
                         Built with React · Vite · Tailwind
                     </p>
                 </div>

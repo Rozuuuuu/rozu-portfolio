@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
+import Icon from './Icon';
 
 /**
  * Convert markdown emphasis to plain text with quotes, so the chat never
@@ -190,7 +191,7 @@ const ChatSidebar = ({ isOpen, onClose }) => {
                                     disabled={!inputValue.trim()}
                                     className="absolute right-1.5 top-1.5 bottom-1.5 aspect-square rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
                                 >
-                                    <span className="material-symbols-outlined text-sm">send</span>
+                                    <Icon name="send" className="text-sm" />
                                 </button>
                             </form>
                             <div className="text-center mt-3">

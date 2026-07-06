@@ -5,6 +5,7 @@ import { m, AnimatePresence } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import HoverScrollImage from './HoverScrollImage';
 import projects from '../data/projectsData';
+import Icon from './Icon';
 
 const Projects = () => {
     const [activeFilter, setActiveFilter] = useState('All');
@@ -80,7 +81,7 @@ const Projects = () => {
                                         <HoverScrollImage src={img} alt={title} />
                                     ) : (
                                         <div className="h-64 w-full flex flex-col items-center justify-center bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-300 dark:from-neutral-800 dark:via-neutral-850 dark:to-neutral-900">
-                                            <span className="material-symbols-outlined text-4xl text-neutral-400 dark:text-neutral-600 mb-2">code</span>
+                                            <Icon name="code" className="text-4xl text-neutral-400 dark:text-neutral-600 mb-2" />
                                             <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-500 uppercase tracking-widest">{title}</span>
                                         </div>
                                     )}
@@ -89,7 +90,7 @@ const Projects = () => {
                                     </div>
                                     {media?.type === 'video' && (
                                         <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full flex items-center gap-1">
-                                            <span className="material-symbols-outlined text-white text-sm">play_arrow</span>
+                                            <Icon name="play_arrow" className="text-white text-sm" />
                                             <span className="text-white text-[10px] font-bold uppercase tracking-wide">Demo</span>
                                         </div>
                                     )}
@@ -106,7 +107,7 @@ const Projects = () => {
                 <div className="flex justify-center">
                     <Link to="/projects" className="px-8 py-4 min-h-[44px] border-2 border-black dark:border-white text-black dark:text-white font-bold rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all flex items-center gap-3">
                         View All Projects
-                        <span className="material-symbols-outlined">grid_view</span>
+                        <Icon name="grid_view" />
                     </Link>
                 </div>
             </ScrollReveal>

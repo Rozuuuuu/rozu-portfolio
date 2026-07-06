@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from './Icon';
 
 class ErrorBoundary extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class ErrorBoundary extends React.Component {
         if (this.state.hasError) {
             return (
                 <div className="w-full p-8 border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 rounded-xl text-center my-8">
-                    <span className="material-symbols-outlined text-4xl text-neutral-400 mb-4 block">warning</span>
+                    <Icon name="warning" className="text-4xl text-neutral-400 mb-4 block" />
                     <h3 className="font-headline text-lg font-bold text-black dark:text-white mb-2 tracking-tight">Component Error</h3>
                     <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
                         We encountered an issue loading this section.

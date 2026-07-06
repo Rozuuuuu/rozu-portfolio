@@ -67,7 +67,7 @@ const ContactPage = () => {
                     <div className="mb-20 text-center max-w-3xl mx-auto">
                         <span className="font-label text-black dark:text-white font-bold uppercase tracking-widest text-xs mb-4 block">Get In Touch</span>
                         <h1 className="font-headline text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6 text-black dark:text-white">
-                            Let's build the <span className="text-neutral-400 dark:text-neutral-500 italic">Next Big Thing</span> together.
+                            Let's build the <span className="font-serif text-neutral-400 dark:text-neutral-500 italic">Next Big Thing</span> together.
                         </h1>
                         <p className="font-body text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
                             Open to full-time software roles, internships, and freelance projects. Have an idea or a role in mind? I'd love to hear about it.

@@ -23,7 +23,7 @@ const ConnectWithMe = () => {
                             </span>
                             <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-black dark:text-white mb-6 leading-tight">
                                 Have a project{' '}
-                                <span className="text-neutral-500 dark:text-neutral-400 italic">in mind?</span>
+                                <span className="font-serif text-neutral-500 dark:text-neutral-400 italic">in mind?</span>
                             </h2>
                             <p className="text-neutral-600 dark:text-neutral-400 text-lg mb-8 max-w-lg mx-auto lg:mx-0 font-body">
                                 Open to full-time software roles, internships, and freelance projects — especially on teams that care about design and craft.

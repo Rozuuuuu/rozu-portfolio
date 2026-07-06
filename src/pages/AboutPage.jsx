@@ -155,7 +155,7 @@ const AboutPage = () => {
                                     I champion "clean code" and user-centric systems. I believe that engineering maturity is defined by how we handle trade-offs and operational awareness, not just the features we ship.
                                 </p>
                                 <div className="border-l-2 border-black dark:border-white pl-6 py-2">
-                                    <p className="text-black dark:text-white font-medium italic text-base leading-relaxed">
+                                    <p className="font-serif text-black dark:text-white font-medium italic text-base leading-relaxed">
                                         "Performance is the baseline. Soul is the differentiator."
                                     </p>
                                 </div>

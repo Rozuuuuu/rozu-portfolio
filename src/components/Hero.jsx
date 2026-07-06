@@ -228,8 +228,8 @@ const Hero = ({ revealed }) => {
                     <m.div variants={itemVariants} className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
                         <div className="flex flex-col items-center lg:items-start">
                             {/* Static Greeting */}
-                            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl italic font-semibold text-black dark:text-white mb-2 tracking-wide">
-                                Hello I'm <span className="text-neutral-500 dark:text-neutral-400">Lloyd.</span>
+                            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-semibold text-black dark:text-white mb-2 tracking-wide">
+                                Hello I'm <span className="font-serif italic text-neutral-500 dark:text-neutral-400">Lloyd.</span>
                             </h2>
 
                             {/* Animated cycling text */}
@@ -266,7 +266,7 @@ const Hero = ({ revealed }) => {
                             </div>
                             <div className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:left-4 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6 rounded-xl shadow-xl max-w-[200px] sm:max-w-[240px] z-10 text-left">
                                 <p className="font-label text-[10px] sm:text-xs font-bold uppercase text-black dark:text-white tracking-widest mb-2">Philosophy</p>
-                                <p className="font-body text-xs sm:text-sm font-medium italic text-neutral-600 dark:text-neutral-300 leading-snug">
+                                <p className="font-serif text-xs sm:text-sm font-medium italic text-neutral-600 dark:text-neutral-300 leading-snug">
                                     "Performance is the baseline. Soul is the differentiator."
                                 </p>
                             </div>
@@ -322,7 +322,7 @@ const Hero = ({ revealed }) => {
                             {/* Philosophical Quote */}
                             <div className="absolute -bottom-6 -left-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-6 rounded-xl shadow-xl max-w-[240px] z-10">
                                 <p className="font-label text-xs font-bold uppercase text-black dark:text-white tracking-widest mb-2">Philosophy</p>
-                                <p className="font-body text-sm font-medium italic text-neutral-600 dark:text-neutral-300 leading-snug">
+                                <p className="font-serif text-sm font-medium italic text-neutral-600 dark:text-neutral-300 leading-snug">
                                     "Performance is the baseline. Soul is the differentiator."
                                 </p>
                             </div>

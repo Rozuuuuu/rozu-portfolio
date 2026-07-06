@@ -22,9 +22,21 @@ const FILTERS = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML'];
 
 /* ─── Placeholder for projects without images ─── */
 const PlaceholderThumb = ({ title }) => (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-300 dark:from-neutral-800 dark:via-neutral-850 dark:to-neutral-900">
-        <Icon name="code" className="text-5xl text-neutral-400 dark:text-neutral-600 mb-3" />
-        <span className="text-xs font-bold text-neutral-500 dark:text-neutral-500 uppercase tracking-widest">{title}</span>
+    <div
+        className="relative w-full h-full flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-900 overflow-hidden"
+        style={{
+            backgroundImage:
+                'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+            color: 'rgba(128,128,128,0.12)',
+        }}
+    >
+        <span className="font-headline text-6xl font-black text-neutral-300 dark:text-neutral-700 select-none">
+            {title.charAt(0).toUpperCase()}
+        </span>
+        <span className="mt-2 font-mono text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.25em] px-4 text-center">
+            {title}
+        </span>
     </div>
 );
 
@@ -88,8 +100,12 @@ const ProjectCard = ({ project, index }) => {
                     {project.tags.map(t => <Tag key={t}>{t}</Tag>)}
                 </div>
 
-                <h3 className="text-xl font-black tracking-tight mb-3 text-black dark:text-white uppercase leading-tight">
+                <h3 className="text-xl font-black tracking-tight mb-3 text-black dark:text-white uppercase leading-tight flex items-start justify-between gap-2">
                     {project.title}
+                    <Icon
+                        name="arrow_outward"
+                        className="mt-1 text-base text-neutral-300 dark:text-neutral-600 transition-all duration-300 group-hover:text-black dark:group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
                 </h3>
 
                 <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed flex-1">
@@ -129,7 +145,7 @@ const ProjectsPage = () => {
                                 <span className="inline-block py-1 px-3 mb-4 rounded-full bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black text-xs font-bold uppercase tracking-widest">Selected Works</span>
                                 <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-6">
                                     CREATIVE <br />
-                                    <span className="text-neutral-400 dark:text-neutral-500 italic">SOLUTIONS.</span>
+                                    <span className="font-serif text-neutral-400 dark:text-neutral-500 italic">Solutions.</span>
                                 </h1>
                                 <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-medium">
                                     A curated collection of real-world projects — from e‑commerce platforms serving thousands of customers, to AI‑powered prototypes and full‑stack applications.
@@ -250,7 +266,7 @@ const ProjectsPage = () => {
 
                     {/* Grid */}
                     <section className="max-w-7xl mx-auto px-6 md:px-8">
-                        <m.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <m.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             <AnimatePresence mode="popLayout">
                                 {filtered.map((project, i) => (
                                     <ProjectCard key={project.slug} project={project} index={i} />

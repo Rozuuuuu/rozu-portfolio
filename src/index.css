@@ -219,3 +219,31 @@ html {
 .dark ::-webkit-scrollbar-thumb:hover {
     background: #aaaaaa;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Accessibility
+   ═══════════════════════════════════════════════════════════ */
+
+/* Visible keyboard focus without affecting mouse users */
+:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.dark :focus-visible {
+    outline-color: #fff;
+}
+
+/* Respect prefers-reduced-motion for CSS transitions/animations
+   (framer-motion is handled by MotionConfig in App.jsx) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

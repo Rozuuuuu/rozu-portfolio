@@ -255,7 +255,7 @@
   letter-spacing: 3px;
   text-decoration: none;
   font-size: var(--fs-size);
-  font-family: "Arial";
+  font-family: 'Geist Mono', ui-monospace, monospace;
   position: relative;
   text-transform: uppercase;
   color: transparent;

@@ -46,7 +46,7 @@ const AchievementsPage = () => {
                                 <div className="relative z-10 max-w-2xl">
                                     <span className="font-label text-black dark:text-white font-bold uppercase tracking-widest text-xs mb-4 block">Milestones &amp; Recognition</span>
                                     <h1 className="font-headline text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6 text-black dark:text-white">
-                                        Earned in the{' '}<span className="text-neutral-400 dark:text-neutral-500 italic">Arena.</span>
+                                        Earned in the{' '}<span className="font-serif text-neutral-400 dark:text-neutral-500 italic">Arena.</span>
                                     </h1>
                                     <p className="font-body text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">A record of competitive victories, design recognition, and professional certifications — each one a proof of work.</p>
                                 </div>

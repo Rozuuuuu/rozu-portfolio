@@ -1,6 +1,6 @@
 import { Suspense, lazy, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
+import { AnimatePresence, LazyMotion, domAnimation, MotionConfig } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import { DarkModeProvider } from './context/DarkModeContext';
 import Navbar from './components/Navbar';
@@ -32,6 +32,7 @@ const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 const SkillsPage = lazy(() => import('./pages/SkillsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Content-aware fallback for below-the-fold sections
 const BelowFoldSkeleton = () => (
@@ -100,6 +101,7 @@ function AnimatedRoutes({ preloaderDone }) {
                     <Route path="/achievements" element={<AchievementsPage />} />
                     <Route path="/skills" element={<SkillsPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </Suspense>
         </AnimatePresence>
@@ -113,8 +115,10 @@ function App() {
     const handlePreloaderComplete = useCallback(() => setPreloaderDone(true), []);
 
     // [PERF FIX 5] Framer Motion LazyMotion optimization
+    // MotionConfig honors the user's prefers-reduced-motion setting globally
     return (
         <LazyMotion features={domAnimation} strict>
+            <MotionConfig reducedMotion="user">
             <HelmetProvider>
                 <DarkModeProvider>
                     <BrowserRouter>
@@ -136,6 +140,7 @@ function App() {
                     </BrowserRouter>
                 </DarkModeProvider>
             </HelmetProvider>
+            </MotionConfig>
         </LazyMotion>
     );
 }

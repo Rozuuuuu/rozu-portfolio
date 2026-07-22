@@ -158,9 +158,9 @@ const ContributionGraph = () => {
                                     </span>
                                 </p>
 
-                                {/* Heatmap — scrolls horizontally on small screens */}
+                                {/* Heatmap — centered; scrolls horizontally on small screens */}
                                 <div className="overflow-x-auto pb-2">
-                                    <div className="flex gap-[3px] w-max">
+                                    <div className="flex gap-[3px] w-max mx-auto">
                                         {weeks.map((week, wi) => (
                                             <div key={wi} className="flex flex-col gap-[3px]">
                                                 {week.map((day, di) => (
@@ -177,7 +177,7 @@ const ContributionGraph = () => {
                                 </div>
 
                                 {/* Legend */}
-                                <div className="flex items-center gap-2 mt-4 text-[10px] text-neutral-400 dark:text-neutral-500">
+                                <div className="flex items-center justify-center gap-2 mt-4 text-[10px] text-neutral-400 dark:text-neutral-500">
                                     <span>less</span>
                                     {ramp.map((color, i) => (
                                         <span

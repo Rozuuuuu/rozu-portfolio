@@ -137,7 +137,8 @@ const Projects = () => {
                     <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">Featured Projects</h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                {/* items-start so expanding one card's accordion doesn't stretch its row-mates */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 mb-16">
                     {displayProjects.map((project) => (
                         <FeaturedProjectCard key={project.slug} project={project} />
                     ))}

@@ -89,12 +89,25 @@ const ContributionGraph = () => {
         return () => { cancelled = true; };
     }, []);
 
-    // Chunk the flat day list into columns of 7 (one week per column).
+    // Show only April–July of the most recent year in the data.
+    let rangeDays = [];
+    let rangeTotal = 0;
+    let rangeLabel = 'Apr–Jul';
+    if (state.data?.days?.length) {
+        const latestYear = Math.max(...state.data.days.map((d) => Number(d.date.slice(0, 4))));
+        rangeDays = state.data.days.filter((d) => {
+            const year = Number(d.date.slice(0, 4));
+            const month = Number(d.date.slice(5, 7));
+            return year === latestYear && month >= 4 && month <= 7;
+        });
+        rangeTotal = rangeDays.reduce((sum, d) => sum + d.contributionCount, 0);
+        rangeLabel = `Apr–Jul ${latestYear}`;
+    }
+
+    // Chunk the filtered days into columns of 7 (one week per column).
     const weeks = [];
-    if (state.data?.days) {
-        for (let i = 0; i < state.data.days.length; i += 7) {
-            weeks.push(state.data.days.slice(i, i + 7));
-        }
+    for (let i = 0; i < rangeDays.length; i += 7) {
+        weeks.push(rangeDays.slice(i, i + 7));
     }
 
     return (
@@ -109,7 +122,7 @@ const ContributionGraph = () => {
                         Build Activity
                     </h2>
                     <p className="text-neutral-500 dark:text-neutral-400 mt-4 max-w-xl text-sm leading-relaxed">
-                        A year of public GitHub contributions — pulled live, server-side, and rendered in the site's own palette.
+                        Public GitHub contributions from April to July — pulled live, server-side, and rendered in the site's own palette.
                     </p>
                 </div>
 
@@ -139,9 +152,9 @@ const ContributionGraph = () => {
                         {state.status === 'success' && (
                             <>
                                 <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-5">
-                                    <span className="text-neutral-400 dark:text-neutral-600">$</span> git log --oneline --since=1.year{' '}
+                                    <span className="text-neutral-400 dark:text-neutral-600">$</span> git log --oneline --after=&quot;apr 1&quot;{' '}
                                     <span className="text-black dark:text-white">
-                                        · {state.data.total.toLocaleString()} contributions
+                                        · {rangeTotal.toLocaleString()} contributions · {rangeLabel}
                                     </span>
                                 </p>
 
@@ -153,7 +166,7 @@ const ContributionGraph = () => {
                                                 {week.map((day, di) => (
                                                     <div
                                                         key={di}
-                                                        className="w-[10px] h-[10px] rounded-[2px]"
+                                                        className="w-[11px] h-[11px] rounded-full"
                                                         style={{ backgroundColor: ramp[levelFor(day?.contributionCount ?? 0)] }}
                                                         title={`${day.contributionCount} on ${day.date}`}
                                                     />
@@ -169,7 +182,7 @@ const ContributionGraph = () => {
                                     {ramp.map((color, i) => (
                                         <span
                                             key={i}
-                                            className="w-[10px] h-[10px] rounded-[2px]"
+                                            className="w-[11px] h-[11px] rounded-full"
                                             style={{ backgroundColor: color }}
                                         />
                                     ))}

@@ -1,10 +1,31 @@
 import { Link, useLocation } from 'react-router-dom';
 // [PERF FIX 5] Framer Motion LazyMotion optimization
 import { m, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
     const location = useLocation();
     const active = location.pathname;
+
+    // Auto-hide the floating dock while scrolling down so it never obscures
+    // content mid-page (it reappears on scroll-up or near the top).
+    const [onScreen, setOnScreen] = useState(true);
+    useEffect(() => {
+        let lastY = window.scrollY;
+        const handleScroll = () => {
+            const y = window.scrollY;
+            if (y < 120) {
+                setOnScreen(true);
+            } else if (y > lastY + 6) {
+                setOnScreen(false); // scrolling down
+            } else if (y < lastY - 6) {
+                setOnScreen(true); // scrolling up
+            }
+            lastY = y;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const navItems = [
         {
@@ -66,7 +87,7 @@ const BottomNav = ({ revealed, onOpenMenu, onOpenChat }) => {
 
     return (
         <AnimatePresence>
-            {revealed && (
+            {revealed && onScreen && (
                 <m.nav
                     initial={{ y: 100, opacity: 0, x: "-50%" }}
                     animate={{ y: 0, opacity: 1, x: "-50%" }}

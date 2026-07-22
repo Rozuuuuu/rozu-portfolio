@@ -54,7 +54,7 @@ const Projects = () => {
 
                 <m.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <AnimatePresence mode="popLayout">
-                        {displayProjects.map(({ slug, tag, img, media, title, desc }) => (
+                        {displayProjects.map(({ slug, tag, img, media, title, desc, decisions, metrics }) => (
                             <m.div 
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -97,7 +97,44 @@ const Projects = () => {
                                 </div>
                                 <div className="p-8 flex-grow flex flex-col">
                                     <h3 className="text-xl font-black mb-3 text-black dark:text-white">{title}</h3>
-                                    <p className="text-neutral-500 dark:text-neutral-400 text-sm mb-6 flex-grow leading-relaxed">{desc}</p>
+                                    <p className="text-neutral-500 dark:text-neutral-400 text-sm mb-6 leading-relaxed">{desc}</p>
+
+                                    {/* Key engineering decisions (real tradeoffs) */}
+                                    {decisions?.length > 0 && (
+                                        <div className="mb-6">
+                                            <span className="block text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3">
+                                                Decisions
+                                            </span>
+                                            <ul className="space-y-2">
+                                                {decisions.map((d, i) => (
+                                                    <li key={i} className="flex gap-2 text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                                                        <span aria-hidden="true" className="mt-[2px] text-neutral-400 dark:text-neutral-600 font-mono">→</span>
+                                                        <span>{d}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {/* Terminal-style metrics readout */}
+                                    {metrics?.length > 0 && (
+                                        <div className="mt-auto rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-950 dark:bg-black overflow-hidden font-mono">
+                                            <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/10">
+                                                <span className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                                                <span className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                                                <span className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                                                <span className="ml-2 text-[10px] text-white/40 tracking-wide">metrics.log</span>
+                                            </div>
+                                            <div className="p-3 space-y-1">
+                                                {metrics.map((m) => (
+                                                    <div key={m.label} className="flex items-baseline justify-between text-[11px]">
+                                                        <span className="text-white/45">{m.label}</span>
+                                                        <span className="text-white font-bold">{m.value}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </m.div>
                         ))}

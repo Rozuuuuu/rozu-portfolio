@@ -1,4 +1,5 @@
 import ScrollReveal from './ScrollReveal';
+import Icon from './Icon';
 
 const Experience = () => {
     return (
@@ -12,10 +13,10 @@ const Experience = () => {
                     </div>
                     <div className="lg:col-span-2 space-y-4">
                         {[
-                            { role: 'SAP ABAP Trainee / Program Delegate', company: 'Accenture · Internship | Cebu, Central Visayas, Philippines', period: 'Feb 2026 - Apr 2026', desc: 'Selected as a delegate for a 320-hour intensive SAP Advanced Business Application Programming (ABAP) bootcamp through Accenture Technology Academy. Gained hands-on experience with SAP ABAP, the proprietary language for developing and customizing enterprise SAP applications, alongside enterprise software development practices and methodologies.' },
-                            { role: 'Technical Manager | Full Stack Developer', company: 'Buy@ndBuild · Contract | Cebu, Central Visayas, Philippines · Hybrid', period: 'May 2025 - Mar 2026', desc: 'Architected and led the end-to-end implementation of a real-time logistics dashboard, defining system architecture and selecting the full tech stack. Delivered a production application adopted by internal operations teams, owning it from initial design through deployment. Integrated AI-assisted development tools — Claude, Gemini, and Codex — for code generation, review, and debugging to accelerate delivery, while managing technical decisions and timelines independently.' },
-                            { role: 'Full Stack JavaScript Developer', company: 'Self Employed · Freelance | Cebu, Central Visayas, Philippines · Remote', period: 'Feb 2024 - Nov 2025', desc: 'Developed core user-facing features and administered full-stack system health across multiple client projects, sourced through direct outreach and referrals, maintaining 99.9% uptime. Owned feature rollouts end to end and built RESTful APIs and webhook integrations to connect third-party services and automate event-driven workflows. Worked directly with clients to scope, deliver, and iterate on production features under real deadlines.' },
-                        ].map(({ role, company, period, desc }) => (
+                            { role: 'SAP ABAP Trainee / Program Delegate', company: 'Accenture · Internship | Cebu, Central Visayas, Philippines', period: 'Feb 2026 - Apr 2026', desc: 'Selected as a delegate for a 320-hour intensive SAP Advanced Business Application Programming (ABAP) bootcamp through Accenture Technology Academy. Gained hands-on experience with SAP ABAP, the proprietary language for developing and customizing enterprise SAP applications, alongside enterprise software development practices and methodologies.', note: 'Overlapped the final stretch of the Buy@ndBuild contract below.' },
+                            { role: 'Technical Manager | Full Stack Developer', company: 'Buy@ndBuild · Contract | Cebu, Central Visayas, Philippines · Hybrid', period: 'May 2025 - Mar 2026', desc: 'Architected and led the end-to-end implementation of a real-time logistics dashboard, defining system architecture and selecting the full tech stack. Delivered a production application adopted by internal operations teams, owning it from initial design through deployment. Integrated AI-assisted development tools — Claude, Gemini, and Codex — for code generation, review, and debugging to accelerate delivery, while managing technical decisions and timelines independently.', note: 'Concurrent with freelance contract work.' },
+                            { role: 'Full Stack JavaScript Developer', company: 'Self Employed · Freelance | Cebu, Central Visayas, Philippines · Remote', period: 'Feb 2024 - Nov 2025', desc: 'Developed core user-facing features and administered full-stack system health across multiple client projects, sourced through direct outreach and referrals, maintaining 99.9% uptime. Owned feature rollouts end to end and built RESTful APIs and webhook integrations to connect third-party services and automate event-driven workflows. Worked directly with clients to scope, deliver, and iterate on production features under real deadlines.', note: 'Ran alongside the Buy@ndBuild role from mid-2025.' },
+                        ].map(({ role, company, period, desc, note }) => (
                             <div key={role} className="bg-white dark:bg-neutral-900 p-8 rounded-lg transition-all hover:translate-x-2 border border-neutral-200 dark:border-neutral-800">
                                 <div className="flex flex-wrap justify-between items-start mb-4 gap-3">
                                     <div>
@@ -25,6 +26,12 @@ const Experience = () => {
                                     <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest bg-neutral-100 dark:bg-neutral-800 px-3 py-1 rounded">{period}</span>
                                 </div>
                                 <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">{desc}</p>
+                                {note && (
+                                    <p className="mt-4 flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400">
+                                        <Icon name="info" className="text-sm text-neutral-400 dark:text-neutral-500 shrink-0" />
+                                        <span className="font-serif italic">{note}</span>
+                                    </p>
+                                )}
                             </div>
                         ))}
                     </div>

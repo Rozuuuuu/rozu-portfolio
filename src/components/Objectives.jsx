@@ -25,9 +25,29 @@ const objectives = [
     },
 ];
 
+// Three distinct monochrome icon treatments so the cards don't read as identical.
+const ICON_VARIANTS = [
+    // 0 — solid
+    {
+        box: 'rounded-lg bg-black dark:bg-white',
+        icon: 'text-white dark:text-black',
+    },
+    // 1 — outlined
+    {
+        box: 'rounded-xl border-2 border-black dark:border-white bg-transparent',
+        icon: 'text-black dark:text-white',
+    },
+    // 2 — soft / round
+    {
+        box: 'rounded-full bg-neutral-200 dark:bg-neutral-800 ring-1 ring-inset ring-black/10 dark:ring-white/10',
+        icon: 'text-black dark:text-white',
+    },
+];
+
 const ObjectiveCard = ({ objective, index }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: '-60px' });
+    const variant = ICON_VARIANTS[index % ICON_VARIANTS.length];
 
     return (
         <m.div
@@ -51,18 +71,18 @@ const ObjectiveCard = ({ objective, index }) => {
                     {String(index + 1).padStart(2, '0')}
                 </span>
 
-                {/* Icon */}
-                <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center mb-6 group-hover:bg-black group-hover:dark:bg-white transition-colors duration-300">
-                    <Icon name={objective.icon} className="text-black dark:text-white text-lg group-hover:text-white group-hover:dark:text-black transition-colors duration-300" />
+                {/* Icon — treatment varies per card so they read as distinct */}
+                <div className={`w-11 h-11 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-105 ${variant.box}`}>
+                    <Icon name={objective.icon} className={`text-xl ${variant.icon}`} />
                 </div>
 
-                {/* Title */}
+                {/* Title — pure black/white for maximum contrast (WCAG AA+) */}
                 <h3 className="font-headline text-lg font-black tracking-tight text-black dark:text-white mb-3">
                     {objective.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                {/* Description — bumped to neutral-600/300 to clear WCAG AA on the card */}
+                <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
                     {objective.description}
                 </p>
 

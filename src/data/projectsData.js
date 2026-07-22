@@ -18,6 +18,17 @@ const projects = [
         desc: "A public-transport navigator for Metro Cebu — answering \"where do I ride, how much, and how long?\" Built as a three-service monorepo: a Go + PostGIS engine for multi-leg Dijkstra routing, LTFRB fares, and live congestion modeling; a Python/LangChain/Gemini AI transit guide grounded by a Cebu contextual fence; and a Next.js + MapLibre web app with offline PMTiles maps and proximity-based \"Lugar lang\" etiquette cues.",
         live: 'https://sugboway-web.onrender.com',
         repo: '',
+        decisions: [
+            'Chose PostGIS + custom Dijkstra over a hosted routing API because multi-leg jeepney/bus fares and LTFRB rules needed graph logic a generic API can’t model.',
+            'Chose offline PMTiles over live map tiles because Cebu commuters often navigate on spotty mobile data.',
+            'Chose a Gemini contextual fence over an open LLM prompt so transit answers stay grounded to real routes, not hallucinations.',
+        ],
+        metrics: [
+            { label: 'uptime', value: '99.9%' },
+            { label: 'routing', value: 'multi-leg' },
+            { label: 'maps', value: 'offline' },
+            { label: 'services', value: '3' },
+        ],
     },
     {
         slug: 'gazbeat',
@@ -28,6 +39,17 @@ const projects = [
         desc: 'Built and deployed a multi‑service e‑commerce platform for an authorized LPG gas distributor, integrating ukay‑ukay and mini‑mart operations to serve over 5,000 customers with a 98% satisfaction rate.',
         live: 'https://gazbeat.com',
         repo: '',
+        decisions: [
+            'Chose one unified multi-vendor catalog over three separate storefronts because a single account beat juggling logins for repeat customers.',
+            'Chose a custom order/inventory model over an off-the-shelf cart because LPG cylinder exchange (deposit + refill) doesn’t fit a standard checkout flow.',
+            'Chose owned hosting on a custom domain over a marketplace to keep the brand and margins with the distributor.',
+        ],
+        metrics: [
+            { label: 'customers', value: '5,000+' },
+            { label: 'satisfaction', value: '98%' },
+            { label: 'verticals', value: '3' },
+            { label: 'uptime', value: '99.9%' },
+        ],
     },
     {
         slug: 'habicheck',
@@ -38,6 +60,17 @@ const projects = [
         desc: 'Engineered a full‑stack habit‑tracking application that empowers users to design custom, scored daily questions for personalized accountability and progress monitoring.',
         live: 'https://cloned-example.lovable.app',
         repo: '',
+        decisions: [
+            'Chose user-defined scored questions over fixed habit templates because accountability sticks when the metrics are the user’s own.',
+            'Chose a daily-snapshot scoring model over cumulative streaks so one missed day doesn’t erase weeks of progress.',
+            'Chose a normalized questions/answers schema over one row per habit so scoring and history queries stay fast as question sets grow.',
+        ],
+        metrics: [
+            { label: 'scoring', value: 'daily' },
+            { label: 'questions', value: 'custom' },
+            { label: 'load', value: '<1s' },
+            { label: 'uptime', value: '99.9%' },
+        ],
     },
     {
         slug: 'living-journal',

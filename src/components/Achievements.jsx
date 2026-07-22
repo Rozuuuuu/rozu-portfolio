@@ -27,7 +27,7 @@ const Achievements = () => {
                             <div className="h-48 bg-neutral-200 dark:bg-neutral-800 relative overflow-hidden">
                                 {/* [PERF FIX 4] Image lazy loading and dimensions */}
                                 <img
-                                    className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
+                                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
                                     src={img}
                                     alt={title}
                                     width="800"
@@ -35,11 +35,15 @@ const Achievements = () => {
                                     loading="lazy"
                                     decoding="async"
                                 />
-                                <div className="absolute inset-0 bg-black/5 dark:bg-white/5 mix-blend-overlay"></div>
+                                {/* Legibility scrim behind the overlaid label */}
+                                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+                                {/* Overlaid label — stays readable over busy photos thanks to the scrim */}
+                                <span className="absolute bottom-3 left-4 right-4 text-white text-xs uppercase tracking-widest font-bold drop-shadow-sm">
+                                    {subtitle}
+                                </span>
                             </div>
                             {/* Content */}
                             <div className="p-8">
-                                <div className="text-neutral-500 dark:text-neutral-400 text-xs uppercase tracking-widest font-bold mb-2">{subtitle}</div>
                                 <h3 className="text-xl font-black text-black dark:text-white leading-snug">{title}</h3>
                             </div>
                         </div>

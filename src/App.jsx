@@ -16,13 +16,14 @@ import ScrollToTop from './components/ScrollToTop';
 
 // Eagerly loaded components for initial render (above-the-fold)
 import Hero from './components/Hero';
-import Objectives from './components/Objectives';
 
 // Lazy loaded components for below-the-fold and subpages
+const Projects = lazy(() => import('./components/Projects'));
 const TechnicalImpact = lazy(() => import('./components/TechnicalImpact'));
+const ContributionGraph = lazy(() => import('./components/ContributionGraph'));
 const Experience = lazy(() => import('./components/Experience'));
 const TechnicalArsenal = lazy(() => import('./components/TechnicalArsenal'));
-const Projects = lazy(() => import('./components/Projects'));
+const Objectives = lazy(() => import('./components/Objectives'));
 const Achievements = lazy(() => import('./components/Achievements'));
 const ConnectWithMe = lazy(() => import('./components/ConnectWithMe'));
 
@@ -60,16 +61,18 @@ function HomePage({ revealed }) {
                 description="Lloyd Rosales is a full-stack software engineer specializing in modern web applications, scalable systems, and cross-platform mobile apps." 
                 path="/" 
             />
-            {/* Hero and Objectives are eagerly loaded for fast LCP */}
+            {/* Hero is eagerly loaded for fast LCP */}
             <Hero revealed={revealed} />
-            <Objectives />
-            
-            {/* Below the fold content is lazy loaded with content-aware skeletons */}
+
+            {/* Below the fold content is lazy loaded with content-aware skeletons.
+                Order leads with proof (real projects + metrics) before philosophy. */}
             <Suspense fallback={<BelowFoldSkeleton />}>
-                <TechnicalImpact />
-                <TechnicalArsenal />
-                <Experience />
                 <Projects />
+                <TechnicalImpact />
+                <ContributionGraph />
+                <Experience />
+                <TechnicalArsenal />
+                <Objectives />
                 <Achievements />
                 <ConnectWithMe />
             </Suspense>

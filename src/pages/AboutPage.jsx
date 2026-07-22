@@ -138,13 +138,52 @@ const AboutPage = () => {
                     </section>
                 </ScrollReveal>
 
+                {/* ─── Education ─── */}
+                <ScrollReveal>
+                    <section className="py-20 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800">
+                        <div className="max-w-4xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
+                            <div>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
+                                    02 — Education
+                                </span>
+                                <h2 className="text-2xl font-black tracking-tight mt-2 text-black dark:text-white font-headline">
+                                    Academic Foundation
+                                </h2>
+                            </div>
+                            <div className="space-y-6">
+                                <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6 flex items-start justify-between gap-4">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center flex-shrink-0">
+                                            <Icon name="workspace_premium" className="text-black dark:text-white text-lg" />
+                                        </div>
+                                        <div>
+                                            <h3 className="font-headline text-base font-bold text-black dark:text-white">
+                                                BS in Computer Science
+                                            </h3>
+                                            <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+                                                University of Southern Philippines Foundation
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <span className="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-[10px] font-bold uppercase tracking-widest text-black dark:text-white whitespace-nowrap flex-shrink-0">
+                                        Graduate
+                                    </span>
+                                </div>
+                                <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed text-sm">
+                                    A Computer Science degree grounded in algorithms, data structures, and system design — sharpened outside the classroom through hackathons and competitions at USPF, where I placed in multiple College of Computer Studies events.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </ScrollReveal>
+
                 {/* ─── Professional Philosophy ─── */}
                 <ScrollReveal>
                     <section className="py-20 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950">
                         <div className="max-w-4xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
                             <div>
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                                    02 — Philosophy
+                                    03 — Philosophy
                                 </span>
                                 <h2 className="text-2xl font-black tracking-tight mt-2 text-black dark:text-white font-headline">
                                     How I Build
@@ -173,7 +212,7 @@ const AboutPage = () => {
                         <div className="max-w-4xl mx-auto">
                             <div className="mb-12">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                                    03 — Offline
+                                    04 — Offline
                                 </span>
                                 <h2 className="text-2xl font-black tracking-tight mt-2 text-black dark:text-white font-headline">
                                     Beyond the Terminal

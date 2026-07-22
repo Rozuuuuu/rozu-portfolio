@@ -7,9 +7,8 @@ import HoverScrollImage from './HoverScrollImage';
 import projects from '../data/projectsData';
 import Icon from './Icon';
 
-const FeaturedProjectCard = ({ project }) => {
+const FeaturedProjectCard = ({ project, open, onToggle }) => {
     const { tag, img, media, title, desc, decisions, metrics } = project;
-    const [open, setOpen] = useState(false);
     const hasDetails = decisions?.length > 0 || metrics?.length > 0;
 
     return (
@@ -55,7 +54,7 @@ const FeaturedProjectCard = ({ project }) => {
                         {/* Accordion trigger */}
                         <button
                             type="button"
-                            onClick={() => setOpen(o => !o)}
+                            onClick={onToggle}
                             aria-expanded={open}
                             className="w-full flex items-center justify-between gap-2 text-[11px] font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
                         >
@@ -129,6 +128,10 @@ const Projects = () => {
     // Featured = the first three projects. "View All Projects" links to the full list.
     const displayProjects = projects.slice(0, 3);
 
+    // Single-open accordion: only the card you click is expanded. Opening one
+    // closes any other, and clicking the open card collapses it.
+    const [openSlug, setOpenSlug] = useState(null);
+
     return (
         <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="projects">
             <ScrollReveal>
@@ -140,7 +143,12 @@ const Projects = () => {
                 {/* items-start so expanding one card's accordion doesn't stretch its row-mates */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 mb-16">
                     {displayProjects.map((project) => (
-                        <FeaturedProjectCard key={project.slug} project={project} />
+                        <FeaturedProjectCard
+                            key={project.slug}
+                            project={project}
+                            open={openSlug === project.slug}
+                            onToggle={() => setOpenSlug((cur) => (cur === project.slug ? null : project.slug))}
+                        />
                     ))}
                 </div>
 

@@ -89,25 +89,12 @@ const ContributionGraph = () => {
         return () => { cancelled = true; };
     }, []);
 
-    // Show only April–July of the most recent year in the data.
-    let rangeDays = [];
-    let rangeTotal = 0;
-    let rangeLabel = 'Apr–Jul';
-    if (state.data?.days?.length) {
-        const latestYear = Math.max(...state.data.days.map((d) => Number(d.date.slice(0, 4))));
-        rangeDays = state.data.days.filter((d) => {
-            const year = Number(d.date.slice(0, 4));
-            const month = Number(d.date.slice(5, 7));
-            return year === latestYear && month >= 4 && month <= 7;
-        });
-        rangeTotal = rangeDays.reduce((sum, d) => sum + d.contributionCount, 0);
-        rangeLabel = `Apr–Jul ${latestYear}`;
-    }
-
-    // Chunk the filtered days into columns of 7 (one week per column).
+    // Chunk the flat day list into columns of 7 (one week per column).
     const weeks = [];
-    for (let i = 0; i < rangeDays.length; i += 7) {
-        weeks.push(rangeDays.slice(i, i + 7));
+    if (state.data?.days) {
+        for (let i = 0; i < state.data.days.length; i += 7) {
+            weeks.push(state.data.days.slice(i, i + 7));
+        }
     }
 
     return (
@@ -122,7 +109,7 @@ const ContributionGraph = () => {
                         Build Activity
                     </h2>
                     <p className="text-neutral-500 dark:text-neutral-400 mt-4 max-w-xl text-sm leading-relaxed">
-                        Public GitHub contributions from April to July — pulled live, server-side, and rendered in the site's own palette.
+                        A year of public GitHub contributions — pulled live, server-side, and rendered in the site's own palette.
                     </p>
                 </div>
 
@@ -151,11 +138,8 @@ const ContributionGraph = () => {
 
                         {state.status === 'success' && (
                             <>
-                                <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-5">
-                                    <span className="text-neutral-400 dark:text-neutral-600">$</span> git log --oneline --after=&quot;apr 1&quot;{' '}
-                                    <span className="text-black dark:text-white">
-                                        · {rangeTotal.toLocaleString()} contributions · {rangeLabel}
-                                    </span>
+                                <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-5 text-center">
+                                    <span className="text-black dark:text-white font-bold">{state.data.total.toLocaleString()}</span> contributions in the last year
                                 </p>
 
                                 {/* Heatmap — centered; scrolls horizontally on small screens */}

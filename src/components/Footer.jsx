@@ -2,7 +2,7 @@ import Icon from './Icon';
 
 const socials = [
     { label: 'GitHub', href: 'https://github.com/Rozuuuuu' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/lloyd-rosales-a72b9730b/' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/lloyd-rosales-937348422/' },
     { label: 'Instagram', href: 'https://www.instagram.com/7lydros/?hl=en' },
 ];
 

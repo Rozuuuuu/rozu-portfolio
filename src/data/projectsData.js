@@ -120,7 +120,7 @@ const projects = [
         title: 'TPC Library System',
         desc: 'Constructed a comprehensive library management system utilizing the Laravel framework (PHP) and Livewire for a seamless, database‑driven user experience.',
         live: '',
-        repo: '',
+        repo: 'https://github.com/Rozuuuuu/library-tpc',
     },
     {
         slug: 'livora',

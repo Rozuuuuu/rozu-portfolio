@@ -124,9 +124,14 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
     );
 };
 
+// Featured = these three, in this order — independent of the full list's order
+// on the Projects page. "View All Projects" links to that full list.
+const FEATURED_SLUGS = ['sugboway', 'ye-ai', 'aria-meridian-estates'];
+
 const Projects = () => {
-    // Featured = the first three projects. "View All Projects" links to the full list.
-    const displayProjects = projects.slice(0, 3);
+    const displayProjects = FEATURED_SLUGS
+        .map(slug => projects.find(p => p.slug === slug))
+        .filter(Boolean);
 
     // Single-open accordion: only the card you click is expanded. Opening one
     // closes any other, and clicking the open card collapses it.

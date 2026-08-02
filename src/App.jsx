@@ -57,7 +57,7 @@ function HomePage({ revealed }) {
     return (
         <div style={{ overflow: 'clip' }}>
             <SEO 
-                title="Lloyd C. Rosales | Software Engineer" 
+                title="Lloyd C. Rosales | Software Developer"
                 description="Lloyd Rosales is a full-stack software engineer specializing in modern web applications, scalable systems, and cross-platform mobile apps." 
                 path="/" 
             />

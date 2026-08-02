@@ -65,9 +65,9 @@ const AboutPage = () => {
     return (
         <PageTransition>
             <SEO 
-                title="About - Lloyd C. Rosales" 
-                description="Learn more about Lloyd Rosales, a software engineer passionate about creating intuitive user experiences and robust architectures." 
-                path="/about" 
+                title="About - Lloyd C. Rosales"
+                description="Lloyd C. Rosales is a full-stack software developer based in Cebu, Philippines, specializing in modern web applications, scalable systems, and AI-integrated products."
+                path="/about"
             />
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
                 {/* ─── Page Hero ─── */}
@@ -109,7 +109,7 @@ const AboutPage = () => {
                             variants={itemVariants}
                             className="mt-6 text-neutral-500 dark:text-neutral-400 text-lg leading-relaxed max-w-2xl"
                         >
-                            A developer who cares as much about how software feels to use as how it's built — clean under the hood, intuitive on the surface.
+                            <span className="text-black dark:text-white font-semibold">Lloyd C. Rosales is a full-stack software developer based in Cebu, Philippines</span>, specializing in modern web applications, scalable systems, and AI-integrated products — a developer who cares as much about how software feels to use as how it's built.
                         </m.p>
                     </m.div>
                 </section>

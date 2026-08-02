@@ -11,6 +11,13 @@
     <meta name="author" content="Lloyd C. Rosales" />
     <meta name="theme-color" content="#000000" />
 
+    <!-- Search engine verification.
+         Google: Search Console → Add property → URL prefix (https://lloydrosales.com) → "HTML tag" → copy the content value below.
+         Bing:   Bing Webmaster Tools → Add site → "HTML Meta Tag" → copy the content value below.
+         Replace the REPLACE_WITH_* placeholders, then redeploy. Leave the tags in place permanently. -->
+    <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_CODE" />
+    <meta name="msvalidate.01" content="REPLACE_WITH_BING_CODE" />
+
     <!-- Open Graph / Facebook / LinkedIn (static defaults for social scrapers) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Lloyd C. Rosales" />
@@ -55,10 +62,68 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://lloydrosales.com/#person",
       "name": "Lloyd C. Rosales",
+      "alternateName": "Lloyd Rosales",
+      "givenName": "Lloyd",
+      "familyName": "Rosales",
       "url": "https://lloydrosales.com/",
-      "image": "https://lloydrosales.com/logo.png",
+      "image": "https://lloydrosales.com/lloyd-pic.png",
       "jobTitle": "Software Developer",
+      "description": "Lloyd C. Rosales is a full-stack software developer based in Cebu, Philippines, specializing in modern web applications, scalable systems, and AI-integrated products.",
+      "nationality": "Filipino",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cebu City",
+        "addressRegion": "Central Visayas",
+        "addressCountry": "PH"
+      },
+      "knowsAbout": [
+        "Full-Stack Web Development",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "Python",
+        "AI Integration",
+        "Cross-Platform Mobile Development",
+        "Cloud Architecture",
+        "SAP ABAP"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Southern Philippines Foundation",
+        "sameAs": "https://uspf.edu.ph/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BS in Computer Science"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "TOPCIT Level 3 — Competent Achiever"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "TESDA NC II — Computer Systems Servicing"
+        }
+      ],
+      "award": [
+        "2nd Runner-Up & Best in Collaborative Catalysts — PhilTech Innovathon 2026 (National Level, BGC, Taguig)",
+        "3rd Place — HackEstate PropTech Hackathon 2025",
+        "2nd Place — CCS Days Hackathon, USPF 2023",
+        "2nd Runner-Up — CCS Days Hackathon, USPF 2025",
+        "2nd Runner-Up — CCS Days Hackathon, USPF 2026",
+        "Top UX Interface — SinulogFest PropTech Hackathon 2026",
+        "Best in UI/UX Design — CCS Days Hackathon 2025",
+        "Best in Project Implementation — CCS Days Hackathon 2025",
+        "Top 25 Finalist — CEB-i Hacks 2025",
+        "Best in Logo & Most Promising — Hackathon 2023"
+      ],
       "sameAs": [
         "https://github.com/Rozuuuuu",
         "https://www.linkedin.com/in/lloyd-rosales-937348422/"

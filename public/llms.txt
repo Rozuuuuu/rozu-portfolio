@@ -1,0 +1,31 @@
+# Lloyd C. Rosales
+
+> Lloyd C. Rosales (also known as Lloyd Rosales) is a full-stack software developer based in Cebu City, Philippines. He specializes in modern web applications, scalable systems, cross-platform mobile apps, and AI-integrated products.
+
+## Profile
+- Name: Lloyd C. Rosales
+- Role: Software Developer (Full-Stack)
+- Location: Cebu City, Central Visayas, Philippines
+- Website: https://lloydrosales.com
+- Education: BS in Computer Science — University of Southern Philippines Foundation (USPF)
+- Focus areas: JavaScript, TypeScript, React, Node.js, Python, AI integration, cloud architecture, SAP ABAP
+
+## Experience
+- SAP ABAP Trainee / Program Delegate — Accenture (Feb 2026 – Apr 2026): Selected for a 320-hour intensive SAP ABAP bootcamp through Accenture Technology Academy.
+- Technical Manager | Full Stack Developer — Buy@ndBuild (May 2025 – Mar 2026): Architected and led a real-time logistics dashboard from design through deployment, integrating AI-assisted tooling (Claude, Gemini, Codex).
+- Full Stack JavaScript Developer — Freelance (Feb 2024 – Nov 2025): Built and shipped user-facing features and APIs across multiple client projects with 99.9% uptime.
+
+## Selected Awards
+- 2nd Runner-Up & Best in Collaborative Catalysts — PhilTech Innovathon 2026 (National Level, BGC, Taguig)
+- 3rd Place — HackEstate PropTech Hackathon 2025
+- 2nd Place — CCS Days Hackathon, USPF 2023
+- Top 25 Finalist — CEB-i Hacks 2025 (Sandbox × MCIA × Google Cloud × Globe Business)
+- TOPCIT Level 3 (Competent Achiever); TESDA NC II — Computer Systems Servicing
+
+## Links
+- Website: https://lloydrosales.com
+- GitHub: https://github.com/Rozuuuuu
+- LinkedIn: https://www.linkedin.com/in/lloyd-rosales-937348422/
+- Projects: https://lloydrosales.com/projects
+- About: https://lloydrosales.com/about
+- Contact: https://lloydrosales.com/contact

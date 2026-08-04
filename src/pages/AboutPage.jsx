@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // [PERF FIX 5] Framer Motion LazyMotion optimization
 import { m } from 'framer-motion';
@@ -60,9 +60,9 @@ const timeline = [
         items: [
             { month: 'Jun', text: 'Graduated from USPF with a Bachelor of Science in Computer Science.', media: ['/MyStory/Graduated.jpg'] },
             { month: 'Apr', text: 'Attended the PSITE Student Congress 2026 at the Cebu Coliseum.', media: ['/MyStory/PSITE 2026.jpg'] },
-            { month: 'Mar', text: 'Received my internship pin at the USPF CCS ceremony (delivering the BSCS batch message), placed 2nd at the USPF CCS Hackathon, and stepped back from freelancing to focus on my skills and portfolio.', media: ['/MyStory/Pinning.jpg', '/MyStory/Pinning (2).jpg', '/MyStory/Pinning (3).jpg'] },
-            { month: 'Feb', text: 'Achieved TOPCIT Level 3 (Competent Achiever) and was selected as a delegate for Accenture’s 320-hour SAP ABAP bootcamp — hands-on enterprise SAP development through the Accenture Technology Academy.' },
-            { month: 'Jan', text: 'Advanced to the Top 12 final pitch at the Sinulog PropTech Hackathon, placed 2nd and won Collaborative Catalyst at the national PhilTech competition in BGC, Taguig, and won Best UI/UX at Sinulog PropTech.' },
+            { month: 'Mar', text: 'Received my internship pin at the USPF CCS ceremony (delivering the BSCS batch message), placed 2nd at the USPF CCS Hackathon, and stepped back from freelancing to focus on my skills and portfolio.', media: ['/MyStory/Pinning.jpg', '/MyStory/Pinning (2).jpg', '/MyStory/Pinning (3).jpg', '/2ndplace2026.jpg'] },
+            { month: 'Feb', text: 'Achieved TOPCIT Level 3 (Competent Achiever) and was selected as a delegate for Accenture’s 320-hour SAP ABAP bootcamp — hands-on enterprise SAP development through the Accenture Technology Academy.', media: ['/Topcit.jpg'] },
+            { month: 'Jan', text: 'Advanced to the Top 12 final pitch at the Sinulog PropTech Hackathon, placed 2nd and won Collaborative Catalyst at the national PhilTech competition in BGC, Taguig, and won Best UI/UX at Sinulog PropTech.', media: ['/Philtech.jpg', '/SinulogFest.jpg'] },
         ],
     },
     {
@@ -71,20 +71,22 @@ const timeline = [
         items: [
             { month: 'Dec', text: 'Joined the Sinulog PropTech Hackathon.' },
             { month: 'Oct', text: 'Team “Hanzilla and Friends” reached the Top 25 at CEB-i Hacks.' },
-            { month: 'Sep', text: 'Competed in CEB-i Hacks (Mactan Airport) with team “Hanzilla and Friends,” and co-facilitated the CCSST Web Development Workshop Series.' },
+            { month: 'Sep', text: 'Competed in CEB-i Hacks (Mactan Airport) with team “Hanzilla and Friends,” and co-facilitated the CCSST Web Development Workshop Series.', media: ['/cebihacks_uspf.png'] },
             { month: 'Aug', text: 'Elected 4th-Year Representative among the USPF CCS officers (2025–2026).' },
             { month: 'May', text: 'Signed a contract as Technical Manager and Full-Stack Developer for the Buy@ndBuild startup.' },
-            { month: 'Apr', text: 'Reached the Top 5 at the CESAFI Computer Quiz Bowl and placed 2nd at PropTech Filipino Homes — my first inter-university hackathon.' },
-            { month: 'Mar', text: 'Placed 2nd at the USPF CCS Hackathon with a Figma prototype.' },
+            { month: 'Apr', text: 'Reached the Top 5 at the CESAFI Computer Quiz Bowl and placed 2nd at PropTech Filipino Homes — my first inter-university hackathon.', media: ['/Quizbowl.jfif', '/PropTech.jpg'] },
+            { month: 'Mar', text: 'Placed 2nd at the USPF CCS Hackathon with a Figma prototype.', media: ['/2ndrunnerup2025.jpg', '/BestUIUX2025.jpg', '/Bestinprojectimplementation2025.jpg'] },
         ],
     },
     {
         year: '2024',
         intro: 'I stopped practicing and started shipping. My first real client turned into React and Node under deadline pressure — code that people actually depended on.',
         items: [
+            { month: 'Dec', text: 'Received my NCII Computer Systems Servicing certificate — TESDA certified.', media: ['/NCII.jpg'] },
             { month: 'Oct', text: 'Was referred to a client to build a Shopify-related system.' },
             { month: 'Aug', text: 'Built a POS system for a client using React, Node.js, and MongoDB.' },
             { month: 'Jul', text: 'Joined the CCSST teambuilding at Junbel Mountain Resort, Carmen, Cebu — a College of Computer Studies Southern Technovators activity.', media: ['/MyStory/TeamBuilding.jpg'] },
+            { month: 'Jun', text: 'Took NCII Computer Systems Servicing training under TESDA.' },
             { month: 'May', text: 'Re-elected Auditor of the USPF CCS Technovators with a majority vote.' },
             { month: 'Mar', text: 'Attended the PSITE 7 ICT Student Congress 2024 at Cebu Institute of Technology University.' },
             { month: 'Feb', text: 'Took on my first freelance client — a full-stack JavaScript startup build — and learned React and Node.js on the job.' },
@@ -123,6 +125,15 @@ const timeline = [
 const AboutPage = () => {
     const [tab, setTab] = useState('story');
     const [openYears, setOpenYears] = useState(() => new Set(['2026']));
+    const [lightbox, setLightbox] = useState(null);
+
+    // Close the image lightbox on Escape.
+    useEffect(() => {
+        if (!lightbox) return;
+        const onKey = (e) => { if (e.key === 'Escape') setLightbox(null); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [lightbox]);
 
     const toggleYear = (year) => {
         setOpenYears((prev) => {
@@ -344,12 +355,12 @@ const AboutPage = () => {
                                                                                     View PDF
                                                                                 </a>
                                                                             ) : (
-                                                                                <a
+                                                                                <button
                                                                                     key={src}
-                                                                                    href={href}
-                                                                                    target="_blank"
-                                                                                    rel="noopener noreferrer"
-                                                                                    className="block overflow-hidden rounded-md border border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white transition-colors"
+                                                                                    type="button"
+                                                                                    onClick={() => setLightbox(href)}
+                                                                                    aria-label={`View photo — ${it.month} ${year}`}
+                                                                                    className="block overflow-hidden rounded-md border border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white transition-colors cursor-zoom-in"
                                                                                 >
                                                                                     <img
                                                                                         src={href}
@@ -358,7 +369,7 @@ const AboutPage = () => {
                                                                                         decoding="async"
                                                                                         className="w-14 h-14 sm:w-16 sm:h-16 object-cover"
                                                                                     />
-                                                                                </a>
+                                                                                </button>
                                                                             );
                                                                         })}
                                                                     </div>
@@ -509,6 +520,32 @@ const AboutPage = () => {
 
                 <SharedFooter />
             </div>
+
+            {/* Image lightbox — click outside or press Esc to close */}
+            {lightbox && (
+                <div
+                    className="fixed inset-0 z-[70] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 sm:p-8"
+                    onClick={() => setLightbox(null)}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Photo viewer"
+                >
+                    <button
+                        type="button"
+                        onClick={() => setLightbox(null)}
+                        aria-label="Close"
+                        className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors text-2xl leading-none"
+                    >
+                        &times;
+                    </button>
+                    <img
+                        src={lightbox}
+                        alt="Enlarged photo"
+                        className="max-w-full max-h-[88vh] rounded-lg shadow-2xl object-contain"
+                        onClick={(e) => e.stopPropagation()}
+                    />
+                </div>
+            )}
         </PageTransition>
     );
 };

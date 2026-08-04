@@ -243,12 +243,19 @@ const AchievementsPage = () => {
                                     {activeTab === 'milestones' && (
                                         milestones?.length > 0 ? (
                                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                                                {milestones.map(({ id, icon, title, subtitle, desc, img, imgAlt }) => (
+                                                {milestones.map(({ id, icon, title, subtitle, desc, img, imgAlt, pdf }) => (
                                                     <ScrollReveal key={id}>
                                                         <div className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-md dark:shadow-black/40 group flex flex-col h-full hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors">
                                                             <div className="relative h-52 overflow-hidden flex-shrink-0">
                                                                 {/* [PERF FIX 4] Image lazy loading and dimensions */}
-                                                                {img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} width="800" height="450" loading="lazy" decoding="async" /> : <ImgPlaceholder alt={imgAlt} />}
+                                                                {pdf ? (
+                                                                    <a href={encodeURI(pdf)} target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-neutral-100 dark:bg-neutral-900 transition-colors group-hover:bg-neutral-200 dark:group-hover:bg-neutral-800">
+                                                                        <Icon name="integration_instructions" className="text-5xl text-black dark:text-white" />
+                                                                        <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-widest text-black dark:text-white">
+                                                                            View Certificate <Icon name="open_in_new" className="text-sm" />
+                                                                        </span>
+                                                                    </a>
+                                                                ) : img ? <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={img} alt={imgAlt} width="800" height="450" loading="lazy" decoding="async" /> : <ImgPlaceholder alt={imgAlt} />}
                                                             </div>
                                                             <div className="p-6 flex flex-col justify-center flex-grow">
                                                                 <Icon name={icon} className="text-black dark:text-white text-3xl mb-3 block" />

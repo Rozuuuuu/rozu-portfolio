@@ -160,4 +160,13 @@ export const milestones = [
         img: '/NCII.jpg',
         imgAlt: 'NCII in Computer Systems Servicing certificate',
     },
+    {
+        id: 14,
+        icon: 'verified',
+        title: 'JavaScript 101 — Certificate of Completion',
+        subtitle: 'MSTCONNECT · 8-Hour Training',
+        desc: 'Completed an 8-hour “JavaScript 101: Learn JavaScript From Scratch” training with MSTCONNECT and earned a Certificate of Completion.',
+        pdf: '/MyStory/MST-JAvascript 101.pdf',
+        imgAlt: 'JavaScript 101 Certificate of Completion — MSTCONNECT',
+    },
 ];

@@ -9,12 +9,12 @@ import Icon from './Icon';
 import ExpandableText from './ExpandableText';
 
 const FeaturedProjectCard = ({ project, open, onToggle }) => {
-    const { tag, img, media, title, desc, decisions, metrics } = project;
+    const { slug, tag, tags, img, media, title, desc, live, repo, decisions, metrics } = project;
     const hasDetails = decisions?.length > 0 || metrics?.length > 0;
 
     return (
-        <div className="group bg-white dark:bg-neutral-950 rounded-lg overflow-hidden flex flex-col h-full hover:shadow-2xl transition-all duration-300 border border-neutral-200 dark:border-neutral-800">
-            <div className="relative">
+        <div className="group bg-white dark:bg-neutral-950 rounded-lg overflow-hidden flex flex-col h-full hover:shadow-2xl transition-all duration-300 border border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white">
+            <Link to={`/projects/${slug}`} className="relative block" aria-label={`View ${title}`}>
                 {media?.type === 'video' ? (
                     <div className="h-64 overflow-hidden">
                         <video
@@ -44,16 +44,43 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
                         <span className="text-white text-[10px] font-bold uppercase tracking-wide">Demo</span>
                     </div>
                 )}
-            </div>
+            </Link>
 
             <div className="p-8 flex-grow flex flex-col">
-                <h3 className="text-xl font-black mb-3 text-black dark:text-white">{title}</h3>
+                {tags?.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                        {tags.slice(0, 4).map((t) => (
+                            <span key={t} className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">{t}</span>
+                        ))}
+                    </div>
+                )}
+                <h3 className="text-xl font-black mb-3 text-black dark:text-white">
+                    <Link to={`/projects/${slug}`} className="hover:underline decoration-2 underline-offset-4 decoration-black/40 dark:decoration-white/40">{title}</Link>
+                </h3>
                 <div className="mb-6">
                     <ExpandableText text={desc} className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed" />
                 </div>
 
-                {hasDetails && (
-                    <div className="mt-auto border-t border-neutral-200 dark:border-neutral-800 pt-4">
+                <div className="mt-auto">
+                    {/* Links row — every featured project links out and to its case study */}
+                    <div className="flex flex-wrap items-center gap-3">
+                        {live && (
+                            <a href={live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-lg text-xs font-bold uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+                                <Icon name="open_in_new" className="text-sm" /> Live
+                            </a>
+                        )}
+                        {repo && (
+                            <a href={repo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-700 text-black dark:text-white rounded-lg text-xs font-bold uppercase tracking-widest hover:border-black dark:hover:border-white transition-all">
+                                <Icon name="github" className="text-sm" /> Code
+                            </a>
+                        )}
+                        <Link to={`/projects/${slug}`} className="inline-flex items-center gap-1 ml-auto text-xs font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">
+                            Details <Icon name="arrow_forward" className="text-sm" />
+                        </Link>
+                    </div>
+
+                    {hasDetails && (
+                    <div className="border-t border-neutral-200 dark:border-neutral-800 pt-4 mt-4">
                         {/* Accordion trigger */}
                         <button
                             type="button"
@@ -64,7 +91,7 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
                             <span>Engineering decisions &amp; metrics</span>
                             <Icon
                                 name="expand_more"
-                                className={`text-base transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+                                className={`text-base transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${open ? 'rotate-180' : ''}`}
                             />
                         </button>
 
@@ -76,7 +103,7 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: 'auto', opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                                     className="overflow-hidden"
                                 >
                                     <div className="pt-5">
@@ -121,7 +148,8 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
                             )}
                         </AnimatePresence>
                     </div>
-                )}
+                    )}
+                </div>
             </div>
         </div>
     );

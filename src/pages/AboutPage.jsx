@@ -163,10 +163,10 @@ const AboutPage = () => {
                     padding: 1.25rem 0.25rem; cursor: pointer; text-align: left;
                     background: none; border: none;
                 }
-                .yr-chevron { transition: transform 0.3s ease; color: #a3a3a3; }
+                .yr-chevron { transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); color: #a3a3a3; }
                 .yr-chevron.open { transform: rotate(180deg); }
 
-                .yr-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+                .yr-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
                 .yr-panel.open { grid-template-rows: 1fr; }
                 .yr-panel-inner { overflow: hidden; }
 

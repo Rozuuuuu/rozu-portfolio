@@ -16,6 +16,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 // Eagerly loaded components for initial render (above-the-fold)
 import Hero from './components/Hero';
+import SectionRail from './components/SectionRail';
 
 // Lazy loaded components for below-the-fold and subpages
 const Projects = lazy(() => import('./components/Projects'));
@@ -63,6 +64,9 @@ function HomePage({ revealed }) {
             />
             {/* Hero is eagerly loaded for fast LCP */}
             <Hero revealed={revealed} />
+
+            {/* Scroll-spy section rail (desktop only) */}
+            <SectionRail />
 
             {/* Below the fold content is lazy loaded with content-aware skeletons.
                 Order leads with proof (real projects + metrics) before philosophy. */}

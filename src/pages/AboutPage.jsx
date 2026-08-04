@@ -56,6 +56,7 @@ const coreFocus = [
 const timeline = [
     {
         year: '2026',
+        intro: 'Proving it — at the highest level I’d faced yet. A national podium, a competency certification, a seat in an Accenture bootcamp, and finally the walk across the stage.',
         items: [
             { month: 'Jun', text: 'Graduated from USPF with a Bachelor of Science in Computer Science.', media: ['/MyStory/Graduated.jpg'] },
             { month: 'Apr', text: 'Attended the PSITE Student Congress 2026 at the Cebu Coliseum.', media: ['/MyStory/PSITE 2026.jpg'] },
@@ -66,6 +67,7 @@ const timeline = [
     },
     {
         year: '2025',
+        intro: 'The year I stopped being the beginner in the room. Podium finishes against other universities, a contract leading a real product, and elected leadership.',
         items: [
             { month: 'Dec', text: 'Joined the Sinulog PropTech Hackathon.' },
             { month: 'Oct', text: 'Team “Hanzilla and Friends” reached the Top 25 at CEB-i Hacks.' },
@@ -78,6 +80,7 @@ const timeline = [
     },
     {
         year: '2024',
+        intro: 'I stopped practicing and started shipping. My first real client turned into React and Node under deadline pressure — code that people actually depended on.',
         items: [
             { month: 'Oct', text: 'Was referred to a client to build a Shopify-related system.' },
             { month: 'Aug', text: 'Built a POS system for a client using React, Node.js, and MongoDB.' },
@@ -89,6 +92,7 @@ const timeline = [
     },
     {
         year: '2023',
+        intro: 'Everything accelerated. First projects, first certificate, and my first hackathon at 2 a.m. fighting a bug that wouldn’t die — then a 2nd-place finish that told me I could really do this.',
         items: [
             { month: 'Dec', text: 'Placed 2nd (1st–3rd year category) in my first one-day department hackathon, and built and presented a solo e-commerce site (Bootstrap, PHP, SQL).', media: ['/MyStory/1st hackathon ccs.jpg', '/MyStory/1st hackathon ccs (2).jpg'] },
             { month: 'Sep', text: 'Named to the Dean’s List and facilitated a freshman class on C programming fundamentals.', media: ['/MyStory/Dean Lister 2nd.jpg', '/MyStory/MakeupClass.jpg', '/MyStory/MakeupClass (2).jpg'] },
@@ -101,6 +105,7 @@ const timeline = [
     },
     {
         year: '2022',
+        intro: 'The year I got serious. I transferred to USPF for Computer Science and finally learned what was happening under the hood — the fundamentals I’d been faking.',
         items: [
             { month: 'Aug', text: 'Transferred to the University of Southern Philippines Foundation (USPF) to pursue a BS in Computer Science.' },
             { month: 'Mar', text: 'Learned programming fundamentals and basic algorithms in C through a Udemy course.' },
@@ -108,6 +113,7 @@ const timeline = [
     },
     {
         year: '2021',
+        intro: 'Where it began — one blank HTML file, no idea what a function was, and enough stubbornness to Google my way to a working form. It wasn’t much, but it was mine, and it was enough to get me hooked.',
         items: [
             { month: 'Nov', text: 'Wrote my first “Hello, World” in HTML and CSS and, through self-research, built a working sign-up form (front-end only) — the start of it all.', media: ['/MyStory/First hello world output.png'] },
         ],
@@ -250,9 +256,12 @@ const AboutPage = () => {
                         transition={{ duration: 0.4 }}
                         className="py-14 px-6 md:px-8 max-w-4xl mx-auto"
                     >
-                        {/* Short Introduction */}
-                        <p className="text-neutral-600 dark:text-neutral-300 text-base md:text-lg leading-relaxed">
-                            I&rsquo;m <span className="text-black dark:text-white font-semibold">Lloyd Rosales</span>, a full-stack software developer from Cebu, Philippines. What started with a self-taught &ldquo;Hello, World&rdquo; in 2021 grew — through hackathons, real client work, and a BS in Computer Science at USPF — into building production web apps, scalable systems, and AI-integrated products. I care as much about how software feels to use as how it&rsquo;s built.
+                        {/* Opening hook */}
+                        <p className="font-serif italic text-xl md:text-2xl text-black dark:text-white leading-snug">
+                            Every developer has an origin story. Mine starts with a blank HTML file and no idea what I was doing.
+                        </p>
+                        <p className="mt-5 text-neutral-600 dark:text-neutral-300 text-base md:text-lg leading-relaxed">
+                            I&rsquo;m <span className="text-black dark:text-white font-semibold">Lloyd Rosales</span>, a full-stack software developer from Cebu, Philippines. What began as late-night curiosity in 2021 turned — through hackathons, real client deadlines, and a BS in Computer Science at USPF — into building production web apps, scalable systems, and AI-integrated products. I care as much about how software feels to use as how it&rsquo;s built. Here&rsquo;s how it happened, year by year.
                         </p>
 
                         {/* Core Focus */}
@@ -279,13 +288,13 @@ const AboutPage = () => {
                         <div className="mt-14">
                             <div className="flex items-baseline justify-between mb-2">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                                    The Timeline
+                                    The Story, Year by Year
                                 </span>
-                                <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">tap a year to expand</span>
+                                <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">tap a year to read the chapter</span>
                             </div>
 
                             <div>
-                                {timeline.map(({ year, items }) => {
+                                {timeline.map(({ year, intro, items }) => {
                                     const open = openYears.has(year);
                                     return (
                                         <div key={year} className="yr">
@@ -305,6 +314,11 @@ const AboutPage = () => {
 
                                             <div className={`yr-panel ${open ? 'open' : ''}`}>
                                                 <div className="yr-panel-inner">
+                                                    {intro && (
+                                                        <p className="mb-6 font-serif italic text-[15px] md:text-base leading-relaxed text-neutral-700 dark:text-neutral-200 border-l-2 border-black/70 dark:border-white/70 pl-4">
+                                                            {intro}
+                                                        </p>
+                                                    )}
                                                     <ol className="tl">
                                                         {items.map((it, i) => (
                                                             <li key={i} className="tl-node">

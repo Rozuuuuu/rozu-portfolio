@@ -9,7 +9,7 @@ const socials = [
 const Footer = () => {
     return (
         <footer className="bg-white dark:bg-black w-full border-t border-neutral-200 dark:border-neutral-800 transition-colors duration-300">
-            <div className="max-w-5xl mx-auto px-6 md:px-8 py-14">
+            <div className="max-w-7xl mx-auto px-6 md:px-8 py-14">
                 <div className="grid gap-10 md:grid-cols-3">
                     {/* Brand + availability */}
                     <div>

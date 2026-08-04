@@ -43,9 +43,9 @@ const ProjectDetail = () => {
         return (
             <PageTransition>
                 <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-                    <main className="pt-32 pb-24 max-w-7xl mx-auto px-6 md:px-8 text-center">
+                    <main className="pt-24 pb-24 max-w-5xl mx-auto px-6 md:px-8 text-center">
                         <Icon name="search_off" className="text-7xl text-neutral-300 dark:text-neutral-600 mb-6 block" />
-                        <h1 className="text-4xl font-black tracking-tighter mb-4">Project Not Found</h1>
+                        <h1 className="text-3xl font-black tracking-tighter mb-4">Project Not Found</h1>
                         <p className="text-neutral-500 mb-8">The project doesn't exist or has been moved.</p>
                         <Link to="/projects" className="inline-flex items-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-lg uppercase tracking-widest text-sm">
                             <Icon name="arrow_back" className="text-sm" />Back to Projects
@@ -65,14 +65,14 @@ const ProjectDetail = () => {
     return (
         <PageTransition>
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-                <main className="pt-32 pb-24">
-                    <div className="max-w-7xl mx-auto px-6 md:px-8 mb-8">
+                <main className="pt-24 pb-24">
+                    <div className="max-w-5xl mx-auto px-6 md:px-8 mb-8">
                         <button onClick={() => navigate('/projects')} className="inline-flex items-center gap-2 text-neutral-500 hover:text-black dark:hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
                             <Icon name="arrow_back" className="text-sm" />All Projects
                         </button>
                     </div>
 
-                    <header className="max-w-7xl mx-auto px-6 md:px-8 mb-16">
+                    <header className="max-w-5xl mx-auto px-6 md:px-8 mb-12">
                         <ScrollReveal>
                             <div className="relative overflow-hidden rounded-xl aspect-[21/9] mb-10 shadow-xl dark:shadow-black/40 bg-neutral-200 dark:bg-neutral-800">
                                 {hasVideo ? (
@@ -108,7 +108,7 @@ const ProjectDetail = () => {
                         </ScrollReveal>
                     </header>
 
-                    <div className="max-w-7xl mx-auto px-6 md:px-8">
+                    <div className="max-w-5xl mx-auto px-6 md:px-8">
                         {hasStarr ? (
                             <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
                                 <aside className="hidden lg:block w-56 flex-shrink-0">

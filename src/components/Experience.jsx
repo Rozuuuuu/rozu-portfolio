@@ -29,7 +29,7 @@ const roles = [
 
 const Experience = () => {
     return (
-        <section className="bg-neutral-50 dark:bg-neutral-950 py-24 transition-colors duration-300" id="experience">
+        <section className="bg-neutral-50 dark:bg-neutral-950 py-16 transition-colors duration-300" id="experience">
             <style>{`
                 .tl { position: relative; }
                 .tl::before {
@@ -73,12 +73,12 @@ const Experience = () => {
                 .dark .tl-item:hover .tl-dot { border-color: #fff; }
             `}</style>
 
-            <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
+            <ScrollReveal className="max-w-5xl mx-auto px-6 md:px-8">
                 <div className="grid lg:grid-cols-3 gap-12">
                     <div className="lg:sticky lg:top-28 lg:self-start">
                         <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">The Path</span>
-                        <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">Professional Journey</h2>
-                        <p className="mt-6 text-neutral-500 dark:text-neutral-400 leading-relaxed">From freelance full-stack work to leading production delivery and enterprise SAP training — building, shipping, and owning software end to end.</p>
+                        <h2 className="text-3xl font-black tracking-tight mt-2 text-black dark:text-white">Professional Journey</h2>
+                        <p className="mt-6 text-neutral-500 dark:text-neutral-400 leading-relaxed">From freelance full-stack work to leading production delivery and enterprise SAP training.</p>
                     </div>
 
                     <div className="lg:col-span-2">

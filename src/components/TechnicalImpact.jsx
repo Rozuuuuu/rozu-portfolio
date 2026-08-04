@@ -70,7 +70,7 @@ const TechnicalImpact = () => {
     ];
 
     return (
-        <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="impact">
+        <section className="py-16 max-w-5xl mx-auto px-6 md:px-8" id="impact">
             <style>{`
                 .ti-bar { position: relative; height: 3px; border-radius: 9999px; background: #e5e5e5; overflow: hidden; }
                 .dark .ti-bar { background: #262626; }
@@ -102,7 +102,7 @@ const TechnicalImpact = () => {
                     <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs font-mono">
                         Proof of Work
                     </span>
-                    <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">
+                    <h2 className="text-3xl font-black tracking-tight mt-2 text-black dark:text-white">
                         Technical Impact
                     </h2>
                     <p className="text-neutral-500 dark:text-neutral-400 mt-4 max-w-xl text-sm leading-relaxed">
@@ -118,7 +118,7 @@ const TechnicalImpact = () => {
                                 <div className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400 mb-4">
                                     Projects shipped
                                 </div>
-                                <div className="text-7xl md:text-8xl font-black tabular-nums leading-none text-black dark:text-white">
+                                <div className="text-7xl md:text-6xl font-black tabular-nums leading-none text-black dark:text-white">
                                     {Math.round(projectsVal)}<span className="text-neutral-400 dark:text-neutral-600">+</span>
                                 </div>
                             </div>

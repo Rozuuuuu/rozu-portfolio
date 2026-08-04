@@ -52,7 +52,7 @@ const Contact = () => {
     };
 
     return (
-        <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="contact">
+        <section className="py-16 max-w-5xl mx-auto px-6 md:px-8" id="contact">
             <ScrollReveal className="bg-on-surface dark:bg-stone-900 text-surface dark:text-stone-100 rounded-2xl p-8 md:p-20 overflow-hidden relative border dark:border-stone-700">
                 <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                     <div>

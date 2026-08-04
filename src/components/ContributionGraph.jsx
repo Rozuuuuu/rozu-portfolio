@@ -98,14 +98,14 @@ const ContributionGraph = () => {
     }
 
     return (
-        <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="activity">
+        <section className="py-16 max-w-5xl mx-auto px-6 md:px-8" id="activity">
             <ScrollReveal>
                 {/* Section header — mirrors the other homepage sections */}
-                <div className="mb-16">
+                <div className="mb-12">
                     <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs font-mono">
                         Consistency
                     </span>
-                    <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">
+                    <h2 className="text-3xl font-black tracking-tight mt-2 text-black dark:text-white">
                         Build Activity
                     </h2>
                     <p className="text-neutral-500 dark:text-neutral-400 mt-4 max-w-xl text-sm leading-relaxed">

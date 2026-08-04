@@ -9,6 +9,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import { featured, spotlight, milestones } from '../data/achievementsData';
 import SEO from '../components/SEO';
 import Icon from '../components/Icon';
+import ExpandableText from '../components/ExpandableText';
 
 const ImgPlaceholder = ({ alt }) => (
     <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-neutral-200 dark:bg-neutral-800 gap-3">
@@ -38,14 +39,14 @@ const AchievementsPage = () => {
                 path="/achievements" 
             />
             <div className="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
-                <main className="pt-32 pb-24">
+                <main className="pt-24 pb-24">
                     {/* Hero Header */}
-                    <section className="max-w-7xl mx-auto px-6 md:px-8 mb-16">
+                    <section className="max-w-5xl mx-auto px-6 md:px-8 mb-12">
                         <ScrollReveal>
                             <div className="relative overflow-hidden rounded-xl bg-neutral-50 dark:bg-neutral-950 p-12 md:p-20 border border-neutral-200 dark:border-neutral-800">
                                 <div className="relative z-10 max-w-2xl">
                                     <span className="font-label text-black dark:text-white font-bold uppercase tracking-widest text-xs mb-4 block">Milestones &amp; Recognition</span>
-                                    <h1 className="font-headline text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6 text-black dark:text-white">
+                                    <h1 className="font-headline text-5xl md:text-6xl font-black tracking-tighter leading-none mb-6 text-black dark:text-white">
                                         Earned in the{' '}<span className="font-serif text-neutral-400 dark:text-neutral-500 italic">Arena.</span>
                                     </h1>
                                     <p className="font-body text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">A record of competitive victories, design recognition, and professional certifications — each one a proof of work.</p>
@@ -57,7 +58,7 @@ const AchievementsPage = () => {
 
                     {/* PhilTech Innovathon 2026 - Biggest & Featured Hero Section */}
                     {philtechAchievement && (
-                        <section className="max-w-7xl mx-auto px-6 md:px-8 mb-20">
+                        <section className="max-w-5xl mx-auto px-6 md:px-8 mb-20">
                             <ScrollReveal>
                                 <div className="relative group overflow-hidden rounded-2xl bg-neutral-50 dark:bg-neutral-950 border-2 border-black dark:border-white p-8 md:p-12 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-white/5">
                                     {/* Glowing Accent Corners */}
@@ -113,9 +114,9 @@ const AchievementsPage = () => {
                                                 </span>
                                             </div>
                                             
-                                            <p className="text-neutral-600 dark:text-neutral-300 text-sm md:text-base leading-relaxed mb-8 font-body">
-                                                {philtechAchievement.desc}
-                                            </p>
+                                            <div className="mb-8">
+                                                <ExpandableText text={philtechAchievement.desc} className="text-neutral-600 dark:text-neutral-300 text-sm md:text-base leading-relaxed font-body" />
+                                            </div>
                                             
                                             <div className="flex flex-wrap gap-2">
                                                 {philtechAchievement.tags?.map(t => (
@@ -135,7 +136,7 @@ const AchievementsPage = () => {
                     )}
 
                     {/* Tabs Navigation */}
-                    <section className="max-w-7xl mx-auto px-6 md:px-8 mb-12">
+                    <section className="max-w-5xl mx-auto px-6 md:px-8 mb-12">
                         <ScrollReveal>
                             <div className="flex flex-col lg:flex-row lg:items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-6 gap-6">
                                 <span className="text-xs font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-mono">Filter Recognition</span>
@@ -171,7 +172,7 @@ const AchievementsPage = () => {
                     </section>
 
                     {/* Tab Panels */}
-                    <section className="max-w-7xl mx-auto px-6 md:px-8 mb-24 min-h-[400px]">
+                    <section className="max-w-5xl mx-auto px-6 md:px-8 mb-24 min-h-[400px]">
                         <ErrorBoundary>
                             <AnimatePresence mode="wait">
                                 <m.div
@@ -198,7 +199,7 @@ const AchievementsPage = () => {
                                                                 </div>
                                                                 <h2 className="font-headline text-2xl md:text-3xl font-extrabold tracking-tight mb-1 text-black dark:text-white">{title}</h2>
                                                                 <p className="text-neutral-500 dark:text-neutral-400 font-bold text-sm mb-4">{subtitle}</p>
-                                                                <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed mb-6">{desc}</p>
+                                                                <div className="mb-6"><ExpandableText text={desc} className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed" /></div>
                                                                 <div className="flex flex-wrap gap-2">
                                                                     {tags?.map(t => (<span key={t} className={`px-3 py-1 border rounded-full text-[10px] font-bold uppercase tracking-wider ${tagColor}`}>{t}</span>))}
                                                                 </div>
@@ -228,7 +229,7 @@ const AchievementsPage = () => {
                                                                     <span className="font-bold text-xs uppercase tracking-widest">{subtitle}</span>
                                                                 </div>
                                                                 <h3 className="font-headline text-xl font-extrabold tracking-tight mb-3 text-black dark:text-white">{title}</h3>
-                                                                <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">{desc}</p>
+                                                                <ExpandableText text={desc} className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed" />
                                                             </div>
                                                         </div>
                                                     </ScrollReveal>
@@ -253,7 +254,7 @@ const AchievementsPage = () => {
                                                                 <Icon name={icon} className="text-black dark:text-white text-3xl mb-3 block" />
                                                                 <h3 className="font-headline text-lg font-extrabold tracking-tight mb-1 text-black dark:text-white">{title}</h3>
                                                                 <p className="text-neutral-500 dark:text-neutral-400 font-bold text-xs mb-3">{subtitle}</p>
-                                                                <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">{desc}</p>
+                                                                <ExpandableText text={desc} className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed" />
                                                             </div>
                                                         </div>
                                                     </ScrollReveal>

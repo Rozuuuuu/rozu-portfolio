@@ -9,6 +9,7 @@ import ProjectLinks from '../components/ProjectLinks';
 import projects from '../data/projectsData';
 import SEO from '../components/SEO';
 import Icon from '../components/Icon';
+import ExpandableText from '../components/ExpandableText';
 
 /* ─── Tag Pill ─── */
 const Tag = ({ children }) => (
@@ -108,9 +109,9 @@ const ProjectCard = ({ project, index }) => {
                     />
                 </h3>
 
-                <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed flex-1">
-                    {project.desc}
-                </p>
+                <div className="flex-1">
+                    <ExpandableText text={project.desc} className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed" />
+                </div>
 
                 <ProjectLinks live={project.live} repo={project.repo} className="mt-5" />
             </div>
@@ -137,18 +138,18 @@ const ProjectsPage = () => {
                 path="/projects" 
             />
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
-                <main className="pt-32 pb-24">
+                <main className="pt-24 pb-24">
                     {/* Hero */}
-                    <header className="max-w-7xl mx-auto px-6 md:px-8 mb-16">
+                    <header className="max-w-5xl mx-auto px-6 md:px-8 mb-12">
                         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
                             <div className="max-w-2xl">
                                 <span className="inline-block py-1 px-3 mb-4 rounded-full bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black text-xs font-bold uppercase tracking-widest">Selected Works</span>
-                                <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-6">
+                                <h1 className="text-6xl md:text-6xl font-black tracking-tighter leading-[0.9] mb-6">
                                     CREATIVE <br />
                                     <span className="font-serif text-neutral-400 dark:text-neutral-500 italic">Solutions.</span>
                                 </h1>
                                 <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-medium">
-                                    A curated collection of real-world projects — from e‑commerce platforms serving thousands of customers, to AI‑powered prototypes and full‑stack applications.
+                                    Real-world projects — from e-commerce platforms serving thousands to AI-powered full-stack apps.
                                 </p>
                             </div>
                             <div className="hidden lg:flex gap-4 items-center text-black dark:text-white font-bold text-sm pb-4">
@@ -160,7 +161,7 @@ const ProjectsPage = () => {
 
                     {/* Featured CS Thesis Section (Cafe AI) */}
                     {cafeAiProject && (
-                        <section className="max-w-7xl mx-auto px-6 md:px-8 mb-24">
+                        <section className="max-w-5xl mx-auto px-6 md:px-8 mb-24">
                             <div className="relative bg-neutral-50 dark:bg-neutral-950 rounded-3xl p-6 md:p-8 lg:p-12 border border-neutral-200 dark:border-neutral-800 shadow-sm overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-80 h-80 bg-neutral-200/20 dark:bg-neutral-800/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
                                 <div className="absolute bottom-0 left-0 w-60 h-60 bg-neutral-200/10 dark:bg-neutral-800/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
@@ -238,7 +239,7 @@ const ProjectsPage = () => {
                     )}
 
                     {/* Filter bar */}
-                    <section className="max-w-7xl mx-auto px-6 md:px-8 mb-12">
+                    <section className="max-w-5xl mx-auto px-6 md:px-8 mb-12">
                         <div className="flex flex-wrap gap-2 p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-xl max-w-fit border border-neutral-200 dark:border-neutral-800 shadow-sm">
                             {FILTERS.map((filter) => (
                                 <button
@@ -265,7 +266,7 @@ const ProjectsPage = () => {
                     </section>
 
                     {/* Grid */}
-                    <section className="max-w-7xl mx-auto px-6 md:px-8">
+                    <section className="max-w-5xl mx-auto px-6 md:px-8">
                         <m.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             <AnimatePresence mode="popLayout">
                                 {filtered.map((project, i) => (
@@ -275,7 +276,7 @@ const ProjectsPage = () => {
                         </m.div>
 
                         {filtered.length === 0 && (
-                            <div className="text-center py-20">
+                            <div className="text-center py-16">
                                 <Icon name="search_off" className="text-5xl text-neutral-300 dark:text-neutral-600 mb-4 block" />
                                 <p className="text-neutral-500 dark:text-neutral-400 font-medium">No projects found for this category.</p>
                             </div>

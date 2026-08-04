@@ -8,13 +8,13 @@ const Achievements = () => {
     const items = featured.slice(0, 3);
 
     return (
-        <section className="py-24 bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300" id="achievements">
-            <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
+        <section className="py-16 bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300" id="achievements">
+            <ScrollReveal className="max-w-5xl mx-auto px-6 md:px-8">
                 {/* Header */}
-                <div className="flex justify-between items-end mb-16">
+                <div className="flex justify-between items-end mb-12">
                     <div>
                         <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Accolades</span>
-                        <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">Achievements</h2>
+                        <h2 className="text-3xl font-black tracking-tight mt-2 text-black dark:text-white">Achievements</h2>
                         <p className="text-neutral-500 dark:text-neutral-400 mt-3">Recognition of technical excellence and competitive innovation.</p>
                     </div>
                 </div>

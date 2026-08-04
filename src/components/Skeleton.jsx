@@ -32,12 +32,12 @@ export const ProjectCardSkeleton = () => (
 
 /* ─── Featured Projects Section Skeleton ─── */
 export const FeaturedProjectsSkeleton = () => (
-    <section className="py-24 max-w-7xl mx-auto px-6 md:px-8">
+    <section className="py-16 max-w-5xl mx-auto px-6 md:px-8">
         <div className="mb-8">
             <SkeletonBlock className="h-3 w-24 mb-3" />
             <SkeletonBlock className="h-10 w-64" />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {[0, 1, 2].map(i => (
                 <ProjectCardSkeleton key={i} />
             ))}
@@ -63,8 +63,8 @@ const MetricCardSkeleton = () => (
 
 /* ─── Technical Impact Section Skeleton ─── */
 export const TechnicalImpactSkeleton = () => (
-    <section className="py-24 max-w-7xl mx-auto px-6 md:px-8">
-        <div className="mb-16">
+    <section className="py-16 max-w-5xl mx-auto px-6 md:px-8">
+        <div className="mb-12">
             <SkeletonBlock className="h-3 w-28 mb-3" />
             <SkeletonBlock className="h-10 w-56 mb-4" />
             <SkeletonBlock className="h-4 w-96 max-w-full" />
@@ -79,7 +79,7 @@ export const TechnicalImpactSkeleton = () => (
 
 /* ─── Hero Skeleton (Optimistic UI) ─── */
 export const HeroSkeleton = () => (
-    <header className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto pt-32 pb-16 lg:pt-0 lg:pb-0">
+    <header className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-5xl mx-auto pt-24 pb-16 lg:pt-0 lg:pb-0">
         <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
             {/* Text side */}
             <div className="flex-1 flex flex-col items-center lg:items-start space-y-6">
@@ -105,8 +105,8 @@ export const PageSkeleton = () => (
 
 /* ─── Objectives Skeleton ─── */
 export const ObjectivesSkeleton = () => (
-    <section className="py-24 max-w-7xl mx-auto px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-900">
-        <div className="mb-16">
+    <section className="py-16 max-w-5xl mx-auto px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-900">
+        <div className="mb-12">
             <SkeletonBlock className="h-4 w-32 mb-4" />
             <SkeletonBlock className="h-10 w-64 max-w-full" />
         </div>
@@ -132,7 +132,7 @@ export const AboutSkeleton = () => (
     <div className="pt-28 pb-20 px-6 md:px-8 max-w-4xl mx-auto min-h-screen">
         <SkeletonBlock className="h-4 w-24 mb-6 mx-auto" />
         <SkeletonBlock className="h-12 w-3/4 mb-10 mx-auto" />
-        <div className="aspect-[21/9] w-full rounded-3xl mb-16 bg-neutral-200 dark:bg-neutral-900 animate-skeleton" />
+        <div className="aspect-[21/9] w-full rounded-3xl mb-12 bg-neutral-200 dark:bg-neutral-900 animate-skeleton" />
         <div className="space-y-6">
             <SkeletonBlock className="h-4 w-full" />
             <SkeletonBlock className="h-4 w-11/12" />

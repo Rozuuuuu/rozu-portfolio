@@ -30,7 +30,7 @@ const Navbar = ({ revealed }) => {
                             : 'bg-transparent border-b border-transparent'
                     }`}
                 >
-                    <div className="flex items-center justify-between h-full max-w-7xl mx-auto px-5 md:px-8">
+                    <div className="flex items-center justify-between h-full max-w-5xl mx-auto px-5 md:px-8">
                         {/* Logo — Home Anchor */}
                         <Link
                             to="/"

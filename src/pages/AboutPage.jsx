@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // [PERF FIX 5] Framer Motion LazyMotion optimization
 import { m } from 'framer-motion';
@@ -6,6 +7,7 @@ import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import { SharedFooter } from '../components/SharedFooter';
 import Icon from '../components/Icon';
+import { blogPosts } from '../data/blogData';
 
 /* ─── Animation Variants ─── */
 const containerVariants = {
@@ -20,58 +22,161 @@ const containerVariants = {
 
 const itemVariants = {
     hidden: { opacity: 0, y: 24 },
-    visible: { 
-        opacity: 1, 
+    visible: {
+        opacity: 1,
         y: 0,
         transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
     }
 };
 
-/* ─── Hobbies Data ─── */
+/* ─── Beyond the Terminal (compact) ─── */
 const hobbies = [
+    { icon: 'draw', label: 'Drawing' },
+    { icon: 'fitness_center', label: 'Gym' },
+    { icon: 'directions_run', label: 'Jogging' },
+    { icon: 'casino', label: 'Board Games' },
+    { icon: 'sports_volleyball', label: 'Volleyball' },
+    { icon: 'sports_basketball', label: 'Basketball' },
+];
+
+/* ─── Core Focus ─── */
+const coreFocus = [
+    { icon: 'code', label: 'Full-Stack Web Development' },
+    { icon: 'design_services', label: 'Frontend, UI & UX' },
+    { icon: 'server', label: 'Backend & REST APIs' },
+    { icon: 'dataset', label: 'Databases — SQL & MongoDB' },
+    { icon: 'smart_toy', label: 'AI-Integrated Products' },
+    { icon: 'integration_instructions', label: 'Enterprise SAP ABAP' },
+];
+
+/* ─── Timeline (tech journey, most recent first) ───
+   Add an optional `media` array to any item to show small thumbnails beside it.
+   Images render as clickable thumbnails; PDFs render as a "View PDF" chip.
+   Files live in public/MyStory, referenced as '/MyStory/filename.jpg'. */
+const timeline = [
     {
-        icon: 'draw',
-        label: 'Drawing',
-        desc: 'Sketching ideas into visuals — from UI wireframes to freehand art.',
+        year: '2026',
+        items: [
+            { month: 'Jun', text: 'Graduated from USPF with a Bachelor of Science in Computer Science.', media: ['/MyStory/Graduated.jpg'] },
+            { month: 'Apr', text: 'Attended the PSITE Student Congress 2026 at the Cebu Coliseum.', media: ['/MyStory/PSITE 2026.jpg'] },
+            { month: 'Mar', text: 'Received my internship pin at the USPF CCS ceremony (delivering the BSCS batch message), placed 2nd at the USPF CCS Hackathon, and stepped back from freelancing to focus on my skills and portfolio.', media: ['/MyStory/Pinning.jpg', '/MyStory/Pinning (2).jpg', '/MyStory/Pinning (3).jpg'] },
+            { month: 'Feb', text: 'Achieved TOPCIT Level 3 (Competent Achiever) and was selected as a delegate for Accenture’s 320-hour SAP ABAP bootcamp — hands-on enterprise SAP development through the Accenture Technology Academy.' },
+            { month: 'Jan', text: 'Advanced to the Top 12 final pitch at the Sinulog PropTech Hackathon, placed 2nd and won Collaborative Catalyst at the national PhilTech competition in BGC, Taguig, and won Best UI/UX at Sinulog PropTech.' },
+        ],
     },
     {
-        icon: 'fitness_center',
-        label: 'Fitness & Gym',
-        desc: 'Discipline in the gym translates to discipline in the codebase.',
+        year: '2025',
+        items: [
+            { month: 'Dec', text: 'Joined the Sinulog PropTech Hackathon.' },
+            { month: 'Oct', text: 'Team “Hanzilla and Friends” reached the Top 25 at CEB-i Hacks.' },
+            { month: 'Sep', text: 'Competed in CEB-i Hacks (Mactan Airport) with team “Hanzilla and Friends,” and co-facilitated the CCSST Web Development Workshop Series.' },
+            { month: 'Aug', text: 'Elected 4th-Year Representative among the USPF CCS officers (2025–2026).' },
+            { month: 'May', text: 'Signed a contract as Technical Manager and Full-Stack Developer for the Buy@ndBuild startup.' },
+            { month: 'Apr', text: 'Reached the Top 5 at the CESAFI Computer Quiz Bowl and placed 2nd at PropTech Filipino Homes — my first inter-university hackathon.' },
+            { month: 'Mar', text: 'Placed 2nd at the USPF CCS Hackathon with a Figma prototype.' },
+        ],
     },
     {
-        icon: 'directions_run',
-        label: 'Jogging',
-        desc: 'Clearing the mind, one stride at a time. The best debugging happens outdoors.',
+        year: '2024',
+        items: [
+            { month: 'Oct', text: 'Was referred to a client to build a Shopify-related system.' },
+            { month: 'Aug', text: 'Built a POS system for a client using React, Node.js, and MongoDB.' },
+            { month: 'Jul', text: 'Joined the CCSST teambuilding at Junbel Mountain Resort, Carmen, Cebu — a College of Computer Studies Southern Technovators activity.', media: ['/MyStory/TeamBuilding.jpg'] },
+            { month: 'May', text: 'Re-elected Auditor of the USPF CCS Technovators with a majority vote.' },
+            { month: 'Mar', text: 'Attended the PSITE 7 ICT Student Congress 2024 at Cebu Institute of Technology University.' },
+            { month: 'Feb', text: 'Took on my first freelance client — a full-stack JavaScript startup build — and learned React and Node.js on the job.' },
+        ],
     },
     {
-        icon: 'casino',
-        label: 'Board Game Club',
-        desc: 'Strategy and pattern recognition — skills that transfer directly to system design.',
+        year: '2023',
+        items: [
+            { month: 'Dec', text: 'Placed 2nd (1st–3rd year category) in my first one-day department hackathon, and built and presented a solo e-commerce site (Bootstrap, PHP, SQL).', media: ['/MyStory/1st hackathon ccs.jpg', '/MyStory/1st hackathon ccs (2).jpg'] },
+            { month: 'Sep', text: 'Named to the Dean’s List and facilitated a freshman class on C programming fundamentals.', media: ['/MyStory/Dean Lister 2nd.jpg', '/MyStory/MakeupClass.jpg', '/MyStory/MakeupClass (2).jpg'] },
+            { month: 'Aug', text: 'Elected Auditor of the USPF CCS Technovators (SY 2023–2024).', media: ['/MyStory/Officer 2023.jpg'] },
+            { month: 'Jul', text: 'Completed JavaScript 101 (8-hour training, MSTCONNECT) and earned a Certificate of Completion.', media: ['/MyStory/MST-JAvascript 101.pdf'] },
+            { month: 'May', text: 'Built my first full-stack site from scratch — CRUD through a backend API plus login and registration — still one of my proudest early builds.' },
+            { month: 'Apr', text: 'Built and presented my first web project, Artisano, using HTML, CSS, JavaScript, and Bootstrap; also attended the PSITE Central Visayas ICT Student Congress at Cebu Technological University.', media: ['/MyStory/Artisano.jpg', '/MyStory/PSITE 2023.jpg', '/MyStory/PSITE 2023 (2).jpg'] },
+            { month: 'Mar', text: 'Named to the Dean’s List.', media: ['/MyStory/Deans Lister 2023.jpg'] },
+        ],
     },
     {
-        icon: 'sports_volleyball',
-        label: 'Volleyball',
-        desc: 'Teamwork, communication, and split-second decisions under pressure.',
+        year: '2022',
+        items: [
+            { month: 'Aug', text: 'Transferred to the University of Southern Philippines Foundation (USPF) to pursue a BS in Computer Science.' },
+            { month: 'Mar', text: 'Learned programming fundamentals and basic algorithms in C through a Udemy course.' },
+        ],
     },
     {
-        icon: 'sports_basketball',
-        label: 'Basketball',
-        desc: 'Fast-paced coordination and competitive drive on and off the court.',
+        year: '2021',
+        items: [
+            { month: 'Nov', text: 'Wrote my first “Hello, World” in HTML and CSS and, through self-research, built a working sign-up form (front-end only) — the start of it all.', media: ['/MyStory/First hello world output.png'] },
+        ],
     },
 ];
 
 const AboutPage = () => {
+    const [tab, setTab] = useState('story');
+    const [openYears, setOpenYears] = useState(() => new Set(['2026']));
+
+    const toggleYear = (year) => {
+        setOpenYears((prev) => {
+            const next = new Set(prev);
+            next.has(year) ? next.delete(year) : next.add(year);
+            return next;
+        });
+    };
+
     return (
         <PageTransition>
-            <SEO 
+            <SEO
                 title="About - Lloyd C. Rosales"
                 description="Lloyd C. Rosales is a full-stack software developer based in Cebu, Philippines, specializing in modern web applications, scalable systems, and AI-integrated products."
                 path="/about"
             />
+            <style>{`
+                .tab-btn { position: relative; transition: color 0.2s; }
+                .tab-underline { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: currentColor; border-radius: 2px; }
+
+                .yr { border-top: 1px solid #e5e5e5; }
+                .dark .yr { border-top-color: #1f1f1f; }
+                .yr:last-child { border-bottom: 1px solid #e5e5e5; }
+                .dark .yr:last-child { border-bottom-color: #1f1f1f; }
+                .yr-btn {
+                    width: 100%; display: flex; align-items: center; gap: 1rem;
+                    padding: 1.25rem 0.25rem; cursor: pointer; text-align: left;
+                    background: none; border: none;
+                }
+                .yr-chevron { transition: transform 0.3s ease; color: #a3a3a3; }
+                .yr-chevron.open { transform: rotate(180deg); }
+
+                .yr-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+                .yr-panel.open { grid-template-rows: 1fr; }
+                .yr-panel-inner { overflow: hidden; }
+
+                .tl { position: relative; padding-bottom: 1.5rem; }
+                .tl::before {
+                    content: ''; position: absolute; left: 5px; top: 4px; bottom: 1.9rem; width: 2px;
+                    background: linear-gradient(to bottom, #d4d4d4, #d4d4d4 85%, transparent);
+                }
+                .dark .tl::before { background: linear-gradient(to bottom, #333, #333 85%, transparent); }
+                .tl-node { position: relative; padding-left: 1.75rem; padding-bottom: 1.1rem; }
+                .tl-node:last-child { padding-bottom: 0; }
+                .tl-dot {
+                    position: absolute; left: 0; top: 5px; width: 12px; height: 12px; border-radius: 9999px;
+                    background: #fafafa; border: 2px solid #a3a3a3;
+                }
+                .dark .tl-dot { background: #0a0a0a; border-color: #555; }
+                .tl-month {
+                    display: inline-block; font-family: 'Geist Mono', ui-monospace, monospace;
+                    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+                    color: #000; margin-right: 0.5rem;
+                }
+                .dark .tl-month { color: #fff; }
+            `}</style>
+
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
                 {/* ─── Page Hero ─── */}
-                <section className="pt-28 pb-20 px-6 md:px-8 max-w-4xl mx-auto">
+                <section className="pt-28 pb-14 px-6 md:px-8 max-w-4xl mx-auto">
                     <m.div
                         variants={containerVariants}
                         initial="hidden"
@@ -103,171 +208,271 @@ const AboutPage = () => {
                                 About Me
                             </h1>
                         </m.div>
-
-                        {/* Intro */}
-                        <m.p 
-                            variants={itemVariants}
-                            className="mt-6 text-neutral-500 dark:text-neutral-400 text-lg leading-relaxed max-w-2xl"
-                        >
-                            <span className="text-black dark:text-white font-semibold">Lloyd C. Rosales is a full-stack software developer based in Cebu, Philippines</span>, specializing in modern web applications, scalable systems, and AI-integrated products — a developer who cares as much about how software feels to use as how it's built.
-                        </m.p>
                     </m.div>
                 </section>
 
-                {/* ─── Early Engineering ─── */}
-                <ScrollReveal>
-                    <section className="py-20 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800">
-                        <div className="max-w-4xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
-                            <div>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                                    01 — Origins
-                                </span>
-                                <h2 className="text-2xl font-black tracking-tight mt-2 text-black dark:text-white font-headline">
-                                    Early Engineering
-                                </h2>
-                            </div>
-                            <div className="space-y-6">
-                                <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base">
-                                    My journey began with a curiosity for how complex systems interact. This evolved into a passion for building software that isn't just functional, but architecturally sound and scalable.
-                                </p>
-                                <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed text-sm">
-                                    From tinkering with simple scripts to architecting full-stack applications serving real users — every project taught me that the best code is the code you don't have to explain. It speaks for itself through clarity, intent, and structure.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-                </ScrollReveal>
+                {/* ─── Tabs ─── */}
+                <div className="max-w-4xl mx-auto px-6 md:px-8">
+                    <div
+                        role="tablist"
+                        aria-label="About sections"
+                        className="flex items-center justify-center gap-8 border-b border-neutral-200 dark:border-neutral-800"
+                    >
+                        {[
+                            { id: 'story', label: 'My Story' },
+                            { id: 'blog', label: 'Blog' },
+                        ].map(({ id, label }) => {
+                            const active = tab === id;
+                            return (
+                                <button
+                                    key={id}
+                                    role="tab"
+                                    aria-selected={active}
+                                    onClick={() => setTab(id)}
+                                    className={`tab-btn font-mono text-sm font-bold uppercase tracking-widest pb-4 ${
+                                        active ? 'text-black dark:text-white' : 'text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white'
+                                    }`}
+                                >
+                                    {label}
+                                    {active && <span className="tab-underline" />}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
 
-                {/* ─── Education ─── */}
-                <ScrollReveal>
-                    <section className="py-20 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800">
-                        <div className="max-w-4xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
-                            <div>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                                    02 — Education
-                                </span>
-                                <h2 className="text-2xl font-black tracking-tight mt-2 text-black dark:text-white font-headline">
-                                    Academic Foundation
-                                </h2>
-                            </div>
-                            <div className="space-y-6">
-                                <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6 flex items-start justify-between gap-4">
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center flex-shrink-0">
-                                            <Icon name="workspace_premium" className="text-black dark:text-white text-lg" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-headline text-base font-bold text-black dark:text-white">
-                                                BS in Computer Science
-                                            </h3>
-                                            <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                                                University of Southern Philippines Foundation
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <span className="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-[10px] font-bold uppercase tracking-widest text-black dark:text-white whitespace-nowrap flex-shrink-0">
-                                        Graduate
-                                    </span>
-                                </div>
-                                <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed text-sm">
-                                    A Computer Science degree grounded in algorithms, data structures, and system design — sharpened outside the classroom through hackathons and competitions at USPF, where I placed in multiple College of Computer Studies events.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-                </ScrollReveal>
+                {/* ─── Tab: My Story ─── */}
+                {tab === 'story' && (
+                    <m.section
+                        key="story"
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="py-14 px-6 md:px-8 max-w-4xl mx-auto"
+                    >
+                        {/* Short Introduction */}
+                        <p className="text-neutral-600 dark:text-neutral-300 text-base md:text-lg leading-relaxed">
+                            I&rsquo;m <span className="text-black dark:text-white font-semibold">Lloyd Rosales</span>, a full-stack software developer from Cebu, Philippines. What started with a self-taught &ldquo;Hello, World&rdquo; in 2021 grew — through hackathons, real client work, and a BS in Computer Science at USPF — into building production web apps, scalable systems, and AI-integrated products. I care as much about how software feels to use as how it&rsquo;s built.
+                        </p>
 
-                {/* ─── Professional Philosophy ─── */}
-                <ScrollReveal>
-                    <section className="py-20 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950">
-                        <div className="max-w-4xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
-                            <div>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                                    03 — Philosophy
-                                </span>
-                                <h2 className="text-2xl font-black tracking-tight mt-2 text-black dark:text-white font-headline">
-                                    How I Build
-                                </h2>
-                            </div>
-                            <div className="space-y-6">
-                                <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base">
-                                    I champion "clean code" and user-centric systems. I believe that engineering maturity is defined by how we handle trade-offs and operational awareness, not just the features we ship.
-                                </p>
-                                <div className="border-l-2 border-black dark:border-white pl-6 py-2">
-                                    <p className="font-serif text-black dark:text-white font-medium italic text-base leading-relaxed">
-                                        "Performance is the baseline. Soul is the differentiator."
-                                    </p>
-                                </div>
-                                <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed text-sm">
-                                    Every system I touch is measured by three pillars: resilience under load, developer experience for the next engineer, and the end-user's emotional response to the interface. If any one of those fails, the system is incomplete.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-                </ScrollReveal>
-
-                {/* ─── Offline Impact ─── */}
-                <ScrollReveal>
-                    <section className="py-20 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800" id="offline">
-                        <div className="max-w-4xl mx-auto">
-                            <div className="mb-12">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
-                                    04 — Offline
-                                </span>
-                                <h2 className="text-2xl font-black tracking-tight mt-2 text-black dark:text-white font-headline">
-                                    Beyond the Terminal
-                                </h2>
-                                <p className="text-neutral-500 dark:text-neutral-400 mt-4 max-w-xl text-sm leading-relaxed">
-                                    Engineering is what I do. These are the things that make me who I am.
-                                </p>
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {hobbies.map((hobby, index) => (
-                                    <m.div
-                                        key={hobby.label}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: '-40px' }}
-                                        transition={{
-                                            duration: 0.4,
-                                            delay: index * 0.08,
-                                            ease: [0.25, 0.46, 0.45, 0.94]
-                                        }}
-                                        className="group relative"
+                        {/* Core Focus */}
+                        <div className="mt-12">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
+                                Core Focus
+                            </span>
+                            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {coreFocus.map(({ icon, label }) => (
+                                    <div
+                                        key={label}
+                                        className="flex items-center gap-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 px-4 py-3"
                                     >
-                                        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6 h-full transition-all duration-300 hover:border-black dark:hover:border-white hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5">
-                                            {/* Icon */}
-                                            <div className="w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center mb-4 group-hover:bg-black group-hover:dark:bg-white transition-colors duration-300">
-                                                <Icon name={hobby.icon} className="text-black dark:text-white text-base group-hover:text-white group-hover:dark:text-black transition-colors duration-300" />
-                                            </div>
-
-                                            {/* Label */}
-                                            <h3 className="font-headline text-sm font-bold tracking-tight text-black dark:text-white mb-2">
-                                                {hobby.label}
-                                            </h3>
-
-                                            {/* Desc */}
-                                            <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                                                {hobby.desc}
-                                            </p>
+                                        <div className="w-8 h-8 rounded-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex items-center justify-center flex-shrink-0">
+                                            <Icon name={icon} className="text-black dark:text-white text-base" />
                                         </div>
-                                    </m.div>
+                                        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{label}</span>
+                                    </div>
                                 ))}
                             </div>
                         </div>
-                    </section>
-                </ScrollReveal>
+
+                        {/* Timeline */}
+                        <div className="mt-14">
+                            <div className="flex items-baseline justify-between mb-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
+                                    The Timeline
+                                </span>
+                                <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">tap a year to expand</span>
+                            </div>
+
+                            <div>
+                                {timeline.map(({ year, items }) => {
+                                    const open = openYears.has(year);
+                                    return (
+                                        <div key={year} className="yr">
+                                            <button
+                                                className="yr-btn group"
+                                                onClick={() => toggleYear(year)}
+                                                aria-expanded={open}
+                                            >
+                                                <span className="text-2xl md:text-3xl font-black tracking-tight text-black dark:text-white font-headline tabular-nums">
+                                                    {year}
+                                                </span>
+                                                <span className="flex-1 text-xs font-mono text-neutral-400 dark:text-neutral-500">
+                                                    {items.length} milestone{items.length > 1 ? 's' : ''}
+                                                </span>
+                                                <Icon name="expand_more" className={`yr-chevron text-2xl ${open ? 'open' : ''}`} />
+                                            </button>
+
+                                            <div className={`yr-panel ${open ? 'open' : ''}`}>
+                                                <div className="yr-panel-inner">
+                                                    <ol className="tl">
+                                                        {items.map((it, i) => (
+                                                            <li key={i} className="tl-node">
+                                                                <span className="tl-dot" />
+                                                                <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                                                                    <span className="tl-month">{it.month}</span>
+                                                                    {it.text}
+                                                                </p>
+                                                                {it.media?.length > 0 && (
+                                                                    <div className="mt-3 flex flex-wrap gap-2">
+                                                                        {it.media.map((src) => {
+                                                                            const href = encodeURI(src);
+                                                                            const isPdf = /\.pdf$/i.test(src);
+                                                                            return isPdf ? (
+                                                                                <a
+                                                                                    key={src}
+                                                                                    href={href}
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                    className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 px-3 h-14 sm:h-16 text-xs font-mono font-bold text-neutral-600 dark:text-neutral-300 hover:border-black dark:hover:border-white transition-colors"
+                                                                                >
+                                                                                    <Icon name="integration_instructions" className="text-base" />
+                                                                                    View PDF
+                                                                                </a>
+                                                                            ) : (
+                                                                                <a
+                                                                                    key={src}
+                                                                                    href={href}
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                    className="block overflow-hidden rounded-md border border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white transition-colors"
+                                                                                >
+                                                                                    <img
+                                                                                        src={href}
+                                                                                        alt={`${it.month} ${year}`}
+                                                                                        loading="lazy"
+                                                                                        decoding="async"
+                                                                                        className="w-14 h-14 sm:w-16 sm:h-16 object-cover"
+                                                                                    />
+                                                                                </a>
+                                                                            );
+                                                                        })}
+                                                                    </div>
+                                                                )}
+                                                            </li>
+                                                        ))}
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* Beyond the Terminal */}
+                        <div className="mt-14">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-mono">
+                                Beyond the Terminal
+                            </span>
+                            <div className="mt-4 flex flex-wrap gap-2.5">
+                                {hobbies.map(({ icon, label }) => (
+                                    <span
+                                        key={label}
+                                        className="inline-flex items-center gap-2 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-300"
+                                    >
+                                        <Icon name={icon} className="text-black dark:text-white text-base" />
+                                        {label}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </m.section>
+                )}
+
+                {/* ─── Tab: Blog ─── */}
+                {tab === 'blog' && (
+                    <m.section
+                        key="blog"
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="py-14 px-6 md:px-8 max-w-4xl mx-auto"
+                    >
+                        {blogPosts.length === 0 ? (
+                            <div className="flex flex-col items-center text-center rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-700 py-16 px-6">
+                                <div className="w-14 h-14 rounded-xl bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center mb-6">
+                                    <Icon name="draw" className="text-black dark:text-white text-2xl" />
+                                </div>
+                                <h2 className="text-2xl font-black tracking-tight text-black dark:text-white font-headline">
+                                    Blog — Coming Soon
+                                </h2>
+                                <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-md">
+                                    I&rsquo;m putting together write-ups on the things I build — architecture decisions, hackathon retrospectives, and lessons from shipping AI-integrated products. Check back shortly.
+                                </p>
+                                <Link
+                                    to="/projects"
+                                    className="mt-8 inline-flex items-center gap-2 border border-neutral-300 dark:border-neutral-700 text-black dark:text-white px-5 py-2.5 rounded-lg font-mono text-sm font-bold tracking-wide hover:border-black dark:hover:border-white transition-all duration-200"
+                                >
+                                    Explore Projects Meanwhile
+                                    <Icon name="arrow_forward" className="text-base" />
+                                </Link>
+                            </div>
+                        ) : (
+                            <div className="space-y-4">
+                                {[...blogPosts]
+                                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                                    .map((post) => {
+                                        const isExternal = /^https?:/.test(post.url || '');
+                                        const dateLabel = post.date
+                                            ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+                                            : null;
+                                        const CardTag = post.url ? (isExternal ? 'a' : Link) : 'div';
+                                        const linkProps = post.url
+                                            ? isExternal
+                                                ? { href: post.url, target: '_blank', rel: 'noopener noreferrer' }
+                                                : { to: post.url }
+                                            : {};
+                                        return (
+                                            <CardTag
+                                                key={post.title}
+                                                {...linkProps}
+                                                className={`block rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 p-6 transition-all duration-300 ${post.url ? 'hover:border-black dark:hover:border-white hover:-translate-y-0.5' : ''}`}
+                                            >
+                                                <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 dark:text-neutral-500">
+                                                    {dateLabel && <time dateTime={post.date}>{dateLabel}</time>}
+                                                    {dateLabel && post.readingTime && <span>·</span>}
+                                                    {post.readingTime && <span>{post.readingTime}</span>}
+                                                </div>
+                                                <h3 className="mt-2 text-lg font-black tracking-tight text-black dark:text-white font-headline">
+                                                    {post.title}
+                                                </h3>
+                                                {post.excerpt && (
+                                                    <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                                                        {post.excerpt}
+                                                    </p>
+                                                )}
+                                                {post.tags?.length > 0 && (
+                                                    <div className="mt-4 flex flex-wrap gap-2">
+                                                        {post.tags.map((t) => (
+                                                            <span key={t} className="text-[10px] font-bold uppercase tracking-widest bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800 rounded px-2 py-1">
+                                                                {t}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                                {post.url && (
+                                                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-black dark:text-white">
+                                                        Read {isExternal ? <Icon name="arrow_outward" className="text-sm" /> : <Icon name="arrow_forward" className="text-sm" />}
+                                                    </span>
+                                                )}
+                                            </CardTag>
+                                        );
+                                    })}
+                            </div>
+                        )}
+                    </m.section>
+                )}
 
                 {/* ─── CTA ─── */}
                 <ScrollReveal>
-                    <section className="py-20 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950">
+                    <section className="py-16 px-6 md:px-8 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950">
                         <div className="max-w-4xl mx-auto text-center">
-                            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-black dark:text-white font-headline mb-4">
-                                Let's Build Something
+                            <h2 className="text-3xl md:text-3xl font-black tracking-tight text-black dark:text-white font-headline mb-4">
+                                Let&rsquo;s Build Something
                             </h2>
                             <p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed max-w-lg mx-auto mb-8">
-                                Whether you need a scalable system, a refined user experience, or an engineering partner who cares about craft — I'm ready.
+                                Whether you need a scalable system, a refined user experience, or an engineering partner who cares about craft — I&rsquo;m ready.
                             </p>
                             <div className="flex gap-4 justify-center flex-wrap">
                                 <Link

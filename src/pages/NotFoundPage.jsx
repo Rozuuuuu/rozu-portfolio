@@ -12,12 +12,12 @@ const NotFoundPage = () => (
             path="/404"
         />
         <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen flex flex-col transition-colors duration-300">
-            <main className="flex-1 flex items-center justify-center px-6 pt-32 pb-24">
+            <main className="flex-1 flex items-center justify-center px-6 pt-24 pb-24">
                 <div className="text-center max-w-xl">
                     <p className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 dark:text-neutral-500 mb-6">
                         {'// ERROR_404'}
                     </p>
-                    <h1 className="font-headline text-6xl md:text-8xl font-black tracking-tighter leading-none mb-6">
+                    <h1 className="font-headline text-6xl md:text-6xl font-black tracking-tighter leading-none mb-6">
                         Page not{' '}
                         <span className="font-serif italic text-neutral-400 dark:text-neutral-500">found.</span>
                     </h1>

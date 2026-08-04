@@ -212,7 +212,7 @@ const Hero = ({ revealed }) => {
     return (
         <PageTransition>
             <header
-                className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-7xl mx-auto pt-32 pb-16 lg:pt-0 lg:pb-0 relative"
+                className="min-h-screen lg:min-h-[80vh] flex items-center justify-center px-6 md:px-8 max-w-5xl mx-auto pt-28 pb-16 lg:pt-24 lg:pb-16 relative"
                 id="home">
                 {/* Kinetic Grid Background */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -240,7 +240,7 @@ const Hero = ({ revealed }) => {
                                 </p>
 
                                 {/* Animated cycling text */}
-                                <div className="font-headline italic text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-center min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
+                                <div className="font-headline italic text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-center min-h-[2.5em] md:min-h-[1.5em] max-w-4xl leading-tight">
                                     <span className="drop-shadow-sm whitespace-pre-wrap">
                                         <span className="text-black dark:text-white transition-colors duration-300">{baseText}</span>
                                         <span className="text-neutral-500 dark:text-neutral-400 transition-colors duration-300">{highlightedText}</span>

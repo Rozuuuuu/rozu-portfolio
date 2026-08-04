@@ -7,7 +7,7 @@ const ConnectWithMe = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="connect">
+        <section className="py-16 max-w-5xl mx-auto px-6 md:px-8" id="connect">
             <ScrollReveal>
                 <div className="relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 p-12 md:p-20">
                     {/* Background effects */}

@@ -67,7 +67,7 @@ const SkillPill = ({ skill }) => (
 
 const TechnicalArsenal = () => {
     return (
-        <section className="bg-neutral-50 dark:bg-black py-24 transition-colors duration-300">
+        <section className="bg-neutral-50 dark:bg-black py-16 transition-colors duration-300">
             <style>{`
                 .marquee-row {
                     width: 100%;
@@ -154,11 +154,11 @@ const TechnicalArsenal = () => {
                 }
             `}</style>
             
-            <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-8">
+            <ScrollReveal className="max-w-5xl mx-auto px-6 md:px-8">
                 <div className="flex justify-between items-end mb-12">
                     <div>
                         <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Tech Stack</span>
-                        <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">Skills & Frameworks</h2>
+                        <h2 className="text-3xl font-black tracking-tight mt-2 text-black dark:text-white">Skills & Frameworks</h2>
                     </div>
                     <Link to="/skills" className="hidden sm:flex text-sm font-bold text-neutral-500 hover:text-black dark:hover:text-white uppercase tracking-widest transition-colors items-center gap-1 pb-1 border-b border-transparent hover:border-black dark:hover:border-white">
                         See More <Icon name="arrow_forward" className="text-[14px]" />

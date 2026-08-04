@@ -3,13 +3,13 @@ import Icon from './Icon';
 
 const Education = () => {
     return (
-        <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="education">
+        <section className="py-16 max-w-5xl mx-auto px-6 md:px-8" id="education">
             <ScrollReveal className="grid md:grid-cols-2 gap-16">
                 {/* Academic Foundation */}
                 <div>
                     <div className="mb-12">
                         <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Pedigree</span>
-                        <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Academic Foundation</h2>
+                        <h2 className="text-3xl font-black tracking-tight mt-2 dark:text-stone-100">Academic Foundation</h2>
                     </div>
                     <div className="space-y-8">
                         <div className="border-l-4 border-primary pl-6">
@@ -27,7 +27,7 @@ const Education = () => {
                 <div>
                     <div className="mb-12">
                         <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Credentials</span>
-                        <h2 className="text-4xl font-black tracking-tight mt-2 dark:text-stone-100">Certifications</h2>
+                        <h2 className="text-3xl font-black tracking-tight mt-2 dark:text-stone-100">Certifications</h2>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         {['AWS Solutions Architect', 'Google Cloud Professional', 'Meta Lead Engineer', 'Docker Certified Assoc.'].map((cert) => (

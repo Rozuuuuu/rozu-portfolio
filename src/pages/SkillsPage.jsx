@@ -24,18 +24,18 @@ const SkillsPage = () => {
             />
             <style>{customStyles}</style>
             <div className="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
-                <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
-                <ScrollReveal className="mb-16">
+                <main className="pt-24 pb-24 px-6 max-w-5xl mx-auto">
+                <ScrollReveal className="mb-12">
                     <div className="flex items-end gap-4 mb-2">
                         <span className="text-black dark:text-white text-xs font-mono font-bold tracking-[0.3em]">// CORE_COMPETENCIES</span>
                         <div className="h-[1px] flex-grow bg-neutral-300 dark:bg-neutral-700 mb-1.5"></div>
                     </div>
-                    <h1 className="text-3xl sm:text-5xl md:text-7xl font-headline font-black tracking-tighter text-black dark:text-white uppercase mb-4 leading-[0.9] flex flex-col sm:block">
+                    <h1 className="text-3xl sm:text-5xl md:text-6xl font-headline font-black tracking-tighter text-black dark:text-white uppercase mb-4 leading-[0.9] flex flex-col sm:block">
                         <span>Technical_</span>
                         <span className="text-neutral-400 dark:text-neutral-500">Arsenal</span>
                     </h1>
                     <p className="max-w-2xl text-neutral-500 dark:text-neutral-400 font-body leading-relaxed text-lg border-l-2 border-black dark:border-white pl-6 py-2">
-                        The tools I build with day to day — across full-stack web, mobile, AI/ML integration, and cloud deployment. Grouped by where I've actually shipped with them.
+                        The tools I build with day to day — full-stack web, mobile, AI/ML, and cloud. Grouped by where I've shipped them.
                     </p>
                 </ScrollReveal>
 

@@ -6,6 +6,7 @@ import ScrollReveal from './ScrollReveal';
 import HoverScrollImage from './HoverScrollImage';
 import projects from '../data/projectsData';
 import Icon from './Icon';
+import ExpandableText from './ExpandableText';
 
 const FeaturedProjectCard = ({ project, open, onToggle }) => {
     const { tag, img, media, title, desc, decisions, metrics } = project;
@@ -47,7 +48,9 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
 
             <div className="p-8 flex-grow flex flex-col">
                 <h3 className="text-xl font-black mb-3 text-black dark:text-white">{title}</h3>
-                <p className="text-neutral-500 dark:text-neutral-400 text-sm mb-6 leading-relaxed">{desc}</p>
+                <div className="mb-6">
+                    <ExpandableText text={desc} className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed" />
+                </div>
 
                 {hasDetails && (
                     <div className="mt-auto border-t border-neutral-200 dark:border-neutral-800 pt-4">
@@ -138,15 +141,15 @@ const Projects = () => {
     const [openSlug, setOpenSlug] = useState(null);
 
     return (
-        <section className="py-24 max-w-7xl mx-auto px-6 md:px-8" id="projects">
+        <section className="py-16 max-w-5xl mx-auto px-6 md:px-8" id="projects">
             <ScrollReveal>
                 <div className="mb-8">
                     <span className="text-black dark:text-white font-bold tracking-[0.3em] uppercase text-xs">Recent Work</span>
-                    <h2 className="text-4xl font-black tracking-tight mt-2 text-black dark:text-white">Featured Projects</h2>
+                    <h2 className="text-3xl font-black tracking-tight mt-2 text-black dark:text-white">Featured Projects</h2>
                 </div>
 
                 {/* items-start so expanding one card's accordion doesn't stretch its row-mates */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 mb-12">
                     {displayProjects.map((project) => (
                         <FeaturedProjectCard
                             key={project.slug}

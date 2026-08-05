@@ -36,4 +36,15 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Blog Articles -->
+  <url>
+    <loc>https://lloydrosales.com/blog/aria-consent-gated-lead-capture</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lloydrosales.com/blog/sugboway-postgis-routing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

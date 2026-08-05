@@ -123,7 +123,9 @@ const timeline = [
 ];
 
 const AboutPage = () => {
-    const [tab, setTab] = useState('story');
+    const [tab, setTab] = useState(() =>
+        new URLSearchParams(window.location.search).get('tab') === 'blog' ? 'blog' : 'story'
+    );
     const [openYears, setOpenYears] = useState(() => new Set(['2026']));
     const [lightbox, setLightbox] = useState(null);
 
@@ -434,56 +436,17 @@ const AboutPage = () => {
                                 </Link>
                             </div>
                         ) : (
-                            <div className="space-y-4">
+                            <div className="space-y-5">
                                 {[...blogPosts]
                                     .sort((a, b) => new Date(b.date) - new Date(a.date))
-                                    .map((post) => {
-                                        const isExternal = /^https?:/.test(post.url || '');
-                                        const dateLabel = post.date
-                                            ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
-                                            : null;
-                                        const CardTag = post.url ? (isExternal ? 'a' : Link) : 'div';
-                                        const linkProps = post.url
-                                            ? isExternal
-                                                ? { href: post.url, target: '_blank', rel: 'noopener noreferrer' }
-                                                : { to: post.url }
-                                            : {};
-                                        return (
-                                            <CardTag
-                                                key={post.title}
-                                                {...linkProps}
-                                                className={`block rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 p-6 transition-all duration-300 ${post.url ? 'hover:border-black dark:hover:border-white hover:-translate-y-0.5' : ''}`}
-                                            >
-                                                <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 dark:text-neutral-500">
-                                                    {dateLabel && <time dateTime={post.date}>{dateLabel}</time>}
-                                                    {dateLabel && post.readingTime && <span>·</span>}
-                                                    {post.readingTime && <span>{post.readingTime}</span>}
-                                                </div>
-                                                <h3 className="mt-2 text-lg font-black tracking-tight text-black dark:text-white font-headline">
-                                                    {post.title}
-                                                </h3>
-                                                {post.excerpt && (
-                                                    <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                                                        {post.excerpt}
-                                                    </p>
-                                                )}
-                                                {post.tags?.length > 0 && (
-                                                    <div className="mt-4 flex flex-wrap gap-2">
-                                                        {post.tags.map((t) => (
-                                                            <span key={t} className="text-[10px] font-bold uppercase tracking-widest bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800 rounded px-2 py-1">
-                                                                {t}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                                {post.url && (
-                                                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-black dark:text-white">
-                                                        Read {isExternal ? <Icon name="arrow_outward" className="text-sm" /> : <Icon name="arrow_forward" className="text-sm" />}
-                                                    </span>
-                                                )}
-                                            </CardTag>
-                                        );
-                                    })}
+                                    .map((post) => (
+                                        <BlogCard key={post.title} post={post} />
+                                    ))}
+                                <div className="pt-2 text-center">
+                                    <Link to="/blog" className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">
+                                        View all posts <Icon name="arrow_forward" className="text-sm" />
+                                    </Link>
+                                </div>
                             </div>
                         )}
                     </m.section>

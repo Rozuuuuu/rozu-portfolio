@@ -34,6 +34,7 @@ const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 const SkillsPage = lazy(() => import('./pages/SkillsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
@@ -104,6 +105,7 @@ function AnimatedRoutes({ preloaderDone }) {
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<HomePage revealed={preloaderDone} />} />
                     <Route path="/about" element={<AboutPage />} />
+                    <Route path="/blog" element={<BlogPage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/projects" element={<ProjectsPage />} />
                     <Route path="/projects/:slug" element={<ProjectDetail />} />

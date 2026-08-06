@@ -7,6 +7,7 @@ import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import { SharedFooter } from '../components/SharedFooter';
 import Icon from '../components/Icon';
+import BlogCard from '../components/BlogCard';
 import { blogPosts } from '../data/blogData';
 
 /* ─── Animation Variants ─── */

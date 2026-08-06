@@ -36,6 +36,12 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Blog Index -->
+  <url>
+    <loc>https://lloydrosales.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Blog Articles -->
   <url>
     <loc>https://lloydrosales.com/blog/aria-consent-gated-lead-capture</loc>

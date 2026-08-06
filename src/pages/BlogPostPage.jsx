@@ -82,7 +82,7 @@ const BlogPostPage = () => {
                 <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen flex flex-col items-center justify-center px-6 text-center">
                     <h1 className="text-3xl font-black tracking-tight font-headline">Post not found</h1>
                     <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400">This article doesn’t exist or has moved.</p>
-                    <Link to="/about?tab=blog" className="mt-8 inline-flex items-center gap-2 border border-neutral-300 dark:border-neutral-700 px-5 py-2.5 rounded-lg font-mono text-sm font-bold tracking-wide hover:border-black dark:hover:border-white transition-all">
+                    <Link to="/blog" className="mt-8 inline-flex items-center gap-2 border border-neutral-300 dark:border-neutral-700 px-5 py-2.5 rounded-lg font-mono text-sm font-bold tracking-wide hover:border-black dark:hover:border-white transition-all">
                         <Icon name="arrow_back" className="text-base" /> Back to Blog
                     </Link>
                 </div>
@@ -99,7 +99,7 @@ const BlogPostPage = () => {
             <SEO title={`${post.title} - Lloyd C. Rosales`} description={post.excerpt} path={`/blog/${post.slug}`} />
             <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-colors duration-300">
                 <main className="pt-24 pb-20 px-6 md:px-8 max-w-3xl mx-auto">
-                    <Link to="/about?tab=blog" className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">
+                    <Link to="/blog" className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">
                         <Icon name="arrow_back" className="text-sm" /> Back to Blog
                     </Link>
 
@@ -159,7 +159,7 @@ const BlogPostPage = () => {
 
                     {/* Footer nav */}
                     <div className="mt-12">
-                        <Link to="/about?tab=blog" className="inline-flex items-center gap-2 text-sm font-mono font-bold text-black dark:text-white hover:opacity-70 transition-opacity">
+                        <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-mono font-bold text-black dark:text-white hover:opacity-70 transition-opacity">
                             <Icon name="arrow_back" className="text-base" /> More articles
                         </Link>
                     </div>

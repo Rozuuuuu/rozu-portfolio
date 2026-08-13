@@ -19,7 +19,7 @@ const Tag = ({ children }) => (
 );
 
 /* ─── Filter Tabs ─── */
-const FILTERS = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML'];
+const FILTERS = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML', 'DevOps'];
 
 /* ─── Placeholder for projects without images ─── */
 const PlaceholderThumb = ({ title }) => (
@@ -113,7 +113,7 @@ const ProjectCard = ({ project, index }) => {
                     <ExpandableText text={project.desc} className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed" />
                 </div>
 
-                <ProjectLinks live={project.live} repo={project.repo} className="mt-5" />
+                <ProjectLinks live={project.live} repo={project.repo} docs={project.docs} className="mt-5" />
             </div>
         </m.div>
     );

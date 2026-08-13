@@ -10,6 +10,20 @@
 
 const projects = [
     {
+        slug: 'aws-devops-roadmap',
+        tag: 'DevOps',
+        tags: ['AWS', 'DevOps', 'CI/CD', 'Cloud'],
+        img: null,
+        title: 'AWS DevOps Roadmap',
+        desc: "A hands-on 6-day AWS DevOps roadmap through NextWork — building real CI/CD skills across AWS tooling, from wiring up a cloud dev environment to source control and pipeline automation. 2 of 6 days completed so far; the module write-ups are linked below.",
+        live: '',
+        repo: '',
+        docs: [
+            { label: 'Day 1 · VS Code + AWS', url: 'https://nextwork.ai/eager_pink_proud_kiwano/docs/aws-devops-vscode' },
+            { label: 'Day 2 · GitHub', url: 'https://nextwork.ai/eager_pink_proud_kiwano/docs/aws-devops-github' },
+        ],
+    },
+    {
         slug: 'aria-meridian-estates',
         tag: 'Full-Stack',
         tags: ['Next.js 15', 'TypeScript', 'Gemini', 'pgvector', 'Resend'],

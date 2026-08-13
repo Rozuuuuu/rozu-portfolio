@@ -104,7 +104,7 @@ const ProjectDetail = () => {
                         </ScrollReveal>
                         <ScrollReveal delay={0.1}>
                             <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-3xl">{project.desc}</p>
-                            <ProjectLinks live={project.live} repo={project.repo} className="mt-6" />
+                            <ProjectLinks live={project.live} repo={project.repo} docs={project.docs} className="mt-6" />
                         </ScrollReveal>
                     </header>
 

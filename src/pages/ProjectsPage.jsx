@@ -19,7 +19,8 @@ const Tag = ({ children }) => (
 );
 
 /* ─── Filter Tabs ─── */
-const FILTERS = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML', 'DevOps'];
+const FILTERS = ['All', 'Full-Stack', 'Frontend', 'E-Commerce', 'AI/ML', 'DevOps', 'WordPress'];
+const SORTS = ['Newest', 'Oldest', 'Name (A–Z)', 'Name (Z–A)'];
 
 /* ─── Placeholder for projects without images ─── */
 const PlaceholderThumb = ({ title }) => (
@@ -46,6 +47,7 @@ const PlaceholderThumb = ({ title }) => (
 const ProjectCard = ({ project, index }) => {
     const hasVideo = project.media?.type === 'video';
     const hasImage = !!project.img;
+    const hasLogo = !!project.logo;
 
     return (
         <m.div
@@ -71,6 +73,10 @@ const ProjectCard = ({ project, index }) => {
                     />
                 ) : hasImage ? (
                     <HoverScrollImage src={project.img} alt={project.title} className="w-full h-full" />
+                ) : hasLogo ? (
+                    <div className="w-full h-full flex items-center justify-center bg-neutral-50 dark:bg-neutral-950 p-10">
+                        <img src={project.logo} alt={project.title} className="max-h-14 w-auto object-contain dark:invert" loading="lazy" decoding="async" />
+                    </div>
                 ) : (
                     <PlaceholderThumb title={project.title} />
                 )}
@@ -122,6 +128,8 @@ const ProjectCard = ({ project, index }) => {
 /* ─── Projects Page ─── */
 const ProjectsPage = () => {
     const [activeFilter, setActiveFilter] = useState('All');
+    const [sortBy, setSortBy] = useState('Newest');
+    const [sortOpen, setSortOpen] = useState(false);
 
     const cafeAiProject = projects.find(p => p.slug === 'cafe-ai');
 
@@ -129,6 +137,12 @@ const ProjectsPage = () => {
         ? projects
         : projects.filter(p => p.tag === activeFilter)
     ).filter(p => p.slug !== 'cafe-ai');
+
+    // Sort a copy so the source order (used as the "Newest" curated order) is preserved.
+    const sorted = [...filtered];
+    if (sortBy === 'Oldest') sorted.reverse();
+    else if (sortBy === 'Name (A–Z)') sorted.sort((a, b) => a.title.localeCompare(b.title));
+    else if (sortBy === 'Name (Z–A)') sorted.sort((a, b) => b.title.localeCompare(a.title));
 
     return (
         <PageTransition>
@@ -238,30 +252,76 @@ const ProjectsPage = () => {
                         </section>
                     )}
 
-                    {/* Filter bar */}
+                    {/* Filter + sort bar */}
                     <section className="max-w-5xl mx-auto px-6 md:px-8 mb-12">
-                        <div className="flex flex-wrap gap-2 p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-xl max-w-fit border border-neutral-200 dark:border-neutral-800 shadow-sm">
-                            {FILTERS.map((filter) => (
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div className="flex flex-wrap gap-2 p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-xl max-w-fit border border-neutral-200 dark:border-neutral-800 shadow-sm">
+                                {FILTERS.map((filter) => (
+                                    <button
+                                        key={filter}
+                                        onClick={() => setActiveFilter(filter)}
+                                        className={`relative px-5 py-2.5 min-h-[44px] min-w-[44px] text-sm font-bold rounded-lg transition-colors z-10 ${
+                                            activeFilter === filter
+                                                ? 'text-white dark:text-black'
+                                                : 'text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white'
+                                        }`}
+                                    >
+                                        {activeFilter === filter && (
+                                            <m.span
+                                                layoutId="projects-filter-pill"
+                                                className="absolute inset-0 bg-black dark:bg-white rounded-lg -z-10"
+                                                initial={false}
+                                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                            />
+                                        )}
+                                        {filter}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Sort dropdown */}
+                            <div className="relative self-start sm:self-auto">
                                 <button
-                                    key={filter}
-                                    onClick={() => setActiveFilter(filter)}
-                                    className={`relative px-5 py-2.5 min-h-[44px] min-w-[44px] text-sm font-bold rounded-lg transition-colors z-10 ${
-                                        activeFilter === filter
-                                            ? 'text-white dark:text-black'
-                                            : 'text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white'
-                                    }`}
+                                    type="button"
+                                    onClick={() => setSortOpen((o) => !o)}
+                                    aria-haspopup="listbox"
+                                    aria-expanded={sortOpen}
+                                    className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 text-sm font-bold text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
                                 >
-                                    {activeFilter === filter && (
-                                        <m.span
-                                            layoutId="projects-filter-pill"
-                                            className="absolute inset-0 bg-black dark:bg-white rounded-lg -z-10"
-                                            initial={false}
-                                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                                        />
-                                    )}
-                                    {filter}
+                                    <span className="text-neutral-400 dark:text-neutral-500 font-mono text-[11px] uppercase tracking-widest">Sort</span>
+                                    {sortBy}
+                                    <Icon
+                                        name="expand_more"
+                                        className={`text-base transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${sortOpen ? 'rotate-180' : ''}`}
+                                    />
                                 </button>
-                            ))}
+
+                                {sortOpen && (
+                                    <>
+                                        <div className="fixed inset-0 z-10" onClick={() => setSortOpen(false)} aria-hidden="true" />
+                                        <ul
+                                            role="listbox"
+                                            className="absolute right-0 mt-2 z-20 w-44 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 shadow-lg py-1 overflow-hidden"
+                                        >
+                                            {SORTS.map((s) => (
+                                                <li key={s} role="option" aria-selected={sortBy === s}>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => { setSortBy(s); setSortOpen(false); }}
+                                                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                                                            sortBy === s
+                                                                ? 'font-bold text-black dark:text-white bg-neutral-100 dark:bg-neutral-900'
+                                                                : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white'
+                                                        }`}
+                                                    >
+                                                        {s}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </section>
 
@@ -269,7 +329,7 @@ const ProjectsPage = () => {
                     <section className="max-w-5xl mx-auto px-6 md:px-8">
                         <m.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             <AnimatePresence mode="popLayout">
-                                {filtered.map((project, i) => (
+                                {sorted.map((project, i) => (
                                     <ProjectCard key={project.slug} project={project} index={i} />
                                 ))}
                             </AnimatePresence>

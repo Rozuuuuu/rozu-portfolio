@@ -61,6 +61,7 @@ const ProjectDetail = () => {
     const hasVideo = project.media?.type === 'video';
     const hasYouTube = project.media?.type === 'youtube';
     const hasImage = !!project.img;
+    const hasLogo = !!project.logo;
 
     return (
         <PageTransition>
@@ -89,6 +90,10 @@ const ProjectDetail = () => {
                                 ) : hasImage ? (
                                     /* [PERF FIX 4] Image lazy loading and dimensions */
                                     <img className="w-full h-full object-cover" src={project.img} alt={project.title} width="800" height="450" loading="lazy" decoding="async" />
+                                ) : hasLogo ? (
+                                    <div className="w-full h-full flex items-center justify-center bg-neutral-50 dark:bg-neutral-950 p-12">
+                                        <img className="max-h-24 w-auto object-contain dark:invert" src={project.logo} alt={project.title} loading="lazy" decoding="async" />
+                                    </div>
                                 ) : (
                                     <div className="w-full h-full flex flex-col items-center justify-center bg-neutral-200 dark:bg-neutral-800">
                                         <Icon name="code" className="text-7xl text-neutral-400 mb-4" />

@@ -20,6 +20,40 @@
 
 export const blogPosts = [
     {
+        slug: 'learning-aws-devops-roadmap',
+        title: 'Learning AWS DevOps: Working Through a 6-Day Roadmap',
+        date: '2026-08-17',
+        readingTime: '3 min read',
+        category: 'Learning Journal',
+        excerpt:
+            "I'm working through NextWork's 6-day AWS DevOps roadmap to sharpen my CI/CD and cloud skills. Here's what the first two days covered — and what I'm taking from it.",
+        takeaways: [
+            'Day 1 — wiring VS Code to AWS for a real cloud dev environment.',
+            'Day 2 — source control with GitHub as the backbone of a DevOps workflow.',
+            'Why hands-on labs beat passive tutorials for retaining cloud concepts.',
+        ],
+        tags: ['AWS', 'DevOps', 'CI/CD', 'Learning'],
+        content: `Great engineers keep learning, so I'm spending some post-graduation time going deep on cloud and DevOps. Right now I'm working through **NextWork's 6-day AWS DevOps roadmap** — a hands-on track that builds a real CI/CD workflow on AWS, one day at a time. Here's where I am.
+
+## Day 1 — A real cloud dev environment
+
+The first day was about wiring **VS Code to AWS** so the editor talks directly to cloud services. Setting up the environment properly up front is the unglamorous work that makes everything after it faster.
+
+[Read the Day 1 write-up →](https://nextwork.ai/eager_pink_proud_kiwano/docs/aws-devops-vscode)
+
+## Day 2 — Source control as the backbone
+
+Day 2 moved into **GitHub** — not just committing code, but treating source control as the backbone of a DevOps pipeline. Every automation that comes later hangs off getting this right.
+
+[Read the Day 2 write-up →](https://nextwork.ai/eager_pink_proud_kiwano/docs/aws-devops-github)
+
+## What's next
+
+Four more days to go — heading into pipelines and automation. I'll update this post as I finish each one.
+
+> **2 of 6 days done.** The full project, with every module link, lives on my [projects page](/projects/aws-devops-roadmap).`,
+    },
+    {
         slug: 'aria-consent-gated-lead-capture',
         title: 'Keeping PII Out of the Model: Aria’s Consent-Gated Lead Capture',
         date: '2026-03-15',

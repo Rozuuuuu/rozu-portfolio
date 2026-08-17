@@ -14,6 +14,7 @@ const projects = [
         tag: 'DevOps',
         tags: ['AWS', 'DevOps', 'CI/CD', 'Cloud'],
         img: null,
+        logo: '/nextwork.png',
         title: 'AWS DevOps Roadmap',
         desc: "A hands-on 6-day AWS DevOps roadmap through NextWork — building real CI/CD skills across AWS tooling, from wiring up a cloud dev environment to source control and pipeline automation. 2 of 6 days completed so far; the module write-ups are linked below.",
         live: '',
@@ -21,6 +22,20 @@ const projects = [
         docs: [
             { label: 'Day 1 · VS Code + AWS', url: 'https://nextwork.ai/eager_pink_proud_kiwano/docs/aws-devops-vscode' },
             { label: 'Day 2 · GitHub', url: 'https://nextwork.ai/eager_pink_proud_kiwano/docs/aws-devops-github' },
+        ],
+    },
+    {
+        slug: 'custom-wordpress-theme',
+        tag: 'WordPress',
+        tags: ['WordPress', 'PHP', 'Theme Development', 'Frontend'],
+        img: null,
+        logo: '/nextwork.png',
+        title: 'Build a Custom WordPress Theme',
+        desc: "A hands-on NextWork project building a custom WordPress theme from scratch — working with PHP templates, the theme file structure, and the WordPress template hierarchy to control a site's design end to end instead of relying on a pre-built theme.",
+        live: '',
+        repo: '',
+        docs: [
+            { label: 'View on NextWork', url: 'https://nextwork.ai/projects/4eb91fc9-a5ad-43af-b2d0-ae3f26c694a1' },
         ],
     },
     {

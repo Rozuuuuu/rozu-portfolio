@@ -57,8 +57,9 @@ const coreFocus = [
 const timeline = [
     {
         year: '2026',
-        intro: 'Proving it — at the highest level I’d faced yet. A national podium, a competency certification, a seat in an Accenture bootcamp, and finally the walk across the stage.',
+        intro: 'Proving it — at the highest level I’d faced yet. A national podium, a competency certification, a seat in an Accenture bootcamp, the walk across the stage, and then straight into leveling up my cloud and DevOps skills.',
         items: [
+            { month: 'Aug', text: 'Started NextWork’s 6-day AWS DevOps roadmap to sharpen my CI/CD and cloud skills — 2 of 6 days completed so far — alongside a custom WordPress theme build.' },
             { month: 'Jun', text: 'Graduated from USPF with a Bachelor of Science in Computer Science.', media: ['/MyStory/Graduated.jpg'] },
             { month: 'Apr', text: 'Attended the PSITE Student Congress 2026 at the Cebu Coliseum.', media: ['/MyStory/PSITE 2026.jpg'] },
             { month: 'Mar', text: 'Received my internship pin at the USPF CCS ceremony (delivering the BSCS batch message), placed 2nd at the USPF CCS Hackathon, and stepped back from freelancing to focus on my skills and portfolio.', media: ['/MyStory/Pinning.jpg', '/MyStory/Pinning (2).jpg', '/MyStory/Pinning (3).jpg', '/2ndplace2026.jpg'] },

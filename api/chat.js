@@ -1,12 +1,50 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import projects from "../src/data/projectsData.js";
+import { featured, spotlight, milestones } from "../src/data/achievementsData.js";
+import { blogPosts } from "../src/data/blogData.js";
 
 /**
  * Vercel Serverless Function: /api/chat
  *
- * Secure proxy for the Gemini 1.5 Flash model.
+ * Secure proxy for the Gemini 2.5 Flash model.
  * Accepts POST requests with { message, history } and returns
  * the AI's response while keeping the API key server-side.
+ *
+ * The knowledge base below (projects, achievements, writing) is generated
+ * from the same data files the site renders, so the assistant can never
+ * drift out of sync with the real portfolio.
  */
+
+/** Trim a description to one concise sentence for the prompt. */
+const brief = (text = "", max = 180) => {
+    const clean = String(text).replace(/\s+/g, " ").trim();
+    if (clean.length <= max) return clean;
+    const cut = clean.slice(0, max);
+    const lastStop = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("— "));
+    return (lastStop > 80 ? cut.slice(0, lastStop) : cut).trim() + "…";
+};
+
+const PROJECTS_KNOWLEDGE = projects
+    .map((p) => {
+        const links = [`/projects/${p.slug}`, p.live].filter(Boolean).join(" | ");
+        const stack = p.tags?.length ? ` [${p.tags.join(", ")}]` : "";
+        return `- ${p.title} (${p.tag})${stack} — ${brief(p.desc)} Links: ${links}`;
+    })
+    .join("\n");
+
+const ACHIEVEMENTS_KNOWLEDGE = [...featured, ...spotlight, ...milestones]
+    .map((a) => {
+        const place = a.place ? `${a.place} — ` : "";
+        const sub = a.subtitle ? ` (${a.subtitle})` : "";
+        return `- ${place}${a.title}${sub}`;
+    })
+    .join("\n");
+
+const WRITING_KNOWLEDGE = blogPosts.length
+    ? blogPosts
+          .map((b) => `- ${b.title} — ${brief(b.excerpt, 140)} Link: /blog/${b.slug}`)
+          .join("\n")
+    : "- No posts published yet.";
 
 const SYSTEM_INSTRUCTION = `You are "Lloyd AI", the intelligent digital twin of Lloyd C. Rosales — a Full-Stack Software Developer, AI Engineer, UI/UX Architect, and Computer Science graduate of the University of Southern Philippines Foundation.
 
@@ -37,24 +75,17 @@ AI / ML EXPERTISE:
 - Specializations: Generative AI, LLM Orchestration, Multi-Agent Systems, Automation Agents, Augmented Reality, Computer Vision
 
 ACHIEVEMENTS & RECOGNITION:
-- PhilTech Innovathon 2026 — 2nd Runner-Up + Best Collaborative Catalysts (double award, AI Engineer role) held at BGC Taguig
-- HackEstate — 3rd Place
-- CEB-i Hacks 2025 — Top 25 Finalist (AI Engineer for team Hanzilla and Friends)
-- CCS Days 2023 — 2nd Place
-- PropTech SinulogFest — Top UX Interface Award
-- TOPCIT Level 3 Competent Achiever
-- CESAFI Quiz Bowl Representative
-- TESDA NCII CSS Certified
+${ACHIEVEMENTS_KNOWLEDGE}
 - Dean's List — consistent academic excellence
-- National-level hackathon 2nd placer
+- Graduated BS Computer Science, University of Southern Philippines Foundation (June 2026)
+- SAP ABAP delegate — 320-hour Accenture Technology Academy bootcamp (Feb–Apr 2026)
 
-NOTABLE PROJECTS:
-- Sage Flow — AI-powered productivity and reflection journal
-- Ye-Ai — virtual try-on system using TPS warping and computer vision
-- SugboWay — full-stack transportation/navigation platform
-- HabiCheck — habit tracking and wellness application
+NOTABLE PROJECTS (complete, current list — never invent projects beyond these):
+${PROJECTS_KNOWLEDGE}
 - Portfolio site — lloydrosales.com (built with React, Vite, Tailwind CSS)
-- Various full-stack, AI-integrated, and real-time web applications
+
+WRITING / BLOG:
+${WRITING_KNOWLEDGE}
 
 PHILOSOPHY & MINDSET:
 - "Ship with intention. Every pixel, every endpoint, every commit should solve a real problem."
@@ -108,9 +139,13 @@ If the user asks for a page or section, output a markdown link:
 - Home: [Home](/)
 - About Me: [About Me](/about)
 - Projects: [Projects](/projects)
+- Blog: [Blog](/blog)
 - Skills: [Skills](/skills)
 - Achievements: [Achievements](/achievements)
 - Contact: [Contact](/contact)
+
+You may also link directly to a specific project or article using the Links listed
+in the knowledge base above — for example [SugboWay](/projects/sugboway).
 
 Example: "You can explore my hackathon wins on the [Achievements](/achievements) page."
 

@@ -46,7 +46,9 @@ const WRITING_KNOWLEDGE = blogPosts.length
           .join("\n")
     : "- No posts published yet.";
 
-const SYSTEM_INSTRUCTION = `You are "Lloyd AI", the intelligent digital twin of Lloyd C. Rosales — a Full-Stack Software Developer, AI Engineer, UI/UX Architect, and Computer Science graduate of the University of Southern Philippines Foundation.
+// Exported so other runtimes (e.g. the AWS Lambda port in /aws) can reuse the
+// exact same prompt instead of keeping a second, drift-prone copy.
+export const SYSTEM_INSTRUCTION = `You are "Lloyd AI", the intelligent digital twin of Lloyd C. Rosales — a Full-Stack Software Developer, AI Engineer, UI/UX Architect, and Computer Science graduate of the University of Southern Philippines Foundation.
 
 ═══════════════════════════════════════
 IDENTITY & PERSONA
@@ -173,8 +175,8 @@ CONVERSATION STARTERS (use when idle or greeting)
 - "Welcome to my digital space. Curious about something I've built? Or want to talk AI and engineering?"
 - "I'm Lloyd's digital twin. Think of me as the version of him that's always online and never needs coffee... well, almost."`;
 
-const MAX_MESSAGE_LENGTH = 1000;
-const MAX_HISTORY_ITEMS = 12;
+export const MAX_MESSAGE_LENGTH = 1000;
+export const MAX_HISTORY_ITEMS = 12;
 
 const getAllowedOrigin = (origin) => {
     const allowedOrigins = [

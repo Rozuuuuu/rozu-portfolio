@@ -1,0 +1,135 @@
+name: Deploy to AWS
+
+# Deploys the parallel AWS stack (S3 + CloudFront + Lambda) that serves
+# aws.lloydrosales.com. Vercel still deploys lloydrosales.com from the same
+# branch — the two are independent, so a failure here never affects production.
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  workflow_dispatch: # lets you run it by hand from the Actions tab
+
+# Required for OIDC: lets the job request a short-lived AWS credential.
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-aws
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '22'
+  CHAT_FN: lloyd-chat
+  CONTRIB_FN: lloyd-contributions
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site and Lambda packages
+        run: |
+          pnpm run build          # → dist/ (also regenerates sitemap.xml)
+          node aws/build.mjs      # → aws/build/{chat,contributions}
+
+      # IMPORTANT: npm, not pnpm. pnpm builds a symlinked node_modules, and
+      # symlinks do not survive zipping into a Lambda package — the function
+      # would fail at runtime with "Cannot find module '@google/generative-ai'".
+      - name: Install chat Lambda dependencies (npm, flat node_modules)
+        working-directory: aws/build/chat
+        run: npm install --omit=dev --no-package-lock
+
+      - name: Package Lambdas
+        run: |
+          # Zip the CONTENTS of each folder so index.mjs sits at the zip root.
+          cd aws/build/chat          && zip -qr ../chat.zip .          && cd -
+          cd aws/build/contributions && zip -qr ../contributions.zip . && cd -
+          ls -lh aws/build/*.zip
+
+      - name: Configure AWS credentials (OIDC — no stored keys)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Two passes: hashed assets are immutable and cached for a year, while
+      # index.html must never be cached or visitors keep getting the old app.
+      - name: Sync site to S3
+        run: |
+          aws s3 sync dist/ "s3://${{ secrets.S3_BUCKET }}" \
+            --delete \
+            --cache-control "public,max-age=31536000,immutable" \
+            --exclude "index.html" \
+            --exclude "*.xml" \
+            --exclude "*.txt"
+
+          aws s3 cp dist/index.html "s3://${{ secrets.S3_BUCKET }}/index.html" \
+            --cache-control "no-cache,must-revalidate" \
+            --content-type "text/html; charset=utf-8"
+
+          aws s3 cp dist/sitemap.xml "s3://${{ secrets.S3_BUCKET }}/sitemap.xml" \
+            --cache-control "public,max-age=3600" \
+            --content-type "application/xml"
+
+          aws s3 cp dist/robots.txt "s3://${{ secrets.S3_BUCKET }}/robots.txt" \
+            --cache-control "public,max-age=3600" \
+            --content-type "text/plain"
+
+      - name: Update Lambda functions
+        run: |
+          aws lambda update-function-code \
+            --function-name "$CHAT_FN" \
+            --zip-file fileb://aws/build/chat.zip \
+            --no-cli-pager
+          aws lambda update-function-code \
+            --function-name "$CONTRIB_FN" \
+            --zip-file fileb://aws/build/contributions.zip \
+            --no-cli-pager
+
+          # Wait so a failed deploy fails the build instead of silently rolling on.
+          aws lambda wait function-updated --function-name "$CHAT_FN"
+          aws lambda wait function-updated --function-name "$CONTRIB_FN"
+
+      - name: Invalidate CloudFront
+        run: |
+          ID=$(aws cloudfront create-invalidation \
+            --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/*" \
+            --query 'Invalidation.Id' --output text)
+          echo "Invalidation $ID created"
+          aws cloudfront wait invalidation-completed \
+            --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --id "$ID"
+
+      - name: Smoke test
+        run: |
+          BASE=https://aws.lloydrosales.com
+          echo "--- homepage ---"
+          curl -sfS -o /dev/null -w "%{http_code}\n" "$BASE/"
+
+          echo "--- SPA deep link (must be 200, not 403/404) ---"
+          code=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/projects/sugboway")
+          echo "$code"; [ "$code" = "200" ] || { echo "SPA routing broken"; exit 1; }
+
+          echo "--- chat API ---"
+          curl -sfS -X POST "$BASE/api/chat" \
+            -H "Content-Type: application/json" \
+            -d '{"message":"ping","history":[]}' | head -c 200

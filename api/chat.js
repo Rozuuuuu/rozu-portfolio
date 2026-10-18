@@ -46,8 +46,7 @@ const WRITING_KNOWLEDGE = blogPosts.length
           .join("\n")
     : "- No posts published yet.";
 
-// Exported so other runtimes (e.g. the AWS Lambda port in /aws) can reuse the
-// exact same prompt instead of keeping a second, drift-prone copy.
+// Shared prompt generated from the portfolio data.
 export const SYSTEM_INSTRUCTION = `You are "Lloyd AI", the intelligent digital twin of Lloyd C. Rosales — a Full-Stack Software Developer, AI Engineer, UI/UX Architect, and Computer Science graduate of the University of Southern Philippines Foundation.
 
 ═══════════════════════════════════════

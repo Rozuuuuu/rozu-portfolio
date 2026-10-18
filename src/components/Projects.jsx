@@ -27,6 +27,8 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
                             onMouseLeave={e => { e.target.pause(); e.target.currentTime = 0; }}
                         />
                     </div>
+                ) : project.showcase ? (
+                    <img src={img} alt={title} className="w-full aspect-video object-contain bg-neutral-950" width="800" height="450" loading="lazy" decoding="async" />
                 ) : img ? (
                     <HoverScrollImage src={img} alt={title} />
                 ) : (
@@ -157,12 +159,9 @@ const FeaturedProjectCard = ({ project, open, onToggle }) => {
 
 // Featured = these three, in this order — independent of the full list's order
 // on the Projects page. "View All Projects" links to that full list.
-const FEATURED_SLUGS = ['sugboway', 'ye-ai', 'aria-meridian-estates'];
 
 const Projects = () => {
-    const displayProjects = FEATURED_SLUGS
-        .map(slug => projects.find(p => p.slug === slug))
-        .filter(Boolean);
+    const displayProjects = projects.filter(project => project.featured);
 
     // Single-open accordion: only the card you click is expanded. Opening one
     // closes any other, and clicking the open card collapses it.

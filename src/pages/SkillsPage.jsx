@@ -132,7 +132,7 @@ const SkillsPage = () => {
                         </h3>
                         <div className="space-y-6">
                             {[
-                                { icon: 'cloud', name: 'AWS / Azure', desc: 'Working knowledge of core services — compute, storage, and serverless functions.' },
+                                { icon: 'cloud', name: 'Azure', desc: 'Working knowledge of core services — compute, storage, and serverless functions.' },
                                 { icon: 'fire', name: 'Firebase / Supabase', desc: 'Auth, storage, edge functions, and real-time sync in shipped projects.' },
                             ].map(c => (
                                 <div key={c.name} className="flex items-start gap-4">

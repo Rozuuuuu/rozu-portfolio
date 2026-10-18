@@ -30,7 +30,7 @@ const Education = () => {
                         <h2 className="text-3xl font-black tracking-tight mt-2 dark:text-stone-100">Certifications</h2>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                        {['AWS Solutions Architect', 'Google Cloud Professional', 'Meta Lead Engineer', 'Docker Certified Assoc.'].map((cert) => (
+                        {['Google Cloud Professional', 'Meta Lead Engineer', 'Docker Certified Assoc.'].map((cert) => (
                             <div key={cert} className="bg-surface-container dark:bg-stone-800 p-6 rounded-lg text-center">
                                 <Icon name="verified" className="text-black dark:text-white mb-2 block" />
                                 <h4 className="font-bold text-sm dark:text-stone-200">{cert}</h4>

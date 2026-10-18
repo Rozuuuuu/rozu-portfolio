@@ -75,7 +75,7 @@ const ProjectDetail = () => {
 
                     <header className="max-w-5xl mx-auto px-6 md:px-8 mb-12">
                         <ScrollReveal>
-                            <div className="relative overflow-hidden rounded-xl aspect-[21/9] mb-10 shadow-xl dark:shadow-black/40 bg-neutral-200 dark:bg-neutral-800">
+                            <div className={`relative overflow-hidden rounded-xl ${project.showcase ? '' : 'aspect-[21/9]'} mb-10 shadow-xl dark:shadow-black/40 bg-neutral-200 dark:bg-neutral-800`}>
                                 {hasVideo ? (
                                     <video className="w-full h-full object-cover" src={project.media.src} controls playsInline poster={project.img || undefined} />
                                 ) : hasYouTube ? (
@@ -89,7 +89,7 @@ const ProjectDetail = () => {
                                     />
                                 ) : hasImage ? (
                                     /* [PERF FIX 4] Image lazy loading and dimensions */
-                                    <img className="w-full h-full object-cover" src={project.img} alt={project.title} width="800" height="450" loading="lazy" decoding="async" />
+                                    <img className={project.showcase ? 'w-full h-auto' : 'w-full h-full object-cover'} src={project.img} alt={project.title} width="800" height="450" loading="lazy" decoding="async" />
                                 ) : hasLogo ? (
                                     <div className="w-full h-full flex items-center justify-center bg-neutral-50 dark:bg-neutral-950 p-12">
                                         <img className="max-h-24 w-auto object-contain dark:invert" src={project.logo} alt={project.title} loading="lazy" decoding="async" />
@@ -100,8 +100,8 @@ const ProjectDetail = () => {
                                         <span className="text-sm font-bold text-neutral-500 uppercase tracking-widest">{project.title}</span>
                                     </div>
                                 )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
-                                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 pointer-events-none">
+                                {!project.showcase && <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />}
+                                <div className={`${project.showcase ? 'bg-neutral-950' : 'absolute bottom-0 left-0 right-0'} p-6 md:p-12 pointer-events-none`}>
                                     <div className="flex flex-wrap gap-2 mb-4">{project.tags.map(t => <Tag key={t}>{t}</Tag>)}</div>
                                     <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white leading-none uppercase">{project.title}</h1>
                                 </div>
